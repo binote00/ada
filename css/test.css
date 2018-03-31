@@ -1,0 +1,199 @@
+/*@font-face { 	
+font-family: "smithyxt-regulat-v2-webfont"; 	
+src: url('../aceofaces/font/smithyxt-regular-v2-webfont.eot'); 
+src: url('../aceofaces/font/smithyxt-regular-v2-webfont.ttf'); 
+src: url('../aceofaces/font/smithyxt-regular-v2-webfont.woff'); 
+src: url('../aceofaces/font/smithyxt-regular-v2-webfont.svg'); 
+}*/
+A:link {
+	COLOR: DarkBlue; TEXT-DECORATION: none;
+}
+A:visited {
+	COLOR: DarkBlue; TEXT-DECORATION: none;
+}
+BODY { 
+  color: black;
+  font-family:1939 Typewriter,smithyxt-regular-v2-webfont,Sears_Tower-webfont,MyUnderwood-webfont,SmithyXT-Heavy-v2,Courier;
+  /*BACKGROUND-COLOR: #203F56;*/
+  BACKGROUND-COLOR: #ECDDC1;
+  background-image:url(images/bg_papier1.gif);
+  text-align: justify;
+}
+TABLE {
+  text-align: center;
+  /*BACKGROUND-COLOR: '#ECDDC1';*/
+}
+
+hr{
+	color: black;
+	background-color: black;
+	height: 1px;
+	border: 0;
+}
+
+.bg {
+	BACKGROUND-COLOR: #ECDDC1; /*#203F56;*/
+}
+.def {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ECDDC1; TEXT-ALIGN: center;
+}
+.bold {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ECDDC1; /*#203F56;*/
+}
+.courier{
+  font-family: "Courier New"; TEXT-ALIGN: left; FONT-WEIGHT: bold;
+}
+.dark_l{
+	COLOR: #000000; TEXT-ALIGN: left;
+}
+.dark_bl{
+	FONT-WEIGHT: bold; COLOR: #000000; TEXT-ALIGN: left;
+}
+.red{
+	COLOR: red;
+}
+.white {
+	FONT-WEIGHT: bold; COLOR: #ffffff; TEXT-ALIGN: center;
+}
+.TitreBleu_bc{
+	FONT-WEIGHT: bold; 
+	COLOR: #000000; 
+	BACKGROUND-COLOR: Tan; /*#B0C4DE;*/
+	TEXT-ALIGN: center;
+}
+.Titrelgy_bc{
+	FONT-WEIGHT: bold; 
+	COLOR: #000000; 
+	BACKGROUND-COLOR: Lightyellow; /*#B0C4DE;*/
+	TEXT-ALIGN: center;
+}
+.TableauBlanc_c{
+	COLOR: #000000; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center;
+}
+.TableauProfil{
+	COLOR: #000000; 
+	BACKGROUND-COLOR: #ECDDC1;/*#3D6481;*/ 
+	TEXT-ALIGN: center;
+}
+.Bouton{
+	background: transparent url(images/bouton1.gif) no-repeat scroll left;
+	background-position:center; 
+	display:block;
+    padding: 5px;
+    text-decoration: none;
+	color: #000000;
+}
+.Bouton_100{
+	background: transparent url(images/bouton2.gif) no-repeat scroll left;
+	background-position:center; 
+	display:block;
+    padding: 5px;
+    text-decoration: none;
+	color: #000000;
+}
+div#half {
+	width: 50%;
+	margin-left : 5px;
+	background-color:#ECDDC1;
+	}
+div#col_gauche {
+	float:left;
+	margin-left : 20px;
+	background-color:#ECDDC1;
+	}
+div#col_droite {
+	float:left;
+	margin-left : 10px;
+	background-color:#ECDDC1;
+	}
+div#profil_photo {
+	float:left;
+	margin-left : 10px;
+	width: 230px;
+	height: 360px;
+	background-color:#ECDDC1;
+	}
+div#profil_infos {
+	float:left;
+	width: 200px;
+	height: 360px;
+	background-color:#ECDDC1;
+	}
+div#profil_skills{
+	float:left;
+	/*top: 176px;
+	left: 579px;*/
+	width: 430px;
+	height: 360px;
+	background-color:#ECDDC1;
+	}
+div#profil_stats{
+	position : absolute;
+	/*top: 176px;*/
+	left: 1100px;
+	/*float: right;
+	margin-right : 140px;
+	margin-top : -325px;*/
+	width: 100px;
+	height: 360px;
+	/*background-color:#ECDDC1;*/
+	}
+div#profil_decorations {
+	/*position: relative;
+	top: 305px;*/
+	clear:both;
+	float:left;
+	margin-left : 10px;
+	width:780px;
+	height:200px;
+	background-color:#ECDDC1;
+	}
+div#profil_actions{
+	position : absolute;
+	top: 510px;
+	left: 985px;
+	width: 140px;
+	height: 300px;
+	/*background-color:#ECDDC1;*/
+}
+div#account {
+	float:left;
+	margin-left : 20px;
+	width: 300px;
+	height: 360px;
+	background-color:#ECDDC1;
+	}
+div#account_photo {
+	float:left;
+	width: 200px;
+	height: 360px;
+	background-color:#ECDDC1;
+	}
+div#account_menu {
+	/*position: relative;
+	top: 305px;*/
+	clear:both;
+	float:left;
+	margin-left : 20px;
+	width:600px;
+	height:200px;
+	background-color:#ECDDC1;
+	}
+#banner{
+	/*display: block;
+	margin-left: auto;
+	margin-left: right;*/
+	text-align:center;
+}
+#dhtmltooltip{
+	position: absolute;
+	width: 200px;
+	height: 120px;
+	border: 2px solid black;
+	padding: 2px;
+	background-color: #ECDDC1;
+	visibility: hidden;
+	z-index: 100;
+	/*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135);
+}

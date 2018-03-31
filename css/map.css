@@ -1,0 +1,124 @@
+﻿a.popup{
+    color:#000;
+}
+a.popup span
+{
+	position:absolute; 
+	z-index:10;
+	margin-top:25px;
+	margin-left:25px;
+	min-width:200px;
+	color:#fff;
+	background:rgba(143, 128, 152 ,.9); /*rgba(65,113,172,.9);*/
+	padding:15px;
+	border-radius:3px;
+	box-shadow:0 0 2px rgba(143, 128, 152 ,.5);/*rgba(65,113,172,.5);*/
+	opacity:0;
+	transform:scale(0) rotate(-12deg);
+	transition:all .25s;
+}
+a.popup:hover span, a.popup:focus span{
+	transform:scale(1) rotate(0);
+	opacity:1;
+}
+.block{
+	display: block;
+}
+.inline{
+	display: inline;
+}
+.float{
+	float:left;
+}
+.icon{
+	width: 25px;
+	height: 25px;
+}
+.abs2{
+	position: absolute;
+	z-index: 2;
+}
+.detroit{
+	background-image: url(../images/map/icone_detroit.png);
+	width: 35px;
+	height: 35px;
+}
+.mer{
+	background-image: url(../images/map/icone_mer.png);
+	width: 35px;
+	height: 35px;
+}
+.mines_m{
+	background-image: url(../images/map/icone_mines_m.png);
+	width: 35px;
+	height: 35px;
+}
+.plage{
+	background-image: url(../images/map/plage.png);
+}
+.desert{
+	background-image: url(../images/map/desert_icon.png);
+	width: 30px;
+	height: 30px;
+}
+.lieu_fire{
+	background-image: url(../images/map/lieu_fire.png);
+	width: 17px;
+	height: 20px;
+	position: absolute;
+	z-index: 5;
+}
+.map_gare_out{
+	background-image: url(../images/map/map_gare_out.png);
+	width: 50px;
+	height: 50px;
+}
+.train_ok{
+	background-image: url(../images/map/train_ok.png);
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	z-index: 1;
+}
+.range{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	z-index: 2;
+}
+.50{
+	background-image: url(../images/map/range50.png);
+}
+.50r{
+	background-image: url(../images/map/range50r.png);
+}
+.50v{
+	background-image: url(../images/map/range50v.png);
+}
+.50b{
+	background-image: url(../images/map/range50b.png);
+}
+.50p{
+	background-image: url(../images/map/range50p.png);
+}
+.move_train{
+	background-image: url(../images/map/move_train2.png);
+}
+.move_eni{
+	background-image: url(../images/map/move_eni.png);
+}
+.move_ok{
+	background-image: url(../images/map/move_ok2.png);
+}
+.dest_air{
+	background-image: url(../images/map/river2.png);
+	position: absolute;
+	z-index: 1;
+}
+.cible{
+	background-image: url(../images/cible3.gif);
+	width: 35px;
+	height: 35px;
+	position: absolute; 
+	z-index: 10;
+}
