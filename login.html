@@ -1,0 +1,17 @@
+﻿<h1>Se Connecter au jeu</h1>
+<div class="alert alert-danger">
+    <b>Si vous avez déjà changé votre mot de passe après le 15 Juin 2017, ne tenez pas compte de cet avertissement.</b>
+    <p>En raison d'un problème technique, les utilisateurs sont priés de générer un nouveau mot de passe via
+    <a href="index.php?view=pass_recover" style='color:#4171ac;'><span>ce lien</span></a>. Un email sera envoyé contenant le nouveau mot de passe.
+    <br>Si vous désirez changer votre mot de passe par la suite, il vous suffit de vous rendre sur la page compte une fois connecté au jeu.</p>
+</div>
+<form action="login.php" method="post">
+<label for="email">Identifiant</label><input type="text" name="email" id="email" placeholder="Votre identifiant" size="30" class="form-control" style='width: 300px' required>
+<label for="password">Mot de Passe</label><input type="password" name="password" id="password" placeholder="Votre mot de passe" size="30" class="form-control" style='width: 300px' required>
+<input type='submit' class='btn btn-default' value='SE CONNECTER' onclick='this.disabled=true;this.form.submit();'></form>
+<p><a href="index.php?view=pass_recover" style='color:#4171ac;'><span>Mot de passe oublié ?</span></a></p>
+<p><a href="index.php?view=ident_recover" style='color:#4171ac;'><span>Identifiant oublié ?</span></a></p>
+<p>Le site utilise les <a href='aide_cookies.php' target='_blank' style='color:#4171ac;'>cookies de session</a></p>
+<hr><h2>Pas encore inscrit ?</h2>
+<a href="index.php?view=signin" class='btn btn-danger'>Inscription</a>
+

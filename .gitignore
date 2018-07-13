@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+.idea_modules/
+out/
+vendor/
+*.json
+*.lock
+*.sql
+inc/db_old.php
+img/
+jfv_include.inc.php
+login.php

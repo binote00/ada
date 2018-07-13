@@ -1,0 +1,122 @@
+﻿@font-face {
+	font-family: 'bebas_neueregular';
+	src: url('./fonts/BebasNeue-webfont.eot');
+	src: url('./fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+	url('./fonts/BebasNeue-webfont.woff') format('woff'),
+	url('./fonts/BebasNeue-webfont.ttf') format('truetype'),
+	url('./fonts/BebasNeue-webfont.svg#bebas_neueregular') format('svg');
+	font-weight: lighter;
+	font-style: normal;
+}
+
+body {
+	background-color: #EBE4DC;
+}
+
+img {
+	border-radius: 10px;
+}
+
+table thead{
+	background-color: #9F9890;
+	color: #fff;
+}
+
+h1, h2, h3{font-family: 'bebas_neueregular';}
+h1{color: #8e0809;}
+h2{color: #64615e; margin: 10px 0 7px 0;}
+
+
+h3{
+	margin: 6px 0 3px 0;
+	font-weight: bold;
+}
+
+h4{
+	font-weight: bold;
+	color: #9F9890;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+label{
+	margin-top: 10px;
+}
+
+fieldset{
+	background-color: #C0BCB7;
+	border-radius : 5px;
+	padding: 5px;
+}
+fieldset legend{
+	font-weight: bold;
+	text-align: center;
+}
+
+input[type="submit"]{
+	margin : 10px;
+	background-color: #EBE4DC;
+}
+
+a:visited,a:link {
+	color: lightgrey;
+}
+
+.header-wrap{
+	height: 80px;
+}
+
+/* Mod Bootstrap 4*/
+
+.form-check-inline{
+	box-shadow: none;
+	background: rgba(255,255,255,0.4);
+}
+
+.badge {
+	margin-bottom: 10px;
+}
+
+.card{
+	background-color: #EBE4DC;
+}
+
+.card-header{
+	background-color: #9F9890;
+	color: #fff;
+}
+
+.progress{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #EBE4DC;
+}
+
+.progress-bar {
+	height: 20px !important;
+}
+
+.btn-outline-secondary{color:#666;background-image:none;background-color:transparent;border-color:#666}.btn-outline-secondary:hover{color:#fff;background-color:#666;border-color:#666}.btn-outline-secondary.focus,.btn-outline-secondary:focus{-webkit-box-shadow:0 0 0 2px rgba(204,204,204,.5);box-shadow:0 0 0 2px rgba(204,204,204,.5)}.btn-outline-secondary.disabled,.btn-outline-secondary:disabled{color:#666;background-color:transparent}.btn-outline-secondary.active,.btn-outline-secondary:active,.show>.btn-outline-secondary.dropdown-toggle{color:#fff;background-color:#666;border-color:#666}
+
+a.popup{
+	color: #000;
+}
+
+a.popup:hover span, a.popup:focus span, a.popup:hover span, a.popup:focus span{
+	transform:scale(1) rotate(0);
+	opacity:1;
+}
+a.popup span{
+	position:absolute;
+	z-index:10;
+	margin-top:25px;
+	margin-left:-200px;
+	color:#000;
+	background:rgba(217,212,206,.9);
+	padding:15px;
+	border-radius:5px;
+	box-shadow:0 0 2px rgba(217,212,206,.5);
+	opacity:0;
+	transform:scale(0) rotate(-12deg);
+	transition:all .5s;
+}

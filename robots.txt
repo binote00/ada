@@ -1,0 +1,15 @@
+Disallow /images/ 
+Disallow /img/
+Disallow /attaque.php
+Disallow /bomb.php
+Disallow /bombardement.php
+Disallow /landing.php
+Disallow /mission.php
+Disallow /mission1.php
+Disallow /mission2.php
+Disallow /mission3.php
+Disallow /nav.php
+Disallow /objectif.php
+Disallow /photo.php
+Disallow /promotion.php
+Disallow /takeoff.php

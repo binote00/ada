@@ -1,0 +1,83 @@
+﻿<h1>Création du compte</h1>
+<div class='alert alert-warning'><b>L'Aube des Aigles est un jeu de gestion/stratégie coopératif demandant patience et persévérance.</b><br>Il ne s'agit pas d'un jeu d'action ni d'un jeu en solitaire, pas plus que d'un jeu où le but est de faire progresser son personnage.
+    <br>Avant de créer votre compte, nous vous conseillons de lire <a href="index.php?view=regles" class='lien'>les règles du jeu</a></div>
+<div class='alert alert-danger'><strong>Attention !</strong> Vous n'êtes pas autorisé à posséder plus d'un compte par joueur.
+    <br>Toute suspicion de multi-compte entrainera la suppression des comptes concernés, sans préavis!
+    <br>Dans le doute, <a href="http://cheratte.net/aceofaces/forum/viewforum.php?f=3" class='lien'>consultez le forum</a> ou <a href="mailto:admin@aubedesaigles.net" class='lien'>contactez un administrateur.</a></div>
+<h2>Choix de la nation</h2>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <h3>Alliés</h3>
+            <div class="panel panel-war">
+                <div class="panel-heading">Angleterre</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="2"><img class="img-fluid my-2 mx-auto d-block" src="images/flag2.jpg" title="Royaume-Uni" align="middle"></a>
+                </div>
+            </div>
+            <div class="panel panel-war">
+                <div class="panel-heading">France</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="4"><img class="img-fluid my-2 mx-auto d-block" src="images/flag4.jpg" title="France" align="middle"></a>
+                </div>
+            </div>
+            <div class="panel panel-war">
+                <div class="panel-heading">URSS</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="8"><img class="img-fluid my-2 mx-auto d-block" src="images/flag8.jpg" title="URSS" align="middle"></a>
+                </div>
+            </div>
+            <div class="panel panel-war">
+                <div class="panel-heading">USA</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="7"><img class="img-fluid my-2 mx-auto d-block" src="images/flag7.jpg" title="USA" align="middle"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <h3>Axe</h3>
+            <div class="panel panel-war">
+                <div class="panel-heading">Allemagne</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="1"><img class="img-fluid my-2 mx-auto d-block" src="images/flag1.jpg" title="Allemagne" align="middle"></a>
+                </div>
+            </div>
+            <div class="panel panel-war">
+                <div class="panel-heading">Italie</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="6"><img class="img-fluid my-2 mx-auto d-block" src="images/flag6.jpg" title="Italie" align="middle"></a>
+                </div>
+            </div>
+            <div class="panel panel-war">
+                <div class="panel-heading">Japon</div>
+                <div class="panel-body text-center">
+                    <a data-toggle="modal" data-target="#modal-signin" data-country="9"><img class="img-fluid my-2 mx-auto d-block" src="images/flag9.jpg" title="Japon" align="middle"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+		<!--<h3><small>L'Armée de Vichy</small></h3>
+		<p>Créer un personnage français entre le 22 juin 1940 et le 12 novembre 1942 (date de jeu) vous fera rejoindre l'Armée de Vichy.
+		<br>Dans l'Aube des Aigles, le régime de Vichy fait partie de l'Axe et est l'allié de l'Allemagne et l'Italie, de l'Armistice entre ces deux dates.
+		<br>Si vous créez un pilote français durant cette période, nous considérons que vous avez accepté ces conditions de jeu.</p>-->
+		<!--<h3><small>Les personnages italiens, japonais, finlandais, soviétiques et américains</small></h3>
+		<p>Créer un personnage d'une de ces nations avant leur entrée en guerre ne vous permettra pas de participer à des missions de combat.
+		<br>Vous pourrez néanmoins effectuer des missions d'entrainement et accéder à toutes les statistiques et classements du jeu.
+		<br>Si vous créez un pilote d'une nation en paix, nous considérons que vous avez accepté ces conditions de jeu.</p>-->
+<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content" style="background-color: #EBE4DC">
+            <div class="modal-header"><h1>Création de compte</h1></div>
+            <div class="modal-body">
+                <div class="modal-flag"></div>
+                <p>
+                <form action="index.php?view=signins" method="post">
+                    <input type="hidden" name="country" id="f-country" value="">
+                    <div class="input-group"><span class="input-group-addon">Adresse Email </span><input type="email" name="email" size="50" maxlength="50" class="form-control" style='width: 200px' placeholder="E-mail" onmouseup="valbtn.disabled=false;" required></div>
+                    <div class="input-group"><span class="input-group-addon">Identifiant </span><input type="text" name="pseudo" size="50" maxlength="50" class="form-control" style='width: 225px' placeholder="Identifiant" onmouseup="valbtn.disabled=false;" required></div>
+                    <div class="input-group"><span class="input-group-addon">Mot de Passe </span><input type="password" name="password" size="16" maxlength="16" class="form-control" style='width: 120px' placeholder="Mot de passe" onmouseup="valbtn.disabled=false;" required></div>
+                    <br><input type='submit' value='VALIDER' id="valbtn" class="btn btn-default"></form>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
