@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide</h1>
 <h3>Acteur de la propagande</h3>
 Gain de réputation doublé en cas de victoire offensive<br>
@@ -51,4 +51,4 @@ Débute avec un bonus en Avancement</p>
 <h3>Prudent</h3>
 Toute retraite ne coûte que 2CT, mais le coût des déplacements est augmenté de 2CT</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

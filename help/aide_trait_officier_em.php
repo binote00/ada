@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Traits de l'officier d'état-major</h1>
 <h2>Aérien</h2>
 <h3>Acteur de la propagande</h3>
@@ -128,4 +128,4 @@ Les navires EM sous son commandement bénéficient d'un bonus d'expérience de 2
 <h3>Premier de promotion</h3>
 Débute avec un bonus en Avancement
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

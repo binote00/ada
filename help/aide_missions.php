@@ -185,7 +185,7 @@ Les mines maritimes peuvent endommager tout navire tentant de se déplacer depui
 Un avion pouvant transporter des mines maritimes est un prérequis. Il vaut mieux qu'il dispose d'une bonne autonomie et éventuellement de bonnes capacités défensives si l'objectif devait se situer en zone dangereuse.
 <h2>Missions de parachutage</h2>
 Ces missions consistent à transporter des troupes terrestres et à les parachuter sur un lieu déterminé.
-<br>Plus de détail <a class='lien' href='help/aide_transit.php'>ici</a>
+<br>Plus de détail <a class='lien' href='aide_transit.php'>ici</a>
 <p class='lead'>La météo</p>
 La météo <i>sur l'objectif</i> a une grande importance pour ce genre de mission.
 <h2>Missions de patrouille ASM</h2>
@@ -250,4 +250,4 @@ Les missions historiques et de front sont des missions bonus s'ajoutant aux miss
 <li>La mission de front est définie par l'Etat-Major de votre nation, et est accessible à toutes les escadrilles de la nation présentes sur ce front.</li></ul>
 <h4><small><b>Attention que lors de ces missions, c'est à vous de vérifier que l'objectif est accessible et approprié!</b></h4></small>
 </div>";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

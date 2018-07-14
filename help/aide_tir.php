@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<div><h1>Le Tir air-air</h1>
 <h2>Paramètres influençant la réussite du tir</h2>
 <ul>
@@ -41,4 +41,4 @@ Plus la cible est grosse, plus vous aurez facile de la toucher, plus elle est pe
 <br>L'influence de la taille varie avec la distance. Plus vous êtes proche de la cible, plus l'effet d'une grande taille sera important, etc...
 </div>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

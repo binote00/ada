@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide: Missions en cours</h1>
 <h3>La colonne 'Reco' peut avoir les valeurs suivantes:</h3>
 <p><b>- Eclairé</b>
@@ -19,4 +19,4 @@ $mes="<h1>Aide: Missions en cours</h1>
 <p><b>- Unités navales</b>
 <br>Des unités navales appartenant à d'autres nations ont été repérées</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

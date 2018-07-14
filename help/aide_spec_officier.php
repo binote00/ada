@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Spécialisations de l'officier</h1>
 <p>
 <h4><small>Infanterie = Infanterie, Génie, Mitrailleuses, Parachutistes, Artillerie anti-char non motorisée<br>
@@ -221,4 +221,4 @@ Bonus de camouflage et autonomie doublée dans le désert<br>
 <p class='lead'>Guerre d'hiver</p>	
 Bonus de camouflage doublé dans la neige, ignore les effets de Merzlota<br>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide</h1>
 <h2>Membre d'équipage</h2>
 <h3>Trait</h3>
@@ -54,4 +54,4 @@ $mes="<h1>Aide</h1>
 <p><b>Utilisation des radars</b>
 <br>Bonus de compétence lors de l'utilisation des radars embarqués</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

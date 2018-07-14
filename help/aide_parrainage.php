@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Parrainage</h1>
 <p><h4><small>Chaque joueur a la possibilité de parrainer d'autres nouveaux joueurs.</h4></small></p>
 <p>Pour être parrainé, un nouveau joueur doit simplement indiquer le nom du pilote de son parrain lors de son inscription au jeu.</p>
@@ -11,4 +11,4 @@ $mes="<h1>Parrainage</h1>
 <p>Chaque mois, un tirage au sort aura lieu entre les différents parrains, chaque filleul valant pour 1 chance d'être tiré au sort.
 <br>Le gagnant remportera le droit de piloter un avion prototype dans l'Aube des Aigles ou de commander une compagnie de prototypes dans Aube des Aigles : Blitzkrieg</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

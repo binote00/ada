@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Traits de l'officier</h1>
 Les officiers peuvent bénéficier d'un trait représentant la spécialité qu'ils ont acquis lors de leur formation. Ce choix est unique et définitif.
 <br>Voici la liste des traits disponibles et leurs effets :
@@ -73,4 +73,4 @@ Débute avec un bonus en Avancement. Bénéficie d'un bonus de recrutement de 50
 <h3>Prudent</h3>
 Toute retraite ou écran de fumée ne coûte que 2CT, mais le coût des déplacements est augmenté de 2CT</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

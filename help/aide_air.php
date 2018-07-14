@@ -1,5 +1,5 @@
 ﻿<div class='row'>
-<div id="logo" style="float:left;"><img src="images/Logo_ada.png"></div>
+<div id="logo" style="float:left;"><img src="../images/Logo_ada.png"></div>
 <div id="tab_menu" style="margin-left : 100px;">
 <h1>Aide sur la partie aérienne</h1>
 <ol>

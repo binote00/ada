@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide</h1>
 <p><h4><small>Afin de garantir une ambiance historique cohérente, les noms des pilotes doivent respecter quelques règles de base:</small></h4>
 <br>
@@ -18,4 +18,4 @@ $mes="<h1>Aide</h1>
 <p>Les administrateurs de l'Aube des Aigles se réservent le droit de refuser, modifier ou interdire tout nom de pilote qu'ils ne jugeraient pas conforme.
 <br>Dans le doute, <a href='mailto:ghq@aubedesaigles.net'>contactez un administrateur.</a></p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

@@ -1,11 +1,11 @@
-﻿<?
+﻿<?php
 $mes="<div><h1>Aide</h1>
 <h2>Missions des unités de reconnaissance</h2>
-Dans l'Aube des Aigles, les commandants d'unités de reconnaissance peuvent assigner leurs pilotes à diverses missions pour <img src='/images/CT2.png'> via le 'Tableau des Missions' de la section 'Escadrille'.
+Dans l'Aube des Aigles, les commandants d'unités de reconnaissance peuvent assigner leurs pilotes à diverses missions pour <img src='/../images/CT2.png'> via le 'Tableau des Missions' de la section 'Escadrille'.
 <br>Le rayon d'action de ces missions est de 250km.
 <p>Les missions disponibles sont les suivantes :</p>
 <h2>Observation</h2>
-Pour chaque avion placé en observation sur un lieu ennemi, le coût du camouflage de site augmente de <img src='/images/CT1.png'>
+Pour chaque avion placé en observation sur un lieu ennemi, le coût du camouflage de site augmente de <img src='/../images/CT1.png'>
 <br>Les avions les plus efficaces sont ceux possédant une bonne manoeuvrabilité et un bonus de détection élevé.
 <br>Les pilotes les plus efficaces sont ceux possédant un bon niveau de pilotage, de tactique et de détection.
 <h2>Pathfinder</h2>
@@ -24,4 +24,4 @@ Un avion placé en veille sur un lieu maritime ou un lieu contrôlé par votre f
 <p class='lead'>Si vous sélectionnez 'Aucune', les pilotes sélectionnés seront rappelés à la base.</p>
 </div>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

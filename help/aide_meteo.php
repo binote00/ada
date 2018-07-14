@@ -1,4 +1,5 @@
-﻿<?$mes="<h1>Météo</h1>
+﻿<?php
+$mes="<h1>Météo</h1>
 <p>Sur certains fronts et à certaines périodes de l'année, la météo peut avoir des effets dévastateurs.</p>
 <h2>Rasputitsa</h2>
 => Noeuds routiers désactivés<br>
@@ -25,4 +26,4 @@ Décembre : Merzlota sur les fronts Arctique, Est et Nord<br>
 Janvier : Merzlota sur les fronts Arctique, Est et Nord<br>
 Février : Merzlota sur les fronts Arctique, Est et Nord<br>
 Mars : Rasputitsa sur les fronts Est et Nord<br>";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

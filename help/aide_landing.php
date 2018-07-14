@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide: Atterrissage</h1>
 <h2>Règles générales</h2>
 Dans l'Aube des Aigles, tous les avions possèdent une vitesse de décrochage spécifique, dépendant de leur masse. Plus l'avion est lourd, plus sa vitesse de décrochage sera élevée.
@@ -52,4 +52,4 @@ Sur porte-avions, l'appontage est une exercice difficile dans le sens où il com
 <br>Un pilote expérimenté sur porte-avions aura plus de chances d'accrocher un brin de freinage et ainsi faire apponter son avion sur une distance minimale.</p>
 <div class='alert alert-danger'>ce jeu n'est PAS une simulation de pilotage et n'en a pas la prétention. Les mécanismes de vol ont été très simplifiés pour permettre à chacun de prendre du plaisir à jouer.</div>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

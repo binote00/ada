@@ -1,4 +1,5 @@
-﻿<?$mes ="<div><h1>Aide</h1><h2>Le Renseignement</h2>
+﻿<?php
+$mes ="<div><h1>Aide</h1><h2>Le Renseignement</h2>
 <table class='table table-striped'>
     <thead>
     <tr>
@@ -90,6 +91,6 @@
 <li>L'effet s'applique au passage de date</li>
 </ul>
 </div>";
-include_once('./default_blank.php');
+include_once('../default_blank.php');
 
 

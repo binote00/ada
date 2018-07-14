@@ -1,9 +1,9 @@
 ﻿<html>
 <head>
 	<title>Aube des Aigles : Aide</title>
-	<link href="css/test.css" rel="stylesheet" type="text/css">
+	<link href="../css/test.css" rel="stylesheet" type="text/css">
 </head>
-<body background="images/bg_papier1.gif">
+<body background="../images/bg_papier1.gif">
 <div>
 <h2>Spécificités de la guerre navale</h2>
 

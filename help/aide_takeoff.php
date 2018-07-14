@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide: Décollage</h1>
 <h2>Règles générales</h2>
 <br>- Le décollage nécessite un minimum de vitesse et donc de puissance, sans quoi l'avion ne peut décoller.
@@ -57,4 +57,4 @@ Ces commandes permettent au pilote de jouer sur la vitesse et la manoeuvrabilit�
 <br>La manette des gaz contrôle la puissance du moteur, et donc la vitesse. Décollez avec un maximum de puissance, surtout si vous êtes à pleine charge.</p>
 <div class='alert alert-danger'>Ce jeu n'est PAS une simulation de pilotage et n'en a pas la prétention. Les mécanismes de vol ont été très simplifiés pour permettre à chacun de prendre du plaisir à jouer.</div>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');

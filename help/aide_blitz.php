@@ -1,5 +1,5 @@
 <div class='row'>
-	<div id="logo" style="float:left;"><img src="images/Logo_ada.png"></div>
+	<div id="logo" style="float:left;"><img src="../images/Logo_ada.png"></div>
 	<div id="tab_menu" style="margin-left : 100px;">
 	<h1>Aide sur la partie terrestre et navale</h1>
 	<ol>
@@ -24,7 +24,7 @@
 <div> <!-- style='overflow:auto; height: 640px;'-->
 	<div id="tab_command">
 		<h1>1 - Fonctionnement de la chaîne de commandement</h1>
-		<div class='alert alert-info'>L'officier peut faire le choix d'occuper un poste à l'état-major (plus d'informations <a href="index.php?view=regles#tab_em" class="lien">ici</a>) ou de commander une armée.
+		<div class='alert alert-info'>L'officier peut faire le choix d'occuper un poste à l'état-major (plus d'informations <a href="../index.php?view=regles#tab_em" class="lien">ici</a>) ou de commander une armée.
 		<br>Une armée composée de divisions elles-mêmes composées de compagnies, unité de base comprenant des troupes ou des navires. Le commandant d'armée reçoit son commandement et ses troupes de l'état-major.
 		<br>Outre les unités terrestres et navales, le commandant d'armée peut recevoir le commandement d'unités aériénnes tactiques (chasse, reconnaissance et attaque). Les unités aériennes stratégiques étant l'exclusivité de l'état-major aérien.
 		<br></div>
@@ -162,7 +162,7 @@
 		<br>Le coût en déplacement sera doublé (toujours à concurrence du maximum de CT) si le lieu de départ n'est pas contrôlé par votre faction.-->
 		<br>Les déplacements de lieu en lieu ne sont pas possibles depuis un lieu forteresse contrôlé par l'ennemi.
 		<br>La distance de déplacement sera considérablement réduite si le lieu de destination est contrôlé par l'ennemi (malus de 50% à l'autonomie, doublé si la zone de départ est une zone de combat).
-		<br>Sur certains fronts les conditions climatiques peuvent fortement modifier les déplacements, référez vous à <a href='help/aide_meteo.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée à la météo</a>
+		<br>Sur certains fronts les conditions climatiques peuvent fortement modifier les déplacements, référez vous à <a href='aide_meteo.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée à la météo</a>
 		<br>Référez-vous à la partie guerre navale concernant les spécificités du déplacement naval.</p>
 
 		<h2>Les distances</h2>
@@ -174,7 +174,7 @@
 		S'il s'agissait d'une plaine, son déplacement serait de 240km ou de 120km depuis une zone de combat. La réduction du front ouest amènerait la distance à 60km dans les deux cas.
 		<br>Le jeu calcule automatiquement les distances pour vos unités et la carte vous permet de visualiser les possibilités de déplacement pour chaque unité.</p>
 
-		<p><h4><small>Tableau des malus de déplacement en fonction du terrain:</small></h4><img src='images/old/blitz_move.jpg' title='Malus déplacements'></p>
+		<p><h4><small>Tableau des malus de déplacement en fonction du terrain:</small></h4><img src='../images/old/blitz_move.jpg' title='Malus déplacements'></p>
 
 		<h2>La Consommation</h2>
 		<p>La valeur indiquée représente la quantité de carburant nécessaire pour un déplacement d'un véhicule ou navire au maximum de son autonomie.
@@ -187,7 +187,7 @@
 
 		<h2>Changement de front</h2>
 		<p>Le planificateur stratégique de chaque nation est la seule personne habilitée à changer une unité de front.
-		<br>Pour ce faire, l'unité doit être amenée sur une ville transit (indiquée sur la carte par ce symbole <img src="/images/map_transit.png">) par le commandant d'unité qui pourra ensuite faire une demande de changement de front qui parviendra au planificateur stratégique.</p>
+		<br>Pour ce faire, l'unité doit être amenée sur une ville transit (indiquée sur la carte par ce symbole <img src="../images/map_transit.png">) par le commandant d'unité qui pourra ensuite faire une demande de changement de front qui parviendra au planificateur stratégique.</p>
 	</div>
 
 	<div id="tab_reco">
@@ -301,7 +301,7 @@
 		<br>Une unité d'artillerie anti-char ou de chasseurs de chars en embuscade, formant une ligne ou retranchée ripostera contre les unités attaquantes mobiles.
 		<br>Une unité d'infanterie formant une ligne (ou retranchée) annulera toute possibilité d'attaquer une autre unité alliée sur la même position qu'elle. L'attaquant aura alors le choix d'attaquer les unités d'infanterie retranchées en première ligne. Une exception cependant, les unités mobiles auront une chance d''effectuer une percée. L'expérience des unités et le nombre d'unités en ligne favorisent la défense face à une percée. L'expérience de l'unité attaquante et sa vitesse (modifiée) favorisent les chances de percée.
 		<br>L'arme utilisée pour l'attaque sera : Anti-Tank si l'ennemi est blindé, sinon Soutien si la portée est inférieure à 3000, sinon Armement par défaut</p>
-		<p><img src='images/old/bz_couverture.jpg' title='Attaque'></p>
+		<p><img src='../images/old/bz_couverture.jpg' title='Attaque'></p>
 
 		<h3 id="tab_tir">Le tir</h3>
         <p>Dans le jeu, l'attaque est scindée en différentes tentatives de tir de la part de l'unité gagnant l'initiative, suivie d'une riposte de l'autre unité.
@@ -462,11 +462,11 @@
 		<p>Certaines unités nécessitent des quantités de carburant et/ou de munitions pour pouvoir se déplacer ou effectuer une action offensive. La quantité nécessaire à chaque unité est indiquée dans le menu d'ordres.
 		<br>Tous les dépôts contrôlés par la faction de l'unité et situés dans un certain rayon autour d'elle peuvent lui fournir automatiquement ce dont elle a besoin. La quantité de carburant et de munitions disponibles est également indiquée dans le menu d'ordres.
 		<br>Si aucun dépôt ne possède les quantités suffisantes, l'unité ne peut effectuer d'action offensive jusqu'à ce qu'un dépôt soit ravitaillé. Les dépôts peuvent être ravitaillés par les trains, les cargos ou les camions logistiques.
-		<br>Les unités de transport aérien peuvent ravitailler les unités pour 24h, l'unité recevant alors ce symbole <img src='images/map/air_ravit.png'>
+		<br>Les unités de transport aérien peuvent ravitailler les unités pour 24h, l'unité recevant alors ce symbole <img src='../images/map/air_ravit.png'>
 
 		<h3>Exemple de troupe</h3>
-		24/24 <img src='images/vehicules/vehicule172.gif' title='B1bis'>
-		<br><img src='images/skills/skillo2.png'><img src='/images/skills/skille6.png'>
+		24/24 <img src='../images/vehicules/vehicule172.gif' title='B1bis'>
+		<br><img src='../images/skills/skillo2.png'><img src='../images/skills/skille6.png'>
 		<span class='label label-primary' title='Consommation déplacement'>864L  Octane 87</span><span class='label label-info' title='Consommation attaque'>1200 obus de 75mm</span>
 
 		<p>Dans le menu d'ordre des unités terrestres, sous l'icône du véhicule ou de la troupe, des informations indiquent les consommations en carburant (en bleu sur l'exemple) et en munitions (en kaki sur l'exemple) de l'unité.</p>
@@ -560,7 +560,7 @@
 		<li>Attaque impossible</li>
 		<li>Dans le cas d'une unité joueur en transit, son sort est lié à celui des barges qui la transportent.</li>
 		<li>Dans le cas d'une unité EM, elle peut être déplacée sur les lieux maritimes et les ports alliés. Elle se défendra comme une barge classique.</li>
-		<li>Pour l'embarquement et le désembarquement, référez vous à <a href='help/aide_transit.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée au transit</a></li>
+		<li>Pour l'embarquement et le désembarquement, référez vous à <a href='aide_transit.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée au transit</a></li>
 		</ul></p>
 
 		<p><h3>Cloué au sol</h3>
@@ -574,8 +574,8 @@
 		<li>Expérience tactique lors d'une défense /2</li>
 		<li>Dégâts reçus doublés en cas d'assaut ennemi</li></ul></p>
 
-		<p><h4><small><img src='images/camouflage.png'> Indique que votre unité n'a pas été repérée par l'ennemi</small></h4>
-		<h4><small><img src='images/souslefeu.png'> Indique que votre unité est sous le feu ennemi</small></h4></p>
+		<p><h4><small><img src='../images/camouflage.png'> Indique que votre unité n'a pas été repérée par l'ennemi</small></h4>
+		<h4><small><img src='../images/souslefeu.png'> Indique que votre unité est sous le feu ennemi</small></h4></p>
 	</div>
 
 	<div id="tab_naval">
@@ -606,7 +606,7 @@
 		<br>Référez-vous à la partie terrestre concernant les modificateurs du coût de déplacement.-->
 		
 		Vous pouvez déplacer vos navires entre les lieux maritimes, les ports ou les plages.
-		<br>Les navires utilisent un système de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
+		<br>Les navires utilisent un système de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
 		<br>Il n'est pas possible de se déplacer directement de port à port, le passage par un lieu maritime est obligatoire.
 		<br>La météo influe sur les déplacements. Les tornades empêcheront tous les navires de se déplacer, tandis que les tempêtes feront obstacle aux plus petits.
 
@@ -616,7 +616,7 @@
 		<br>Les unités navales sont limitées à 10 par zone maritime dans le Pacifique et 5 sur les autres fronts. Les sous-marins ne sont pas compris dans cette limite.
 
 		<h3>Le ravitaillement</h3>
-		Les navires utilisent un système de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
+		Les navires utilisent un système de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
 		<br>Lors de leur ravitaillement au port ou en mer via un cargo, le navire reçoit tout le carburant et les munitions nécessaires à sa mission.
 		<br>Certains petits navires (comme les cargos ou les patrouilleurs) n'ont pas besoin d'être ravitaillés pour pouvoir opérer.
 		
@@ -744,10 +744,10 @@
 		Ce navire permet de miner certaines zones maritimes, soit une zone côtière, soit un détroit ou un canal.
 		<br>Le mouilleur de mines ne peut miner une zone que si aucune unité ennemies n'est présente sur cette zone en même temps que lui.
         <br>A chaque action de minage, 10% de la zone est minée et un marqueur est placé sur la zone pour signaler la présence de mines aux alliés.
-        <img src="images/map/icone_mines_m.png" alt="Présence de mines dans la zone maritime">
+        <img src="../images/map/icone_mines_m.png" alt="Présence de mines dans la zone maritime">
 		<br>Une fois posées, les mines peuvent endommager chaque navire de déplaçant depuis cette zone, peu importe la nation du navire.
 		<br>Les zones pouvant être minées sont visibles par toutes les factions via la présence d'une icône adaptée.
-        <img src="images/map/icone_detroit.png" alt="Zone maritime pouvant être minée">
+        <img src="../images/map/icone_detroit.png" alt="Zone maritime pouvant être minée">
 		<br>Les dragueurs de mines (et tout autre navire avec la caractéristique "démineur") peuvent retirer les skill d'une zone à concurrence de 20% de la zone par action de déminage.</p>
 
 		<h2>Différences avec le combat terrestre</h2>
@@ -755,6 +755,6 @@
 		<li>Les navires importants possèdent une "barre de vie" (en %) visible dans le menu principal de gestion des flottes. Chaque dégât reçu fait baisser cette valeur. Une fois arrivée à 0%, le navire est coulé.</li>
 		<li>Des formations de combat spécifiques à la guerre navale remplacement les positions tactiques terrestres.</li>
 		<!--<li>Les transmissions fonctionnent de la même manière, mis à part qu'il est évidemment impossible de demander un transport ou un ravitaillement ferroviaire depuis votre unité navale.</li>-->
-		<li>Le ravitaillement des unités navales fonctionne différemment, elles possèdent une quantité de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de ravitaillement</a> pouvant être acquis dans les ports de leurs factions.</li></ul>
+		<li>Le ravitaillement des unités navales fonctionne différemment, elles possèdent une quantité de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de ravitaillement</a> pouvant être acquis dans les ports de leurs factions.</li></ul>
 	</div>
 </div>

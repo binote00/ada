@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 $mes="<h1>Aide</h1>
 <h2>Transit</h2>
 <p>Les unités terrestres peuvent être transportées par d'autres unités. Soit un transport ferroviaire entre deux gares, soit un transport maritime dans des barges de débarquement, soit un parachutage depuis des avions de transport.
@@ -59,4 +59,4 @@ $mes="<h1>Aide</h1>
 <p>Remarque : Le bataillon transporté arrivera 'retranché' à destination, mais pas 'camouflé'
 <br>Dans le cas d'une unité commandée par l'EM, effectuer une mission de parachutage en sélectionnant l'unité suffit pour accomplir la mission.</p>
 ";
-include_once('./default_blank.php');?>
+include_once('../default_blank.php');
