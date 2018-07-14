@@ -385,7 +385,7 @@ if($OfficierEMID >0 xor $OfficierID >0)
 							$Fort_txt='légèrement fortifiée';
 					}
 					if($Garnison >0)
-						$Garnison_txt="<br>une garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a> ".$Fort_txt." occupant la caserne";
+						$Garnison_txt="<br>une garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a> ".$Fort_txt." occupant la caserne";
 					if($Radar_Ori >0)
 					{
 						if($Shoot_infra >10)

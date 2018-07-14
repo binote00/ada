@@ -118,7 +118,7 @@ if($Pilote_pvp >0)
 		<table class='table'>
 			<tr><td colspan='2'><img src='images/pilotes<?echo $country;?>.jpg'></td></tr>
 			<tr><th>Nom</th><td><input type="text" title="Le nom ne peut comporter que des lettres et éventuellement un espace entre le prénom et le nom" name="name" size="30" class="form-control" style="width:300px;"></td></tr>
-			<tr><th>Spécialisation <a href='aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
+			<tr><th>Spécialisation <a href='help/aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
 					<select name="Specialisation" class="form-control" style="width:300px;">
 						<option value='0' checked>Aucune</option>
 						<option value='1' title='Bombardement horizontal uniquement'>Bombardement</option>
@@ -132,7 +132,7 @@ if($Pilote_pvp >0)
 						<option value='9' title="Compétence spécifique permettant d'utiliser les radars embarqués">Utilisation des radars</option>
 					</select>
 			</td></tr>
-			<tr><th title="Les effets du Trait ne s'appliquent qu'au membre d'équipage">Trait <a href='aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
+			<tr><th title="Les effets du Trait ne s'appliquent qu'au membre d'équipage">Trait <a href='help/aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
 					<select name="Trait_e" class="form-control" style="width:300px;">
 						<option value='0' checked>Aucun</option>
 						<option value='1' title="Léger bonus dans toutes ses actions">Chanceux</option>

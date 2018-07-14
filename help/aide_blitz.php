@@ -162,7 +162,7 @@
 		<br>Le coût en déplacement sera doublé (toujours à concurrence du maximum de CT) si le lieu de départ n'est pas contrôlé par votre faction.-->
 		<br>Les déplacements de lieu en lieu ne sont pas possibles depuis un lieu forteresse contrôlé par l'ennemi.
 		<br>La distance de déplacement sera considérablement réduite si le lieu de destination est contrôlé par l'ennemi (malus de 50% à l'autonomie, doublé si la zone de départ est une zone de combat).
-		<br>Sur certains fronts les conditions climatiques peuvent fortement modifier les déplacements, référez vous à <a href='aide_meteo.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée à la météo</a>
+		<br>Sur certains fronts les conditions climatiques peuvent fortement modifier les déplacements, référez vous à <a href='help/aide_meteo.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée à la météo</a>
 		<br>Référez-vous à la partie guerre navale concernant les spécificités du déplacement naval.</p>
 
 		<h2>Les distances</h2>
@@ -560,7 +560,7 @@
 		<li>Attaque impossible</li>
 		<li>Dans le cas d'une unité joueur en transit, son sort est lié à celui des barges qui la transportent.</li>
 		<li>Dans le cas d'une unité EM, elle peut être déplacée sur les lieux maritimes et les ports alliés. Elle se défendra comme une barge classique.</li>
-		<li>Pour l'embarquement et le désembarquement, référez vous à <a href='aide_transit.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée au transit</a></li>
+		<li>Pour l'embarquement et le désembarquement, référez vous à <a href='help/aide_transit.php' target='_blank' rel='noreferrer' class='lien'>l'aide dédiée au transit</a></li>
 		</ul></p>
 
 		<p><h3>Cloué au sol</h3>
@@ -606,7 +606,7 @@
 		<br>Référez-vous à la partie terrestre concernant les modificateurs du coût de déplacement.-->
 		
 		Vous pouvez déplacer vos navires entre les lieux maritimes, les ports ou les plages.
-		<br>Les navires utilisent un système de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
+		<br>Les navires utilisent un système de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
 		<br>Il n'est pas possible de se déplacer directement de port à port, le passage par un lieu maritime est obligatoire.
 		<br>La météo influe sur les déplacements. Les tornades empêcheront tous les navires de se déplacer, tandis que les tempêtes feront obstacle aux plus petits.
 
@@ -616,7 +616,7 @@
 		<br>Les unités navales sont limitées à 10 par zone maritime dans le Pacifique et 5 sur les autres fronts. Les sous-marins ne sont pas compris dans cette limite.
 
 		<h3>Le ravitaillement</h3>
-		Les navires utilisent un système de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
+		Les navires utilisent un système de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de mer</a> pour leurs déplacements.
 		<br>Lors de leur ravitaillement au port ou en mer via un cargo, le navire reçoit tout le carburant et les munitions nécessaires à sa mission.
 		<br>Certains petits navires (comme les cargos ou les patrouilleurs) n'ont pas besoin d'être ravitaillés pour pouvoir opérer.
 		
@@ -755,6 +755,6 @@
 		<li>Les navires importants possèdent une "barre de vie" (en %) visible dans le menu principal de gestion des flottes. Chaque dégât reçu fait baisser cette valeur. Une fois arrivée à 0%, le navire est coulé.</li>
 		<li>Des formations de combat spécifiques à la guerre navale remplacement les positions tactiques terrestres.</li>
 		<!--<li>Les transmissions fonctionnent de la même manière, mis à part qu'il est évidemment impossible de demander un transport ou un ravitaillement ferroviaire depuis votre unité navale.</li>-->
-		<li>Le ravitaillement des unités navales fonctionne différemment, elles possèdent une quantité de <a class='lien' title='Aide' href='aide_jours.php' target='_blank' rel='noreferrer'>jours de ravitaillement</a> pouvant être acquis dans les ports de leurs factions.</li></ul>
+		<li>Le ravitaillement des unités navales fonctionne différemment, elles possèdent une quantité de <a class='lien' title='Aide' href='help/aide_jours.php' target='_blank' rel='noreferrer'>jours de ravitaillement</a> pouvant être acquis dans les ports de leurs factions.</li></ul>
 	</div>
 </div>

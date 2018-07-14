@@ -555,9 +555,9 @@ if($OfficierEMID >0)
 							if($data3['Categorie'] ==20 or $data3['Categorie'] ==21 or $data3['Categorie'] ==22 or $data3['Categorie'] ==23 or $data3['Categorie'] ==24 or $data3['Categorie'] ==17)
 							{
 								if($data3['Autonomie'])
-									$HP_per.="<span class='label label-warning'><a class='lien' title='Aide' href='aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
+									$HP_per.="<span class='label label-warning'><a class='lien' title='Aide' href='help/aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
 								else
-									$HP_per.="<span class='label label-danger'><a class='lien' title='Aide' href='aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
+									$HP_per.="<span class='label label-danger'><a class='lien' title='Aide' href='help/aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
 							}
 						}
 						else

@@ -146,7 +146,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 		</select></td></tr></table>
 	<input type='Submit' value='Définir une mission de front' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>*/
 		/*Escortes et couvertures en cours
-		echo "<h2>Missions en cours <a href='aide_missions_liste.php' target='_blank'><img src='images/help.png'></a></h2><table class='table table-striped'>				
+		echo "<h2>Missions en cours <a href='help/aide_missions_liste.php' target='_blank'><img src='images/help.png'></a></h2><table class='table table-striped'>
 				<thead><tr>
 					<th>Lieu</th>
 					<th>Occupant</th>

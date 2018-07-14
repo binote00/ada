@@ -361,7 +361,7 @@ if($OfficierEMID >0)
 			}
 			echo "<h1>".$Nom_lieu."</h1><h2>Le front dispose de ".$Ouvriers." ouvriers disponibles</h2>
 			<form action='index.php?view=ground_em2' method='post'><input type='hidden' name='lieu' value='".$ID_lieu."'><table class='table'>
-				<tr><thead><th>DCA</th><th>Fortifications</th><th>Garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th></thead></tr>
+				<tr><thead><th>DCA</th><th>Fortifications</th><th>Garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th></thead></tr>
 				<tr><th><a href='#' class='popup'><img src='images/vehicules/vehicule16.gif'> Niveau ".$DCA_temp."<span>La nation a installé ".$DCA_actu." pièces de DCA sur un total de ".$DCA_Max." disponibles</span></th>
 				<th><img src='images/icone_fort.gif' title='Fortifications de la caserne'> Niveau ".$Fortification."</th>
 				<th><img src='images/vehicules/vehicule107.gif' title='Garnison'> ".$Garnison." hommes</th></tr>

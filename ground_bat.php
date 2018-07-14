@@ -93,9 +93,9 @@ if($OfficierID >0)
 				if($data3['Categorie'] ==20 or $data3['Categorie'] ==21 or $data3['Categorie'] ==22 or $data3['Categorie'] ==23 or $data3['Categorie'] ==24 or $data3['Categorie'] ==17)
 				{
 					if($data3['Autonomie'])
-						$HP_per.="<span class='label label-warning'><a class='lien' title='Aide' href='aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
+						$HP_per.="<span class='label label-warning'><a class='lien' title='Aide' href='help/aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
 					else
-						$HP_per.="<span class='label label-danger'><a class='lien' title='Aide' href='aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
+						$HP_per.="<span class='label label-danger'><a class='lien' title='Aide' href='help/aide_jours.php' target='_blank'>".$data3['Autonomie']." Jours</a></span>";
 				}
 			}
 			else
@@ -185,7 +185,7 @@ if($OfficierID >0)
 		}
 		echo "<form action='choix_division.php' method='post'>
 		<input type='hidden' name='Off' value='".$ID."'>
-		<h2>Rejoindre une Division <a href='aide_division.php' target='_blank'><img src='images/help.png'></a></small></h2>
+		<h2>Rejoindre une Division <a href='help/aide_division.php' target='_blank'><img src='images/help.png'></a></small></h2>
 		<select name='Div' class='form-control' style='width: 300px'><option value='0' selected>- Aucune -</option><optgroup label='Divisions Terrestres'>".$divs."</optgroup></select>
 		<input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 		//Changement de Front

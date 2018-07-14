@@ -271,7 +271,7 @@ if($OfficierID >0)
 			$intro="<table class='table'><thead><tr><th>Occupation</th><th>Revendication</th><th>Valeur stratégique</th><th>Terrain</th><th>Météo</th></tr></thead>
 			<tr><td><img src='images/flag".$Occupant."p.jpg' title='".GetPays($Occupant)."'></td><td>".$Rev."</td><td>".$Valstrat_icon."</td><td><img src='images/zone".$Zone.".jpg' title='".$Region."'><br>".$Plage_txt."</td>
 			<td><img src='images/meteo".$Meteo.".jpg' title='". $Meteo_txt."'></td></tr></table>";
-			$mes.="<table class='table'><thead><tr><th>DCA</th><th>Garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Fortification</th><th>Infrastructures</th></tr></thead>
+			$mes.="<table class='table'><thead><tr><th>DCA</th><th>Garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Fortification</th><th>Infrastructures</th></tr></thead>
 			<tr><td>".$dca."</td><td>".$Garnison."</td><td>".$Fortification."</td><td>".$icones."</td></tr></table>";
 			if($Admin ==1)$mes.=$Admin_txt;
 			if($air_units or $units)

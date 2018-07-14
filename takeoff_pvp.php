@@ -387,7 +387,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0)
 		$con=dbconnecti(2);
 		$ok=mysqli_query($con,$querybattle) or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : takeoff_pvp-battle');
 		mysqli_close($con);
-		$titre="décollage <a href='aide_takeoff.php' target='_blank' title='Aide décollage'><img src='images/help.png'></a>";
+		$titre="décollage <a href='help/aide_takeoff.php' target='_blank' title='Aide décollage'><img src='images/help.png'></a>";
 		$mes.='<form action=\'index.php?view=nav0_pvp\' method=\'post\'>
 				<input type=\'hidden\' name=\'Chemin\' value='.$chemin.'>
 				<input type=\'hidden\' name=\'Distance\' value='.$Distance.'>
@@ -401,7 +401,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0)
 				<input type=\'hidden\' name=\'Battle\' value='.$Battle.'>';
 		if($cible_select_titre)$mes.='<table class=\'table\'><thead><tr><th>'.$cible_select_titre.'</th></tr></thead><tr><td>'.$cible_select_txt.'</td></tr>';
 		$mes.='<tr>'.$gaz_menu.'</tr></table>';
-		$mes.='<input type=\'Submit\' title=\'Mettez les gaz pour décoller!\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'aide_takeoff.php\' target=\'_blank\' title=\'Aide décollage\'><img src=\'images/help.png\'></a></form>';
+		$mes.='<input type=\'Submit\' title=\'Mettez les gaz pour décoller!\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'help/aide_takeoff.php\' target=\'_blank\' title=\'Aide décollage\'><img src=\'images/help.png\'></a></form>';
 	}
 	else
 	{

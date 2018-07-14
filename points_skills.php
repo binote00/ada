@@ -118,7 +118,7 @@ if($PlayerID >0)
 	}
 	$titre="Points de Compétences";
 	$img="<div class='row'><div class='col-md-6'><div class='btn btn-primary'>Points<br>".$Skill_Pts."</div><br>Certaines actions en jeu peuvent vous faire gagner des points.</div>
-	<div class='col-md-6'><h3>Spécialisation <span><a href='index.php?view=aide_skills_p'><img src='images/help.png'></a></span></h3>".$Spec_txt."</div></div>";
+	<div class='col-md-6'><h3>Spécialisation <span><a href='help/aide_skills_p.php'><img src='images/help.png'></a></span></h3>".$Spec_txt."</div></div>";
 	include_once('./default.php');
 }
 else

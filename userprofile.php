@@ -427,7 +427,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote >0)
                             </div>
                             <div class="inline">
                                 <div class='btn btn-default btn-sm'><a href='index.php?view=points_skills'>Ajouter une compétence</a></div>
-                                <div class='btn btn-primary btn-sm'><a href='index.php?view=aide_skills_p'>Liste des compétences</a></div>
+                                <div class='btn btn-primary btn-sm'><a href='help/aide_skills_p.php'>Liste des compétences</a></div>
                             </div>
                         </div>
                     <?}else{?>

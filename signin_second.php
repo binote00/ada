@@ -174,13 +174,13 @@ else
 		}
 		if(!GetData("Joueur","ID",$Account,"2nd_Pilot"))
 		{
-			/*echo "Afin de garantir une ambiance historique cohérente, les noms des pilotes doivent respecter <a href='aide_nom_pilote.php' target='_blank'>quelques règles de base</a>.
+			/*echo "Afin de garantir une ambiance historique cohérente, les noms des pilotes doivent respecter <a href='help/aide_nom_pilote.php' target='_blank'>quelques règles de base</a>.
 			<br>Remplissez tous les champs du formulaire et n'oubliez pas de choisir une photo!";*/		
 			echo "<h1>Création de votre second pilote</h1>
 			<form action='index.php?view=signin_second' method='post'>
 			<input type='hidden' name='country' value='".$Pays."'>
 			<input type='hidden' name='pilote' value='".$Account."'>
-			<table class='table'><thead><tr><th>Nom du Pilote <a href='aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></th></tr></thead>
+			<table class='table'><thead><tr><th>Nom du Pilote <a href='help/aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></th></tr></thead>
 			<tr><td align='left'><input type='text' title='Le nom du pilote ne peut comporter que des lettres et éventuellement un espace entre le prénom et le nom' name='name' class='form-control' size='30'></td>
 			</tr></table>
 			<div style='overflow:auto; width: 100%;'><table class='table'><thead><tr><th colspan='6'>Photo</th></tr></thead>";

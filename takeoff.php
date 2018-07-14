@@ -1169,7 +1169,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0 and $avion >0 and $base >0 AND
 		}
 		$_SESSION['Decollage']=true;
 		$_SESSION['Distance']=$Distance;
-		$titre="décollage <a href='aide_takeoff.php' target='_blank' title='Aide décollage'><img src='images/help.png'></a>";
+		$titre="décollage <a href='help/aide_takeoff.php' target='_blank' title='Aide décollage'><img src='images/help.png'></a>";
 		$mes.='<form action=\'nav0.php\' method=\'post\'>
 				<input type=\'hidden\' name=\'Chemin\' value='.$chemin.'>
 				<input type=\'hidden\' name=\'Distance\' value='.$Distance.'>
@@ -1181,7 +1181,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0 and $avion >0 and $base >0 AND
 				<input type=\'hidden\' name=\'Base\' value='.$base.'>';
 		if($cible_select_titre)$mes.='<table class=\'table\'><thead><tr><th>'.$cible_select_titre.'</th></tr></thead><tr><td>'.$cible_select_txt.'</td></tr>';
 		$mes.='<tr>'.$gaz_menu.'</tr></table>';
-		$mes.='<input type=\'Submit\' title=\'Mettez les gaz pour décoller!\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'aide_takeoff.php\' target=\'_blank\' title=\'Aide décollage\'><img src=\'images/help.png\'></a></form>';
+		$mes.='<input type=\'Submit\' title=\'Mettez les gaz pour décoller!\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'help/aide_takeoff.php\' target=\'_blank\' title=\'Aide décollage\'><img src=\'images/help.png\'></a></form>';
 	}
 	else
 	{

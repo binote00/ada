@@ -1305,7 +1305,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0 AND $avion >0 AND !empty($_POS
 				if($Vit_mini >245)$Vit_mini=245;
 				$intro.="<p>La tour vous communique à la radio que la vitesse minimale d'atterrissage conseillée de votre appareil, sans volets, est de ".$Vit_mini_t."<br>La vitesse avec 3 crans de volets est de ".$Vit_mini."</p>";
 			}
-			$titre="Atterrissage <a href='aide_landing.php' target='_blank' title='Aide atterrissage'><img src='images/help.png'></a>";
+			$titre="Atterrissage <a href='help/aide_landing.php' target='_blank' title='Aide atterrissage'><img src='images/help.png'></a>";
 			$mes.='<form action=\'landing.php\' method=\'post\'>
 			<input type=\'hidden\' name=\'Avion\' value='.$avion.'>
 			<input type=\'hidden\' name=\'Meteo\' value='.$meteo.'>	
@@ -1315,7 +1315,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0 AND $avion >0 AND !empty($_POS
 			<input type=\'hidden\' name=\'Mun2\' value='.$Mun2.'>
 			<input type=\'hidden\' name=\'Puissance\' value='.$Puissance.'>
 			'.ShowGaz($avion,$c_gaz,$flaps,$alt,7).'
-			<input type=\'submit\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'aide_landing.php\' target=\'_blank\' title=\'Aide atterrissage\'><img src=\'images/help.png\'></a></form>';
+			<input type=\'submit\' value=\'CONTINUER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'> <a href=\'help/aide_landing.php\' target=\'_blank\' title=\'Aide atterrissage\'><img src=\'images/help.png\'></a></form>';
 		}
 		else
 		{

@@ -143,7 +143,7 @@ if($OfficierID >0)
 				$carte_txt="<a href='carte_ouest.php' class='btn btn-default' target='_blank'><img src='images/map_icon.gif' title='Accéder à la carte'></a>";*/		
 			$carte_txt="<a href='carte_ground.php?map=".$Front."&mode=1' class='btn btn-default' target='_blank'><img src='images/map_icon.gif' title='Accéder à la carte'></a>";
 			$Cdt_orders="<div class='row'><div class='col-md-3'><table class='table table-striped'>
-				<thead><tr><th colspan='2'>Ordres du Commandant <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a></th></tr></thead>
+				<thead><tr><th colspan='2'>Ordres du Commandant <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a></th></tr></thead>
 				<tr><td align='left'>Point de repli</td><td>".$repli."</td></tr>
 				<tr><td align='left'>Point de ralliement</td><td>".$rally."</td></tr>
 				<tr><td align='left'>Point de ravitaillement</td><td>".$ravit."</td></tr>
@@ -774,56 +774,56 @@ if($OfficierID >0)
 						$Faction_Zone=GetData("Pays","ID",$Flag_Air,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='61' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==2)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Route,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='62' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==3)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Gare,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='63' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==4)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Port,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='64' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==5)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Pont,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='65' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==6)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Usine,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='66' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==7)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Radar,"Faction");
 						if($Faction_Zone != $Faction)
 							echo "<Input type='Radio' name='Action' value='67' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==11)
 					{
 						$Faction_Zone=GetData("Pays","ID",$Flag_Plage,"Faction");
 						if($Faction_Zone !=$Faction)
 							echo "<Input type='Radio' name='Action' value='68' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 					elseif($Placement ==0 and $Faction_flag !=$Faction and $Garnison <1)
 					{
@@ -1008,7 +1008,7 @@ if($OfficierID >0)
 							$Rev_ok=true;
 						if($Rev_ok)
 							echo "<Input type='Radio' name='Action' value='60' title='Les troupes de votre faction combattront avec l´avangage du terrain!'>
-							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='index.php?view=aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
+							<img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Revendiquer la position <a href='help/aide_blitz' title='Fonctionnement de la chaine de commandement'><img src='images/help.png'></a><br>";
 					}
 				}
 				if($Credits >=$Credits_form and $Cible ==$Retraite and $Position !=11 and $Position !=8){?>

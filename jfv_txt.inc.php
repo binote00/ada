@@ -78,7 +78,7 @@ function GetMes($Msg)
 	if($Msg =="init_mission")
 	{
 		$Msg="<h6>Votre mission a été réinitialisée</h6>
-				<br> <b>Si vous êtes régulièrement déconnecté, veuillez vérifier que votre navigateur internet accepte les Cookies de Session <a href='aide_cookies.php' title='Tutoriel pour activer les Cookies de Session dans Internet Explorer' target='_blank'><img src='images/help.png'></a></b>
+				<br> <b>Si vous êtes régulièrement déconnecté, veuillez vérifier que votre navigateur internet accepte les Cookies de Session <a href='help/aide_cookies.php' title='Tutoriel pour activer les Cookies de Session dans Internet Explorer' target='_blank'><img src='images/help.png'></a></b>
 				<br><br>
 				<br>- Veillez à vider le cache de votre navigateur en cas de mise à jour récente de l'Aube des Aigles.
 				<br>- Veillez à <u>ne pas recharger/rafraichir les pages du site (ou utiliser la touche F5)</u> ou quitter le site en cours de mission.  

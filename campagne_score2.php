@@ -9,7 +9,7 @@ if(isset($_SESSION['AccountID']))
 		$Axe_nations='1,15,20,19,6,9,18';
 		$Allie_nations='2,3,4,10,35,5,8,7,17';
 		if($country ==2 or $country ==4 or $country ==8)			
-			$Lend_Lease_txt="<h2><img src='/images/lendlease.png' title='Lend-Lease'> Score Lend-Lease <span><a href='index.php?view=aide_lend_lease' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2><b>".$Lend_Lease."</b>";
+			$Lend_Lease_txt="<h2><img src='/images/lendlease.png' title='Lend-Lease'> Score Lend-Lease <span><a href='help/aide_lend_lease' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2><b>".$Lend_Lease."</b>";
 	}
 	else{
 		$Axe_nations='1,6';
@@ -76,7 +76,7 @@ if(isset($_SESSION['AccountID']))
 	}
 ?>
 <div class='row'><div class='col-md-6'><h2>Axe</h2><?echo $Axe_Flags;?></div><div class='col-md-6'><h2>Alliés</h2><?echo $Allies_Flags;?></div></div>
-<h2>Score de Campagne <span><a href='index.php?view=aide_score' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2>
+<h2>Score de Campagne <span><a href='help/aide_score.php' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2>
 <div class='alert alert-warning'>La faction possédant le score le plus élevé à la fin de la campagne gagne la guerre et remporte la partie.
 <br>Chaque lieu stratégique contrôlé par une faction lui rapporte quotidiennement des points en fonction de sa valeur. Dès qu'un lieu stratégique est capturé par la faction adverse, les points changent de camp.</div>
 <table class='table table-hover'>

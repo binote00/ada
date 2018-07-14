@@ -57,7 +57,7 @@ if(isset($_SESSION['AccountID']))
 				return $txt;
 			}
 ?>
-<h1>Equipement de votre pilote <a href='aide_matos.php' target='_blank' title='Aide à propos du matériel'><img src='/images/help.png'></a></h1>
+<h1>Equipement de votre pilote <a href='help/aide_matos.php' target='_blank' title='Aide à propos du matériel'><img src='/images/help.png'></a></h1>
 	<div class='alert alert-info'>L'équipement permet à votre pilote d'améliorer ses compétences lors de certaines actions. Certaines actions peuvent nécessiter un équipement spécifique sans quoi elles ne seront pas disponibles.
 	<br>Plus votre pilote sera réputé, plus il aura accès à de l'équipement performant.</div>
 	<form action="inventaire1.php" method="post"><table cellspacing="1" cellpadding="5">

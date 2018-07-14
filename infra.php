@@ -50,7 +50,7 @@ if(isset($_SESSION['AccountID']))
 			break;
 			case 7:
 				$mes="La caserne est l'infrastructure représentant la nation contrôlant un lieu ainsi que le niveau de fortification. Elle contient la garnison et permet également aux troupes alliées présentes d'accéder à certaines options d'assistance.
-					<br>La destruction du bâtiment principal permet de réduire le niveau de fortification du lieu, et donc la défense d'une éventuelle garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a>
+					<br>La destruction du bâtiment principal permet de réduire le niveau de fortification du lieu, et donc la défense d'une éventuelle garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a>
 					<br>Lorsque la fortication est au maximum (niveau 100) et que la garnison comporte plus de 50 hommes, les unités ennemies présentent sur le lieu ne peuvent se déplacer, soumise au feu de l'artillerie des forts. Faire baisser le niveau de fortifications par un bombardement permet d'annuler cet effet.";
 			break;
 			case 9:

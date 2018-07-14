@@ -151,7 +151,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0)
 					}
 					$Lieux.="</select>";
 					$form="<form action='index.php?view=esc_task' method='post'><input type='hidden' name='a1' value='".$Avion1_Nbr."'><input type='hidden' name='a2' value='".$Avion2_Nbr."'><input type='hidden' name='a3' value='".$Avion3_Nbr."'>";
-					$valid="<table class='table'><thead><tr><th>Mission <a href='aide_task.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Objectif</th><th>Avion</th></tr></thead><tr><td>".$Changes."</td><td>".$Lieux."</td><td>".$Avions."</td></tr></table>
+					$valid="<table class='table'><thead><tr><th>Mission <a href='help/aide_task.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Objectif</th><th>Avion</th></tr></thead><tr><td>".$Changes."</td><td>".$Lieux."</td><td>".$Avions."</td></tr></table>
 					<img src='/images/CT2.png' title='Credits Temps nécessaires pour exécuter cette action'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 				}
 				$tasks="<th>Mission</th><th>Lieu</th><th colspan='2'>Assigner</th></tr></thead>";
@@ -207,7 +207,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0)
 					}
 					$Lieux.="</select>";
 					$form="<form action='index.php?view=esc_task' method='post'><input type='hidden' name='a1' value='".$Avion1_Nbr."'><input type='hidden' name='a2' value='".$Avion2_Nbr."'><input type='hidden' name='a3' value='".$Avion3_Nbr."'>";
-					$valid="<table class='table'><thead><tr><th>Mission <a href='aide_task.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Objectif</th><th>Avion</th></tr></thead><tr><td>".$Changes."</td><td>".$Lieux."</td><td>".$Avions."</td></tr></table>
+					$valid="<table class='table'><thead><tr><th>Mission <a href='help/aide_task.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Objectif</th><th>Avion</th></tr></thead><tr><td>".$Changes."</td><td>".$Lieux."</td><td>".$Avions."</td></tr></table>
 					<img src='/images/CT2.png' title='Credits Temps nécessaires pour exécuter cette action'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 				}
 				$tasks="<th>Mission</th><th>Lieu</th><th colspan='2'>Assigner</th></tr></thead>";

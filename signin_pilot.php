@@ -201,7 +201,7 @@ if($Pays >0 and $AccountID >0)
 	}
 	else
 	{
-		$avert="<div class='alert alert-warning'>Afin de garantir une ambiance historique cohérente, les noms des pilotes doivent respecter <a href='aide_nom_pilote.php' target='_blank' class='lien'>quelques règles de base</a>.
+		$avert="<div class='alert alert-warning'>Afin de garantir une ambiance historique cohérente, les noms des pilotes doivent respecter <a href='help/aide_nom_pilote.php' target='_blank' class='lien'>quelques règles de base</a>.
 		<br>Remplissez tous les champs du formulaire et n'oubliez pas de choisir une photo!</div>";
 	?>
 	<h1>Création de votre pilote</h1>
@@ -209,7 +209,7 @@ if($Pays >0 and $AccountID >0)
 	<form action="index.php?view=signin_pilot" method="post">
 	<input type="hidden" name="country" value="<?echo $Pays;?>">
 	<fieldset>
-		<h2>Nom du Pilote <a class='bold' href='aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
+		<h2>Nom du Pilote <a class='bold' href='help/aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
 		<input type="text" title="Le nom du pilote ne peut comporter que des lettres et éventuellement un espace entre le prénom et le nom" name='name_pil' size="30" maxlength="30" placeholder='John Doe' class="form-control" style='width: 300px'>
 		<table class='table'>
 			<tr><th colspan="6"><h2>Photo</h2></th></tr>

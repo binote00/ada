@@ -72,7 +72,7 @@ if($AccountID >0)
 	else
 		$avert='';
 	echo "<h1>Création du pilote PVP</h1>".$avert."<form action='index.php?view=signin_pilot_pvp' method='post'>
-	<h2>Nom du Pilote <a class='bold' href='aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
+	<h2>Nom du Pilote <a class='bold' href='help/aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
 	<input type='text' title='Le nom du pilote ne peut comporter que des lettres et éventuellement un espace entre le prénom et le nom' name='name_pil' size='30' maxlength='30' class='form-control' style='width: 300px'>
 	<input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 }

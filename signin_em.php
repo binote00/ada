@@ -82,14 +82,14 @@ if($AccountID >0 and $Pays >0 and !$_SESSION['creation_off_em'])
 	}
 	else
 	{
-		echo "<div class='alert alert-warning'>Afin de garantir une ambiance historique cohérente, les noms d'officiers doivent respecter <a href='aide_nom_pilote.php' target='_blank'>quelques règles de base</a>.
+		echo "<div class='alert alert-warning'>Afin de garantir une ambiance historique cohérente, les noms d'officiers doivent respecter <a href='help/aide_nom_pilote.php' target='_blank'>quelques règles de base</a>.
 		<br>Remplissez tous les champs du formulaire et n'oubliez pas de choisir une photo!</div>";
 	}
 	echo "<h1>Création de votre officier d'état-major</h1>
 	<form action='index.php?view=signin_em' method='post'>
 	<input type='hidden' name='country' value='".$Pays."'>
 	<input type='hidden' name='pilote' value='".$AccountID."'>
-	<h2>Nom de l'officier <a href='aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
+	<h2>Nom de l'officier <a href='help/aide_nom_pilote.php' target='_blank' title='Aide'><img src='images/help.png'></a></h2>
 	<input type='text' name='name' size='30' placeholder='John Doe' class='form-control' style='width: 300px' onmouseup='valbtn.disabled=false;' required>
 	<h2>Photo</h2><table class='table'>";
 	for($i=1;$i<=8;$i++)

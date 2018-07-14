@@ -377,7 +377,7 @@ if(isset($_SESSION['AccountID']) AND $_SESSION['Mission_Choose'] ==false)
 					/*if($Dispo_EM !=2 or $Admin)
 					{*/
 						//Bouton Aide
-						$aide_prepa="<a href='aide_missions.php' target='_blank' title='Aide à propos du choix des missions'><img src='images/help.png'></a>";				
+						$aide_prepa="<a href='help/aide_missions.php' target='_blank' title='Aide à propos du choix des missions'><img src='images/help.png'></a>";
 						$prepa_txt='<b>Choix du type de mission</b>'.$aide_prepa;
 						//Choix en fonction du type d'unité
 						$choix1='';

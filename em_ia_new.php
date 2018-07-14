@@ -1269,7 +1269,7 @@ if(isset($_SESSION['AccountID']))
                                 </div>";
                             }
                             elseif($Porte_avions)
-                                echo "<div class='alert alert-info'><span class='label label-primary'>".$Autonomie_PA." Jours de ravitaillement</span><a href='aide_jours.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a><p>Une mission consomme 1 jour de ravitaillement du porte-avions (2 pour une mission longue portée)</p></div>";
+                                echo "<div class='alert alert-info'><span class='label label-primary'>".$Autonomie_PA." Jours de ravitaillement</span><a href='help/aide_jours.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a><p>Une mission consomme 1 jour de ravitaillement du porte-avions (2 pour une mission longue portée)</p></div>";
                             if($Avion1_Nbr >0 and $Stock_Avion1 >=$Stock1)
                                 $Flight_txt="<option value='1' selected>1</option>";
                             if($Avion2_Nbr >0 and $Stock_Avion2 >=$Stock2)
@@ -1932,7 +1932,7 @@ if(isset($_SESSION['AccountID']))
                                         if($Unite_Type ==1 or $Unite_Type ==4 or $Unite_Type ==12)
                                             $Mis_Chs_txt="Chasse";
                                         else
-                                            $Mis_Chs_txt="Veille <a href='aide_task.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a>";
+                                            $Mis_Chs_txt="Veille <a href='help/aide_task.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a>";
                                         $Tac_Output_txt.="<div class='panel panel-war'><div class='panel-heading'>".$Mis_Chs_txt."<span class='label label-primary'>Rayon d'action ".$Autonomie_max."km</span></div><div class='panel-body'>
 											<form action='em_ia1.php' method='post'>
 											<input type='hidden' name='Unite' value='".$Unite."'>

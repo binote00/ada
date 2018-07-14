@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('./jfv_inc_sessions.php');
 include_once('./jfv_include.inc.php');
 
@@ -14,21 +14,20 @@ if($Encodage > 0)
 		$num = mysqli_query($con, "UPDATE Pilote SET login='$login' WHERE ID='$Pilote'");
 		if($num)
 		{
-			$mes.="<br>Le pilote a été mis à jour!";
-			$mes.="<a title='Retour à la liste des as' href='index.php?view=db_as&pays=".$Pays."'>Retour à la liste des as</a>";
+			$mes.="<br>Le pilote a Ã©tÃ© mis Ã  jour!";
+			$mes.="<a title='Retour Ã  la liste des as' href='index.php?view=db_as&pays=".$Pays."'>Retour Ã  la liste des as</a>";
 		}
 		else
 		{
-			$mes.="<br>Le pilote n'a pas été mis à jour!<br>Vérifiez la validité de vos données.";
+			$mes.="<br>Le pilote n'a pas Ã©tÃ© mis Ã  jour!<br>VÃ©rifiez la validitÃ© de vos donnÃ©es.";
 		}
 		mysqli_close($con);
 	}
 }
 else
 {
-	echo "<center><h1>Vous devez être connecté pour accéder à cette page!</h1></center>";
-	echo "<br><center><h1>Si vous êtes déconnecté après vous être identifié, veuillez activer les <b>Cookies de Session</b> dans les options de votre navigateur Internet</font></center>";
-	echo "<br><center><a href='aide_cookies.php' target='_blank'>Tutoriel pour activer les Cookies de Session dans Internet Explorer</a></center>";
+	echo "<center><h1>Vous devez Ãªtre connectÃ© pour accÃ©der Ã  cette page!</h1></center>";
+	echo "<br><center><h1>Si vous Ãªtes dÃ©connectÃ© aprÃ¨s vous Ãªtre identifiÃ©, veuillez activer les <b>Cookies de Session</b> dans les options de votre navigateur Internet</font></center>";
+	echo "<br><center><a href='help/aide_cookies.php' target='_blank'>Tutoriel pour activer les Cookies de Session dans Internet Explorer</a></center>";
 }
 include_once('./index.php');
-?>

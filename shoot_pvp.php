@@ -474,7 +474,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $avion >0 AND !empty($_P
 						//Bouton Aide
 						SetData("Pilote_PVP","S_Essence",$essence,"ID",$Pilote_pvp);
 						$_SESSION['tirer']=true;
-						$aide_tir="<a href='aide_tir.php' target='_blank' title='Aide au sujet du tir'><img src='images/help.png'></a>";
+						$aide_tir="<a href='help/aide_tir.php' target='_blank' title='Aide au sujet du tir'><img src='images/help.png'></a>";
 						$intro.='<p>Vous vous approchez à environ '.$Dist_shoot.'m de votre adversaire, sous un angle de '.$Angle_shoot.'°</p>';
 						$img.='<img src=\'images/visee'.$country.'.jpg\' style=\'width:100%;\'>';
 						$titre="Combat";
@@ -1208,7 +1208,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $avion >0 AND !empty($_P
 						//Bouton Aide
 						SetData("Pilote_PVP","S_Essence",$essence,"ID",$Pilote_pvp);
 						$_SESSION['tirer']=true;
-						$aide_tir="<a href='aide_tir.php' target='_blank' title='Aide au sujet du tir'><img src='images/help.png'></a>";
+						$aide_tir="<a href='help/aide_tir.php' target='_blank' title='Aide au sujet du tir'><img src='images/help.png'></a>";
 						$intro.='<p>Vous vous approchez à environ '.$Dist_shoot.'m de votre adversaire, sous un angle de '.$Angle_shoot.'°</p>';
 						$img=Afficher_Image('images/visee'.$country.'.jpg','images/visee.jpg','visée');
 						$titre="Combat";

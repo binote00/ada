@@ -122,7 +122,7 @@ if(isset($_SESSION['AccountID']))
 							$Autonomie_long_max=min(array_filter($Autonomies_long));
 							if($Autonomie_strat_max <50)$Autonomie_strat_max=50;
 							if($Autonomie_tac_max <50)$Autonomie_tac_max=50;
-							echo "<br><span class='label label-primary'>".$Jours." Jours de ravitaillement</span> <a href='aide_jours.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a> 
+							echo "<br><span class='label label-primary'>".$Jours." Jours de ravitaillement</span> <a href='help/aide_jours.php' target='_blank' title='Cliquez pour aide'><img src='images/help.png'></a> 
 							<div class='alert alert-info'>Une mission consomme 1 jour de ravitaillement du navire</div>";
 							$Flight_txt="<option value='1' selected>1</option>";
 							$Coord=GetCoord($Front,$country);

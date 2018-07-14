@@ -117,7 +117,7 @@ if($PlayerID >0)
 		<input type="hidden" name="country" value="<?echo $country;?>">
 			<p><img src='images/pilotes<?echo $country;?>.jpg'></p>
 			<label for="name">Nom</label><input type="text" title="Le nom ne peut comporter que des lettres et éventuellement un espace entre le prénom et le nom" name="name" placeholder="John Doe" size="30" class="form-control" style="width:300px;">
-			<label for="Specialisation">Spécialisation</label> <a href='aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
+			<label for="Specialisation">Spécialisation</label> <a href='help/aide_equipage.php' target='_blank'><img src='images/help.png'></a></th><td align="left">
 					<select name="Specialisation" class="form-control" style="width:300px;">
 						<option value='0' checked>- Aucune -</option>
 						<optgroup label="Spécialisations">
@@ -132,7 +132,7 @@ if($PlayerID >0)
 						<option value='9' title="Compétence spécifique permettant d'utiliser les radars embarqués">Utilisation des radars</option>
 						</optgroup>
 					</select>
-			<label for="Trait_e" title="Les effets du Trait ne s'appliquent qu'au membre d'équipage">Trait</label> <a href='aide_equipage.php' target='_blank'><img src='images/help.png'></a>
+			<label for="Trait_e" title="Les effets du Trait ne s'appliquent qu'au membre d'équipage">Trait</label> <a href='help/aide_equipage.php' target='_blank'><img src='images/help.png'></a>
 					<select name="Trait_e" class="form-control" style="width:300px;">
 						<option value='0' checked>- Aucun -</option>
 						<optgroup label="Traits">

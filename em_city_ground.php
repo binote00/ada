@@ -1187,7 +1187,7 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 						<th>Unité demandeuse</th>
 						<th>Status Reco</th></tr></thead>".$dem_txt."</table>";
 					//Escortes et couvertures en cours
-					$Missions_txt="<h3>Missions en cours <a href='aide_missions_liste.php' target='_blank'><img src='images/help.png'></a></h3>
+					$Missions_txt="<h3>Missions en cours <a href='help/aide_missions_liste.php' target='_blank'><img src='images/help.png'></a></h3>
 						<table class='table table-striped'><thead><tr>
 							<th>Couvertures</th>
 							<th>Escortes</th>
@@ -1370,7 +1370,7 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 			<tr><td><a href='#' class='popup'><img src='images/flag".$Pays_Ori."p.jpg'><span><b>".GetPays($Pays_Ori)."</b>. Nation contrôlant le lieu au début de la partie.</span></a></td><td>".$Rev."</td><td><a href='#' class='popup'>".$Valstrat_icon."<span>Valeur ajoutée quotidiennement au score de victoire de la faction qui le contrôle.</span></a></td><td><img src='images/zone".$Zone.".jpg' title='".$Region."'>".$Noeud_txt.$Plage_txt."</td>
 			<td>".$Meteo_txt."</td></tr></table>".$list_voyage."</div></div>";
 			if($Zone !=6)
-				$mes.="<table class='table'><thead><tr><th>DCA</th><th>Garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Fortification</th><th>Infrastructures</th></tr></thead>
+				$mes.="<table class='table'><thead><tr><th>DCA</th><th>Garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Fortification</th><th>Infrastructures</th></tr></thead>
 				<tr><td>".$dca."</td><td>".$Garnison."</td><td>".$Fortification."</td><td><table><tr>".$icones."</tr><tr>".$iconebase."</tr></table></td></tr></table>";
 			if($Print_detail)
 				$mes.=$Admin_txt."<h2>Missions aériennes</h2>".$Demandes_txt.$Missions_txt.$Recce_EM;

@@ -55,7 +55,7 @@ if(isset($_SESSION['AccountID']))
 				return $txt;
 			}
 ?>
-<h1>Equipement de votre pilote <a href='aide_matos.php' target='_blank' title='Aide à propos du matériel'><img src='/images/help.png'></a></h1>
+<h1>Equipement de votre pilote <a href='help/aide_matos.php' target='_blank' title='Aide à propos du matériel'><img src='images/help.png'></a></h1>
 <form action="inventaire1_pvp.php" method="post">
 	<table cellspacing="1" cellpadding="5">
 	<tr><th class="TableauProfil">Visage</th><td></td><th class="TableauProfil">Tête</th></tr>

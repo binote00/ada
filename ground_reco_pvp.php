@@ -17,8 +17,8 @@ if($Officier_pvp >0)
 	$Reg_exp=50;
 	$Cible=GetCiblePVP($Battle);
 	$con=dbconnecti();
-	$result=mysqli_query($con,"SELECT Nom,Zone,Meteo,Camouflage,DefenseAA_temp,TypeIndus,Industrie,BaseAerienne,QualitePiste,Pont_Ori,Pont,Radar_Ori,Radar,Port_Ori,Port,NoeudF_Ori,NoeudF,Garnison,Fortification,Recce,Flag FROM Lieu WHERE ID='$Cible'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : reco_pvp-lieu');
-	$result2=mysqli_query($con,"SELECT r.Vehicule_ID,r.Vehicule_Nbr,r.Placement,c.Detection FROM Regiment_PVP as r,Cible as c WHERE r.Vehicule_ID=c.ID AND r.ID='$Reg'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : reco_pvp-reg');
+	$result=mysqli_query($con,"SELECT Nom,Zone,Meteo,Camouflage,DefenseAA_temp,TypeIndus,Industrie,BaseAerienne,QualitePiste,Pont_Ori,Pont,Radar_Ori,Radar,Port_Ori,Port,NoeudF_Ori,NoeudF,Garnison,Fortification,Recce,Flag FROM Lieu WHERE ID='$Cible'") or die('Le jeu a rencontrï¿½ une erreur, merci de le signaler sur le forum avec la rï¿½fï¿½rence suivante : reco_pvp-lieu');
+	$result2=mysqli_query($con,"SELECT r.Vehicule_ID,r.Vehicule_Nbr,r.Placement,c.Detection FROM Regiment_PVP as r,Cible as c WHERE r.Vehicule_ID=c.ID AND r.ID='$Reg'") or die('Le jeu a rencontrï¿½ une erreur, merci de le signaler sur le forum avec la rï¿½fï¿½rence suivante : reco_pvp-reg');
 	mysqli_close($con);
 	if($result2)
 	{
@@ -62,7 +62,7 @@ if($Officier_pvp >0)
 		unset($data);
 	}
 	$con=dbconnecti();
-	$result1=mysqli_query($con,"SELECT HP,Nom,Blindage_f,Vitesse,Taille,mobile,Reput,Detection,Carbu_ID,Type,Arme_Inf,Optics FROM Cible WHERE ID='$Veh'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : reco_pvp-veh');
+	$result1=mysqli_query($con,"SELECT HP,Nom,Blindage_f,Vitesse,Taille,mobile,Reput,Detection,Carbu_ID,Type,Arme_Inf,Optics FROM Cible WHERE ID='$Veh'") or die('Le jeu a rencontrï¿½ une erreur, merci de le signaler sur le forum avec la rï¿½fï¿½rence suivante : reco_pvp-veh');
 	mysqli_close($con);
 	if($result1)
 	{
@@ -148,7 +148,7 @@ if($Officier_pvp >0)
 						$HP-=$Degats;
 						if($HP <1)
 						{
-							$mes.='<br>Le tir ennemi ('.$Reg_eni.'e Cie) détruit une de vos unités. ('.$Degats.' points de dégats!)';
+							$mes.='<br>Le tir ennemi ('.$Reg_eni.'e Cie) dï¿½truit une de vos unitï¿½s. ('.$Degats.' points de dï¿½gats!)';
 							$Vehicule_Nbr-=1;
 							if($Vehicule_Nbr <1)
 								break;
@@ -156,7 +156,7 @@ if($Officier_pvp >0)
 								$HP=$HP_ori;
 						}
 						else
-							$mes.='<br>Le tir ennemi ('.$Reg_eni.'e Cie) endommage une de vos unités, lui occasionnant <b>'.$Degats.'</b> points de dégats!';
+							$mes.='<br>Le tir ennemi ('.$Reg_eni.'e Cie) endommage une de vos unitï¿½s, lui occasionnant <b>'.$Degats.'</b> points de dï¿½gats!';
 					}
 					else
 						$mes.='<br>Le tir ennemi manque sa cible, vos troupes sont indemnes!';
@@ -201,7 +201,7 @@ if($Officier_pvp >0)
 			if($Shoot >0)
 			{
 				/*if($Garnison >0)
-					$Garnison_txt="<br>une garnison <a href='aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a> ".$Fort_txt." occupant la caserne";*/
+					$Garnison_txt="<br>une garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a> ".$Fort_txt." occupant la caserne";*/
 				if($Radar_Ori >0)
 					$Cible_radar_txt="<br>un radar";
 				else
@@ -223,13 +223,13 @@ if($Officier_pvp >0)
 				else
 					$Cible_ind_txt="";
 				if($Cible_base >0)
-					$Cible_base_txt="<br>un aérodrome";
+					$Cible_base_txt="<br>un aï¿½rodrome";
 				else
 					$Cible_base_txt="";
 			}
 			else
-				$Insuffisant="<br>Vous ne distinguez pas suffisamment les infrastructures importantes pour que cela soit utile à une attaque.";
-			$mes.='<p>Vos troupes de reconnaissance ont repéré '.$aa_type.$Cible_ind_txt.$Cible_radar_txt.$Cible_pont_txt.$Cible_gare_txt.$Cible_port_txt.$Cible_base_txt.$Garnison_txt.' aux alentours de <b>'.$Cible_nom.'</b>'.$Insuffisant.'</p>';
+				$Insuffisant="<br>Vous ne distinguez pas suffisamment les infrastructures importantes pour que cela soit utile ï¿½ une attaque.";
+			$mes.='<p>Vos troupes de reconnaissance ont repï¿½rï¿½ '.$aa_type.$Cible_ind_txt.$Cible_radar_txt.$Cible_pont_txt.$Cible_gare_txt.$Cible_port_txt.$Cible_base_txt.$Garnison_txt.' aux alentours de <b>'.$Cible_nom.'</b>'.$Insuffisant.'</p>';
 		}
 		//Scan Pos
 		$con=dbconnecti();
@@ -267,14 +267,14 @@ if($Officier_pvp >0)
 				$Cam_eni=$Taille_eni/$data['Camouflage'];
 				if($Cam_eni <1)$Cam_eni=1;
 				$Defense_reco=$Cam_zone-$Meteo+mt_rand(0,$Tactique_eni*$data['Camouflage'])-$Cam_eni;
-				if($debug)$mes.="<br>[DEBUG] Reco = ".$Shoot."/".$Defense_reco." (Terrain = ".$Cam_zone.", Météo = ".$Meteo.", Taille = ".$Cam_eni.", Cam = ".$data['Camouflage'].", Tac (max) = ".$Tactique_eni;
+				if($debug)$mes.="<br>[DEBUG] Reco = ".$Shoot."/".$Defense_reco." (Terrain = ".$Cam_zone.", Mï¿½tï¿½o = ".$Meteo.", Taille = ".$Cam_eni.", Cam = ".$data['Camouflage'].", Tac (max) = ".$Tactique_eni;
 				if($Shoot >$Defense_reco)
 				{
-					//Détecté
+					//Dï¿½tectï¿½
 					if(!$data['Visible'])
 					{
 						SetData("Regiment_PVP","Visible",1,"ID",$data['ID']);
-						$intro.="<br>Une unité <img src='".$data['Pays']."20.gif'>, ".GetPosGr($data['Position']).", a été détectée ".GetPlace($data['Placement'])." <img src='images/vehicules/vehicule".$data['Vehicule_ID'].".gif'>";
+						$intro.="<br>Une unitï¿½ <img src='".$data['Pays']."20.gif'>, ".GetPosGr($data['Position']).", a ï¿½tï¿½ dï¿½tectï¿½e ".GetPlace($data['Placement'])." <img src='images/vehicules/vehicule".$data['Vehicule_ID'].".gif'>";
 					}
 				}
 			}
@@ -283,7 +283,7 @@ if($Officier_pvp >0)
 		}
 		$skills.="</div>";
 		if(!$intro)
-			$intro="<p>Vos troupes de reconnaissance n'ont détecté aucune autre unité dans les environs</p>";
+			$intro="<p>Vos troupes de reconnaissance n'ont dï¿½tectï¿½ aucune autre unitï¿½ dans les environs</p>";
 		if($Zone ==6)
 			$img=Afficher_Image('images/bino_sea.jpg',"images/image.png","Reco",50);
 		else
@@ -293,7 +293,7 @@ if($Officier_pvp >0)
 		mysqli_close($con);
 	}
 	else
-		$mes.="<p>La mission est interrompue, vos troupes ont été décimées!</p>";
+		$mes.="<p>La mission est interrompue, vos troupes ont ï¿½tï¿½ dï¿½cimï¿½es!</p>";
 	$titre="Reconnaissance";
 	$menu="<a href='index.php?view=ground_menu_pvp' class='btn btn-default' title='Retour'>Retour au menu</a>";
 	include_once('./default.php');

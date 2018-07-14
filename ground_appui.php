@@ -99,7 +99,7 @@ if($OfficierID >0)
 		if($Flag)
 			$Rev="<img src='images/".$Flag."20.gif' title='Nation revendiquant le lieu'>";
 		if($Recce ==2)
-			$Recce_txt="Zone éclairée";
+			$Recce_txt="Zone ï¿½clairï¿½e";
 		elseif($Recce ==1)
 			$Recce_txt="Zone reconnue";
 		else
@@ -109,7 +109,7 @@ if($OfficierID >0)
 		else
 			$Mission_Lieu_D=GetData("Lieu","ID",$Mission_Lieu_D,"Nom");
 		if(!$Mission_Type_D)
-			$Mission_Type_D_txt="<i>Indéfini</i>";
+			$Mission_Type_D_txt="<i>Indï¿½fini</i>";
 		else
 			$Mission_Type_D_txt=GetMissionType($Mission_Type_D);	
 		if($Zone ==6)
@@ -124,7 +124,7 @@ if($OfficierID >0)
 		}
 		elseif($Zone !=6 and ($Port_Ori >0 or $Plage >0))
 		{
-			$choix1="<option value='1'>Appui rapproché</option>";
+			$choix1="<option value='1'>Appui rapprochï¿½</option>";
 			$choix1.="<option value='11'>Attaque navale</option>";
 			$choix2="<option value='12'>Bombardement naval</option>";
 			$choix2.="<option value='2'>Bombardement tactique</option>";
@@ -137,7 +137,7 @@ if($OfficierID >0)
 		}
 		else
 		{
-			$choix1="<option value='1'>Appui rapproché</option>";
+			$choix1="<option value='1'>Appui rapprochï¿½</option>";
 			$choix2="<option value='2'>Bombardement tactique</option>";
 			$choix3="<option value='17'>Chasse de Nuit</option>";
 			$choix4="<option value='7'>Patrouille</option>";
@@ -145,13 +145,13 @@ if($OfficierID >0)
 		}
 		if($BaseAerienne >0)
 		{
-			$choix6.="<option value='23'>Ravitaillement aérien</option>";
+			$choix6.="<option value='23'>Ravitaillement aï¿½rien</option>";
 			if($para)$choix6.="<option value='24'>Parachutage</option>";
 		}
 		if($Date_Campagne >'1944-01-01')
-			$Muns_txt="<option value='37'>APDS (AT)</option><option value='38'>HEAT (Soutien courte portée)</option>";
+			$Muns_txt="<option value='37'>APDS (AT)</option><option value='38'>HEAT (Soutien courte portï¿½e)</option>";
 		elseif($Date_Campagne >'1941-01-01')
-			$Muns_txt="<option value='38'>HEAT (Soutien courte portée)</option>";			
+			$Muns_txt="<option value='38'>HEAT (Soutien courte portï¿½e)</option>";			
 		$Telephone = true;						
 		echo "<h1>Transmissions</h1>";
 		include_once('./unit_ground_infos.php');
@@ -159,15 +159,15 @@ if($OfficierID >0)
 		{
 			if($Faction >0)
 			{
-				$output="<h2>Rapport à l'état-major</h2><form action='index.php?view=ground_appui1' method='post'>
+				$output="<h2>Rapport ï¿½ l'ï¿½tat-major</h2><form action='index.php?view=ground_appui1' method='post'>
 								<input type='hidden' name='reset' value='6'>
 								<input type='hidden' name='Officier' value='".$OfficierID."'>
-								Signaler la situation logistique de votre bataillon à votre état-major.  <input type='Submit' value='RAPPORT' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form> Date du dernier rapport envoyé : ".$Rapport;
+								Signaler la situation logistique de votre bataillon ï¿½ votre ï¿½tat-major.  <input type='Submit' value='RAPPORT' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form> Date du dernier rapport envoyï¿½ : ".$Rapport;
 				$output.="<h2>Demande de renforts</h2><form action='index.php?view=ground_appui1' method='post'>
 							<input type='hidden' name='reset' value='4'>
 							<input type='hidden' name='Officier' value='".$OfficierID."'>
 							<input type='hidden' name='Cible' value='".$Lieu."'>
-							Signaler à votre Etat-Major que vous avez besoin d'aide.  <input type='Submit' value='HELP' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+							Signaler ï¿½ votre Etat-Major que vous avez besoin d'aide.  <input type='Submit' value='HELP' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 				$con=dbconnecti();
 				$Enis_zone=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment as r,Pays as p WHERE r.Pays=p.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Lieu' AND r.Placement='$Placement' AND r.Vehicule_Nbr >0"),0);
 				$Enis_IA_zone=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r,Pays as p WHERE r.Pays=p.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Lieu' AND r.Placement='$Placement' AND r.Vehicule_Nbr >0"),0);
@@ -183,7 +183,7 @@ if($OfficierID >0)
 							<tr><td>".$Mission_Type_D_txt."</td><td>".$Mission_Lieu_D."</td>
 							<td><input type='Submit' value='Annuler la demande en cours' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></td></tr></table></form>";
 				}
-				$output.="<h2>Demande d'appui aérien</h2><form action='index.php?view=ground_appui1' method='post'>
+				$output.="<h2>Demande d'appui aï¿½rien</h2><form action='index.php?view=ground_appui1' method='post'>
 					<input type='hidden' name='Officier' value='".$OfficierID."'>
 					<input type='hidden' name='Cible' value='".$Lieu."'>
 					<input type='hidden' name='reset' value='5'>
@@ -210,14 +210,14 @@ if($OfficierID >0)
 					<option value='30'>Standard</option>
 					<option value='31'>AP (Perforant lourd)</option>
 					<option value='32'>HE (Explosif)</option>
-					<option value='34'>APHE (Perforant léger + Explosif)</option>
-					<option value='36'>APCR (Perforant courte portée)</option>".$Muns_txt."
+					<option value='34'>APHE (Perforant lï¿½ger + Explosif)</option>
+					<option value='36'>APCR (Perforant courte portï¿½e)</option>".$Muns_txt."
 					</select></td></tr>";
 				}
 				
 				$output.="<h2>Demande de ravitaillement</h2><form action='index.php?view=ground_appui1' method='post'>
 					<input type='hidden' name='Officier' value='".$OfficierID."'><input type='hidden' name='reset' value='10'>
-					<table class='table'><thead><tr><th>Lieu de livraison</th><th>Officier</th><th>Compagnie</th><th>Chargement</th><th>Quantité</th><th>Type de Munitions</th></thead>			
+					<table class='table'><thead><tr><th>Lieu de livraison</th><th>Officier</th><th>Compagnie</th><th>Chargement</th><th>Quantitï¿½</th><th>Type de Munitions</th></thead>			
 				<tr><td rowspan='4' align='left'><Input type='Radio' name='Cible' value=".$Lieu." checked>".$Cible_nom."<br>".$Ravit_txt."</td>
 				<td rowspan='4' align='left'><select name='Ravit_Off' class='form-control'><option value='0'>Aucun</option>".$Ravit_Off_txt."</select></td>
 				<td align='left'><select name='Ciea' class='form-control'>".$Regiments."</select></td>".GetRavMenu("a")."
@@ -227,7 +227,7 @@ if($OfficierID >0)
 				</table><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 			}
 			else
-				$output.="<p><b>Demande de ravitaillement impossible.</b><br>Aucun officier ravitailleur n'est présent sur votre front!</p>";
+				$output.="<p><b>Demande de ravitaillement impossible.</b><br>Aucun officier ravitailleur n'est prï¿½sent sur votre front!</p>";
 			//Navires
 			$Faction_occupant_port=GetData("Pays","ID",$Flag_Port,"Faction");
 			if($g_mobile !=4 and $g_mobile !=5 and $Credits >=1 and !$Enis_IA_zone)
@@ -298,7 +298,7 @@ if($OfficierID >0)
 						 else
 							$carte_txt="carte_ouest.php";*/
 						$carte_txt="carte_ground.php?map=".$Front."&mode=1";
-						 $output.="<h2>Demande de transport maritime <a href='aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unité le temps du transit!'><img src='images/help.png'></a></h2>
+						 $output.="<h2>Demande de transport maritime <a href='help/aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unitï¿½ le temps du transit!'><img src='images/help.png'></a></h2>
 						 <form action='index.php?view=ground_appui1' method='post'>
 							<input type='hidden' name='Officier' value='".$OfficierID."'>
 							<input type='hidden' name='reset' value='40'>
@@ -306,7 +306,7 @@ if($OfficierID >0)
 								<thead><tr><th>Port de destination</th><th>Carte</th></tr></thead>
 								<tr><td><select name='Cible' class='form-control' style='width:50%'><option value='0'>Aucun</option>".$choix."</select></td>
 								<td><a href='".$carte_txt."' class='btn btn-primary' onclick='window.open(this.href); return false;'>Voir la carte</a></td></tr>
-							</table><div class='alert alert-danger'>Attention, cette action immobilisera votre unité le temps du transit! Prenez contact avec le joueur contrôlant les navires AVANT de valider!</div><input type='Submit' value='VALIDER' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+							</table><div class='alert alert-danger'>Attention, cette action immobilisera votre unitï¿½ le temps du transit! Prenez contact avec le joueur contrï¿½lant les navires AVANT de valider!</div><input type='Submit' value='VALIDER' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 					}
 				}
 			}
@@ -346,15 +346,15 @@ if($OfficierID >0)
 							}
 							mysqli_free_result($result);
 						}		
-						$output.="<h2>Transport naval <img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'></h2><form action='index.php?view=ground_appui1' method='post'>
+						$output.="<h2>Transport naval <img src='/images/CT4.png' title='Montant en Crï¿½dits Temps que nï¿½cessite cette action'></h2><form action='index.php?view=ground_appui1' method='post'>
 							<input type='hidden' name='Officier' value='".$OfficierID."'>
 							<input type='hidden' name='reset' value='50'>
-							<table class='table'><thead><tr><th>Troupes à embarquer dans ce port <a href='#' class='popup'><img src='images/help.png'><span>Vous ne pouvez embarquer que des troupes de votre faction et de votre front</span></a></th></tr></thead>
+							<table class='table'><thead><tr><th>Troupes ï¿½ embarquer dans ce port <a href='#' class='popup'><img src='images/help.png'><span>Vous ne pouvez embarquer que des troupes de votre faction et de votre front</span></a></th></tr></thead>
 								<tr><td><select name='Cible' class='form-control' style='width: 200px'><option value='0'>Aucune</option>".$choix."</select></td></tr></table>
 							<input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 					}
 					else
-						$output.="<p><b>Demande de transit impossible.</b><br>Vous devez posséder au moins 4 barges de transport vides pour transporter un bataillon</p>";
+						$output.="<p><b>Demande de transit impossible.</b><br>Vous devez possï¿½der au moins 4 barges de transport vides pour transporter un bataillon</p>";
 				}
 			}
 			//Navires End
@@ -402,7 +402,7 @@ if($OfficierID >0)
 				if($choix)
 				{
 					$carte_txt="carte_ground.php?map=".$Front."&mode=1";
-					$output.="<h2>Demande de parachutage <a href='aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unité le temps du transit!'><img src='images/help.png'></a></h2>
+					$output.="<h2>Demande de parachutage <a href='help/aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unitï¿½ le temps du transit!'><img src='images/help.png'></a></h2>
 					 <form action='index.php?view=ground_appui1' method='post'>
 						<input type='hidden' name='Officier' value='".$OfficierID."'>
 						<input type='hidden' name='reset' value='60'>
@@ -410,7 +410,7 @@ if($OfficierID >0)
 							<thead><tr><th>Destination</th><th>Zone</th><th>Carte</th></tr></thead>
 							<tr><td><select name='Cible' class='form-control' style='width:50%'><option value='0'>Aucun</option>".$choix."</select></td><td>Caserne</td>
 							<td><a href='".$carte_txt."' class='btn btn-primary' onclick='window.open(this.href); return false;'>Voir la carte</a></td></tr>
-						</table><p class='lead'>Attention, cette action immobilisera votre unité le temps du transit! Prenez contact avec le joueur contrôlant l'unité de transport AVANT de valider!</p><input type='Submit' value='VALIDER' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						</table><p class='lead'>Attention, cette action immobilisera votre unitï¿½ le temps du transit! Prenez contact avec le joueur contrï¿½lant l'unitï¿½ de transport AVANT de valider!</p><input type='Submit' value='VALIDER' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
 				}
 			}
 			//Paras End
@@ -537,7 +537,7 @@ if($OfficierID >0)
 				if($choix)
 				{
 					$carte_txt="carte_ground.php?map=".$Front."&mode=1";
-					 $output.="<h2>Demande de transport ferroviaire <a href='aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unité le temps du transit!'><img src='images/help.png'></a></h2>
+					 $output.="<h2>Demande de transport ferroviaire <a href='help/aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unitï¿½ le temps du transit!'><img src='images/help.png'></a></h2>
 					 <form action='index.php?view=ground_appui1' method='post'>
 						<input type='hidden' name='Officier' value='".$OfficierID."'>
 						<input type='hidden' name='reset' value='20'>
@@ -545,7 +545,7 @@ if($OfficierID >0)
 							<thead><tr><th>Gare de destination</th><th>Carte</th></tr></thead>
 							<tr><td><select name='Cible' class='form-control' style='width:50%'><option value='0'>Aucun</option>".$choix."</select></td>
 							<td><a href='".$carte_txt."' class='btn btn-primary' onclick='window.open(this.href); return false;'>Voir la carte</a></td></tr>
-						</table><p class='lead'>Attention, cette action immobilisera votre unité le temps du transit! Prenez contact avec le joueur contrôlant le train AVANT de valider!</p><input type='Submit' value='VALIDER' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						</table><p class='lead'>Attention, cette action immobilisera votre unitï¿½ le temps du transit! Prenez contact avec le joueur contrï¿½lant le train AVANT de valider!</p><input type='Submit' value='VALIDER' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
 				}
 			}
 			elseif($NoeudF >10 and $g_mobile ==4 and $Credits >=24 and $Placement ==3)
@@ -598,8 +598,8 @@ if($OfficierID >0)
 						}
 						mysqli_free_result($result);
 					}			
-					$output.="<h2>Transport ferroviaire <img src='/images/CT24.png' title='Montant en Crédits Temps que nécessite cette action'>
-					<a href='aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unité le temps du transit!'><img src='images/help.png'></a></h2><form action='index.php?view=ground_appui1' method='post'>
+					$output.="<h2>Transport ferroviaire <img src='/images/CT24.png' title='Montant en Crï¿½dits Temps que nï¿½cessite cette action'>
+					<a href='help/aide_transit.php' target='_blank' title='Attention, cette action immobilisera votre unitï¿½ le temps du transit!'><img src='images/help.png'></a></h2><form action='index.php?view=ground_appui1' method='post'>
 						<input type='hidden' name='Officier' value='".$OfficierID."'>
 						<input type='hidden' name='reset' value='30'>
 						<table class='table'>
@@ -608,18 +608,18 @@ if($OfficierID >0)
 						</table></form>";
 				}
 				else
-					$output.="<p>Vous devez posséder une locomotive en état de marche, ainsi que 8 wagons de transport de troupes pour transporter un bataillon</p>";
+					$output.="<p>Vous devez possï¿½der une locomotive en ï¿½tat de marche, ainsi que 8 wagons de transport de troupes pour transporter un bataillon</p>";
 			}
 		}
 		else
-			$output.="<p>Votre bataillon est décimé!</p>";
+			$output.="<p>Votre bataillon est dï¿½cimï¿½!</p>";
 		echo $output;
 	}
 	else
 	{
 		echo "<h1>Transmissions</h1>";
 		echo Afficher_Image('images/transfer_no'.$country.'.jpg',"images/image.png","Refus",25);
-		echo "<div class='alert alert-danger'>Votre nation doit être en guerre et <b>vous devez faire partie d'une division ou d'une flotte</b> pour bénéficier de ce service!<br>Si votre unité se trouve <b>en transit</b>, les transmissions ne sont pas accessibles.</div>";
+		echo "<div class='alert alert-danger'>Votre nation doit ï¿½tre en guerre et <b>vous devez faire partie d'une division ou d'une flotte</b> pour bï¿½nï¿½ficier de ce service!<br>Si votre unitï¿½ se trouve <b>en transit</b>, les transmissions ne sont pas accessibles.</div>";
 	}
 }*/
 ?>
