@@ -1,12 +1,12 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 xor $OfficierEMID >0)
 {
-    include_once('./jfv_include.inc.php');
-    include_once('./jfv_ground.inc.php');
-    include_once('./jfv_txt.inc.php');
+    include_once './jfv_include.inc.php';
+    include_once './jfv_ground.inc.php';
+    include_once './jfv_txt.inc.php';
     $Ordre_ok=false;
     $country=$_SESSION['country'];
     $Unit=Insec($_POST['Reg']);
@@ -24,7 +24,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
     {
         $con=dbconnecti();
         $Admin=mysqli_result(mysqli_query($con,"SELECT Admin FROM Joueur WHERE ID='".$_SESSION['AccountID']."'"),0);
-        $resulto=mysqli_query($con,"SELECT Avancement,Front,Credits FROM Officier WHERE ID='$OfficierID'");
+        $resulto=mysqli_query($con,"SELECT Avancement,Front,Credits FROM Officier WHERE ID = $OfficierID");
         if($resulto)
         {
             while($datao=mysqli_fetch_array($resulto,MYSQLI_ASSOC))
@@ -40,7 +40,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
     {
         $con=dbconnecti();
         $Admin=mysqli_result(mysqli_query($con,"SELECT Admin FROM Joueur WHERE ID='".$_SESSION['AccountID']."'"),0);
-        $resulto=mysqli_query($con,"SELECT Front,Pays,Armee,Credits FROM Officier_em WHERE ID='$OfficierEMID'");
+        $resulto=mysqli_query($con,"SELECT Front,Pays,Armee,Credits FROM Officier_em WHERE ID = $OfficierEMID");
         if($resulto)
         {
             while($datao=mysqli_fetch_array($resulto,MYSQLI_ASSOC))
@@ -55,13 +55,13 @@ if($OfficierID >0 xor $OfficierEMID >0)
         }
         if($Front ==99)
         {
-            $Planificateur=mysqli_result(mysqli_query($con,"SELECT Planificateur FROM GHQ WHERE Pays='$Pays'"),0);
+            $Planificateur=mysqli_result(mysqli_query($con,"SELECT Planificateur FROM GHQ WHERE Pays = $Pays"),0);
             if($OfficierEMID ==$Planificateur)
                 $GHQ=true;
         }
         else
         {
-            $result2=mysqli_query($con,"SELECT Commandant,Adjoint_Terre,Officier_Mer,Officier_Log FROM Pays WHERE Pays_ID='$country' AND Front='$Front'");
+            $result2=mysqli_query($con,"SELECT Commandant,Adjoint_Terre,Officier_Mer,Officier_Log FROM Pays WHERE Pays_ID = $country AND Front = $Front");
             if($result2)
             {
                 while($data=mysqli_fetch_array($result2,MYSQLI_ASSOC))
@@ -105,7 +105,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
     }
     if($OfficierID >0 or $Armee >0)
     {
-        $resultreg=mysqli_query($con,"SELECT Division,Bataillon FROM Regiment_IA WHERE ID='$Unit'");
+        $resultreg=mysqli_query($con,"SELECT Division,Bataillon FROM Regiment_IA WHERE ID = $Unit");
         if($resultreg)
         {
             while($datar=mysqli_fetch_array($resultreg,MYSQLI_ASSOC))
@@ -117,7 +117,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
         }
         if($Division)
         {
-            $resultdiv=mysqli_query($con,"SELECT Cdt,Armee,Base FROM Division WHERE ID='$Division'");
+            $resultdiv=mysqli_query($con,"SELECT Cdt,Armee,Base FROM Division WHERE ID = $Division");
             if($resultdiv)
             {
                 while($data=mysqli_fetch_array($resultdiv,MYSQLI_ASSOC))
@@ -149,7 +149,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
     {
         $today=getdate();
         $Premium=mysqli_result(mysqli_query($con,"SELECT Premium FROM Joueur WHERE ID='".$_SESSION['AccountID']."'"),0);
-        $Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='$country'"),0);
+        $Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID = $country"),0);
         $Date_Campagne=mysqli_result(mysqli_query($con,"SELECT `Date` FROM Conf_Update WHERE ID=2"),0);
         $result5=mysqli_query($con,"SELECT r.ID,r.Vehicule_ID,r.Vehicule_Nbr,r.Front,r.Division,r.Bataillon,r.Lieu_ID,r.Position,r.Placement,r.Move,r.Fret,r.HP,r.Moral,r.Experience,r.Skill,r.Matos,r.Mission_Lieu_D,r.Mission_Type_D,r.Transit_Veh,r.Autonomie,r.Ravit,r.NoEM,r.Avions,r.objectif,r.Atk,r.Atk_time,DATE_FORMAT(r.Atk_time,'%e') as Jour,DATE_FORMAT(r.Atk_time,'%Hh%i') as Heure,DATE_FORMAT(r.Atk_time,'%m') as Mois,DATE_FORMAT(r.Atk_time,'%Y') as Year_a,r.Move_time,DATE_FORMAT(r.Move_time,'%e') as Jour_m,DATE_FORMAT(r.Move_time,'%Hh%i') as Heure_m,DATE_FORMAT(r.Move_time,'%m') as Mois_m,DATE_FORMAT(r.Move_time,'%Y') as Year_m,
 		c.Nom as Veh_Nom,c.Type,c.HP as HP_max,c.Categorie,c.Fiabilite,c.Reput,c.Flak,c.Production,c.Stock,c.Repare,c.mobile,c.Fuel,c.Vitesse,c.Detection,c.Amphi,c.Carbu_ID,c.Conso,c.Arme_Art_mun,c.Arme_AT_mun,c.Arme_AA_mun,c.Arme_AT,c.Arme_Art,c.Arme_AA,c.Usine1,c.Usine2,c.Usine3,c.Hydra,c.Hydra_Nbr,c.Charge,c.Mountain,c.Portee,c.Sol_meuble,c.Radio,c.Tourelle,c.Autonomie as Jours_max,
@@ -2058,7 +2058,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                 {
                     if(!$Pas_libre)
                     {
-                        if($Pont_Ori and !$Pont and !$Amphi)
+                        if(($Pont_Ori || $Fleuve) && !$Pont && !$Amphi)
                         {
                             if($Flag_Pont)$Faction_Pont=GetData("Pays","ID",$Flag_Pont,"Faction");
                             if($Faction_Pont !=$Faction)
@@ -2080,6 +2080,8 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             $Placements.="<option value='11'>Plage</option>";
                         if($Pont_Ori >0)
                             $Placements.="<option value='5'>Pont</option>";
+                        elseif($Fleuve)
+                            $Placements.="<option value='5'>Fleuve</option>";
                         if($Port_Ori >0 and !$Pont_block)
                             $Placements.="<option value='4'>Port</option>";
                         if($Radar_Ori >0 and !$Pont_block)
