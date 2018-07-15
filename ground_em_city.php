@@ -2,7 +2,7 @@
 require_once('./jfv_inc_sessions.php');
 $OfficierID=$_SESSION['Officier_em'];
 if($OfficierID >0)
-{	
+{
 	$country=$_SESSION['country'];
 	include_once('./jfv_include.inc.php');
 	include_once('./jfv_map.inc.php');
@@ -23,7 +23,7 @@ if($OfficierID >0)
 		}
 		mysqli_free_result($result2);
 	}	
-	if($OfficierID ==$Commandant or $OfficierID ==$Adjoint_Terre or $OfficierID ==$Officier_Mer) and $Front !=12)
+	if(($OfficierID ==$Commandant or $OfficierID ==$Adjoint_Terre or $OfficierID ==$Officier_Mer) and $Front !=12)
 	{
 		$Cible=Insec($_GET['id']);
 		if($Cible)
@@ -288,4 +288,4 @@ if($OfficierID >0)
 	else
 		$mes="<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
 	include_once('./default_blank.php');
-}?>
+}

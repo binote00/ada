@@ -1,16 +1,16 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //header('P3P: CP="NON ADM ONL STA"');
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
-include_once('./jfv_events.inc.php');
-//set_error_handler('GestionErreurs');
-//ini_set('session.bug_compat_42',0);
+require_once './jfv_include.inc.php';
+include_once './jfv_txt.inc.php';
+include_once './jfv_events.inc.php';
+$alerts = $_SESSION['alert'];
+$_SESSION['alert'] = '';
 $AccountID = Insec($_SESSION['AccountID']);
 $PlayerID = Insec($_SESSION['PlayerID']);
 $Pilote_pvp = Insec($_SESSION['Pilote_pvp']);
-//$OfficierID = Insec($_SESSION['Officier']);
 $OfficierEMID = Insec($_SESSION['Officier_em']);
+//$OfficierID = Insec($_SESSION['Officier']);
 //$Officier_pvp = Insec($_SESSION['Officier_pvp']);
 $country = $_SESSION['country'];
 $Date_Campagne = GetData("Conf_Update", "ID", 2, "Date");
@@ -31,42 +31,43 @@ $Dist = $_SESSION['Distance'];
 $view = Insec($_GET['view']);
 if ($AccountID > 0) {
     dbconnect();
-    /*if ($Pilote_pvp > 0) {
-        $con = dbconnecti();
-        $reset1 = mysqli_query($con, "UPDATE Joueur SET Con_date=NOW() WHERE ID='$AccountID'");
-        $result2 = mysqli_query($con, "SELECT Premium,Admin,Encodage,Actif,Beta FROM Joueur WHERE ID='$AccountID'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : i-account');
-        $result = mysqli_query($con, "SELECT Nom,Avancement,Reputation,MIA,Actif,Equipage,Front_sandbox FROM Pilote_PVP WHERE ID='$Pilote_pvp'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : i-profil');
-        mysqli_close($con);
-        if ($result2) {
-            while ($data2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-                $Premium = $data2['Premium'];
-                $Admin = $data2['Admin'];
-                $Encodage = $data2['Encodage'];
-                $Actif = $data2['Actif'];
-                $Beta = $data2['Beta'];
-            }
-            mysqli_free_result($result2);
-        }
-        if ($result) {
-            while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                $Nom = $data['Nom'];
-                $Avancement = $data['Avancement'];
-                $Reputation = $data['Reputation'];
-                $MIA = $data['MIA'];
-                $Actif = $data['Actif'];
-                $Equipage = $data['Equipage'];
-                $Front_sandbox = $data['Front_sandbox'];
-            }
-            mysqli_free_result($result);
-            unset($data);
-        }
+    if ($Pilote_pvp > 0) {
+        $resetl = $dbh->prepare("UPDATE Joueur SET Con_date=NOW() WHERE ID=:account");
+        $result2 = $dbh->prepare("SELECT Premium,Admin,Encodage,Actif,Beta FROM Joueur WHERE ID=:account");
+        $result = $dbh->prepare("SELECT Nom,Avancement,Reputation,MIA,Actif,Equipage,Front_sandbox FROM Pilote_PVP WHERE ID = :playerid");
+        $resetl->bindParam(':account', $AccountID, 1);
+        $resetl->execute();
+        unset($resetl);
+        /* Account */
+        $result2->bindParam(':account', $AccountID, 1);
+        $result2->execute();
+        $data2 = $result2->fetchObject();
+        $Premium = $data2->Premium;
+        $Admin = $data2->Admin;
+        $Encodage = $data2->Encodage;
+        $Actif = $data2->Actif;
+        $Beta = $data2->Beta;
+        $result2->closeCursor();
+        /* Pilote_pvp */
+        $result->bindParam(':playerid', $Pilote_pvp, 1);
+        $result->execute();
+        $data = $result->fetchObject();
+        $ID = $data->ID;
+        $Nom = $data->Nom;
+        $Avancement = $data->Avancement;
+        $Reputation = $data->Reputation;
+        $MIA = $data->MIA;
+        $Actif = $data->Actif;
+        $Equipage = $data->Equipage;
+        $Front_sandbox = $data->Front_sandbox;
+        $result->closeCursor();
         $img_profil = "images/pilotes/pilote_pvp.jpg";
         if ($view == 'update' or $view == 'mission' or $Dist != 0 or $Actif == 1) {
             $Show_all = false;
             $Show_partial = true;
         } else
             $Show_all = true;
-    }*/
+    }
     /*elseif ($Officier_pvp > 0) {
         $con = dbconnecti();
         $reset1 = mysqli_query($con, "UPDATE Joueur SET Con_date=NOW() WHERE ID='$AccountID'");
@@ -100,7 +101,7 @@ if ($AccountID > 0) {
         } else
             $Show_all = true;
     }*/
-    if ($PlayerID > 0) {
+    elseif ($PlayerID > 0) {
         $resetl = $dbh->prepare("UPDATE Joueur SET Con_date=NOW() WHERE ID=:account");
         $result2 = $dbh->prepare("SELECT Premium,Officier_em,Officier,Admin,Encodage,Actif FROM Joueur WHERE ID=:account");
         $result = $dbh->prepare("SELECT Nom,Pays,Front,Unit,Avion_Perso,Proto,Photo,Photo_Premium,Credits,Missions_Jour,Missions_Max,Avancement,Reputation,MIA,Equipage,Actif FROM Pilote WHERE ID=:playerid");
@@ -897,10 +898,10 @@ if ($Show_all or $Show_ground) {
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Infos<span>:</span><b
                                             class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="index.php?view=battles_menu">Batailles historiques</a></li>
-                                    <li><a href="index.php?view=regles_battle">Regles</a></li>
+                                    <li><a href="index.php?view=pvp/battles_menu">Batailles historiques</a></li>
+                                    <li><a href="index.php?view=help/regles_battle">Regles</a></li>
                                     <? if ($Admin) { ?>
-                                        <li><a href="index.php?view=ground_ia_pvp">Outils</a></li>
+                                        <li><a href="index.php?view=pvp/ground_ia_pvp">Outils</a></li>
                                     <? } ?>
                                 </ul>
                             </li>
@@ -921,7 +922,7 @@ if ($Show_all or $Show_ground) {
                                     <ul class="dropdown-menu">
                                         <? if (!$MIA) {
                                             ?>
-                                            <li class="active"><a href="index.php?view=profil_pvp">Profil</a></li>
+                                            <li class="active"><a href="index.php?view=pvp/profil_pilote_pvp">Profil</a></li>
                                             <? if ($Avion_Perso > 0) {
                                                 ?>
                                                 <li><a href="index.php?view=garage_pvp">Avion perso</a></li>
@@ -929,15 +930,15 @@ if ($Show_all or $Show_ground) {
                                             }
                                             if ($Equipage > 0) {
                                                 ?>
-                                                <li><a href="index.php?view=equipage_pvp">Equipage</a></li>
+                                                <li><a href="index.php?view=pvp/equipage_pvp">Equipage</a></li>
                                             <?
                                             } else {
                                                 ?>
-                                                <li><a href="index.php?view=choix_equipage_pvp">Creer un membre
+                                                <li><a href="index.php?view=pvp/choix_equipage_pvp">Creer un membre
                                                         d'equipage</a></li>
                                             <?
                                             } ?>
-                                            <li><a href="index.php?view=inventaire_pvp">Equipement</a></li>
+                                            <li><a href="index.php?view=pvp/inventaire_pvp">Equipement</a></li>
                                         <?
                                         }/*?><li><a href="index.php?view=mission_pvp">Mission historique</a></li><?*/
                                         if (!$Front_sandbox) {
@@ -956,12 +957,12 @@ if ($Show_all or $Show_ground) {
                                     <a href="" class="dropdown-toggle" data-toggle="dropdown">Infos<span>:</span><b
                                                 class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="index.php?view=battles_menu">Batailles historiques</a></li>
-                                        <li><a href="index.php?view=regles_battle">Regles</a></li>
-                                        <li><a href="index.php?view=pilotes_pvp">Classement</a></li>
-                                        <li><a href="index.php?view=missions_pvp">Missions</a></li>
+                                        <li><a href="index.php?view=pvp/battles_menu">Batailles historiques</a></li>
+                                        <li><a href="index.php?view=help/regles_battle">Regles</a></li>
+                                        <li><a href="index.php?view=pvp/pilotes_pvp">Classement</a></li>
+                                        <li><a href="index.php?view=pvp/missions_pvp">Missions</a></li>
                                         <?if ($Admin) {?>
-                                            <li><a href="index.php?view=ground_ia_pvp">Outils</a></li>
+                                            <li><a href="index.php?view=pvp/ground_ia_pvp">Outils</a></li>
                                         <?} ?>
                                     </ul>
                                 </li>
@@ -1143,8 +1144,8 @@ if ($Show_all or $Show_ground) {
                 <div id="body-wrapper">
                     <div id="body">
                         <div id="body-content" class="clearfix">
-                            <?  require_once './content.php';
-                                require_once './'.$content;?>
+                            <?php   require_once './content.php';
+                                    require_once './'.$content; ?>
                         </div>
                     </div>
                 </div>

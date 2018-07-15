@@ -1,4 +1,4 @@
-<?
+<?php
 $mes="<h1>Batailles Historiques</h1>
 <h2>Principes généraux</h2>
 <p>Chaque bataille voit s'opposer deux camps : les Alliés et l'Axe. Le vainqueur est le camp qui soit, dans l'ordre :
@@ -37,4 +37,4 @@ Le chemin entre l'aérodrome et l'objectif ne donne pas lieu à des combats, c'e
 <br>Aucun avion IA ne peut être rencontré.
 <br>La DCA des unités terrestres ou navales ne ripostera pas automatiquement à vos attaques, car elle est contrôlée par un joueur qui devra vous repérer et tirer sur votre avion lorsqu'il sera au-dessus de l'objectif.
 ";
-include_once('./default.php');
+include_once __DIR__ . '/../default.php';

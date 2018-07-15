@@ -6,7 +6,9 @@ vendor/
 *.json
 *.lock
 *.sql
-inc/db_old.php
 img/
+images/
+Premium/
+db_old.php
 jfv_include.inc.php
 login.php
