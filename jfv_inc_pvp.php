@@ -43,6 +43,7 @@ function GetFlagPVP($Battle,$Faction)
 		elseif($Faction ==2)
 			$Flag=1;
 	}
+	return $Flag;
 }
 function GetCiblePVP($Battle)
 {
@@ -681,9 +682,12 @@ function GetAvionPVP($Battle,$Mission,$Faction,$Premium)
 }
 function GetAvionRenc($Battle,$Faction)
 {
-	$Avions=GetAvionPVP($Battle,99,$Faction,1);
-	$key=array_rand($Avions,1);
-	return $Avions[$key];
+	$Avions = GetAvionPVP($Battle,99,$Faction,1);
+	if (is_array($Avions)) {
+        $key = array_rand($Avions,1);
+        return $Avions[$key];
+    }
+    return false;
 }
 function GetEscorte($Battle,$Faction)
 {

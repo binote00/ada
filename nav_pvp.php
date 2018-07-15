@@ -427,7 +427,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $avion >0 AND !empty($_P
 								{
 									$Pilote_eni=3297;
 									$Renc_Nbr=mt_rand(1,8);
-									$avion_eni=GetAvionRenc($Battle,99,$Faction,1);
+									$avion_eni=GetAvionRenc($Battle,$Faction,1);
 									if(!$random_alt)
 									{
 										if($avion_eni)		
