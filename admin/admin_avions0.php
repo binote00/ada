@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('./jfv_inc_sessions.php');
 include_once('./jfv_include.inc.php');
 $Admin=GetData("Joueur","ID",$_SESSION['AccountID'],"Admin");

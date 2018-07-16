@@ -417,8 +417,8 @@ if ($Show_all or $Show_ground) {
                             <span id="message-shortcut-close"><?=$Msg_nbr; ?></span>
                         <? } ?>
                         <ul id="message-shortcut-list" class="list-unstyled">
-                            <li><a href="index.php?view=ground_ecrire">Nouveau message</a></li>
-                            <li><a href="index.php?view=ground_messagerie">Tous les messages</a></li>
+                            <li><a href="index.php?view=mail/ground_ecrire">Nouveau message</a></li>
+                            <li><a href="index.php?view=mail/ground_messagerie">Tous les messages</a></li>
                         </ul>
                     </div>
                 </div>
@@ -434,8 +434,8 @@ if ($Show_all or $Show_ground) {
                             <span id="message-shortcut-close"><?=$Msg_nbr ?></span>
                         <? } ?>
                         <ul id="message-shortcut-list" class="list-unstyled">
-                            <li><a href="index.php?view=ground_ecrire">Nouveau message</a></li>
-                            <li><a href="index.php?view=ground_messagerie">Tous les messages</a></li>
+                            <li><a href="index.php?view=mail/ground_ecrire">Nouveau message</a></li>
+                            <li><a href="index.php?view=mail/ground_messagerie">Tous les messages</a></li>
                         </ul>
                     </div>
                 </div>
@@ -671,7 +671,7 @@ if ($Show_all or $Show_ground) {
                     <div id="account-credit-time-min" title="Credits Temps"><?=$Credits ?></div>
                     <div id="account-mission-min">N/A</div>
                     <? if ($Msg_nbr) { ?>
-                        <div id="account-msg-min"><a href="index.php?view=ground_messagerie"><span
+                        <div id="account-msg-min"><a href="index.php?view=mail/ground_messagerie"><span
                                         id="account-msg-min-number"><?=$Msg_nbr ?></span> messages</a></div>
                     <? } ?>
                 </div>
@@ -685,7 +685,7 @@ if ($Show_all or $Show_ground) {
                     <div id="account-mission-min"
                          title="Missions"><? echo $Missions_Jour . '/' . $Missions_Max; ?></div>
                     <? if ($Msg_nbr) { ?>
-                        <div id="account-msg-min"><a href="index.php?view=ground_messagerie"><span
+                        <div id="account-msg-min"><a href="index.php?view=mail/ground_messagerie"><span
                                         id="account-msg-min-number"><?=$Msg_nbr ?></span> messages</a></div>
                     <? } ?>
                 </div>
