@@ -1,13 +1,13 @@
 ﻿<?
-require_once('./jfv_inc_sessions.php');
+require_once '../jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($PlayerID >0 or $OfficierID >0 or $OfficierEMID >0)
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-    include_once __DIR__ . '/view/menu_infos.php';
+    include_once '../jfv_include.inc.php';
+    include_once '../jfv_txt.inc.php';
+    include_once __DIR__ . '/../view/menu_infos.php';
     $Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($OfficierID >0)
 	{
@@ -152,4 +152,3 @@ if($PlayerID >0 or $OfficierID >0 or $OfficierEMID >0)
 	else
 		echo "<h6>Désolé, aucun véhicule ne correspond à votre recherche</h6>";
 }
-?>

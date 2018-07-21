@@ -13,9 +13,9 @@ include_once '../inc/jfv_access.php';
 <a class="btn btn-default" href="index.php?view=infos/unites">Unités</a>
 <a class="btn btn-default" href="index.php?view=infos/grades">Grades</a>
 <a class="btn btn-default" href="index.php?view=infos/decos">Décorations</a>
-<a class="btn btn-default" href="index.php?view=pil_skills">Compétences pilotes</a>
-<a class="btn btn-default" href="index.php?view=reg_skills">Compétences unités</a>
-<a class="btn btn-default" href="index.php?view=reg_matos">Equipements unités</a></p>
+<a class="btn btn-default" href="index.php?view=infos/pil_skills">Compétences pilotes</a>
+<a class="btn btn-default" href="index.php?view=infos/reg_skills">Compétences unités</a>
+<a class="btn btn-default" href="index.php?view=infos/reg_matos">Equipements unités</a></p>
 </div><?if($_SESSION['AccountID']){?><div class='col-lg-6 col-md-12'>
 <h1>Outils Premium</h1>
 <?if($Premium >0){

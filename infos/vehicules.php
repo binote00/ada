@@ -1,8 +1,8 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
-include_once('./jfv_include.inc.php');
-include_once('./jfv_nomission.inc.php');
-include_once __DIR__ . '/view/menu_infos.php';
+﻿<?php
+require_once '../jfv_inc_sessions.php';
+include_once '../jfv_include.inc.php';
+include_once '../jfv_nomission.inc.php';
+include_once __DIR__ . '/../view/menu_infos.php';
 ?>
 <h2>Les véhicules</h2>
 <form action="index.php?view=vehiculess" method="post">
@@ -22,5 +22,5 @@ include_once __DIR__ . '/view/menu_infos.php';
 			</td>
 		</tr>
 	</table>
-	<input type='Submit' value='Valider' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>
+	<input type='submit' value='Valider' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>
 <p><img src="images/tanks.jpg"></p>

@@ -1,11 +1,11 @@
-﻿<?
+﻿<?php
 /*require_once('./jfv_inc_sessions.php');
 if(isset($_SESSION['AccountID']))
 {*/
-    include_once('./jfv_include.inc.php');
+    include_once '../jfv_include.inc.php';
 	$country=$_SESSION['country'];
     if(!$country)$country=4;
-    include_once('./menu_infos.php');
+    include_once '../view/menu_infos.php';
     $tri='Rang';
     $cat='';
     if(isset($_GET['tri'])){
@@ -46,10 +46,10 @@ if(isset($_SESSION['AccountID']))
 			elseif($datas['Tank'])$Cat_txt.='<br>Blindé';
 			if($datas['Nav'])$Cat_txt.='<br>Navire';
 			if($datas['Sub'])$Cat_txt.='<br>Sous-marin';
-			//$skill_txt.="<tr><td><img src='/images/skills/skillo".$datas['ID'].".png'><br>".$datas['Nom']."</td><td>".$Cat_txt."</td><td>".$datas['Rang']."</td><td>".$datas['Infos']."</td></tr>";
+			//$skill_txt.="<tr><td><img src='images/skills/skillo".$datas['ID'].".png'><br>".$datas['Nom']."</td><td>".$Cat_txt."</td><td>".$datas['Rang']."</td><td>".$datas['Infos']."</td></tr>";
 			$skill_txt.="
             <div class='row'>
-                <div class='col-xs-2'><img src='/images/skills/skillo".$datas['ID'].".png'><br>".$datas['Nom']."</div>
+                <div class='col-xs-2'><img src='images/skills/skillo".$datas['ID'].".png'><br>".$datas['Nom']."</div>
                 <div class='col-xs-3'>".$Cat_txt."</div>
                 <div class='col-xs-1'>".$datas['Rang']."</div>
                 <div class='col-xs-6'>".$datas['Infos']."</div>
@@ -65,25 +65,25 @@ if(isset($_SESSION['AccountID']))
         <div class='col-md-4 col-sm-12'>".Afficher_Image('images/scenes/skills_r.jpg','','',75)."</div>
         <div class='col-md-8 col-sm-12'>
             <div class='row'>
-                <div class='col-xs-2'><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."'><h3>Compétence</h3></a></div>
+                <div class='col-xs-2'><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."'><h3>Compétence</h3></a></div>
                 <div class='col-xs-3'>
                     <a data-toggle='collapse' class='lien' href='#cat-clp'><h3>Catégorie</h3></a>
                     <div class='collapse' id='cat-clp'>
                         <ul>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=AT'>Anti-tank</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Art'>Artillerie</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Art_mob'>Artillerie mobile</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=DCA'>DCA</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Inf'>Infanterie</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=MG'>Mitrailleuse</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Mob'>Motorisé</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Tank'>Blindé</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Nav'>Navire</a></li>
-                            <li><a class='lien' href='index.php?view=reg_skills&tri=Nom&o=".$order."&cat=Sub'>Sous-marin</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=AT'>Anti-tank</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Art'>Artillerie</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Art_mob'>Artillerie mobile</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=DCA'>DCA</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Inf'>Infanterie</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=MG'>Mitrailleuse</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Mob'>Motorisé</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Tank'>Blindé</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Nav'>Navire</a></li>
+                            <li><a class='lien' href='index.php?view=infos/reg_skills&tri=Nom&o=".$order."&cat=Sub'>Sous-marin</a></li>
                         </ul>                       
                     </div>
                 </div>
-                <div class='col-xs-1'><a class='lien' href='index.php?view=reg_skills&tri=Rang&o=".$order."'><h3>Rang</h3></a></div>
+                <div class='col-xs-1'><a class='lien' href='index.php?view=infos/reg_skills&tri=Rang&o=".$order."'><h3>Rang</h3></a></div>
                 <div class='col-xs-6'><h3>Description</h3></div>
             </div>
             <div class='text-left striped' style='overflow-y:auto; overflow-x:hidden; height:640px; width:97%;'>
@@ -91,7 +91,7 @@ if(isset($_SESSION['AccountID']))
 	        </div>
 	    </div>
 	</div>";
-	include_once('./default.php');
+	include_once '../default.php';
 /*}
 else
 	echo '<h1>Vous devez être connecté pour accéder à cette page!</h1>';*/

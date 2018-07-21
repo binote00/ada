@@ -1,7 +1,7 @@
-﻿<?
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
-include_once('./menu_infos.php');
+﻿<?php
+include_once '../jfv_include.inc.php';
+include_once '../jfv_txt.inc.php';
+include_once '../view/menu_infos.php';
 echo "<h2>Les décorations</h2><div style='overflow:auto; width: 100%;'>";
 for($country =9; $country >0; $country--)
 {
@@ -15,5 +15,4 @@ for($country =9; $country >0; $country--)
 		$med.='</div></fieldset>';
 	}
 }
-echo $med."</div>";
-?>
+echo $med.'</div>';

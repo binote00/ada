@@ -1,14 +1,14 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once '../jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {
-	include_once('./jfv_include.inc.php');
-    include_once __DIR__ . '/view/menu_infos.php';
+	include_once '../jfv_include.inc.php';
+    include_once __DIR__ . '/../view/menu_infos.php';
 	$Pays=Insec($_POST['land']);
 	$Type=Insec($_POST['categorie']);
 	if($Type =="div")
 	{
-		include_once('./jfv_txt.inc.php');
+		include_once '../jfv_txt.inc.php';
 		if($Pays =="all")
 			$query="SELECT ID,Pays,Nom,Front FROM Division WHERE Active=1 ORDER BY Front,Pays,Nom ASC";
 		else
@@ -44,8 +44,8 @@ if(isset($_SESSION['AccountID']))
 			echo "<h2>Unités</h2><table class='table table-striped'><thead><tr><th>Escadrille</th><th>Nation</th><th>Réputation</th><th>As</th><th>Avion</th></tr></thead>";
 			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 			{
-				$As_txt="";
-				$Avion_txt="";
+				$As_txt='';
+				$Avion_txt='';
 				$as=mysqli_query($con,"SELECT Nom,Avancement,Victoires FROM Pilote_IA WHERE Unit='".$data['ID']."' AND Victoires >0 AND Actif=1 ORDER BY Victoires DESC LIMIT 1");
 				$aviont=mysqli_result(mysqli_query($con,"SELECT AvionID FROM XP_Avions_IA WHERE Unite='".$data['ID']."' ORDER BY Exp DESC LIMIT 1"),0);
 				$datas=mysqli_fetch_array($as,MYSQLI_ASSOC);
@@ -61,7 +61,6 @@ if(isset($_SESSION['AccountID']))
 		}
 		else
 			echo "<b>Désolé, aucune unité active ne correspond à votre recherche</b>";
-		echo "</table>";
+		echo '</table>';
 	}
 }
-?>

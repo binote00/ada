@@ -9,15 +9,15 @@
 <li><a href="#tab_perso" class='lien'>Le Personnage</a></li>
 <li><a href="#tab_credit" class='lien'>Le Crédit Temps</a></li>
 <li><a href="#tab_em" class='lien'>L'Etat-Major</a></li>
-<li><a href="index.php?view=aide_air" class='lien'>Le pilote et l'aspect aérien du jeu</a></li>
-<li><a href="index.php?view=aide_blitz" class='lien'>L'officier et l'aspect terrestre/naval du jeu</a></li>
+<li><a href="index.php?view=help/aide_air" class='lien'>Le pilote et l'aspect aérien du jeu</a></li>
+<li><a href="index.php?view=help/aide_blitz" class='lien'>L'officier et l'aspect terrestre/naval du jeu</a></li>
 </ol>
 </div></div><div class='col-md-4'><iframe width="480" height="360" sandbox src="https://www.youtube.com/embed/2-s5Iq3rvNA"></iframe></div></div>
 <hr>
 <div style='overflow:auto; height: 600px;'>
 <div id="tab_intro">
 <h2>Crédits du jeu</h2>
-<a href="credits.php" target="_blank" class='lien'>Crédits et sources</a>
+<a href="index.php?view=view/credits" target="_blank" class='lien'>Crédits et sources</a>
 </div>
 <div id="tab_context">
 <h1>1- Le Contexte</h1>

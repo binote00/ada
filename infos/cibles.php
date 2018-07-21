@@ -1,18 +1,18 @@
-﻿<?
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
-include_once('./menu_infos.php');
+﻿<?php
+include_once '../jfv_include.inc.php';
+include_once '../jfv_txt.inc.php';
+include_once '../view/menu_infos.php';
 $Tri = Insec($_POST['Tri']);
 if(!$Tri)$Tri=1;
 ?>
 	<h2>Les infrastructures</h2><div style='overflow:auto; width: 100%;'><table class='table table-striped table-condensed'>
 	<thead><tr>
 		<th>Nom</th>
-		<th><form action='index.php?view=cibles' method='post'><input type='hidden' name='Tri' value="2"><input type='Submit' class="btn btn-sm btn-default" value='Objectif'></form></th>
-		<th><form action='index.php?view=cibles' method='post'><input type='hidden' name='Tri' value="3"><input type='Submit' class="btn btn-sm btn-default" value='Protection'></form></th>
-		<th><form action='index.php?view=cibles' method='post'><input type='hidden' name='Tri' value="4"><input type='Submit' class="btn btn-sm btn-default" value='Robustesse'></form></th>
-		<th><form action='index.php?view=cibles' method='post'><input type='hidden' name='Tri' value="5"><input type='Submit' class="btn btn-sm btn-default" value='Camouflage'></form></th>
-		<th><form action='index.php?view=cibles' method='post'><input type='hidden' name='Tri' value="6"><input type='Submit' class="btn btn-sm btn-default" value='DCA'></form></th>
+		<th><form action='index.php?view=infos/cibles' method='post'><input type='hidden' name='Tri' value="2"><input type='submit' class="btn btn-sm btn-default" value='Objectif'></form></th>
+		<th><form action='index.php?view=infos/cibles' method='post'><input type='hidden' name='Tri' value="3"><input type='submit' class="btn btn-sm btn-default" value='Protection'></form></th>
+		<th><form action='index.php?view=infos/cibles' method='post'><input type='hidden' name='Tri' value="4"><input type='submit' class="btn btn-sm btn-default" value='Robustesse'></form></th>
+		<th><form action='index.php?view=infos/cibles' method='post'><input type='hidden' name='Tri' value="5"><input type='submit' class="btn btn-sm btn-default" value='Camouflage'></form></th>
+		<th><form action='index.php?view=infos/cibles' method='post'><input type='hidden' name='Tri' value="6"><input type='submit' class="btn btn-sm btn-default" value='DCA'></form></th>
 		<th>Détail</th>
 	</tr></thead>
 <?
