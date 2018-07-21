@@ -3284,7 +3284,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                     $Atk_Options.='<div class="alert alert-danger">Attaque impossible actuellement</div>';
                                 elseif($Position !=4 and $Categorie !=6 and $Categorie !=8 and $Categorie !=9 and $Categorie !=15)
                                     $Atk_Options.='<div class="alert alert-danger">Pour pouvoir attaquer, l\'unité doit être en mouvement</div>';
-                                if($Faction_Flag !=$Flag and ($Categorie ==2 or $Categorie ==3 or $Categorie ==5 or $Categorie ==7) and ($Position ==4 or $Position ==0) and ($Placement ==1 or $Placement ==0))
+                                if($Faction_Flag !=$Faction and ($Categorie ==2 or $Categorie ==3 or $Categorie ==5 or $Categorie ==7) and ($Position ==4 or $Position ==0) and ($Placement ==1 or $Placement ==0))
                                 {
                                     if($Recce or !$ValeurStrat)// and $Credits >=$CT_Spec_Blitz)
                                     {
@@ -3974,13 +3974,13 @@ if($OfficierID >0 xor $OfficierEMID >0)
                     $lieux_admin_output.='<option value="'.$lieux_admin->ID.'">'.$lieux_admin->Nom.'</option>';
                 }
                 if($lieux_admin_output){
-                    $admin_lieux_txt='<form action="admin_cie_move.php" method="post"><select name="dest" id="dest" style="width:200px">'.$lieux_admin_output.'</select>
+                    $admin_lieux_txt='<form action="admin/admin_cie_move.php" method="post"><select name="dest" id="dest" style="width:200px">'.$lieux_admin_output.'</select>
                         <input type="hidden" name="reg" value="'.$Unit.'">
                         <input type="submit" value="Déplacer" class="btn btn-sm btn-danger">
                         </form>';
                 }
                 if($Vehicule_Nbr <$Max_Veh){
-                    $admin_lieux_txt.='<form action="admin_cie_full" method="post"><input type="hidden" name="reg" value="'.$Unit.'"><input type="hidden" name="Max" value="'.$Max_Veh.'"><input type="submit" value="Heal" class="btn btn-sm btn-danger"></form>';
+                    $admin_lieux_txt.='<form action="admin/admin_cie_full.php" method="post"><input type="hidden" name="reg" value="'.$Unit.'"><input type="hidden" name="Max" value="'.$Max_Veh.'"><input type="submit" value="Heal" class="btn btn-sm btn-danger"></form>';
                 }
                 $Admin_panel='<div class="panel panel-war text-center"><div class="panel-heading">Admin</div><div class="panel-body">'.$admin_lieux_txt.'</div></div>';
             }
