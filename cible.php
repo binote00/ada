@@ -1,48 +1,48 @@
-﻿<?
-include_once('./jfv_include.inc.php');
-$ID=Insec($_GET['cible']);
-if(is_numeric($ID))
+﻿<?php
+include_once './jfv_include.inc.php';
+$ID = Insec($_GET['cible']);
+if (is_numeric($ID))
 {
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_ground.inc.php');
-	include_once('./jfv_combat.inc.php');
-	$Premium=0;
-	$con=dbconnecti();
-	$ID=mysqli_real_escape_string($con,$ID);
-	$result=mysqli_query($con,"SELECT c.*,DATE_FORMAT(`Date`,'%d-%m-%Y') as Engagement FROM Cible as c WHERE ID='$ID'");
-	if($result)
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_ground.inc.php';
+	include_once './jfv_combat.inc.php';
+    $Premium = 0;
+    $con = dbconnecti();
+    $ID = mysqli_real_escape_string($con, $ID);
+    $result = mysqli_query($con, "SELECT c.*,DATE_FORMAT(`Date`,'%d-%m-%Y') as Engagement FROM Cible c WHERE ID = $ID");
+    if ($result)
 	{
-		while($data=mysqli_fetch_array($result)) 
+        while ($data = mysqli_fetch_array($result))
 		{
-			$Pays_nom=GetPays($data['Pays']);
-			$Rob=log10($data['HP']);
-            $CT_Spec=2+floor($data['Reput']/10)-$data['Fiabilite'];
-            if($CT_Spec <1)$CT_Spec=1;
-            if($data['Categorie'] ==5){
-                $Atk_txt.="<img src='/images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Attaque";
+            $Pays_nom = GetPays($data['Pays']);
+            $Rob = log10($data['HP']);
+            $CT_Spec = 2 + floor($data['Reput'] / 10) - $data['Fiabilite'];
+            if ($CT_Spec < 1) $CT_Spec = 1;
+            if ($data['Categorie'] == 5) {
+                $Atk_txt .= '<img src="images/CT' . $CT_Spec . '.png" title="Montant en Crédits Temps que nécessite cette action"> Attaque';
             }
-            if($data['Categorie'] ==2 or $data['Categorie'] ==3 or $data['Categorie'] ==5 or $data['Categorie'] ==7){
-                $Atk_txt.="<img src='/images/CT0.png' title='Montant en Crédits Temps que nécessite cette action'> Assaut";
+            if ($data['Categorie'] == 2 or $data['Categorie'] == 3 or $data['Categorie'] == 5 or $data['Categorie'] == 7) {
+                $Atk_txt .= '<img src="images/CT0.png" title="Montant en Crédits Temps que nécessite cette action"> Assaut';
             }
-			if($Rob <1) //<10
-				$Robustesse="<span class='text-danger'>Très faible</span>";
-			elseif($Rob <2) //<100
-				$Robustesse="<span class='text-danger'>Faible</span>";
-			elseif($Rob <3) //<1000
-				$Robustesse="Bonne";
-			elseif($Rob <4) //<10.000
-				$Robustesse="<span class='text-success'>Très bonne</span>";
-			elseif($Rob <5) //<100.000
-				$Robustesse="<span class='text-success'>Elevée</span>";
-			elseif($Rob <6) //<1.000.000
-				$Robustesse="<span class='text-success'>Très élevée</span>";
-			else
-				$Robustesse="<span class='text-success'>Supérieure</span>";
-			if($data['Mountain'])$data['Type']=97;
-            if($data['Type'] ==18 or $data['Type'] ==19 or $data['Type'] ==20 or $data['Type'] ==21)
-				$gros_navire=true;
-			else
-				$gros_navire=false;
+            if ($Rob < 1) //<10
+                $Robustesse = "<span class='text-danger'>Très faible</span>";
+            elseif ($Rob < 2) //<100
+                $Robustesse = "<span class='text-danger'>Faible</span>";
+            elseif ($Rob < 3) //<1000
+                $Robustesse = "Bonne";
+            elseif ($Rob < 4) //<10.000
+                $Robustesse = "<span class='text-success'>Très bonne</span>";
+            elseif ($Rob < 5) //<100.000
+                $Robustesse = "<span class='text-success'>Elevée</span>";
+            elseif ($Rob < 6) //<1.000.000
+                $Robustesse = "<span class='text-success'>Très élevée</span>";
+            else
+                $Robustesse = "<span class='text-success'>Supérieure</span>";
+            if ($data['Mountain']) $data['Type'] = 97;
+            if ($data['Type'] == 18 or $data['Type'] == 19 or $data['Type'] == 20 or $data['Type'] == 21)
+                $gros_navire = true;
+            else
+                $gros_navire = false;
 			if(!$gros_navire and $data['Arme_Inf'])
 			{
 				$Arme_Inf_txt="Standard";
@@ -88,8 +88,8 @@ if(is_numeric($ID))
 			if($data['Arme_Art'])
 			{
 			    if($data['Categorie'] ==8){
-                    $Atk_txt.="<img src='/images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Bombardement
-                    <img src='/images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Destruction";
+                    $Atk_txt.="<img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Bombardement
+                    <img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Destruction";
                 }
 				if($gros_navire)
 					$Arme_Art_txt="Artillerie principale";
@@ -149,12 +149,12 @@ if(is_numeric($ID))
 				}
 				$Arme_AT.=" <span class='badge'>Dégâts ".round($Arme_AT_Cal)."-".($Arme_AT_Dg*$Arme_AT_Mu)."</span>";
                 if($data['Categorie'] ==15 and $Arme_AT_Cal >74){
-                    $Atk_txt.="<img src='/images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Tir";
+                    $Atk_txt.="<img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'> Tir";
                 }
                 if($data['Categorie'] ==2 or $data['Categorie'] ==3 or $data['Categorie'] ==7 or $data['Type'] ==11){
                     $CT_Spec_Blitz=$CT_Spec-2;
                     if($CT_Spec_Blitz <1)$CT_Spec_Blitz=1;
-                    $Atk_txt.="<img src='/images/CT".$CT_Spec_Blitz.".png' title='Montant en Crédits Temps que nécessite cette action'> Attaque";
+                    $Atk_txt.="<img src='images/CT".$CT_Spec_Blitz.".png' title='Montant en Crédits Temps que nécessite cette action'> Attaque";
                 }
 			}
 			elseif($gros_navire and $data['Arme_AA2'])
@@ -265,7 +265,7 @@ if(is_numeric($ID))
 			{
                 $Cr_reco=2-$Fiabilite;
                 if($Cr_reco <1)$Cr_reco=1;
-                $Atk_txt.="<img src='/images/CT".$Cr_reco.".png' title='Montant en Crédits Temps que nécessite cette action'> Reconnaissance";
+                $Atk_txt.="<img src='images/CT".$Cr_reco.".png' title='Montant en Crédits Temps que nécessite cette action'> Reconnaissance";
 				if($data['Categorie'] !=5)
 					$Type.=" de reconnaissance";
 				if($data['mobile'] !=4 and $data['mobile'] !=5)
@@ -364,6 +364,26 @@ if(is_numeric($ID))
 				$Rep_min=GetReputOfficier($min_rep);
 			}
 			$Grade_min=GetAvancement($min_grade,$data['Pays'],0,1);
+
+            /**
+             * @param array $data
+             * @param int $Zone
+             * @return string
+             */
+			function getAutoCible ($data, $Zone) {
+                $return = '';
+			    if (isset($data['Fuel']) && isset($data['mobile']) && isset($data['Type']) && isset($data['Amphi'])) {
+                    $auto_max = [];
+			        for ($i = 0; $i < 4; $i++) {
+                        $auto_max[$i] = Auto_max(
+                                Get_LandSpeed($data['Fuel'], $data['mobile'], $Zone, 0, $data['Type'], 0, 0, $data['Amphi'], $i, true)
+                                , $Zone, $data['mobile'], $i, $data['Type']);
+                    }
+                    $return = $auto_max[0] . '/' . $auto_max[2] . '/'. $auto_max[1] . '/' . $auto_max[3] . ' km
+                    <span>Front Ouest / Front Med / Front Est / Front Pacifique</span>';
+                }
+                return $return;
+			}
 ?>
 <!DOCTYPE html><html><head><title>Aube des Aigles</title>
 	<link rel="stylesheet" href="./css/lib/bootstrap.min.css">
@@ -374,7 +394,8 @@ if(is_numeric($ID))
 </head>
 <body class="cible">	
 	<table align="center">
-		<tr class="titre"><th colspan='4'><?=$data['Nom']?></th></tr>
+		<thead><tr class="titre"><th colspan='4'><?=$data['Nom']?></th></tr></thead>
+        <tbody>
 		<tr>
 			<td><?=$data['Engagement']?></td>
 			<td colspan='2'><img src="images/vehicules/vehicule<?=$ID?>.gif"><?echo $f2.$f1;?></td>
@@ -402,9 +423,9 @@ if(is_numeric($ID))
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'><a href='#' class='popup'>Fiabilité<span>Influe sur le coût des actions offensives et la vitesse en combat</span></a></th>
-			<td class='dark left'><?echo $Fiabilite;?></td>
+			<td class='dark left'><?=$Fiabilite?></td>
 			<th class='dark left bold'><a href='#' class='popup'>Amphibie<span>Unité pouvant être débarquée sur les plages. Traversée des fleuves facilitée</span></a></th>
-			<td class='dark left'><?echo $Amphi;?></td>
+			<td class='dark left'><?=$Amphi?></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Puissance motrice</th>
@@ -416,124 +437,47 @@ if(is_numeric($ID))
 		<tr class="bg_brown"><th colspan='4'>Distance franchissable</th></tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Sur route/En plaine</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=0;
-			$Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-            $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-            $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-            $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-			.Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-			.Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-			.Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 0);?></a></td>
 			<th class='dark left bold'>Colline</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=1;
-            $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-            $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-            $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-            $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 1);?></a></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Forêt</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=2;
-            $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-            $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-            $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-            $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 2);?></a></td>
 			<th class='dark left bold'>Colline boisée</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=3;
-            $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-            $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-            $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-            $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 3);?></a></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Montagne</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=4;
-                    $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-                    $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-                    $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-                    $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 4);?></a></td>
 			<th class='dark left bold'>Montagne boisée</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=5;
-			$Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, $Front,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 5);?></a></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Urbain</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=7;
-                    $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-                    $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-                    $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-                    $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 7);?></a></td>
 			<th class='dark left bold'>Désert</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=8;
-                    $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-                    $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-                    $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-                    $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 8);?></a></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Marais</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=9;
-                    $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-                    $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-                    $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-                    $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 9);?></a></td>
 			<th class='dark left bold'>Jungle</th>
-			<td class='dark left'><a href='#' class='popup'><?$Zone=11;
-                    $Auto=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 0,true);
-                    $Auto1=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 1,true);
-                    $Auto2=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 2,true);
-                    $Auto3=Get_LandSpeed($data['Fuel'],$data['mobile'],$Zone,0,$data['Type'],0,0,$Amphi, 3,true);
-			echo Auto_max($Auto,$Zone,$data['mobile'],0,$data['Type']).'/'
-                .Auto_max($Auto2,$Zone,$data['mobile'],2,$data['Type']).'/'
-                .Auto_max($Auto1,$Zone,$data['mobile'],1,$data['Type']).'/'
-                .Auto_max($Auto3,$Zone,$data['mobile'],3,$data['Type']).' km';?><span>Front Ouest / Front Med / Front Est / Front Pacifique</span></a></td>
+			<td class='dark left'><a href='#' class='popup'><? echo getAutoCible($data, 11);?></a></td>
 		</tr>
 		<?}?>
 		<tr class="bg_brown"><th colspan='4'>Armement</th></tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
-			<th class='dark left bold'><?echo $Arme_Inf_txt;?></th>
-			<td class='dark left'><?echo $Arme_Inf;?></td>
-			<th class='dark left bold'><?echo $Arme_Art_txt;?></th>
-			<td class='dark left'><?echo $Arme_Art;?></td>
+			<th class='dark left bold'><?=$Arme_Inf_txt?></th>
+			<td class='dark left'><?=$Arme_Inf?></td>
+			<th class='dark left bold'><?=$Arme_Art_txt?></th>
+			<td class='dark left'><?=$Arme_Art?></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
-			<th class='dark left bold'><?echo $Arme_AT_txt;?></th>
-			<td class='dark left'><?echo $Arme_AT;?></td>
-			<th class='dark left bold'><?echo $Arme_AA_txt;?></th>
-			<td class='dark left'><?echo $Arme_AA;?></td>
+			<th class='dark left bold'><?=$Arme_AT_txt?></th>
+			<td class='dark left'><?=$Arme_AT;?></td>
+			<th class='dark left bold'><?=$Arme_AA_txt?></th>
+			<td class='dark left'><?=$Arme_AA?></td>
 		</tr>
 		<?if(!$data['Charge']){?>
 		<tr class="bg_brown"><th colspan='4'>Tactique</th></tr>
@@ -545,26 +489,26 @@ if(is_numeric($ID))
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Bonus de Détection</th>
-			<td class='dark left'><?echo $data['Detection'];?></td>
+			<td class='dark left'><?=$data['Detection']?></td>
 			<th class='dark left bold'><a href='#' class='popup'>Couverture DCA<span>Capacité de couvrir les autres unités contre les attaques aériennes</span></a></th>
-			<td class='dark left'><?echo $Couv_DCA;?></td>
+			<td class='dark left'><?=$Couv_DCA?></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'><a href='#' class='popup'>Bonus Tactique<span>Bonus d'initiative et de positionnement (initiative et esquive)</span></a></th>
-			<td class='dark left'><?echo $Bonus_Tactique;?></td>
+			<td class='dark left'><?=$Bonus_Tactique?></td>
 			<th class='dark left bold'><a href='#' class='popup'>Couverture en ligne<span>Capacité de se mettre en ligne et de couvrir les autres unités contre les attaques terrestres</span></a></th>
-			<td class='dark left'><?echo $Couv_Ligne;?></td>
+			<td class='dark left'><?=$Couv_Ligne?></td>
 		</tr>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Bonus de Tir</th>
-			<td class='dark left'><?echo $data['Optics'];?></td>
+			<td class='dark left'><?=$data['Optics']?></td>
 			<th class='dark left bold'><a href='#' class='popup'>Contre-artillerie<span>Nombre de tirs lors des bombardements et des ripostes de contre-artillerie</span></a></th>
 			<td class='dark left'><?if($data['Arme_Art'] >0 and $data['Portee'] >2500) echo $Riposte_txt; else echo "Non";?></td>
 		</tr>
 		<?}?>
 		<tr onmouseover="this.style.background='#FFFFE0'" onmouseout="this.style.background='#ECDDC1'">
 			<th class='dark left bold'>Transport de fret</th>
-			<td class='dark left'><?echo $Charge;?></td>
+			<td class='dark left'><?=$Charge?></td>
 			<th class='dark left bold'>Vulnérabilité aux armes légères</th>
 			<td class='dark left'><?if($data['Blindage_t'] >0) echo "Non"; else echo "<b>Oui</b>";?></td>
 		</tr>
@@ -599,8 +543,9 @@ if(is_numeric($ID))
 		<tr class="bg_brown"><th colspan='4'>Spécificités</th></tr>
 		<tr onmouseover="this.style.background='#FFFFE0'"  onmouseout="this.style.background='#ECDDC1'"><td class='specs' colspan='4'><?=$Specs?></td></tr>
 		<tr class="bg_brown"><th colspan='4'>Photo</th></tr>
-		<tr class="photo"><td colspan='4'><img src="images/cibles/cibles<?echo $ID;?>.jpg"></td></tr>
-		<tr class="titre"><th colspan='4'><?echo $data['Nom']; ?></th></tr>
+		<tr class="photo"><td colspan='4'><img src="images/cibles/cibles<?=$ID?>.jpg"></td></tr>
+		<tr class="titre"><th colspan='4'><?=$data['Nom']?></th></tr>
+        </tbody>
 	</table>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="./js/lib/jquery-1.10.2.min.js"><\/script>')</script>
