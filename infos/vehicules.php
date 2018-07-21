@@ -2,7 +2,7 @@
 require_once('./jfv_inc_sessions.php');
 include_once('./jfv_include.inc.php');
 include_once('./jfv_nomission.inc.php');
-include_once('./menu_infos.php');
+include_once __DIR__ . '/view/menu_infos.php';
 ?>
 <h2>Les véhicules</h2>
 <form action="index.php?view=vehiculess" method="post">

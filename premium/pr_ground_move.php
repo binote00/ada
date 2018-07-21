@@ -1,5 +1,5 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 if($_SESSION['AccountID'])
 {
 	include_once('./jfv_include.inc.php');
@@ -47,7 +47,7 @@ if($_SESSION['AccountID'])
 					}
 					mysqli_free_result($resultv);
 				}
-				if($Admin)$Veh_txt.="Véhicule <select name='Veh' class='form-control' style='width: 200px'>".$Veh."</select>";
+				if($Admin)$Veh_txt.="Vï¿½hicule <select name='Veh' class='form-control' style='width: 200px'>".$Veh."</select>";
 			}
 			$con=dbconnecti();
 			$resultv=mysqli_query($con,"SELECT NoeudR,NoeudF,Flag_Gare FROM Lieu WHERE ID='$Lieu'");
@@ -64,10 +64,10 @@ if($_SESSION['AccountID'])
 			$Places="<option value='10'>Caserne</option>";
 			if($NoeudR_Ori)$Places.="<option value='2'>Route</option>";
 			if($NoeudF_Ori)$Places.="<option value='3'>Gare</option>";
-			$titre="<h1>Simulation de déplacement</h1>";
-			$mes="<form action='index.php?view=pr_ground_move' method='post'>
-			<input type='hidden' name='Lieu' value='".$Lieu."'>
-			<table class='table'><thead><tr><th>Zone de départ</th></tr></thead>
+			$titre="<h1>Simulation de dï¿½placement</h1>";
+			$mes= "<form action='../index.php?view=pr_ground_move' method='post'>
+			<input type='hidden' name='Lieu' value='" .$Lieu."'>
+			<table class='table'><thead><tr><th>Zone de dï¿½part</th></tr></thead>
 				<tr><td><select name='Placement' class='form-control' style='width: 200px'>".$Places."</select></td></tr>
 			</table>".$Veh_txt."<input type='Submit' value='Valider' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 		}
@@ -133,10 +133,10 @@ if($_SESSION['AccountID'])
 							if(!$Rasputitsa)
 							{
 								$Zone_calc=0;
-								$txt_help.="<br>L'unité se trouvant sur un noeud routier et aucun ennemi n'étant présent sur ce noeud routier, l'éventuel malus de terrain est annulé.";
+								$txt_help.="<br>L'unitï¿½ se trouvant sur un noeud routier et aucun ennemi n'ï¿½tant prï¿½sent sur ce noeud routier, l'ï¿½ventuel malus de terrain est annulï¿½.";
 							}
 							else
-								$txt_help.="<br>Malgré le fait que l'unité se trouve sur un noeud routier et qu'aucun ennemi ne soit présent sur ce noeud routier, l'éventuel malus de terrain n'est pas annulé à cause de la Rasputitsa.";
+								$txt_help.="<br>Malgrï¿½ le fait que l'unitï¿½ se trouve sur un noeud routier et qu'aucun ennemi ne soit prï¿½sent sur ce noeud routier, l'ï¿½ventuel malus de terrain n'est pas annulï¿½ ï¿½ cause de la Rasputitsa.";
 						}
 						$data2['Fuel']=Get_LandSpeed($data2['Fuel'],$data2['mobile'],$Zone_calc,0,$data2['Type']);
 						if($Action ==115)
@@ -144,7 +144,7 @@ if($_SESSION['AccountID'])
 							if($data2['mobile'] ==3 or $data2['Type'] ==6)
 								$data2['Fuel']*=2;
 						}
-						if($Skill4 ==100 and $Zone ==8) //guerre du désert
+						if($Skill4 ==100 and $Zone ==8) //guerre du dï¿½sert
 							$data2['Fuel']*=2;
 						$Autonomie_Min=$data2['Fuel'];
 						$Mobile_Min=$data2['mobile'];
@@ -178,11 +178,11 @@ if($_SESSION['AccountID'])
 									if(!$Rasputitsa)
 									{
 										$Zone_calc=0;
-										$txt_help.="<br>L'unité se trouvant sur un noeud routier et aucun ennemi n'étant présent sur ce noeud routier, l'éventuel malus de terrain est annulé. (1)";
+										$txt_help.="<br>L'unitï¿½ se trouvant sur un noeud routier et aucun ennemi n'ï¿½tant prï¿½sent sur ce noeud routier, l'ï¿½ventuel malus de terrain est annulï¿½. (1)";
 										$txt_anex=true;
 									}
 									else
-										$txt_help.="<br>Malgré le fait que l'unité se trouve sur un noeud routier et qu'aucun ennemi ne soit présent sur ce noeud routier, l'éventuel malus de terrain n'est pas annulé à cause de la Rasputitsa.";
+										$txt_help.="<br>Malgrï¿½ le fait que l'unitï¿½ se trouve sur un noeud routier et qu'aucun ennemi ne soit prï¿½sent sur ce noeud routier, l'ï¿½ventuel malus de terrain n'est pas annulï¿½ ï¿½ cause de la Rasputitsa.";
 								}
 								$data2['Fuel']=Get_LandSpeed($data2['Fuel'],$data2['mobile'],$Zone_calc,0,$data2['Type']);
 								if($Action ==115)
@@ -190,7 +190,7 @@ if($_SESSION['AccountID'])
 									if($data2['mobile'] ==3 or $data2['Type'] ==6)
 										$data2['Fuel']*=2;
 								}
-								if($Skill4 ==100 and $Zone ==8) //guerre du désert
+								if($Skill4 ==100 and $Zone ==8) //guerre du dï¿½sert
 									$data2['Fuel']*=2;
 								$Autonomie[]=$data2['Fuel'];
 								$Mobile_t[]=$data2['mobile'];
@@ -213,7 +213,7 @@ if($_SESSION['AccountID'])
 			if($G_Treve)$Treve_txt="AND Flag='$country'";
 			if($Front ==2)
 			{
-				if($Cible ==903 or $Cible ==910 or $Cible ==1090 or $Cible ==1288 or $Cible ==1653) //Crête
+				if($Cible ==903 or $Cible ==910 or $Cible ==1090 or $Cible ==1288 or $Cible ==1653) //Crï¿½te
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE ID IN (903,910,1090,1288,1653) AND ID<>'$Cible' ORDER BY Nom ASC";
 				elseif($Cible ==435 or $Cible ==450 or $Cible ==465 or $Cible ==1644 or $Cible ==1647 or $Cible ==2127 or $Lieu ==2953 or $Lieu ==2954 or $Lieu ==2955 or $Lieu ==2956) //Sardaigne
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE ID IN (435,450,465,1644,1647,2127,2953,2954,2955,2956) AND ID<>'$Cible' ORDER BY Nom ASC";
@@ -236,7 +236,7 @@ if($_SESSION['AccountID'])
 					else
 						$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE Latitude <37.3 AND Longitude >-8 AND Longitude <50 AND Zone<>6 ".$Treve_txt." AND ID NOT IN ('$Cible',343,445,529,678,903,910,1090,1288,1653) ORDER BY Nom ASC";
 				}
-				elseif($Latitude >36.6 and $Longitude >19) //Grèce
+				elseif($Latitude >36.6 and $Longitude >19) //Grï¿½ce
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE Latitude >36.6 AND Longitude >19 AND Longitude <50 AND Zone<>6 ".$Treve_txt." AND PAYS NOT IN (2,4,6) ID NOT IN ('$Cible',343,445,529,678,903,910,1090,1288,1653) ORDER BY Nom ASC";
 				elseif($Latitude >38.2)
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE (Latitude BETWEEN 38.2 AND 45.5) AND (Longitude BETWEEN -2 AND 50) AND Zone<>6 ".$Treve_txt." AND PAYS NOT IN (10,24) AND ID NOT IN ('$Cible',343,435,445,450,465,529,678,903,910,1090,1288,1644,1647,1653,2127,2306,2307,2308,2309,2310) ORDER BY Nom ASC";
@@ -251,7 +251,7 @@ if($_SESSION['AccountID'])
 					if($Lat_min <60)$Lat_min=60;
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6 ".$Treve_txt." AND ID NOT IN ('$Cible',1252) ORDER BY Nom ASC";
 				}
-				elseif($Latitude <46 and $Latitude>44.40 and $Longitude >33 and $Longitude <36.5) //Crimée
+				elseif($Latitude <46 and $Latitude>44.40 and $Longitude >33 and $Longitude <36.5) //Crimï¿½e
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN 33 AND 36.5) AND (Latitude BETWEEN 44.4 AND 46.5) AND Zone<>6 ".$Treve_txt." AND ID<>'$Cible' ORDER BY Nom ASC";
 				elseif($Latitude <47 and $Latitude>41 and $Longitude >37 and $Longitude <48) //Caucase
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN 37 AND 50) AND (Latitude BETWEEN 41 AND 48) AND Zone<>6 ".$Treve_txt." AND ID<>'$Cible' ORDER BY Nom ASC";
@@ -293,7 +293,7 @@ if($_SESSION['AccountID'])
 					$query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Flag_Gare,Flag_Route,Flag,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6 ".$Treve_txt."
 					AND Pays=2 AND ID NOT IN ('$Cible',349,593,735,873,918,915,941,942,943,944,951,1373,1374) ORDER BY Nom ASC";
 			}			
-			$txt_help.="<br>Votre unité possède une autonomie de base de ".$Autonomie_Min."km.<br>L'autonomie maximale sur ce front est de ".$Autonomie_Max."km.";
+			$txt_help.="<br>Votre unitï¿½ possï¿½de une autonomie de base de ".$Autonomie_Min."km.<br>L'autonomie maximale sur ce front est de ".$Autonomie_Max."km.";
 			$con=dbconnecti();
 			$result=mysqli_query($con,$query);
 			mysqli_close($con);
@@ -333,18 +333,18 @@ if($_SESSION['AccountID'])
 						$txt_help .="<h4><small>".$data[1]."</small></h4>";
 						if($Train_move)
 						{
-							$txt_help .="<br>L'unité étant sur une gare contrôlée par sa nation et le lieu de destination (".$data[1].") comportant également une gare contrôlée par sa nation, l'autonomie de l'unité est de ".$Autonomie_Actu."km";
+							$txt_help .="<br>L'unitï¿½ ï¿½tant sur une gare contrï¿½lï¿½e par sa nation et le lieu de destination (".$data[1].") comportant ï¿½galement une gare contrï¿½lï¿½e par sa nation, l'autonomie de l'unitï¿½ est de ".$Autonomie_Actu."km";
 						}
 						elseif($Bonus_Noeud)
 						{
-							$txt_help.="<br>L'unité étant sur un noeud routier alors qu'aucune unité ennemie n'est présente sur ce noeud routier et le lieu de destination (".$data[1].") comportant également un noeud routier, l'autonomie de l'unité est doublée pour atteindre la valeur de ".$Autonomie_Actu."km (1)";
+							$txt_help.="<br>L'unitï¿½ ï¿½tant sur un noeud routier alors qu'aucune unitï¿½ ennemie n'est prï¿½sente sur ce noeud routier et le lieu de destination (".$data[1].") comportant ï¿½galement un noeud routier, l'autonomie de l'unitï¿½ est doublï¿½e pour atteindre la valeur de ".$Autonomie_Actu."km (1)";
 							$txt_anex=true;
 						}
 						else
-							$txt_help.="<br>L'unité ne bénéficie pas du bonus de noeud routier vers ce lieu (".$data[1].")";
+							$txt_help.="<br>L'unitï¿½ ne bï¿½nï¿½ficie pas du bonus de noeud routier vers ce lieu (".$data[1].")";
 						$Impass=$data['Impass'];
 						if($data['NoeudR'] and !$Rasputitsa)
-							$icone="<img src='/images/route.gif' title='Noeud Routier'>";
+							$icone= "<img src='/images/route.gif' title='Noeud Routier'>";
 						else
 							$icone="<img src='/images/zone".$data['Zone'].".jpg'>";
 						$sensh='';
@@ -405,7 +405,7 @@ if($_SESSION['AccountID'])
 							if($Rasputitsa and $Zone !=2 and $Zone !=3 and $Zone !=4 and $Zone !=5 and $Zone !=7 and $Mobile_Min !=3)
 							{
 								$Distance[0]*=1.25;
-								$txt_help.="<br>La distance à parcourir vers ".$data[1]." est augmentée de 25% (".$Distance[0]."km) à cause de la Rasputitsa";
+								$txt_help.="<br>La distance ï¿½ parcourir vers ".$data[1]." est augmentï¿½e de 25% (".$Distance[0]."km) ï¿½ cause de la Rasputitsa";
 							}
 						}
 						if($Faction != GetData("Pays","ID",$data['Flag'],"Faction"))
@@ -414,12 +414,12 @@ if($_SESSION['AccountID'])
 							if($Enis)
 							{
 								$Distance[0]*=2;
-								$txt_help.="<br>La distance à parcourir vers ".$data[1]." est augmentée de 100% (".$Distance[0]."km) à cause de la présence d'unités ennemies sur un lieu contrôlé par l'ennemi. (1)";
+								$txt_help.="<br>La distance ï¿½ parcourir vers ".$data[1]." est augmentï¿½e de 100% (".$Distance[0]."km) ï¿½ cause de la prï¿½sence d'unitï¿½s ennemies sur un lieu contrï¿½lï¿½ par l'ennemi. (1)";
 							}
 							else
 							{
 								$Distance[0]*=1.5;
-								$txt_help.="<br>La distance à parcourir vers ".$data[1]." est augmentée de 50% (".$Distance[0]."km) car ".$data[1]." est contrôlé par l'ennemi. (1)";
+								$txt_help.="<br>La distance ï¿½ parcourir vers ".$data[1]." est augmentï¿½e de 50% (".$Distance[0]."km) car ".$data[1]." est contrï¿½lï¿½ par l'ennemi. (1)";
 							}
 						}
 						if($Skill4 ==100 and $data['Zone'] ==8)$CT_city-=1;
@@ -428,11 +428,11 @@ if($_SESSION['AccountID'])
 						if(!$Train_move and $Autonomie_Actu >$Autonomie_Max)$Autonomie_Actu=$Autonomie_Max;
 						if($Distance[0] <=$Autonomie_Actu)
 						{
-							$txt_help.="<br>La distance à parcourir vers ".$data[1]." est de <span class='text-primary'>".$Distance[0]."km</span> et l'autonomie de l'unité est de ".$Autonomie_Actu.", permettant le déplacement vers ce lieu.";
+							$txt_help.="<br>La distance ï¿½ parcourir vers ".$data[1]." est de <span class='text-primary'>".$Distance[0]."km</span> et l'autonomie de l'unitï¿½ est de ".$Autonomie_Actu.", permettant le dï¿½placement vers ce lieu.";
 							if($Credits >= $CT_city)
-								$choix="<tr><td><Input type='Radio' name='Action' value='".$data[0]."_".$CT_city."'><img src='/images/CT".$CT_city.".png' title='Montant en Crédits Temps que nécessite cette action'>- ".$data[1]."</td><td><img src='".$data['Flag']."20.gif'></td><td>".$icone."</td><td>".$Distance[0]."km</td></tr>";
+								$choix="<tr><td><Input type='Radio' name='Action' value='".$data[0]."_".$CT_city."'><img src='/images/CT".$CT_city.".png' title='Montant en Crï¿½dits Temps que nï¿½cessite cette action'>- ".$data[1]."</td><td><img src='".$data['Flag']."20.gif'></td><td>".$icone."</td><td>".$Distance[0]."km</td></tr>";
 							else
-								$choix="<tr><td><Input type='Radio' name='Action' value='".$data[0]."_".$CT_city."' disabled><img src='/images/CT".$CT_city.".png' title='Montant en Crédits Temps que nécessite cette action'>- ".$data[1]."</td><td><img src='".$data['Flag']."20.gif'></td><td>".$icone."</td><td>".$Distance[0]."km</td></tr>";
+								$choix="<tr><td><Input type='Radio' name='Action' value='".$data[0]."_".$CT_city."' disabled><img src='/images/CT".$CT_city.".png' title='Montant en Crï¿½dits Temps que nï¿½cessite cette action'>- ".$data[1]."</td><td><img src='".$data['Flag']."20.gif'></td><td>".$icone."</td><td>".$Distance[0]."km</td></tr>";
 							if($coord ==1) //Est
 								$Est_txt.=$choix;
 							elseif($coord ==2) //Ouest
@@ -451,7 +451,7 @@ if($_SESSION['AccountID'])
 								$SO_txt.=$choix;
 						}
 						else
-							$txt_help.="<br>La distance à parcourir vers ".$data[1]." est de <span class='text-danger'>".$Distance[0]."km</span> et l'autonomie de l'unité est de ".$Autonomie_Actu.", ne permettant pas le déplacement vers ce lieu.";
+							$txt_help.="<br>La distance ï¿½ parcourir vers ".$data[1]." est de <span class='text-danger'>".$Distance[0]."km</span> et l'autonomie de l'unitï¿½ est de ".$Autonomie_Actu.", ne permettant pas le dï¿½placement vers ce lieu.";
 					}
 				}
 				mysqli_free_result($result);
@@ -460,29 +460,29 @@ if($_SESSION['AccountID'])
 			{
 				if($Autonomie_Min >$Autonomie_Max)$Autonomie_Min=$Autonomie_Max;
 				$mes="<h1>Calculateur de distance</h1><h2>Destinations</h2>
-					<p class='lead'>Autonomie max : ".$Autonomie_Min."km ".$train_txt."<a href='#' class='popup'><img src='images/help.png'><span>Doublé si votre bataillon se trouve sur un noeud routier</span></a></p>
+					<p class='lead'>Autonomie max : ".$Autonomie_Min."km ".$train_txt. "<a href='#' class='popup'><img src='../images/help.png'><span>Doublï¿½ si votre bataillon se trouve sur un noeud routier</span></a></p>
 					<div class='row'><div class='col-md-8'><table class='table'>
 					<tr>
-					<td width='30%'><table><tr><th colspan='3'>Nord Ouest</th></tr>".$NO_txt."</table></td>
+					<td width='30%'><table><tr><th colspan='3'>Nord Ouest</th></tr>" .$NO_txt."</table></td>
 					<td width='30%'><table><tr><th colspan='3'>Nord</th></tr>".$Nord_txt."</table></td>
 					<td width='30%'><table><tr><th colspan='3'>Nord Est</th></tr>".$NE_txt."</table></td>
 					</tr>
 					<tr>
-					<td width='30%'><table><tr><th colspan='3'>Ouest</th></tr>".$Ouest_txt."</table></td>
-					<td width='30%'><img src='images/travel_icon.png'></td>
-					<td width='30%'><table><tr><th colspan='3'>Est</th></tr>".$Est_txt."</table></td>
+					<td width='30%'><table><tr><th colspan='3'>Ouest</th></tr>".$Ouest_txt. "</table></td>
+					<td width='30%'><img src='../images/travel_icon.png'></td>
+					<td width='30%'><table><tr><th colspan='3'>Est</th></tr>" .$Est_txt."</table></td>
 					</tr>
 					<tr>
 					<td width='30%'><table><tr><th colspan='3'>Sud Ouest</th></tr>".$SO_txt."</table></td>
 					<td width='30%'><table><tr><th colspan='3'>Sud</th></tr>".$Sud_txt."</table></td>
-					<td width='30%'><table><tr><th colspan='3'>Sud Est</th></tr>".$SE_txt."</table></td>
+					<td width='30%'><table><tr><th colspan='3'>Sud Est</th></tr>".$SE_txt. "</table></td>
 					</tr>
 					</table>
-					</div></div><a href='index.php?view=pr_ground_move0' class='btn btn-default' title='Retour'>Retour</a>".$txt_help;
-				if($txt_anex)$mes.="<p class='lead'>(1) Attention que cette information ne prend pas en compte la présence d'éventuelles unités ennemies!</p>";
+					</div></div><a href='../index.php?view=pr_ground_move0' class='btn btn-default' title='Retour'>Retour</a>" .$txt_help;
+				if($txt_anex)$mes.="<p class='lead'>(1) Attention que cette information ne prend pas en compte la prï¿½sence d'ï¿½ventuelles unitï¿½s ennemies!</p>";
 			}
 			elseif($Mobile_Min ==5)
-				$mes="<br>Cet outil ne permet pas de simuler le déplacement des unités navales que vous commandez.";
+				$mes="<br>Cet outil ne permet pas de simuler le dï¿½placement des unitï¿½s navales que vous commandez.";
 			else
 				$mes="<br>L'autonomie de vos troupes (".$Autonomie_Min."km) est insuffisante pour atteindre la destination la plus proche !";
 		}

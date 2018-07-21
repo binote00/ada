@@ -1,12 +1,12 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {
 	include_once('./jfv_include.inc.php');
 	include_once('./jfv_txt.inc.php');
 	include_once('./jfv_combat.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium >0)
 	{
@@ -24,7 +24,7 @@ if($PlayerID >0)
 		{
 			if($c_gaz <20)
 			{
-				$menu="<p>Vous entamez votre course de décollage, mais le manque de puissance empêche votre appareil de quitter le sol !</p>";
+				$menu="<p>Vous entamez votre course de dï¿½collage, mais le manque de puissance empï¿½che votre appareil de quitter le sol !</p>";
 				$img=Afficher_Image('images/avions/crash'.$avion.'.jpg','images/avions/crash.jpg','crash',50);
 			}
 			else
@@ -81,7 +81,7 @@ if($PlayerID >0)
 				if($Decollage >0)
 				{
 					if($Takeoff_run <75)$Takeoff_run=50+($Masse/100);
-					$menu="<p>Vous décollez sans problème, au terme d'une course de ".round($Takeoff_run)."m !</p>";
+					$menu="<p>Vous dï¿½collez sans problï¿½me, au terme d'une course de ".round($Takeoff_run)."m !</p>";
 					$img=Afficher_Image('images/avions/decollage'.$avion.'.jpg','images/avions/landing'.$avion.'.jpg','Decollage',50);
 				}
 				elseif($Decollage <-50)
@@ -89,27 +89,27 @@ if($PlayerID >0)
 					if($Decollage ==-99999999)
 					{
 						if($Porte_avions >0)
-							$menu ="<p>Votre avion ne parvient pas à s'arracher du pont d'envol. Passant par dessus bord après une course de ".round($Takeoff_run)."m, vous crashez votre avion en mer !</p>";
+							$menu ="<p>Votre avion ne parvient pas ï¿½ s'arracher du pont d'envol. Passant par dessus bord aprï¿½s une course de ".round($Takeoff_run)."m, vous crashez votre avion en mer !</p>";
 						else
-							$menu ="<p>Avalant toute la piste (".round($Takeoff_run)."m parcouru / piste de ".$LongPiste."m), votre avion ne parvient pas à s'arracher du sol. Vous vous crashez en bout de piste !</p>";
+							$menu ="<p>Avalant toute la piste (".round($Takeoff_run)."m parcouru / piste de ".$LongPiste."m), votre avion ne parvient pas ï¿½ s'arracher du sol. Vous vous crashez en bout de piste !</p>";
 					}
 					else
 					{			
 						if($QualitePiste !=0 and ($Train ==13 or $Train ==16))
-							$menu="<p>Incapable de déjauger correctement à cause du mauvais temps, votre avion percute une vague de plein fouet !</p>";			
+							$menu="<p>Incapable de dï¿½jauger correctement ï¿½ cause du mauvais temps, votre avion percute une vague de plein fouet !</p>";			
 						elseif($QualitePiste !=0)
-							$menu="<p>Vous entamez votre course de décollage, mais vous ne pouvez empêcher votre avion d'aller dans le décor à cause de l'état de la piste !</p>";
+							$menu="<p>Vous entamez votre course de dï¿½collage, mais vous ne pouvez empï¿½cher votre avion d'aller dans le dï¿½cor ï¿½ cause de l'ï¿½tat de la piste !</p>";
 						elseif($meteo_malus <-49)
-							$menu="<p>Vous entamez votre course de décollage, mais la météo vous oblige à interrompre votre mission. Quelle poisse !</p>";
+							$menu="<p>Vous entamez votre course de dï¿½collage, mais la mï¿½tï¿½o vous oblige ï¿½ interrompre votre mission. Quelle poisse !</p>";
 						else
-							$menu="<p>Vous entamez votre course de décollage lorsqu'un incident vous oblige à interrompre votre mission. Quelle poisse !</p>";
+							$menu="<p>Vous entamez votre course de dï¿½collage lorsqu'un incident vous oblige ï¿½ interrompre votre mission. Quelle poisse !</p>";
 					}
 					$img=Afficher_Image('images/avions/crash'.$avion.'.jpg','images/avions/crash.jpg','crash',50);
 				}
 				else
 				{
-					$menu="<p>Vous entamez votre course de décollage lorsqu'un incident vous oblige à interrompre votre mission. Quelle poisse !</p>
-					<p>Votre appareil est légèrement endommagé, il sera réparable rapidement !</p>";
+					$menu="<p>Vous entamez votre course de dï¿½collage lorsqu'un incident vous oblige ï¿½ interrompre votre mission. Quelle poisse !</p>
+					<p>Votre appareil est lï¿½gï¿½rement endommagï¿½, il sera rï¿½parable rapidement !</p>";
 					$img=Afficher_Image('images/avions/crash'.$avion.'.jpg','images/avions/crash.jpg','crash',50);
 				}
 			}
@@ -133,8 +133,8 @@ if($PlayerID >0)
 				mysqli_free_result($result);
 			}
 	?>
-	<h2>Test de décollage</h2>
-		<form action="index.php?view=pr_takeoff" method="post">
+	<h2>Test de dï¿½collage</h2>
+		<form action="../index.php?view=pr_takeoff" method="post">
 		<table class='table table-striped'>
 			<tr>
 				<th>Pilote</th>
@@ -142,10 +142,10 @@ if($PlayerID >0)
 					<select name="pilote" class='form-control' style="width: 200px">
 						<option value='0'>Bleu</option>
 						<option value='25'>Apte</option>
-						<option value='50'>Compétent</option>
-						<option value='75'>Entrainé</option>
-						<option value='100'>Chevronné</option>
-						<option value='125'>Vétéran</option>
+						<option value='50'>Compï¿½tent</option>
+						<option value='75'>Entrainï¿½</option>
+						<option value='100'>Chevronnï¿½</option>
+						<option value='125'>Vï¿½tï¿½ran</option>
 						<option value='150'>Expert</option>
 						<option value='200'>Virtuose</option>
 					</select>
@@ -210,7 +210,7 @@ if($PlayerID >0)
 				<th>Volets</th>
 				<td align="left">
 					<select name="volets" class='form-control' style="width: 200px">
-						<option value='0'>Rentrés</option>
+						<option value='0'>Rentrï¿½s</option>
 						<option value='1'>1 cran</option>
 						<option value='2'>2 crans</option>
 						<option value='3'>3 crans</option>
@@ -218,7 +218,7 @@ if($PlayerID >0)
 				</td>
 			</tr>
 			<tr>
-				<th>Hélice</th>
+				<th>Hï¿½lice</th>
 				<td align="left">
 					<select name="helice" class='form-control' style="width: 200px">
 						<option value='0'>De Base (pas constant)</option>
@@ -230,7 +230,7 @@ if($PlayerID >0)
 				<td align="left">
 					<select name="train" class='form-control' style="width: 200px">
 						<option value='0'>De Base</option>
-						<option value='2'>Renforcé</option>
+						<option value='2'>Renforcï¿½</option>
 					</select>
 				</td>
 			</tr>
@@ -265,7 +265,7 @@ if($PlayerID >0)
 						<option value='2400'>2400m</option>
 					</select>
 				</td>
-				<th>Météo</th>
+				<th>Mï¿½tï¿½o</th>
 				<td align="left">
 					<select name="meteo" class='form-control' style="width: 200px">
 						<option value='0'>temps clair, vent nul</option>
@@ -273,7 +273,7 @@ if($PlayerID >0)
 						<option value='-10'>nuageux, vent faible</option>
 						<option value='-20'>pluie, vent faible</option>
 						<option value='-50'>neige, vent faible</option>
-						<option value='-75'>Tempête</option>
+						<option value='-75'>Tempï¿½te</option>
 						<option value='-100'>Tornade</option>
 					</select>
 				</td>

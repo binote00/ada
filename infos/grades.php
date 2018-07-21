@@ -2,7 +2,7 @@
 require_once('./jfv_inc_sessions.php');
 include_once('./jfv_include.inc.php');
 include_once('./jfv_nomission.inc.php');
-include_once('./menu_infos.php');
+include_once __DIR__ . '/view/menu_infos.php';
 ?>
 <h2>Les Grades</h2>
 <div style='overflow:auto; width: 100%;'><table class='table table-condensed'>

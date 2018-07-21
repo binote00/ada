@@ -1,12 +1,12 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {
 	include_once('./jfv_include.inc.php');
 	include_once('./jfv_txt.inc.php');
 	include_once('./jfv_combat.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium >0)
 	{
@@ -40,7 +40,7 @@ if($PlayerID >0)
 					mysqli_free_result($result);
 					unset($data);
 				}		
-				if($alt >$Plafond)$img="Le plafond maximal de cet avion étant de ".$Plafond."m, l'altitude a été adaptée";
+				if($alt >$Plafond)$img="Le plafond maximal de cet avion ï¿½tant de ".$Plafond."m, l'altitude a ï¿½tï¿½ adaptï¿½e";
 				if(!$alt_ref)
 				{
 					$Compresseur=GetData("Moteur","ID",$Moteur,"Compresseur");
@@ -75,10 +75,10 @@ if($PlayerID >0)
 				<tr><th>Gaz</th><td>".$gaz."%</td></tr>
 				<tr><th>Volets</th><td>".$flaps." crans</td></tr>
 				</table>
-				<p class='lead'>Vitesse estimée : <b>".$Speed."km/h</b></p>";
+				<p class='lead'>Vitesse estimï¿½e : <b>".$Speed."km/h</b></p>";
 			}
 			else
-				$mes="Un avion détruit a forcément une vitesse nulle...";
+				$mes="Un avion dï¿½truit a forcï¿½ment une vitesse nulle...";
 			echo $mes;
 		}
 		else
@@ -98,7 +98,7 @@ if($PlayerID >0)
 				}
 	?>
 	<h2>Test de vitesse</h2>
-		<form action="index.php?view=pr_speed" method="post">
+		<form action="../index.php?view=pr_speed" method="post">
 		<table class='table'>
 			<tr><th>Avion</th>
 				<td align="left">
@@ -167,7 +167,7 @@ if($PlayerID >0)
 						<option value='10000'>10000m</option>
 					</select>
 				</td>
-				<th>Météo</th>
+				<th>Mï¿½tï¿½o</th>
 				<td align="left">
 					<select name="meteo" class='form-control' style="width: 200px">
 						<option value='0'>temps clair, vent nul</option>
@@ -175,7 +175,7 @@ if($PlayerID >0)
 						<option value='-10'>nuageux, vent faible</option>
 						<option value='-20'>pluie, vent faible</option>
 						<option value='-50'>neige, vent faible</option>
-						<option value='-75'>Tempête</option>
+						<option value='-75'>Tempï¿½te</option>
 						<option value='-100'>Tornade</option>
 					</select>
 				</td>
@@ -199,7 +199,7 @@ if($PlayerID >0)
 				<th>Volets</th>
 				<td align="left">
 					<select name="volets" class='form-control' style="width: 200px">
-						<option value='0'>Rentrés</option>
+						<option value='0'>Rentrï¿½s</option>
 						<option value='1'>1 cran</option>
 						<option value='2'>2 crans</option>
 						<option value='3'>3 crans</option>

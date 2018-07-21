@@ -84,22 +84,22 @@ if ($Pilote_pvp > 0) {
                         $con = dbconnecti();
                     $update_ok = mysqli_query($con, "UPDATE Pilote_PVP SET Equipage = $ins_id WHERE ID = $Pilote_pvp");
                     if ($update_ok) {
-                        $titre = "Création";
+                        $titre = 'Création';
                         $mes .= "Membre d'équipage créé avec succès!";
-                        $img = "<img src='./images/transfer_yes" . $country . ".jpg'>";
-                        //mail('binote@hotmail.com','Aube des Aigles: Nouveau Membre Equipage',"Nom : ".$Nom." / Pays : ".$country." / Joueur : ".$Pilote_pvp);
+                        $img = "<img src='images/transfer_yes" . $country . ".jpg'>";
+                        //mail(EMAIL_LOG,'Aube des Aigles: Nouveau Membre Equipage',"Nom : ".$Nom." / Pays : ".$country." / Joueur : ".$Pilote_pvp);
                     } else {
                         echo "Erreur de création de Membre d'équipage!";
                         $mes .= "Erreur de création de Membre d'équipage update_ok " . mysqli_error($con);
-                        mail('binote@hotmail.com', 'Aube des Aigles: Création Equipage Error', $mes);
+                        mail(EMAIL_LOG, 'Aube des Aigles: Création Equipage Error', $mes);
                     }
                 } else {
                     echo "Erreur de création de Membre d'équipage!";
                     $mes .= "Erreur de création de Membre d'équipage ok " . mysqli_error($con);
-                    mail('binote@hotmail.com', 'Aube des Aigles: Création Equipage Error', $mes);
+                    mail(EMAIL_LOG, 'Aube des Aigles: Création Equipage Error', $mes);
                 }
                 mysqli_close($con);
-                include_once '../index.php';
+                include_once 'index.php';
                 exit;
             }
         }
@@ -107,11 +107,11 @@ if ($Pilote_pvp > 0) {
     if (!$Equipage) {
         ?>
         <h1>Création de votre membre d'équipage</h1>
-        <form action="../index.php?view=pvp/choix_equipage_pvp" method="post">
+        <form action="index.php?view=pvp/choix_equipage_pvp" method="post">
             <input type="hidden" name="country" value="<?=$country?>">
             <table class='table'>
                 <tr>
-                    <td colspan='2'><img src='./images/pilotes<?=$country?>.jpg'></td>
+                    <td colspan='2'><img src='images/pilotes<?=$country?>.jpg'></td>
                 </tr>
                 <tr>
                     <th>Nom</th>
@@ -120,7 +120,7 @@ if ($Pilote_pvp > 0) {
                                name="name" size="30" class="form-control" style="width:300px;"></td>
                 </tr>
                 <tr>
-                    <th>Spécialisation <a href='../help/aide_equipage.php' target='_blank'><img src='./images/help.png'></a>
+                    <th>Spécialisation <a href='/help/aide_equipage.php' target='_blank'><img src='images/help.png'></a>
                     </th>
                     <td align="left">
                         <select name="Specialisation" class="form-control" style="width:300px;">
@@ -149,7 +149,7 @@ if ($Pilote_pvp > 0) {
                 </tr>
                 <tr>
                     <th title="Les effets du Trait ne s'appliquent qu'au membre d'équipage">Trait <a
-                                href='../help/aide_equipage.php' target='_blank'><img src='./images/help.png'></a></th>
+                                href='/help/aide_equipage.php' target='_blank'><img src='images/help.png'></a></th>
                     <td align="left">
                         <select name="Trait_e" class="form-control" style="width:300px;">
                             <option value='0' checked>Aucun</option>
@@ -176,7 +176,7 @@ if ($Pilote_pvp > 0) {
             </table>
             <p>Le membre d'équipage vous accompagnera dans vos missions à bord de tout avion multiplaces.<br>Il vous
                 assistera dans vos tâches et vous pourrez lui donner certains ordres.</p>
-            <p><input type="Submit" class="btn btn-default" value="VALIDER" class='btn btn-default'
+            <p><input type="submit" class="btn btn-default" value="VALIDER" class='btn btn-default'
                       onclick='this.disabled=true;this.form.submit();'></form></p>
         <?
     } else

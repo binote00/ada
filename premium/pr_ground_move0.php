@@ -1,5 +1,5 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 if($_SESSION['AccountID'])
 {
 	include_once('./jfv_include.inc.php');
@@ -23,9 +23,9 @@ if($_SESSION['AccountID'])
 				}
 				mysqli_free_result($result);
 			}
-			$titre="<h1>Simulation de déplacement</h1>";
-			$mes="<form action='index.php?view=pr_ground_move' method='post'><table class='table'><thead><tr><th>Lieu de départ</th></tr></thead>
-				<tr><td><select name='Lieu' class='form-control' style='width: 200px'>".$Lieux."</select></td></tr>
+			$titre="<h1>Simulation de dï¿½placement</h1>";
+			$mes= "<form action='../index.php?view=pr_ground_move' method='post'><table class='table'><thead><tr><th>Lieu de dï¿½part</th></tr></thead>
+				<tr><td><select name='Lieu' class='form-control' style='width: 200px'>" .$Lieux."</select></td></tr>
 			</table><input type='Submit' value='Valider' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 		}
 		$img=Afficher_Image('images/move_front'.$country.'.jpg',"images/image.png","");

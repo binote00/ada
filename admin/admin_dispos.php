@@ -20,23 +20,23 @@ if($AccountID >0)
 			<th>Avion</th>
 			<th>Pays</th>
 			<th>Type</th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="12"><input title="Date" type='Submit' value='Date'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="14"><input title="Rating" type='Submit' value='Rating'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="12"><input title="Date" type='Submit' value='Date'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="14"><input title="Rating" type='Submit' value='Rating'></form></th>
 			<th>Puissance</th>
 			<th>Masse</th>
 			<th>Taille</th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="1"><input title="VitesseH" type='Submit' value='VitesseH'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="2"><input title="VitesseB" type='Submit' value='VitesseB'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="3"><input title="VitesseA" type='Submit' value='VitesseA'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="13"><input title="VitesseP" type='Submit' value='VitesseP'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="4"><input title="Plafond" type='Submit' value='Plafond'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="5"><input title="Autonomie" type='Submit' value='Autonomie'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="6"><input title="Stabilité" type='Submit' value='Stabilite'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="7"><input title="Roulis" type='Submit' value='Maniabilite'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="8"><input title="Taux Virage H" type='Submit' value='ManoeuvreH'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="9"><input title="Taux Virage B" type='Submit' value='ManoeuvreB'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="10"><input title="Robustesse" type='Submit' value='Robustesse'></form></th>
-			<th><form action='index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="11"><input title="Blindage" type='Submit' value='Blindage'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="1"><input title="VitesseH" type='Submit' value='VitesseH'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="2"><input title="VitesseB" type='Submit' value='VitesseB'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="3"><input title="VitesseA" type='Submit' value='VitesseA'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="13"><input title="VitesseP" type='Submit' value='VitesseP'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="4"><input title="Plafond" type='Submit' value='Plafond'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="5"><input title="Autonomie" type='Submit' value='Autonomie'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="6"><input title="Stabilité" type='Submit' value='Stabilite'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="7"><input title="Roulis" type='Submit' value='Maniabilite'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="8"><input title="Taux Virage H" type='Submit' value='ManoeuvreH'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="9"><input title="Taux Virage B" type='Submit' value='ManoeuvreB'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="10"><input title="Robustesse" type='Submit' value='Robustesse'></form></th>
+			<th><form action='../index.php?view=output_avions' method='post'><input type='hidden' name='Tri' value="11"><input title="Blindage" type='Submit' value='Blindage'></form></th>
 		</tr>
 	<?
 	switch($Tri)
@@ -124,7 +124,7 @@ if($AccountID >0)
 			?>
 					<td><? echo $Avion;?></td>
 					<td><img src='<? echo $Pays;?>20.gif'></td>
-					<td><a href="avion_detail.php?avion=<? echo $avion;?>" target="_blank" rel='noreferrer'><? echo $Type;?></a></td>
+					<td><a href="../avion_detail.php?avion=<? echo $avion;?>" target="_blank" rel='noreferrer'><? echo $Type;?></a></td>
 					<td><? echo $Engagement;?></td>
 					<td><? echo $Rating;?></td>
 					<td><? echo $Puissance;?></td>

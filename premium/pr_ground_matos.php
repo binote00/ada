@@ -1,5 +1,5 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 or $OfficierEMID >0)
@@ -9,7 +9,7 @@ if($OfficierID >0 or $OfficierEMID >0)
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium >0)
 	{
-		include_once('./menu_infos.php');
+        include_once __DIR__ . '/../view/menu_infos.php';
 		$country=$_SESSION['country'];
 		$Date_Campagne=Insec($_POST['Date']);
 		$Avancement=Insec($_POST['Grade']);
@@ -206,8 +206,8 @@ if($OfficierID >0 or $OfficierEMID >0)
 							$Arme_Art=GetData("Armes","ID",$data['Arme_Art'],"Degats");
 							$Arme_Art_pr=$Arme_Art*0.004;
 							$Arme_Art_muns_pr=round($data['Arme_Art_mun']*0.5);
-							$Art="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_Art."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_Art_pr."%'>Dégâts</div></div>
-							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'>Portée</div></div>
+							$Art="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_Art."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_Art_pr."%'>Dï¿½gï¿½ts</div></div>
+							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'>Portï¿½e</div></div>
 							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Optics']."' aria-valuemin='0' aria-valuemax='10' style='width: ".$Bonus_Tir_pr."%; min-width: 20px;'>Tir</div></div>
 							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Arme_Art_mun']."' aria-valuemin='0' aria-valuemax='200' style='width: ".$Arme_Art_muns_pr."%; min-width: 20px;'>Muns</div></div>";
 						}
@@ -217,9 +217,9 @@ if($OfficierID >0 or $OfficierEMID >0)
 							$Arme_AT_Perf=GetData("Armes","ID",$data['Arme_AT'],"Perf");
 							$Arme_AT_pr=$Arme_AT*0.004;
 							$Arme_AT_Perf_pr=round($Arme_AT_Perf*0.39);
-							$AT="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AT."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_AT_pr."%'>Dégâts</div></div>
-							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'>Portée</div></div>
-							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AT_Perf."' aria-valuemin='0' aria-valuemax='255' style='width: ".$Arme_AT_Perf_pr."%'>Pénétration</div></div>
+							$AT="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AT."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_AT_pr."%'>Dï¿½gï¿½ts</div></div>
+							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'>Portï¿½e</div></div>
+							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AT_Perf."' aria-valuemin='0' aria-valuemax='255' style='width: ".$Arme_AT_Perf_pr."%'>Pï¿½nï¿½tration</div></div>
 							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Optics']."' aria-valuemin='0' aria-valuemax='10' style='width: ".$Bonus_Tir_pr."%; min-width: 20px;'>Tir</div></div>
 							<br><div class='progress'><div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='".$data['Taille']."' aria-valuemin='0' aria-valuemax='255' style='width: ".$Taille_pr."%'>Taille</div></div>";
 						}
@@ -235,8 +235,8 @@ if($OfficierID >0 or $OfficierEMID >0)
 								$Portee_pr=round($data['Portee']*0.01);
 							}
 							$AA="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Flak']."' aria-valuemin='0' aria-valuemax='1' style='width: ".$Flak_pr."%'></div>Couverture</div>
-							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AA."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_AA_pr."%'></div>Dégâts</div>
-							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'></div>Portée</div>
+							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Arme_AA."' aria-valuemin='0' aria-valuemax='25000' style='width: ".$Arme_AA_pr."%'></div>Dï¿½gï¿½ts</div>
+							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Portee']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Portee_pr."%'></div>Portï¿½e</div>
 							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Optics']."' aria-valuemin='0' aria-valuemax='10' style='width: ".$Bonus_Tir_pr."%'></div>Tir</div>
 							<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Arme_AA_mun']."' aria-valuemin='0' aria-valuemax='10000' style='width: ".$Arme_AA_muns_pr."%'></div>Muns</div>";
 						}
@@ -257,26 +257,26 @@ if($OfficierID >0 or $OfficierEMID >0)
 						$Off="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$Bonus_Tactique."' aria-valuemin='0' aria-valuemax='50' style='width: ".$Tactique_pr."%'></div>Tactique</div>
 						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Vitesse']."' aria-valuemin='0' aria-valuemax='100' style='width: ".$data['Vitesse']."%'></div>Vitesse</div>
 						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Optics']."' aria-valuemin='0' aria-valuemax='10' style='width: ".$Bonus_Tir_pr."%'></div>Tir</div>
-						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilité</div>
+						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilitï¿½</div>
 						<br><div class='progress'><div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='".$data['Conso']."' aria-valuemin='0' aria-valuemax='500' style='width: ".$Conso_pr."%'></div>Conso</div>";
 						$Raid="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fuel']."' aria-valuemin='0' aria-valuemax='500' style='width: ".$Fuel_pr."%'></div>Autonomie</div>
 						<br><div class='progress'><div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='".$data['Conso']."' aria-valuemin='0' aria-valuemax='500' style='width: ".$Conso_pr."%'></div>Conso</div>
-						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilité</div>
+						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilitï¿½</div>
 						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Vitesse']."' aria-valuemin='0' aria-valuemax='100' style='width: ".$data['Vitesse']."%'></div>Vitesse</div>";
-						$Reco="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Detection']."' aria-valuemin='0' aria-valuemax='50' style='width: ".$Det_pr."%'></div>Détection</div>
+						$Reco="<div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Detection']."' aria-valuemin='0' aria-valuemax='50' style='width: ".$Det_pr."%'></div>Dï¿½tection</div>
 						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Vitesse']."' aria-valuemin='0' aria-valuemax='100' style='width: ".$data['Vitesse']."%'></div>Vitesse</div>
 						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fuel']."' aria-valuemin='0' aria-valuemax='500' style='width: ".$Fuel_pr."%'></div>Autonomie</div>
-						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilité</div>";*/					
+						<br><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='".$data['Fiabilite']."' aria-valuemin='-5' aria-valuemax='5' style='width: ".$Fiabilite_pr."%'></div>Fiabilitï¿½</div>";*/					
 						if($data['Type'] ==99)
-							$data['Nom'].=" (Aide à neutraliser les saboteurs)";
+							$data['Nom'].=" (Aide ï¿½ neutraliser les saboteurs)";
 						elseif($data['Type'] ==98 or $data['Type'] ==92 or $data['Categorie'] ==16 or $data['Categorie'] ==19)
-							$data['Nom'].=" (Minage,déminage,sabotage,réparation)";
+							$data['Nom'].=" (Minage,dï¿½minage,sabotage,rï¿½paration)";
 						elseif($data['Type'] ==97)
-							$data['Nom'].=" (Déplacement doublé dans montagnes et collines)";							
+							$data['Nom'].=" (Dï¿½placement doublï¿½ dans montagnes et collines)";							
 						$Reput=$data['Reput'];
 						if($Reste <10 and $mobile !=4 and $mobile !=5)$Reput*=2;
 						$vehs.="<tr><td><img src='images/vehicules/vehicule".$data['ID'].".gif' title='".$data['Nom']."'><br>
-						<form><input type='button' value='Détail' class='btn btn-primary' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>";
+						<form><input type='button' value='Dï¿½tail' class='btn btn-primary' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>";
 						if($data['Premium'] >0 and $data['Premium'] != $Premium)
 							$vehs.="<td><div class='i-flex premium20'></div></td>";
 						elseif($Reste >3 or $mobile ==4 or $mobile ==5)
@@ -304,12 +304,12 @@ if($OfficierID >0 or $OfficierEMID >0)
 							if($Cat)
 								$vehs.="<td><span class='btn btn-default'>".$Reput." CT</span></td>";
 							else
-								$vehs.="<td><span title='Votre officier manque de réputation pour accéder à cette catégorie'>Catégorie inaccessible</span></td>";
+								$vehs.="<td><span title='Votre officier manque de rï¿½putation pour accï¿½der ï¿½ cette catï¿½gorie'>Catï¿½gorie inaccessible</span></td>";
 						}
 						elseif($Prod <50)
-							$vehs.="<td><span title='Votre nation doit réparer les usines détruites'>Usines ".$Prod."%</span></td>";
+							$vehs.="<td><span title='Votre nation doit rï¿½parer les usines dï¿½truites'>Usines ".$Prod."%</span></td>";
 						else
-							$vehs.="<td><span title='Votre nation doit réparer les modèles détruits'>".$Reste." Dispo</span></td>";
+							$vehs.="<td><span title='Votre nation doit rï¿½parer les modï¿½les dï¿½truits'>".$Reste." Dispo</span></td>";
 						$vehs.="<td>".$AT."</td>";
 						$vehs.="<td>".$AA."</td>";
 						$vehs.="<td>".$Art."</td>";
@@ -326,20 +326,20 @@ if($OfficierID >0 or $OfficierEMID >0)
 			if($vehs)
 			{
 				$titre_up="<thead><tr>
-						<th width='10%'>Matériel</th>
-						<th width='5%'>Coût</th>
+						<th width='10%'>Matï¿½riel</th>
+						<th width='5%'>Coï¿½t</th>
 						<th width='10%'>Anti-Tank</th>
-						<th width='10%'>Anti-aérien</th>
+						<th width='10%'>Anti-aï¿½rien</th>
 						<th width='10%'>Bombardement</th>
-						<th width='10%'>Défensif</th>
+						<th width='10%'>Dï¿½fensif</th>
 						<th width='10%'>Offensif</th>
 						<th width='10%'>Raid</th>
 						<th width='10%'>Reco</th></tr></thead>";		
-				$mes="<h2>Matériel disponible <a href='#' class='popup'><img src='images/help.png'><span>Changer de matériel réinitialise l expérience.</span></a></h2>
-				<div style='overflow:auto; height: 600px;'><table class='table table-striped'>".$titre_up.$vehs."</table></div>";
+				$mes= "<h2>Matï¿½riel disponible <a href='#' class='popup'><img src='../images/help.png'><span>Changer de matï¿½riel rï¿½initialise l expï¿½rience.</span></a></h2>
+				<div style='overflow:auto; height: 600px;'><table class='table table-striped'>" .$titre_up.$vehs."</table></div>";
 			}
 			else
-				$mes="Aucun véhicule de cette catégorie n'est disponible";
+				$mes="Aucun vï¿½hicule de cette catï¿½gorie n'est disponible";
 			include_once('./default.php');
 		}
 	}

@@ -1,5 +1,5 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 or $OfficierEMID >0)
@@ -11,7 +11,7 @@ if($OfficierID >0 or $OfficierEMID >0)
 	if($Premium >0)
 	{
 		$country=$_SESSION['country'];
-		include_once('./menu_infos.php');
+        include_once __DIR__ . '/../view/menu_infos.php';
 ?>		<head>
 		<script type="text/javascript" src="calendarDateInput.js">
 		/***********************************************
@@ -22,8 +22,8 @@ if($OfficierID >0 or $OfficierEMID >0)
 		</script>
 		</head>
 		<h2>Simulateur de recrutement</h2>
-		<img src="images/tanks2.jpg">
-		<form action="index.php?view=pr_ground_matos" method="post">
+		<img src="../images/tanks2.jpg">
+		<form action="../index.php?view=pr_ground_matos" method="post">
 			<table class='table'>
 			<thead><tr><th>Officier</th><th>Type</th><th>Date</th></tr></thead>
 				<tr><td align="left">
@@ -40,15 +40,15 @@ if($OfficierID >0 or $OfficierEMID >0)
 						<option value='1'>Bleu quelque peu aguerri</option>
 						<option value='50'>Officier anonyme</option>
 						<option value='100'>Reconnu par ses pairs</option>
-						<option value='500'>Réputé dans ses rangs</option>
+						<option value='500'>Rï¿½putï¿½ dans ses rangs</option>
 						<option value='1000'>Connu de l'ennemi</option>
-						<option value='2000'>Adversaire réputé</option>
+						<option value='2000'>Adversaire rï¿½putï¿½</option>
 						<option value='5000'>Craint par l'ennemi</option>
 						<option value='10000'>Tacticien hors-pair</option>
-						<option value='20000'>Grand Stratège</option>
-						<option value='50000'>Héros national</option>
-						<option value='100000'>Référence historique</option>
-						<option value='500000'>Légende vivante</option>
+						<option value='20000'>Grand Stratï¿½ge</option>
+						<option value='50000'>Hï¿½ros national</option>
+						<option value='100000'>Rï¿½fï¿½rence historique</option>
+						<option value='500000'>Lï¿½gende vivante</option>
 					</select>
 				<br><select name="Pays" style="width: 150px">
 							<?DoUniqueSelect("Pays","Pays_ID","Nom",20,"Nom");?>
@@ -58,22 +58,22 @@ if($OfficierID >0 or $OfficierEMID >0)
 						<select name="Type" style="width: 150px">
 						<option value='6'>Artillerie</option>
 						<option value='4'>Artillerie anti-char</option>
-						<option value='12'>Artillerie anti-aérienne</option>
-						<option value='11'>Artillerie anti-aérienne mobile</option>
+						<option value='12'>Artillerie anti-aï¿½rienne</option>
+						<option value='11'>Artillerie anti-aï¿½rienne mobile</option>
 						<option value='8'>Artillerie mobile</option>
-						<option value='5'>Blindé léger</option>
-						<option value='10'>Blindé lourd</option>
-						<option value='7'>Blindé moyen</option>
+						<option value='5'>Blindï¿½ lï¿½ger</option>
+						<option value='10'>Blindï¿½ lourd</option>
+						<option value='7'>Blindï¿½ moyen</option>
 						<option value='1'>Camion</option>
 						<option value='91'>Canon d'assaut</option>
 						<option value='93'>Cavalerie</option>
 						<option value='9'>Chasseur de char</option>
 						<option value='2'>Half-track</option>
 						<option value='999'>Infanterie</option>
-						<option value='3'>Voiture blindée</option>
+						<option value='3'>Voiture blindï¿½e</option>
 						<option value='14'>Petit navire</option>
 						<option value='15'>Corvette</option>
-						<option value='16'>Frégate</option>
+						<option value='16'>Frï¿½gate</option>
 						<option value='17'>Destroyer</option>
 						<option value='18'>Croiseur</option>
 						<option value='37'>Sous-marin</option>
@@ -87,8 +87,8 @@ if($OfficierID >0 or $OfficierEMID >0)
 <?
 	}
 	else
-		echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
+		echo "<img src='../images/top_secret.gif'><div class='alert alert-danger'>Ces donnï¿½es sont classifiï¿½es.<br>Votre rang ne vous permet pas d'accï¿½der ï¿½ ces informations.</div>";
 }
 else
-	echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
+	echo "<img src='../images/top_secret.gif'><div class='alert alert-danger'>Ces donnï¿½es sont classifiï¿½es.<br>Votre rang ne vous permet pas d'accï¿½der ï¿½ ces informations.</div>";
 ?>

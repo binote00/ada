@@ -2,7 +2,7 @@
 <h1>Cartes</h1>
 <div class='alert alert-info'>Les cartes permettent de visualiser la situation stratégique sur les différents fronts.
 <br>Les informations disponibles dépendent principalement de la fonction de votre personnage. Plus le personnage aura de responsabilités, plus il aura accès à des informations détaillées.</div>
-<a href='carte_ground.php?map=<?echo$Front;?>&mode=1' class='btn btn-default' target='_blank' rel='noreferrer'><img src='images/map_icon.gif' title='Accéder à la carte'></a>
+<a href='../carte_ground.php?map=<?echo$Front;?>&mode=1' class='btn btn-default' target='_blank' rel='noreferrer'><img src='../images/map_icon.gif' title='Accéder à la carte'></a>
 <!--<div class='row'><div class='col-md-8'>
 			<img src ="images/cartes/carte_europe.jpg" border="5" style="border-color:#000000; width=800px;" alt="Carte Europe" usemap ="#map_e" />
 			<map name="map_e">

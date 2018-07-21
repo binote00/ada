@@ -19,9 +19,9 @@ if($OfficierID >0)
 	}
 ?>
 <h1>Kikitoutdur</h1>
-	<form action="index.php?view=pr_ground_kills" method="post">
+	<form action="../index.php?view=pr_ground_kills" method="post">
 	<input type='hidden' name='Off' value='<?echo $OfficierID;?>'>
-	Officier contre lequel vous désirez comparer vos exploits
+	Officier contre lequel vous dï¿½sirez comparer vos exploits
 	<select name='Off_eni' class='form-control' style='width: 300px'>
 		<?echo $pilotes;?>
 	</select>

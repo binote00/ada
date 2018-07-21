@@ -1,12 +1,11 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $OfficierID = $_SESSION['Officier'];
 $OfficierEMID = $_SESSION['Officier_em'];
 if($OfficierID >0 or $OfficierEMID >0)
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_ground.inc.php');
+    require_once __DIR__ . '/../jfv_include.inc.php';
+    include_once __DIR__ . '/../inc/jfv_ground.inc.php';
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium >0)
 	{
@@ -127,21 +126,21 @@ if($OfficierID >0 or $OfficierEMID >0)
 					}
 				}
 				if($Degats > $HP_eni)
-					$Dg_AT="<img src='images/cible3.gif'>";
+					$Dg_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_HE > $HP_eni)
-					$HE_AT="<img src='images/cible3.gif'>";
+					$HE_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_AP > $HP_eni)
-					$AP_AT="<img src='images/cible3.gif'>";
+					$AP_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_APHE > $HP_eni)
-					$APHE_AT="<img src='images/cible3.gif'>";
+					$APHE_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_APC > $HP_eni)
-					$APC_AT="<img src='images/cible3.gif'>";
+					$APC_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_APCR > $HP_eni)
-					$APCR_AT="<img src='images/cible3.gif'>";
+					$APCR_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_APDS > $HP_eni)
-					$APDS_AT="<img src='images/cible3.gif'>";
+					$APDS_AT= "<img src='../images/cible3.gif'>";
 				if($Degats_HEAT > $HP_eni)
-					$HEAT_AT="<img src='images/cible3.gif'>";
+					$HEAT_AT= "<img src='../images/cible3.gif'>";
 				/*$Degats_HE_Art=round(($Arme_Art_Degats - $Blindage_eni)*$Arme_Art_Multi);
 				$Degats_AP_Art=round($Arme_Art_Degats*$Arme_Art_Multi);
 				if($Degats_HE_Art >$HP_eni)
@@ -158,10 +157,10 @@ if($OfficierID >0 or $OfficierEMID >0)
 		echo "<h1>Simulateur de Combat</h1>";
 		echo "<table class='table'>
 		<thead><tr><th colspan='12'>Troupes</th></tr></thead>
-		<tr><th>Troupes</th><th>HP</th><th>AP</th><th>HE<br>Si pas blindé</th><th>APHE<br>Si blindé et percé</th><th>APC<br>Si blindé à -500m</th><th>APCR<br>Si blindé à -900m</th><th>APDS<br>Si blindé</th><th>HEAT<br>Si blindé à -400m</th></tr>";
+		<tr><th>Troupes</th><th>HP</th><th>AP</th><th>HE<br>Si pas blindï¿½</th><th>APHE<br>Si blindï¿½ et percï¿½</th><th>APC<br>Si blindï¿½ ï¿½ -500m</th><th>APCR<br>Si blindï¿½ ï¿½ -900m</th><th>APDS<br>Si blindï¿½</th><th>HEAT<br>Si blindï¿½ ï¿½ -400m</th></tr>";
 		echo $output."</table>";
 	}
 	else
-		echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
+		echo "<img src='../images/top_secret.gif'><div class='alert alert-danger'>Ces donnï¿½es sont classifiï¿½es.<br>Votre rang ne vous permet pas d'accï¿½der ï¿½ ces informations.</div>";
 }
 ?>

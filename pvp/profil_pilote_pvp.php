@@ -207,7 +207,7 @@ if (isset($_SESSION['AccountID']) AND $Pilote > 0) {
         <div id="profil_infos">
             <table>
                 <tr>
-                    <td><img src='./Premium/Logo_ada_mini.png'></td>
+                    <td><img src='./premium/images/Logo_ada_mini.png'></td>
                 </tr>
                 <tr>
                     <td>

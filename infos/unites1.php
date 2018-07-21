@@ -3,7 +3,7 @@ require_once('./jfv_inc_sessions.php');
 if(isset($_SESSION['AccountID']))
 {
 	include_once('./jfv_include.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/view/menu_infos.php';
 	$Pays=Insec($_POST['land']);
 	$Type=Insec($_POST['categorie']);
 	if($Type =="div")

@@ -7,7 +7,7 @@ if($Admin ==1)
 	include_once('./jfv_txt.inc.php');
 	include_once('./jfv_combat.inc.php');
 	include_once('./jfv_air_inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 	$Pays=Insec($_POST['land']);
 	$Type=Insec($_POST['type']);
 	$Alt=Insec($_POST['alt']);
@@ -33,7 +33,7 @@ if($Admin ==1)
 			//$avion_perf[$data['ID']]=$Perf;
 			//echo "<tr><td>".$i."</td><td>".$Avion_img."</td><td><img src='".$data['Pays']."20.gif'></td><td>".$data['Rating']."</td><td>".$Perf."</td></tr>";
 		}
-		echo "<table class='table table-striped'><tr><th>Avion</th><th>Perf à ".$Alt."m</th></tr>";
+		echo "<table class='table table-striped'><tr><th>Avion</th><th>Perf ï¿½ ".$Alt."m</th></tr>";
 		arsort($avion_perf);
 		foreach($avion_perf as $key => $value) 
 		{
@@ -42,6 +42,6 @@ if($Admin ==1)
 		echo "</table>";
 	}
 	else
-		echo "<b>Désolé, aucun avion</b>";
+		echo "<b>Dï¿½solï¿½, aucun avion</b>";
 }
 ?>

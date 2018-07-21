@@ -1,5 +1,4 @@
-﻿<?
-$mes="<h1>Credits</h1>
+﻿<h1>Credits</h1>
 <h2>Conception et code</h2>
 <ul><li>J-F Binote</li></ul>
 <h2>Webdesign</h2>
@@ -298,6 +297,4 @@ $mes="<h1>Credits</h1>
 <br>http://www.navweaps.com/
 <br>http://www.autogallery.org.ru/
 <br>http://www.bronetehnika.narod.ru/
-</p>";
-include_once('./default_blank.php');
-?>
+</p>

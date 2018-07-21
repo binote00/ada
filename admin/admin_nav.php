@@ -6,8 +6,8 @@ if(!$Admin)
 if($Admin == 1)
 {
 	include_once('./jfv_txt.inc.php');
-	include_once('./menu_infos.php');
-	$Tri = Insec($_POST['Tri']);
+    include_once __DIR__ . '/view/menu_infos.php';
+    $Tri = Insec($_POST['Tri']);
 	if(!$Tri)$Tri=1;
 ?>
 <div style='overflow:auto; width: 100%;'>
@@ -144,8 +144,8 @@ else
 	<div align="center" bgcolor="#ECDDC1">
 		<table class='table'>
 			<tr><td><img src='images/top_secret.gif'></td></tr>
-			<tr><td>Ces données sont classifiées.</td></tr>
-			<tr><td>Votre rang ne vous permet pas d'accéder à ces informations.</td></tr>
+			<tr><td>Ces donnï¿½es sont classifiï¿½es.</td></tr>
+			<tr><td>Votre rang ne vous permet pas d'accï¿½der ï¿½ ces informations.</td></tr>
 		</table>
 	</div>
 	</body>

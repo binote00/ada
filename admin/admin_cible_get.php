@@ -349,11 +349,11 @@ if(isset($_SESSION['AccountID'])) {
                 $Grade_min=GetAvancement($min_grade,$data['Pays'],0,1);
         ?>
         <!DOCTYPE html><html><head><title>Aube des Aigles</title>
-            <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
-            <link rel="stylesheet" href="./css/bootstrap-theme.css">
-            <link rel="stylesheet" href="./css/main.css">
-            <link rel="stylesheet" href="./css/ada.css">
-            <link rel="stylesheet" href="./css/cible.css">
+            <link rel="stylesheet" href="../css/lib/bootstrap.min.css">
+            <link rel="stylesheet" href="../css/bootstrap-theme.css">
+            <link rel="stylesheet" href="../css/main.css">
+            <link rel="stylesheet" href="../css/ada.css">
+            <link rel="stylesheet" href="../css/cible.css">
         </head>
         <body class="cible">
         <table align="center">

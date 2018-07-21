@@ -490,8 +490,8 @@ if($_SESSION['AccountID'] ==1)
 			unset($data);
 		}
 		echo "<h1>Journal d'unité</h1>
-			<form action='index.php?view=admin_esc_journal' method='post'>
-			<select name='unit' style='width: 150px'>".$Units."</select>
+			<form action='../index.php?view=admin_esc_journal' method='post'>
+			<select name='unit' style='width: 150px'>" .$Units."</select>
 			<p><input type='Submit' class='btn btn-default' value='VALIDER' onclick='this.disabled=true;this.form.submit();'></p>
 			</form>";
 	}

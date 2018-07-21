@@ -1,14 +1,14 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 include_once('./jfv_include.inc.php');
 $Admin=GetData("Joueur","ID",$_SESSION['AccountID'],"Admin");
 if($Admin == 1)
 {
 	include_once('./jfv_nomission.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 ?>
 <h2>Admin avions</h2>
-<form action="index.php?view=pr_avions_perf" method="post">
+<form action="../index.php?view=pr_avions_perf" method="post">
 	<table class='table'>
 		<thead><tr><th>Pays</th><th>Type</th><th>Altitude</th></thead>
 			<td>

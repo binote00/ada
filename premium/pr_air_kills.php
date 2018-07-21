@@ -1,10 +1,9 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
+    require_once __DIR__ . '/../jfv_include.inc.php';
 	$PlayerID=Insec($_POST['Off']);
 	$Officier_eni=Insec($_POST['Off_eni']);	
 	$con=dbconnecti();
@@ -167,4 +166,3 @@ if($PlayerID >0)
 	echo $avions_txt;
 	echo "<tfoot><tr><th>Total</th><th>".$result_total."</th><th>".$result_total_eni."</th></tr></tfoot></table>";
 }
-?>

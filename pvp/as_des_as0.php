@@ -25,14 +25,14 @@ if($PlayerID > 0)
 			$Fronts = "<option value='3'>Pacifique</option>";
 ?>
 <h2>Simulation de combat</h2>
-<div class='row'><div class='col-md-6'><img src="images/wall_map.jpg" style="width:100%;"></div><div class='col-md-6'>
-<form action="index.php?view=as_des_as" method="post">
+<div class='row'><div class='col-md-6'><img src="../images/wall_map.jpg" style="width:100%;"></div><div class='col-md-6'>
+<form action="../index.php?view=as_des_as" method="post">
 <select name="Front" class='form-control' style="width: 300px"><?echo $Fronts;?></select>
 <br><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>
 </div></div>
 <?
 	}
 	else
-		echo "Vous devez posséder des points AS des AS pour participer";
+		echo "Vous devez possï¿½der des points AS des AS pour participer";
 }
 ?>

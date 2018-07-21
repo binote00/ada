@@ -7,8 +7,8 @@ if($PlayerID >0 or $OfficierID >0 or $OfficierEMID >0)
 {
 	include_once('./jfv_include.inc.php');
 	include_once('./jfv_txt.inc.php');
-	include_once('./menu_infos.php');
-	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
+    include_once __DIR__ . '/view/menu_infos.php';
+    $Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($OfficierID >0)
 	{
 		$con=dbconnecti();	

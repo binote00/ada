@@ -1,5 +1,5 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 or $OfficierEMID >0)
@@ -9,11 +9,11 @@ if($OfficierID >0 or $OfficierEMID >0)
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium >0)
 	{
-	include_once('./menu_infos.php');
+        include_once __DIR__ . '/../view/menu_infos.php';
 ?>
 	<h2>Champ de tir</h2>
-	<img src="images/champ_tir.jpg">
-	<form action="index.php?view=pr_tir1" method="post">
+	<img src="../images/champ_tir.jpg">
+	<form action="../index.php?view=pr_tir1" method="post">
 		<table class='table'>
 			<tr><th>Arme</th>
 				<td align="left">
@@ -125,6 +125,6 @@ if($OfficierID >0 or $OfficierEMID >0)
 	$Munition=Insec($_POST['mun']);
 	}
 	else
-		echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
+		echo "<img src='../images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
 }
 ?>

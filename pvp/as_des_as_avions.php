@@ -88,7 +88,7 @@ if($Niveau >0 and $Pays)
 }
 else
 {
-	echo "<h2>Tableau des Avions</h2><img src='images/gestion_avions".$country.".jpg'><form action='index.php?view=as_des_as_avions' method='post'><table class='table'>";
+	echo "<h2>Tableau des Avions</h2><img src='images/gestion_avions".$country. ".jpg'><form action='../index.php?view=as_des_as_avions' method='post'><table class='table'>";
 	echo "<thead><tr><th>Niveau</th><th>Pays</th></tr></thead><tr>
 	<td align='left'><select name='Niveau' class='form-control' style='width: 100px'>
 					<option value='1'>1</option>

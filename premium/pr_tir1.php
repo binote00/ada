@@ -1,5 +1,5 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 include_once('./jfv_include.inc.php');
 include_once('./jfv_ground.inc.php');
 include_once('./jfv_combat.inc.php');
@@ -10,7 +10,7 @@ if($OfficierID >0 or $OfficierEMID >0)
 	$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium > 0)
 	{
-		include_once('./menu_infos.php');
+        include_once __DIR__ . '/../view/menu_infos.php';
 		$Arme=Insec($_POST['arme']);
 		$Vehicule=Insec($_POST['cible']);
 		$Dist_shoot=Insec($_POST['distance']);
@@ -146,12 +146,12 @@ if($OfficierID >0 or $OfficierEMID >0)
 				$mes.="<p><b>Tir ".$t."</b> Votre tir envoie ".$Arme_Multi." obus ".$Mun_txt." de ".$Arme_Cal."mm à une distance de ".$Dist_shoot."m, mais tous ratent la cible!</p>";
 		}
 		echo $mes;
-		echo "<br><a href='index.php?view=pr_tir' class='btn btn-default' title='Recommencer'>Recommencer</a>";
+		echo "<br><a href='../index.php?view=pr_tir' class='btn btn-default' title='Recommencer'>Recommencer</a>";
 	}
 	else
 	{
 		echo "<table class='table'>
-				<tr><td><img src='images/top_secret.gif'></td></tr>
+				<tr><td><img src='../images/top_secret.gif'></td></tr>
 				<tr><td>Ces données sont classifiées.</td> </tr>
 				<tr><td>Votre rang ne vous permet pas d'accéder à ces informations.</td></tr>
 			</table>";

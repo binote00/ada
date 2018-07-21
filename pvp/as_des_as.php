@@ -143,8 +143,8 @@ if($PlayerID >0)
 		SetData("Joueur","Front_sandbox",$Front,"ID",$PlayerID);
 ?>
 	<h2>Simulation de combat</h2>
-	<img src="images/as_des_as.jpg">
-	<form action="takeoff.php" method="post">
+	<img src="../images/as_des_as.jpg">
+	<form action="../takeoff.php" method="post">
 	<input type="hidden" name="pilote" value="<?echo $PlayerID;?>">
 	<input type="hidden" name="sandbox" value="1">
 	<table class='table'>
@@ -158,5 +158,5 @@ if($PlayerID >0)
 	}
 }
 else
-	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
+	echo "<h1>Vous devez ï¿½tre connectï¿½ pour accï¿½der ï¿½ cette page!</h1>";
 ?>

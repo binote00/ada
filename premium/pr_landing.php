@@ -1,5 +1,5 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {
@@ -7,7 +7,7 @@ if($PlayerID >0)
 	include_once('./jfv_air_inc.php');
 	include_once('./jfv_txt.inc.php');
 	include_once('./jfv_combat.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 	if(!$Premium)$Premium=GetData("Joueur","ID",$_SESSION['AccountID'],"Premium");
 	if($Premium)
 	{
@@ -60,11 +60,11 @@ if($PlayerID >0)
 							$QualitePiste=mt_rand(10,70);
 						break;
 						case 2:
-							$mes='<br>Vous tentez d\'atterrir dans une clairière aux commandes de votre <b>'.$NomAvion.'</b>.';
+							$mes='<br>Vous tentez d\'atterrir dans une clairiï¿½re aux commandes de votre <b>'.$NomAvion.'</b>.';
 							$QualitePiste=mt_rand(10,80);
 						break;
 						case 3:
-							$mes='<br>Vous tentez d\'atterrir dans ces collines boisées aux commandes de votre <b>'.$NomAvion.'</b>.';
+							$mes='<br>Vous tentez d\'atterrir dans ces collines boisï¿½es aux commandes de votre <b>'.$NomAvion.'</b>.';
 							$QualitePiste=mt_rand(0,60);
 						break;
 						case 4:
@@ -72,7 +72,7 @@ if($PlayerID >0)
 							$QualitePiste=mt_rand(0,30);
 						break;
 						case 5:
-							$mes='<br>Vous tentez d\'atterrir dans ces montagnes boisées aux commandes de votre <b>'.$NomAvion.'</b>.';
+							$mes='<br>Vous tentez d\'atterrir dans ces montagnes boisï¿½es aux commandes de votre <b>'.$NomAvion.'</b>.';
 							$QualitePiste=mt_rand(0,10);
 						break;
 						case 6:
@@ -85,7 +85,7 @@ if($PlayerID >0)
 							$QualitePiste=mt_rand(10,90);
 						break;
 						case 8:
-							$mes='<br>Vous tentez d\'atterrir en plein désert aux commandes de votre <b>'.$NomAvion.'</b>.';
+							$mes='<br>Vous tentez d\'atterrir en plein dï¿½sert aux commandes de votre <b>'.$NomAvion.'</b>.';
 							$QualitePiste=mt_rand(20,80);
 						break;
 						case 9:
@@ -93,7 +93,7 @@ if($PlayerID >0)
 							$QualitePiste=mt_rand(0,20);
 						break;
 						case 11:
-							$mes='<br>Vous tentez d\'atterrir en plein marécage aux commandes de votre <b>'.$NomAvion.'</b>.';
+							$mes='<br>Vous tentez d\'atterrir en plein marï¿½cage aux commandes de votre <b>'.$NomAvion.'</b>.';
 							$QualitePiste=mt_rand(0,20);
 						break;
 						case 12: case 15:
@@ -126,14 +126,14 @@ if($PlayerID >0)
 						}
 						else
 						{
-							$menu='<b>Avion posé avec succès !</b>';
+							$menu='<b>Avion posï¿½ avec succï¿½s !</b>';
 							$img=Afficher_Image('images/avions/landing'.$avion.'.jpg', 'images/avions/decollage'.$avion.'.jpg', 'Atterrissage', 50);
 						}
 					}
 					else
 					{
 						$Masse+=$charge;
-						//Edit 28.12.2014 : Faciliter l'atterrissage des avions à grande surface alaire
+						//Edit 28.12.2014 : Faciliter l'atterrissage des avions ï¿½ grande surface alaire
 						$Masse-=($ChargeAlaire/2);
 						$Speed=GetSpeed($Avion_db,$avion,1,$meteo,1,1,$c_gaz,$flaps);
 						$Pil_mod=(pow($Pilotage,2)/1000);		
@@ -149,15 +149,15 @@ if($PlayerID >0)
 						elseif($Zone ==15)
 							$Landing_run/=2;
 						if($Landing_run >$LongPiste)
-							$menu="Crash après une course de ".round($Landing_run)."m";
+							$menu="Crash aprï¿½s une course de ".round($Landing_run)."m";
 						elseif($Speed <$Vit_mini)
-							$menu="Crash du à une vitesse trop lente de ".$Speed."km/h (au lieu de ".round($Vit_mini)."km/h)";					
+							$menu="Crash du ï¿½ une vitesse trop lente de ".$Speed."km/h (au lieu de ".round($Vit_mini)."km/h)";					
 						elseif($Landing <0)
-							$menu="Crash du à la météo ou à un manque d'expérience de pilotage";
+							$menu="Crash du ï¿½ la mï¿½tï¿½o ou ï¿½ un manque d'expï¿½rience de pilotage";
 						else
 						{
 							$img=Afficher_Image('images/avions/landing'.$avion.'.jpg','images/avions/decollage'.$avion.'.jpg','Atterrissage',50);
-							$menu="Atterrissage réussi, après une course de ".round($Landing_run)."m à la vitesse de ".$Speed."km/h";
+							$menu="Atterrissage rï¿½ussi, aprï¿½s une course de ".round($Landing_run)."m ï¿½ la vitesse de ".$Speed."km/h";
 						}
 					}
 				//}
@@ -182,7 +182,7 @@ if($PlayerID >0)
 			}
 	?>
 	<h2>Test d'atterrissage</h2>
-		<form action="index.php?view=pr_landing" method="post">
+		<form action="../index.php?view=pr_landing" method="post">
 		<table class='table table-striped'>
 			<tr>
 				<th>Pilote</th>
@@ -191,10 +191,10 @@ if($PlayerID >0)
 						<option value='<?echo $Pilotage;?>'>Votre pilote</option>
 						<option value='0'>Bleu</option>
 						<option value='25'>Apte</option>
-						<option value='50'>Compétent</option>
-						<option value='75'>Entrainé</option>
-						<option value='100'>Chevronné</option>
-						<option value='125'>Vétéran</option>
+						<option value='50'>Compï¿½tent</option>
+						<option value='75'>Entrainï¿½</option>
+						<option value='100'>Chevronnï¿½</option>
+						<option value='125'>Vï¿½tï¿½ran</option>
 						<option value='150'>Expert</option>
 						<option value='200'>Virtuose</option>
 					</select>
@@ -259,7 +259,7 @@ if($PlayerID >0)
 				<th>Volets</th>
 				<td align="left">
 					<select name="volets" class='form-control' style="width: 200px">
-						<option value='0'>Rentrés</option>
+						<option value='0'>Rentrï¿½s</option>
 						<option value='1'>1 cran</option>
 						<option value='2'>2 crans</option>
 						<option value='3'>3 crans</option>
@@ -267,7 +267,7 @@ if($PlayerID >0)
 				</td>
 			</tr>
 			<tr>
-				<th>Hélice</th>
+				<th>Hï¿½lice</th>
 				<td align="left">
 					<select name="helice" class='form-control' style="width: 200px">
 						<option value='0'>De Base (pas constant)</option>
@@ -279,7 +279,7 @@ if($PlayerID >0)
 				<td align="left">
 					<select name="train" class='form-control' style="width: 200px">
 						<option value='0'>De Base</option>
-						<option value='2'>Renforcé</option>
+						<option value='2'>Renforcï¿½</option>
 					</select>
 				</td>
 			</tr>
@@ -292,13 +292,13 @@ if($PlayerID >0)
 						<option value='15'>Piste de porte-avions</option>
 						<option value='0'>Campagne</option>
 						<option value='1'>Colline</option>
-						<option value='3'>Colline boisée</option>
-						<option value='8'>Désert</option>
-						<option value='2'>Forêt</option>
+						<option value='3'>Colline boisï¿½e</option>
+						<option value='8'>Dï¿½sert</option>
+						<option value='2'>Forï¿½t</option>
 						<option value='9'>Jungle</option>
-						<option value='11'>Marécages</option>
+						<option value='11'>Marï¿½cages</option>
 						<option value='4'>Montagne</option>
-						<option value='5'>Montagne boisée</option>
+						<option value='5'>Montagne boisï¿½e</option>
 						<option value='7'>Zone urbaine</option>
 					</select>
 				</td>
@@ -320,7 +320,7 @@ if($PlayerID >0)
 						<option value='2400'>2400m</option>
 					</select>
 				</td>
-				<th>Météo</th>
+				<th>Mï¿½tï¿½o</th>
 				<td align="left">
 					<select name="meteo" class='form-control' style="width: 200px">
 						<option value='0'>temps clair, vent nul</option>
@@ -328,7 +328,7 @@ if($PlayerID >0)
 						<option value='-10'>nuageux, vent faible</option>
 						<option value='-20'>pluie, vent faible</option>
 						<option value='-50'>neige, vent faible</option>
-						<option value='-75'>Tempête</option>
+						<option value='-75'>Tempï¿½te</option>
 						<option value='-100'>Tornade</option>
 					</select>
 				</td>

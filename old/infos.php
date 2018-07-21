@@ -35,9 +35,9 @@ if(1==2)
 
 ?>
 <h2>Simulation de combat</h2>
-<form action="index.php?view=testcombat" method="post">
+<form action="../index.php?view=testcombat" method="post">
 	<table class='table'>
-	<tr><td colspan="2"><img src="images/miss_leader1.jpg"></td></tr>
+	<tr><td colspan="2"><img src="../images/miss_leader1.jpg"></td></tr>
 	<tr><th align="left">Votre avion</th><td align="left">
 			<select name="avion" style="width: 200px">
 					<?

@@ -1,11 +1,11 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once __DIR__ . '/../inc/jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {	
 	include_once('./jfv_include.inc.php');
 	include_once('./jfv_txt.inc.php');
-	include_once('./menu_infos.php');
+    include_once __DIR__ . '/../view/menu_infos.php';
 	$country=$_SESSION['country'];
 	$Base=Insec($_POST['Base']);
 	if($Base)
@@ -92,7 +92,7 @@ if($PlayerID >0)
 		mysqli_free_result($result);
 ?>
 	<h2>Simulation de déplacement d'unité aérienne</h2>
-	<form action="index.php?view=pr_demenager" method="post">
+	<form action="../index.php?view=pr_demenager" method="post">
 	<table class='table'><thead><tr><th>Base de départ</th><th>Type d'unité</th></tr></thead>
 			<tr><td>
 				<select name='Base' class='form-control' style='width: 200px'>

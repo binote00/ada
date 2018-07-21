@@ -5,8 +5,8 @@ if(!$Admin)$Admin=GetData("Joueur","ID",$_SESSION['AccountID'],"Admin");
 if($Admin ==1)
 {
 	include_once('./jfv_txt.inc.php');
-	include_once('./menu_infos.php');
-	$Pays = Insec($_POST['land']);
+    include_once __DIR__ . '/view/menu_infos.php';
+    $Pays = Insec($_POST['land']);
 	$Type = Insec($_POST['type']);
 	$Tri = Insec($_POST['Tri']);
 	if(!$Tri)
