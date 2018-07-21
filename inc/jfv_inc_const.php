@@ -21,6 +21,9 @@ else
     $Canada = false;
 
 //CONST
+define('EMAIL_LOG', 'binote@hotmail.com');
+
+//Countries
 define('DE', '1');
 define('UK', '2');
 define('BEL', '3');
