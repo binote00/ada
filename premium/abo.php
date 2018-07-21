@@ -31,17 +31,17 @@ if(isset($_SESSION['AccountID']))
 		<tr><td>Nom du pilote</td><th>".$Nom."</th></tr>
 		<tr><td>Adresse E-mail</td><th>".$adresse."</th></tr>
 		<tr><td>Premium</td><th>".$Premium."</th></tr>
-		".$Prem_date."<tr><td colspan='2' align='center'><img src='/images/premium.png'></td></tr></table></div>
+		".$Prem_date. "<tr><td colspan='2' align='center'><img src='/images/premium.png'></td></tr></table></div>
 		<div id='col_droite'><table class='table table-striped'>
 		<thead><tr><th>Fonctionnalités Premium</th></tr></thead>
-		<tr><td align='left'><a href='/Premium/jaugesprofil.jpg' target='_blank' rel='noreferrer' class='lien'>- Jauges de progression</a></td></tr>
-		<tr><td align='left'><a href='/Premium/comparateur.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateur de performances d'avions</a></td></tr>
-		<tr><td align='left'><a href='/Premium/comparateur_v.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateur de véhicules</a></td></tr>
-		<tr><td align='left'><a href='/Premium/speedtest.jpg' target='_blank' rel='noreferrer' class='lien'>- Calculateur de vitesse</a></td></tr>
-		<tr><td align='left'><a href='/Premium/landingtest.jpg' target='_blank' rel='noreferrer' class='lien'>- Simulateur d'atterrissage et de décollage</a></td></tr>
-		<tr><td align='left'><a href='/Premium/champtir.jpg' target='_blank' rel='noreferrer' class='lien'>- Champ de tir</a></td></tr>
-		<tr><td align='left'><a href='/Premium/photoprofil.jpg' target='_blank' rel='noreferrer' class='lien'>- Photo de profil personnalisée</a></td></tr>
-		<tr><td align='left'><a href='/Premium/premium_cp.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateurs de pilotes et d'officiers</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/jaugesprofil.jpg' target='_blank' rel='noreferrer' class='lien'>- Jauges de progression</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/comparateur.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateur de performances d'avions</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/comparateur_v.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateur de véhicules</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/speedtest.jpg' target='_blank' rel='noreferrer' class='lien'>- Calculateur de vitesse</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/landingtest.jpg' target='_blank' rel='noreferrer' class='lien'>- Simulateur d'atterrissage et de décollage</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/champtir.jpg' target='_blank' rel='noreferrer' class='lien'>- Champ de tir</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/photoprofil.jpg' target='_blank' rel='noreferrer' class='lien'>- Photo de profil personnalisée</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/premium_cp.jpg' target='_blank' rel='noreferrer' class='lien'>- Comparateurs de pilotes et d'officiers</a></td></tr>
 		<tr><td align='left'>- Simulateur de déplacement des unités aériennes et terrestres</td></tr>
 		<tr><td align='left'>- Simulateur de recrutement des troupes terrestres et navales</td></tr>
 		<tr><td align='left'>- Accès aux prototypes</td></tr>
@@ -89,13 +89,13 @@ else
 {
 	echo "<div id='col_droite'><table class='table'>
 		<thead><tr><th colspan='2'>Fonctionnalités<br>Premium</th></tr></thead>
-		<tr><td align='left'><a href='/Premium/jaugesprofil.jpg' target='_blank' class='lien'>* Jauges de progression</a></td></tr>
-		<tr><td align='left'><a href='/Premium/comparateur.jpg' target='_blank' class='lien'>* Comparateur de performances d'avions</a></td></tr>
-		<tr><td align='left'><a href='/Premium/comparateur_v.jpg' target='_blank' class='lien'>* Comparateur de véhicules</a></td></tr>
-		<tr><td align='left'><a href='/Premium/speedtest.jpg' target='_blank' class='lien'>* Calculateur de vitesse</a></td></tr>
-		<tr><td align='left'><a href='/Premium/landingtest.jpg' target='_blank' class='lien'>* Simulateur d'atterrissage et de décollage</a></td></tr>
-		<tr><td align='left'><a href='/Premium/champtir.jpg' target='_blank' class='lien'>* Champ de tir</a></td></tr>
-		<tr><td align='left'><a href='/Premium/photoprofil.jpg' target='_blank' class='lien'>* Photo de profil personnalisée</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/jaugesprofil.jpg' target='_blank' class='lien'>* Jauges de progression</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/comparateur.jpg' target='_blank' class='lien'>* Comparateur de performances d'avions</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/comparateur_v.jpg' target='_blank' class='lien'>* Comparateur de véhicules</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/speedtest.jpg' target='_blank' class='lien'>* Calculateur de vitesse</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/landingtest.jpg' target='_blank' class='lien'>* Simulateur d'atterrissage et de décollage</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/champtir.jpg' target='_blank' class='lien'>* Champ de tir</a></td></tr>
+		<tr><td align='left'><a href='/premium/images/photoprofil.jpg' target='_blank' class='lien'>* Photo de profil personnalisée</a></td></tr>
 		<tr><td align='left'>* Simulateur de recrutement</td></tr>
 		<tr><td align='left'>* Nombreuses statistiques supplémentaires</td></tr>
 		</table></div>";

@@ -1,8 +1,8 @@
-<?
-$OfficierID=$_SESSION['Officier'];
-$OfficierEMID=$_SESSION['Officier_em'];
-$PlayerID=$_SESSION['PlayerID'];
-include_once('./jfv_access.php');
+<?php
+$OfficierID = $_SESSION['Officier'];
+$OfficierEMID = $_SESSION['Officier_em'];
+$PlayerID = $_SESSION['PlayerID'];
+include_once './jfv_access.php';
 ?>
 <div class='row'><div class='col-lg-6 col-md-12'>
 <h1>Encyclopédie</h1>
@@ -54,7 +54,7 @@ if($PlayerID or $OfficierEMID){?>
 <div class='alert alert-danger'>Ces outils sont accessibles aux utilisateurs <a href='index.php?view=abo' class='lien'>Premium</a><br>Bien qu'ils ne donnent aucun avantage en jeu, ils permettent de réaliser tests et statistiques aidant à mieux en maîtriser les mécanismes.</div>
 <?}?>
 <?if($Admin >0){?>
-<a class="btn btn-default" href="index.php?view=av0">Admin avions</a>
+<a class="btn btn-default" href="index.php?view=admin/admin_avions0">Admin avions</a>
 <a class="btn btn-default" href="index.php?view=aveh0">Admin vehicules</a>
 <a class="btn btn-default" href="index.php?view=aguns">Admin armes</a>
 <a class="btn btn-default" href="index.php?view=adispo">Admin dispos</a>
