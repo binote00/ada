@@ -1,10 +1,10 @@
 ﻿<?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 xor $OfficierEMID >0)
 {
-	include_once('./jfv_include.inc.php');
+	include_once './jfv_include.inc.php';
 	$Action=Insec($_POST['Action']);
 	$CT=Insec($_POST['CT']);
 	if($OfficierID >0)
@@ -29,9 +29,9 @@ if($OfficierID >0 xor $OfficierEMID >0)
 	else*/
 	if($Credits >=$CT)
 	{
-		include_once('./jfv_txt.inc.php');
-		include_once('./jfv_combat.inc.php');
-		include_once('./jfv_ground.inc.php');
+		include_once './jfv_txt.inc.php';
+		include_once './jfv_combat.inc.php';
+		include_once './jfv_ground.inc.php';
 		$country=$_SESSION['country'];
 		$Veh=Insec($_POST['Veh']);
 		$Reg=Insec($_POST['Reg']);
@@ -49,8 +49,8 @@ if($OfficierID >0 xor $OfficierEMID >0)
 		if($Reg and $Reg_eni and $Veh)
 		{
 			$con=dbconnecti();
-			$result=mysqli_query($con,"SELECT Vehicule_Nbr,Experience,Lieu_ID,Position,Muns,HP,Visible,Skill,Matos FROM $DB WHERE ID='$Reg'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : torp-reg');
-			$result2=mysqli_query($con,"SELECT Nom,Vitesse,Taille,Arme_AT,Blindage_f,HP,Type,mobile FROM Cible WHERE ID='$Veh'") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : torp-veh');
+			$result=mysqli_query($con,"SELECT Vehicule_Nbr,Experience,Lieu_ID,Position,Muns,HP,Visible,Skill,Matos FROM $DB WHERE ID = $Reg") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : torp-reg');
+			$result2=mysqli_query($con,"SELECT Nom,Vitesse,Taille,Arme_AT,Blindage_f,HP,Type,mobile FROM Cible WHERE ID = $Veh") or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : torp-veh');
 			//mysqli_close($con);
 			if($result2)
 			{
@@ -148,12 +148,14 @@ if($OfficierID >0 xor $OfficierEMID >0)
 						{
 							$Trait_eni=GetData("Officier","ID",$Officier_eni,"Trait");
 							$Transit_eni=GetData("Officier","ID",$Officier_eni,"Transit");
-						}*/
+						}
 						if($Trait_eni ==5)
 							$Cam_bonus_eni=2;
 						else
 							$Cam_bonus_eni=1;
 						$Cam_eni=$Taille_eni/$data['Camouflage']/$Cam_bonus_eni;
+						*/
+                        $Cam_eni=$data['Camouflage'];
 					}
 					mysqli_free_result($result2);
 					unset($data);
@@ -437,25 +439,25 @@ if($OfficierID >0 xor $OfficierEMID >0)
 								}
 								else
 								{
-									if($Officier_eni >0 and IsSkill(29,$Officier_eni))
-									{
-										$Exp_final_eni=0;
-										if($Trait_eni ==11)$Exp_final_eni=$Exp_eni;							
-										$con=dbconnecti();
-										$reset=mysqli_query($con,"UPDATE Regiment SET Experience='$Exp_final_eni',Moral=0,Stock_Munitions_8=0,Stock_Munitions_13=0,Stock_Munitions_20=0,Stock_Munitions_30=0,Stock_Munitions_40=0,Stock_Munitions_50=0,
-										Stock_Munitions_60=0,Stock_Munitions_75=0,Stock_Munitions_90=0,Stock_Munitions_105=0,Stock_Munitions_125=0,Stock_Munitions_150=0,Stock_Munitions_200=0,Stock_Munitions_300=0,Stock_Munitions_360=0,Stock_Munitions_530=0,Stock_Munitions_610=0,
-										Stock_Charges=0,Stock_Mines=0,Stock_Essence_87=0,Stock_Essence_1=0,Fret=0,Fret_Qty=0,HP=0 WHERE ID='$Reg_eni'");
-										mysqli_close($con);
-										$Front=GetData("Officier","ID",$Officier_eni,"Front");
-										$Retraite=Get_Retraite($Front,$country,$Latitude);
-										SetData("Regiment","Lieu_ID",$Retraite,"ID",$Officier_eni);
-									}
-									else
-									{
+//									if($Officier_eni >0 and IsSkill(29,$Officier_eni))
+//									{
+//										$Exp_final_eni=0;
+//										if($Trait_eni ==11)$Exp_final_eni=$Exp_eni;
+//										$con=dbconnecti();
+//										$reset=mysqli_query($con,"UPDATE Regiment SET Experience='$Exp_final_eni',Moral=0,Stock_Munitions_8=0,Stock_Munitions_13=0,Stock_Munitions_20=0,Stock_Munitions_30=0,Stock_Munitions_40=0,Stock_Munitions_50=0,
+//										Stock_Munitions_60=0,Stock_Munitions_75=0,Stock_Munitions_90=0,Stock_Munitions_105=0,Stock_Munitions_125=0,Stock_Munitions_150=0,Stock_Munitions_200=0,Stock_Munitions_300=0,Stock_Munitions_360=0,Stock_Munitions_530=0,Stock_Munitions_610=0,
+//										Stock_Charges=0,Stock_Mines=0,Stock_Essence_87=0,Stock_Essence_1=0,Fret=0,Fret_Qty=0,HP=0 WHERE ID='$Reg_eni'");
+//										mysqli_close($con);
+//										$Front=GetData("Officier","ID",$Officier_eni,"Front");
+//										$Retraite=Get_Retraite($Front,$country,$Latitude);
+//										SetData("Regiment","Lieu_ID",$Retraite,"ID",$Officier_eni);
+//									}
+//									else
+//									{
 										$con=dbconnecti();
 										$reset=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=0,Experience=0,Skill=0,Fret=0,Fret_Qty=0,HP=0 WHERE ID='$Reg_eni'");
 										mysqli_close($con);
-									}
+//									}
 									$mes_eni.="<br>L'ennemi est totalement en déroute!";
 									break;
 								}
@@ -602,12 +604,12 @@ if($OfficierID >0 xor $OfficierEMID >0)
 											UpdateData($DB,"Vehicule_Nbr",-1,"ID",$Reg);
 											AddEventGround(400,$Veh,$OfficierID,$Reg,$Lieu,1,$Reg_eni_r);
 											AddGroundAtk($Reg_eni_r,$Reg,$data['Vehicule_ID'],$data['Vehicule_Nbr'],$Veh,$Vehicule_Nbr,$data['Position'],$Pos,$Lieu,$data['Placement'],$Dist,1,$Reg_a_ia_rip);
-											$Update_XP_eni+=$Reput;
+											$Update_XP_eni+=5;
 											$Vehicule_Nbr=GetData($DB,"ID",$Reg,"Vehicule_Nbr");
 											if($Vehicule_Nbr >=1)
 											{
 												$HP=$HP_ori;
-												SetData($DB,"HP",$HP,$Reg);
+												SetData($DB,"HP",$HP,"ID",$Reg);
 											}
 										}
 										else
@@ -713,7 +715,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 													UpdateData($DB,"Vehicule_Nbr",-1,"ID",$Reg);
 													AddEventGround(400,$Veh,$OfficierID,$Reg,$Lieu,1,$Reg_eni_r);
 													AddGroundAtk($Reg_eni_r,$Reg,$data['Vehicule_ID'],$data['Vehicule_Nbr'],$Veh,$Vehicule_Nbr,$data['Position'],$Pos,$Lieu,$data['Placement'],$Dist,1,$Reg_a_ia_rip);
-													$Update_XP_eni+=$Reput;
+													$Update_XP_eni+=5;
 													$Vehicule_Nbr=GetData($DB,"ID",$Reg,"Vehicule_Nbr");
 													if($Vehicule_Nbr >=1)
 													{
@@ -784,7 +786,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 										if($Vehicule_Nbr >=1)
 										{
 											$HP=$HP_ori;
-											SetData($DB,"HP",$HP,$Reg);
+											SetData($DB,"HP",$HP,"ID",$Reg);
 										}
 									}
 									else
@@ -886,7 +888,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 													UpdateData($DB,"Vehicule_Nbr",-1,"ID",$Reg);
 													AddEventGround(400,$Veh,$OfficierID,$Reg,$Lieu,1,$Reg_eni_r);
 													AddGroundAtk($Reg_eni_r,$Reg,$data['Vehicule_ID'],$data['Vehicule_Nbr'],$Veh,$Vehicule_Nbr,$data['Position'],$Pos,$Lieu,$data['Placement'],$Dist,1,$Reg_a_ia_rip);
-													$Update_XP_eni+=$Reput;
+													$Update_XP_eni+=5;
 													$Vehicule_Nbr=GetData($DB,"ID",$Reg,"Vehicule_Nbr");
 													if($Vehicule_Nbr >=1)
 													{
@@ -995,12 +997,12 @@ if($OfficierID >0 xor $OfficierEMID >0)
 												UpdateData($DB,"Vehicule_Nbr",-1,"ID",$Reg);
 												AddEventGround(400,$Veh,$OfficierID,$Reg,$Lieu,1,0);
 												AddGroundAtk(0,$Reg,999,5,$Veh,$Vehicule_Nbr,24,$Pos,$Lieu,4,$Dist,1);
-												$Update_XP_eni+=$Reput;
+												$Update_XP_eni+=5;
 												$Vehicule_Nbr=GetData($DB,"ID",$Reg,"Vehicule_Nbr");
 												if($Vehicule_Nbr >=1)
 												{
 													$HP=$HP_ori;
-													SetData($DB,"HP",$HP,$Reg);
+													SetData($DB,"HP",$HP,"ID",$Reg);
 												}
 											}
 											else
@@ -1071,7 +1073,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 						<tr><td></td><td align='left'>".$mes."</td><td align='left'>".$mes_eni."</td></tr>
 						</table>";
 						mail("binote@hotmail.com","Aube des Aigles: Combat naval torpillage échec","Officier EM : ".$OfficierEMID." dans les environs de : ".$Lieu_Nom."<br>Torpillage de ".$Veh_Nom." sur ".$Vehicule_Nom." <html>".$output.$mes."</html>", "Content-type: text/html; charset=utf-8");
-						include_once('./default.php');
+						include_once './default.php';
 					}*/
 				}
 				else
