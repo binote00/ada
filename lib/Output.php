@@ -39,4 +39,35 @@ trait Output
             return '<div class="alert alert-' . $type . '">' . $alert . '</div>';
         }
     }
+
+    /**
+     * @param string $Path
+     * @param string $Replace
+     * @param string $Title
+     * @param int $Taille
+     * @return string
+     */
+    public static function ShowImage($Path, $Replace = '', $Title = '', $Taille = 100)
+    {
+        if ($Taille)
+            $style = " style='width:" . $Taille . "%;'";
+        if (is_file($Path))
+            $Image = "<img src='" . $Path . "' title='" . $Title . "'" . $style .">";
+        elseif ($Replace && is_file($Replace))
+            $Image = "<img src='" . $Replace . "' title='" . $Title . "'" . $style .">";
+        else
+            $Image = '';
+        return $Image;
+    }
+
+    /**
+     * @param string $link
+     * @param string $caption
+     * @param string $class
+     * @return string
+     */
+    public static function linkBtn($link, $caption, $class = 'default')
+    {
+        return '<a href="' . $link . '" class="btn btn-' . $class . '">' . $caption . '</a>';
+    }
 }
