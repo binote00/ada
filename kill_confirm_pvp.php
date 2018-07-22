@@ -1,7 +1,7 @@
 <?php
-require_once('./jfv_inc_sessions.php');
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
+require_once './jfv_inc_sessions.php';
+include_once './jfv_include.inc.php';
+include_once './jfv_txt.inc.php';
 $Action=Insec($_POST['Action']);
 $chemin=Insec($_POST['Chemin']);
 $Distance=Insec($_POST['Distance']);
@@ -24,10 +24,10 @@ $Faction=Insec($_POST['Camp']);
 $Pilote_pvp=$_SESSION['Pilote_pvp'];
 if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'] ==false AND $avion >0 AND !empty($_POST))
 {
-	include_once('./jfv_air_inc.php');
-	include_once('./jfv_combat.inc.php');
-	include_once('./jfv_rencontre.inc.php');
-	include_once('./jfv_inc_pvp.php');
+	include_once './jfv_air_inc.php';
+	include_once './jfv_combat.inc.php';
+	include_once './jfv_rencontre.inc.php';
+	include_once './jfv_inc_pvp.php';
 	$_SESSION['finish']=false;
 	$_SESSION['tirer']=false;
 	$_SESSION['missiondeux']=false;
@@ -43,7 +43,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'
 	$continue_eni=false;	
 	$con=dbconnecti();
 	$result=mysqli_query($con,"SELECT S_HP,Ailier,S_Ailier,Pilotage,Tactique,Moral,S_Avion_db,S_Avion_Bombe,S_Avion_Bombe_Nbr,S_Essence,S_Baby,
-	S_Nuit,S_Cible,S_Mission,S_Longitude,S_Latitude,S_Escorte_nbr,S_Escorteb_nbr,S_Leader,S_Equipage_Nbr,S_Formation,Simu,Sandbox FROM Pilote_PVP WHERE ID='$Pilote_pvp'")
+	S_Nuit,S_Cible,S_Mission,S_Longitude,S_Latitude,S_Escorte_nbr,S_Escorteb_nbr,S_Leader,S_Equipage_Nbr,S_Formation,Simu,Sandbox FROM Pilote_PVP WHERE ID = $Pilote_pvp")
 	 or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : confirm_pvp-player');
 	mysqli_close($con);
 	if($result)
@@ -233,6 +233,12 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'
 			$Pilotage_eni=mt_rand(50,200);
 			$Tactique_eni=mt_rand(50,200);
 		}
+		if ($Tactique_eni < 50) {
+            $Tactique_eni = 50;
+        }
+        if ($Pilotage_eni < 50) {
+            $Pilotage_eni = 50;
+        }
 		//Si avion trop abimé, il s'écrase au sol
 		if(($VitAvion <20) or ($PuissAvion <1))$Action=98;
 		$Conso=($Puissance_nominale*$c_gaz/100)/500;
@@ -601,7 +607,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'
 						<Input type=\'Radio\' name=\'Action\' title=\''.GetMes('Aide_Fuite_Climb').'\' value=\'12\' checked>- Tenter de fuir en grimpant.<br>
 						<Input type=\'Radio\' name=\'Action\' title=\''.GetMes('Aide_Fuite_Nuages').'\' value=\'5\'>- '.$choix5.'<br>'.$Ventre.$Alleger.'
 				</td></tr></table>
-			<input type=\'Submit\' value=\'VALIDER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'></form>';
+			<input type=\'submit\' value=\'VALIDER\' class=\'btn btn-default\' onclick=\'this.disabled=true;this.form.submit();\'></form>';
 		}	
 		if($nav)
 		{
@@ -632,7 +638,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'
 						<Input type='Radio' name='Action' value='0' checked>- Continuer vers votre objectif.<br>
 						<Input type='Radio' name='Action' value='1'>- Faire demi-tour.<br>
 				</td></tr></table>
-			<input type='Submit' value='CONTINUER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+			<input type='submit' value='CONTINUER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 		}
 	}
 	if($end_mission)
@@ -646,7 +652,7 @@ if(isset($_SESSION['AccountID']) AND $Pilote_pvp >0 AND $_SESSION['kill_confirm'
 		$intro.="<p>La chance vous sourit! Vous parvenez à rejoindre les lignes amies sans trop de difficultés.</p>";
 		$img=Afficher_Image('images/avions/crash'.$avion_img.'.jpg','images/avions/crash.jpg','crash');
 		$mes.="<p><b>FIN DE MISSION</b></p>";
-		$menu.="<form action='index.php?view=user' method='post'><input type='Submit' value='TERMINER LA MISSION' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		$menu.="<form action='index.php?view=user' method='post'><input type='submit' value='TERMINER LA MISSION' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	}
 }
 else
@@ -656,4 +662,4 @@ else
 	session_unset();
 	session_destroy();
 }
-include_once('./default.php');
+include_once './default.php';
