@@ -1,154 +1,154 @@
 <?php
 function Get_Retraite($Front,$country,$Latitude_front,$Cat=false)
 {
-	if($Front ==3)
-	{
-		if($country ==2)
-			$Retraite=1572;
-		elseif($country ==7)
-			$Retraite=1366;
-		elseif($country ==9)
-			$Retraite=1368;
-	}
-	elseif($Front ==2)
-	{
-		if($country ==7)
-			$Retraite=586; //586 après le 11/11/42, sinon 2149		
-		elseif($Latitude_front >36.5)
-		{
-			if($country ==2)
-				$Retraite=521;
-			elseif($country ==1)
-				$Retraite=198;
-			elseif($country ==4)
-				$Retraite=432;
-			elseif($country ==6)
-				$Retraite=438;
-		}
-		else
-		{
-			if($country ==2)
-				$Retraite=521;
-			elseif($country ==1)
-				$Retraite=198;
-			elseif($country ==4)
-				$Retraite=432;	
-			elseif($country ==6)
-				$Retraite=438; //453
-		}
-	}
-	elseif($Front ==1)
-	{
-		if($country ==1 or $country ==6)
-			$Retraite=958;
-		elseif($country ==8)
-			$Retraite=618;
-		elseif($country ==18)
-			$Retraite=683;
-		elseif($country ==19)
-			$Retraite=1089;
-	}
-	elseif($Front ==4)
-	{
-		if($country ==1 or $country ==6)
-			$Retraite=613;
-		elseif($country ==8)
-			$Retraite=601;
-		elseif($country ==20)
-			$Retraite=1419;
-	}
-	elseif($Front ==5)
-	{
-		if($country ==1)
-			$Retraite=895;
-		elseif($country ==2)
-			$Retraite=898;
-		elseif($country ==7)
-			$Retraite=2079;
-		elseif($country ==8)
-			$Retraite=614;
-		elseif($country ==20)
-			$Retraite=1419;
-        elseif($country ==35)
-            $Retraite=896;
-	}
-	elseif($Front ==99)
-	{
-		if($country ==1)
-		{
-			$Retraite=2;
-			if($Cat >16)$Retraite=212;
-		}
-		elseif($country ==2)
-			$Retraite=269;
-		elseif($country ==3)
-			$Retraite=4;
-		elseif($country ==4)
-		{
-			$Retraite=586; //1 ou 201
-			if($Cat >16)$Retraite=201;
-		}
-		elseif($country ==5)
-			$Retraite=379;
-		elseif($country ==6)
-			$Retraite=189;
-		elseif($country ==7)
-			$Retraite=2149;
-		elseif($country ==8)
-		{
-			$Retraite=601;
-			if($Cat >16)$Retraite=614;
-		}
-		elseif($country ==9)
-			$Retraite=1368;
-        elseif($country ==10)
-            $Retraite=689;
-        elseif($country ==15)
-            $Retraite=709;
-        elseif($country ==17)
-            $Retraite=1079;
-		elseif($country ==18)
-			$Retraite=683;
-		elseif($country ==19)
-			$Retraite=1089;
-        elseif($country ==20)
-            $Retraite=1419;
-        elseif($country ==35)
-            $Retraite=896;
-	}
-	else
-	{
-		if($country ==1)
-			$Retraite=212;
-		elseif($country ==2)
-			$Retraite=269;
-		elseif($country ==3)
-			$Retraite=118;
-		elseif($country ==5)
-			$Retraite=379;
-		elseif($country ==4)
-			$Retraite=267; //1 ou 201
-		elseif($country ==6)
-			$Retraite=189;
-		elseif($country ==7)
-			$Retraite=2149;	//2149 ou 1e port conquis en Europe	
-		elseif($country ==8)
-			$Retraite=601;
-		elseif($country ==9)
-			$Retraite=1368;
-        elseif($country ==10)
-            $Retraite=689;
-        elseif($country ==20)
-            $Retraite=1419;
-        elseif($country ==35)
-            $Retraite=896;
-	}
-	if(!$Retraite)
-	{
-		$con=dbconnecti();
-		$Retraite=mysqli_result(mysqli_query($con,"SELECT Base_Arriere FROM Pays WHERE Pays_ID='$country' AND Front='$Front'"),0);
-		mysqli_close($con);
-	}
+    $con=dbconnecti();
+    $Retraite=mysqli_result(mysqli_query($con,"SELECT Base_Arriere FROM Pays WHERE Pays_ID='$country' AND Front='$Front'"),0);
+    mysqli_close($con);
+    if(!$Retraite)
+    {
+        if($Front ==3)
+        {
+            if($country ==2)
+                $Retraite=1572;
+            elseif($country ==7)
+                $Retraite=1366;
+            elseif($country ==9)
+                $Retraite=1368;
+        }
+        elseif($Front ==2)
+        {
+            if($country ==7)
+                $Retraite=586; //586 après le 11/11/42, sinon 2149
+            elseif($Latitude_front >36.5)
+            {
+                if($country ==2)
+                    $Retraite=521;
+                elseif($country ==1)
+                    $Retraite=198;
+                elseif($country ==4)
+                    $Retraite=432;
+                elseif($country ==6)
+                    $Retraite=438;
+            }
+            else
+            {
+                if($country ==2)
+                    $Retraite=521;
+                elseif($country ==1)
+                    $Retraite=198;
+                elseif($country ==4)
+                    $Retraite=432;
+                elseif($country ==6)
+                    $Retraite=438; //453
+            }
+        }
+        elseif($Front ==1)
+        {
+            if($country ==1 or $country ==6)
+                $Retraite=958;
+            elseif($country ==8)
+                $Retraite=618;
+            elseif($country ==18)
+                $Retraite=683;
+            elseif($country ==19)
+                $Retraite=1089;
+        }
+        elseif($Front ==4)
+        {
+            if($country ==1 or $country ==6)
+                $Retraite=613;
+            elseif($country ==8)
+                $Retraite=601;
+            elseif($country ==20)
+                $Retraite=1419;
+        }
+        elseif($Front ==5)
+        {
+            if($country ==1)
+                $Retraite=895;
+            elseif($country ==2)
+                $Retraite=898;
+            elseif($country ==7)
+                $Retraite=2079;
+            elseif($country ==8)
+                $Retraite=614;
+            elseif($country ==20)
+                $Retraite=1419;
+            elseif($country ==35)
+                $Retraite=896;
+        }
+        elseif($Front ==99)
+        {
+            if($country ==1)
+            {
+                $Retraite=2;
+                if($Cat >16)$Retraite=212;
+            }
+            elseif($country ==2)
+                $Retraite=269;
+            elseif($country ==3)
+                $Retraite=4;
+            elseif($country ==4)
+            {
+                $Retraite=586; //1 ou 201
+                if($Cat >16)$Retraite=201;
+            }
+            elseif($country ==5)
+                $Retraite=379;
+            elseif($country ==6)
+                $Retraite=189;
+            elseif($country ==7)
+                $Retraite=2149;
+            elseif($country ==8)
+            {
+                $Retraite=601;
+                if($Cat >16)$Retraite=614;
+            }
+            elseif($country ==9)
+                $Retraite=1368;
+            elseif($country ==10)
+                $Retraite=689;
+            elseif($country ==15)
+                $Retraite=709;
+            elseif($country ==17)
+                $Retraite=1079;
+            elseif($country ==18)
+                $Retraite=683;
+            elseif($country ==19)
+                $Retraite=1089;
+            elseif($country ==20)
+                $Retraite=1419;
+            elseif($country ==35)
+                $Retraite=896;
+        }
+        else
+        {
+            if($country ==1)
+                $Retraite=212;
+            elseif($country ==2)
+                $Retraite=269;
+            elseif($country ==3)
+                $Retraite=118;
+            elseif($country ==5)
+                $Retraite=379;
+            elseif($country ==4)
+                $Retraite=267; //1 ou 201
+            elseif($country ==6)
+                $Retraite=189;
+            elseif($country ==7)
+                $Retraite=2149;	//2149 ou 1e port conquis en Europe
+            elseif($country ==8)
+                $Retraite=601;
+            elseif($country ==9)
+                $Retraite=1368;
+            elseif($country ==10)
+                $Retraite=689;
+            elseif($country ==20)
+                $Retraite=1419;
+            elseif($country ==35)
+                $Retraite=896;
+        }
+    }
 	return $Retraite;
 }
 

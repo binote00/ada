@@ -810,8 +810,35 @@ if($OfficierEMID >0) //xor $OfficierID >0
                                 SetData("Lieu","Flag_Radar",$Pays_Rev,"ID",$Lieu);
                             elseif($Placement_ori ==11)
                                 SetData("Lieu","Flag_Plage",$Pays_Rev,"ID",$Lieu);
-                            else
+                            else {
                                 $resetl=mysqli_query($con,"UPDATE Lieu SET Flag='$Pays_Rev' WHERE ID='$Lieu'");
+                                //Reset Base arrière des unités ennemies dont la base arrière est sur le lieu
+                                $reset_armee = "UPDATE Armee a
+                                        INNER JOIN Pays p ON a.Pays = p.ID AND a.Front = p.Front
+                                        LEFT JOIN Lieu l ON l.Flag = a.Pays AND l.ValeurStrat > 3
+                                        SET Base = 
+                                        CASE
+                                            WHEN p.Base_Arriere > 0 
+                                              THEN p.Base_Arriere
+                                              ELSE a.Base_Ori
+                                        END
+                                        WHERE a.Base = $Lieu AND p.Faction != $Faction";
+                                $reset_div = "UPDATE Division d
+                                        INNER JOIN Pays p ON d.Pays = p.ID AND d.Front = p.Front
+                                        LEFT JOIN Armee a ON d.Armee = a.ID
+                                        SET Base = 
+                                        CASE
+                                            WHEN p.Base_Arriere > 0 
+                                              THEN p.Base_Arriere 
+                                              ELSE 
+                                                CASE
+                                                  WHEN a.Base > 0 THEN a.Base ELSE d.Base_Ori
+                                                END
+                                        END
+                                        WHERE d.Base = $Lieu AND p.Faction != $Faction";
+                                $reset_baarmee=mysqli_query($con,$reset_armee);
+                                $reset_badiv=mysqli_query($con,$reset_div);
+                            }
                             AddEventFeed(44,$Pays_Rev,$Placement_ori,$Reg,$Lieu,$Faction);
                             $img="<img src='images/capture_flag.jpg' style='width:50%;'>";
                             $reset=mysqli_query($con,"UPDATE Regiment_IA SET Move=1,Move_time=NOW() WHERE ID='$Reg'");
