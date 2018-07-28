@@ -44,6 +44,10 @@ define('ALB', '24');
 define('NOR', '35');
 define('LUX', '36');
 
+//Factions
+define('AXE', 1);
+define('ALLIES', 2);
+
 //Front
 define('FRONT_OUEST', '0');
 define('FRONT_EST', '1');
