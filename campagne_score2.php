@@ -9,7 +9,7 @@ if(isset($_SESSION['AccountID']))
 		$Axe_nations='1,15,20,19,6,9,18';
 		$Allie_nations='2,3,4,10,35,5,8,7,17';
 		if($country ==2 or $country ==4 or $country ==8)			
-			$Lend_Lease_txt="<h2><img src='/images/lendlease.png' title='Lend-Lease'> Score Lend-Lease <span><a href='help/aide_lend_lease' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2><b>".$Lend_Lease."</b>";
+			$Lend_Lease_txt="<h2><img src='images/lendlease.png' title='Lend-Lease'> Score Lend-Lease <span><a href='help/aide_lend_lease' title='Aide'><img src='images/help.png' title='Aide'></a></span></h2><b>".$Lend_Lease."</b>";
 	}
 	else{
 		$Axe_nations='1,6';

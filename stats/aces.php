@@ -1,6 +1,6 @@
-<?
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
+<?php
+include_once './jfv_include.inc.php';
+include_once './jfv_txt.inc.php';
 if($_SESSION['AccountID'] >0)
 {
 	$i=0;

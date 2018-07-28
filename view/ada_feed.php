@@ -1,10 +1,9 @@
 <?php
-require_once './jfv_inc_sessions.php';
 if($_SESSION['AccountID'])
 {
-	include_once './jfv_include.inc.php';
-	include_once './jfv_txt.inc.php';
-	include_once './jfv_inc_em.php';
+	include_once '../jfv_include.inc.php';
+	include_once '../jfv_txt.inc.php';
+	include_once '../jfv_inc_em.php';
 	/*Type : 1=Bataille, 2=Bombardement, 40=Occupation, 41=Mouvement, 21=Renfort, 50=Nouvel Avion, 51=Nouvelle Unité
 	function Echo_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 	{

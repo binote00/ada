@@ -111,7 +111,7 @@ if($OfficierEMID >0)
 						    $inactif_txt='';
 						if($boss)
                             $inactif_txt.="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$data_pil['ID'].">
-                            <img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+                            <img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
                         $pilote_id="<div class='panel panel-default text-center'>
 										<div class='panel-body'>
                                             ".$data_pil['Nom']."<br><img title='".$Grade[0]."' src='images/grades/grades".$data_pil['Pays'].$Grade[1].".png'>
@@ -143,7 +143,7 @@ if($OfficierEMID >0)
 						}
 						mysqli_free_result($result);
 					}
-					$dca_pieces="<h2>Porte-avions ".GetData("Cible","ID",$Data['Porte_avions'],"Nom")."</h2><p><img src='/images/vehicules/vehicule".$Data['Porte_avions'].".gif'></p>
+					$dca_pieces="<h2>Porte-avions ".GetData("Cible","ID",$Data['Porte_avions'],"Nom")."</h2><p><img src='images/vehicules/vehicule".$Data['Porte_avions'].".gif'></p>
 					<table class='table'><thead><tr><th>Nom</th><th>Calibre</th><th>Dégats Max</th><th>Plafond</th></tr></thead>".$dca_pieces."</table>";
 				}
 				else

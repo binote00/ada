@@ -164,9 +164,9 @@ if(isset($_SESSION['AccountID']))
                     while($datap=mysqli_fetch_array($Pilotes_result,MYSQLI_ASSOC))
                     {
                         if($datap['Courage'] >0 and $datap['Moral'] >0)
-                            $skill_txt.="<a href='#' class='popup'><img src='/images/skills/skill".$datap['ID']."p.png'><span>".$datap['Infos']."</span></a>";
+                            $skill_txt.="<a href='#' class='popup'><img src='images/skills/skill".$datap['ID']."p.png'><span>".$datap['Infos']."</span></a>";
                         else
-                            $skill_txt.="<a href='#' class='popup'><img class='img_opa' src='/images/skills/skill".$datap['ID']."p.png'><span>".$datap['Infos']."</span></a>";
+                            $skill_txt.="<a href='#' class='popup'><img class='img_opa' src='images/skills/skill".$datap['ID']."p.png'><span>".$datap['Infos']."</span></a>";
                     }
                     mysqli_free_result($Pilotes_result);
                 }
@@ -351,7 +351,7 @@ if(isset($_SESSION['AccountID']))
                         mysqli_close($con);
                         if($pac)
                             $PA_Button="<h2>Embarquement sur un porte-avions</h2><form action='index.php?view=ghq_add_pa' method='post'><input type='hidden' name='Unite' value='".$Unite."'><select name='PAC' class='form-control' style='width: 200px'>".$pac.$pac2."</select>
-							<br><img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Embarquer' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+							<br><img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Embarquer' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                         else
                             $PA_Button="<p class='lead'>Aucun porte-avions n'est disponible pour embarquer cette unité</p>";
                     }
@@ -385,7 +385,7 @@ if(isset($_SESSION['AccountID']))
                     if($GHQ and $Credits >=8 and $Zone !=6)
                     {
                         $PA_Button="<form action='index.php?view=ghq_add_pa' method='post'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='Armee' value='".$Armee_PA."'><input type='hidden' name='PAC' value='0'>
-						<img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Débarquer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						<img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Débarquer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                 }
                 if(IsAxe($country))
@@ -693,21 +693,21 @@ if(isset($_SESSION['AccountID']))
                 {
                     if($Avion1_Nbr <2 or $GHQ)
                         $But_F1="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='1'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Replace."'><input type='hidden' name='mode' value='1'>
-						<br><img src='/images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     if($Avion2_Nbr <2 or $GHQ)
                         $But_F2="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='2'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Replace."'><input type='hidden' name='mode' value='1'>
-						<br><img src='/images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     if($Avion3_Nbr <2 or $GHQ)
                         $But_F3="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='3'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Replace."'><input type='hidden' name='mode' value='1'>
-						<br><img src='/images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Replace.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remplacer' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     if($GHQ and $Credits >=$CT_Upgrade)
                     {
                         $But_A1="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='1'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Upgrade."'><input type='hidden' name='mode' value='2'>
-						<br><img src='/images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                         $But_A2="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='2'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Upgrade."'><input type='hidden' name='mode' value='2'>
-						<br><img src='/images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                         $But_A3="<form action='em_ia4.php' method='post'><input type='hidden' name='flight' value='3'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Upgrade."'><input type='hidden' name='mode' value='2'>
-						<br><img src='/images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+						<br><img src='images/CT".$CT_Upgrade.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Améliorer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                 }
                 if($Credits >=2)
@@ -725,14 +725,14 @@ if(isset($_SESSION['AccountID']))
                             $Avion1_u3_n="";
                         if($Credits >=$CT_Refit and $lend_lease1){
                             $But_R1="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='1'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Refit."'>
-							<br><img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
-                            $Rav_R1="Ravitaillement pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion1_u1_n.$Avion1_u2_n.$Avion1_u3_n;
+							<br><img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+                            $Rav_R1="Ravitaillement pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion1_u1_n.$Avion1_u2_n.$Avion1_u3_n;
                         }
                         else
-                            $But_R1="Ravitaillement pour <img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion1_u1_n.$Avion1_u2_n.$Avion1_u3_n;
+                            $But_R1="Ravitaillement pour <img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion1_u1_n.$Avion1_u2_n.$Avion1_u3_n;
                         if(!$Avion1_Lease and $Avion1_Nbr <1 and $Usine1_1 and $Avion1_u1_fa ==$country and $Avion1_u1_f ==$country)
                             $Return_R1="<form action='em_gestioncdt3' method='post'><input type='hidden' name='unitet' value='".$Unite."'><input type='hidden' name='Transfer_esc' value=".$Avion1_u1."><input type='hidden' name='Transfer_val' value='1'><input type='hidden' name='cr' value='".$CT_Refit."'>
-							<br><img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Retour à ".$Avion1_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<br><img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Retour à ".$Avion1_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                     if($Avion2_Nbr <$MaxFlight)
                     {
@@ -747,14 +747,14 @@ if(isset($_SESSION['AccountID']))
                             $Avion2_u3_n="";
                         if($Credits >=$CT_Refit and $lend_lease2){
                             $But_R2="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='2'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Refit."'>
-							<br><img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
-							$Rav_R2="Ravitaillement pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion2_u1_n.$Avion2_u2_n.$Avion2_u3_n;
+							<br><img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							$Rav_R2="Ravitaillement pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion2_u1_n.$Avion2_u2_n.$Avion2_u3_n;
                         }
                         else
-                            $But_R2="Ravitaillement pour <img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion2_u1_n.$Avion2_u2_n.$Avion2_u3_n;
+                            $But_R2="Ravitaillement pour <img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion2_u1_n.$Avion2_u2_n.$Avion2_u3_n;
                         if(!$Avion2_Lease and $Avion2_Nbr <1 and $Usine2_1 and $Avion2_u1_fa == $country and $Avion2_u1_f == $country)
                             $Return_R2="<form action='em_gestioncdt3' method='post'><input type='hidden' name='unitet' value='".$Unite."'><input type='hidden' name='Transfer_esc' value=".$Avion2_u1."><input type='hidden' name='Transfer_val' value='1'><input type='hidden' name='cr' value='".$CT_Refit."'>
-							<img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Retour à ".$Avion2_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Retour à ".$Avion2_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                     if($Avion3_Nbr <$MaxFlight)
                     {
@@ -769,14 +769,14 @@ if(isset($_SESSION['AccountID']))
                             $Avion3_u3_n="";
                         if($Credits >=$CT_Refit and $lend_lease3){
                             $But_R3="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='3'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='".$CT_Refit."'>
-							<br><img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
-							$Rav_R3="Ravitaillement pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion3_u1_n.$Avion3_u2_n.$Avion3_u3_n;
+							<br><img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							$Rav_R3="Ravitaillement pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion3_u1_n.$Avion3_u2_n.$Avion3_u3_n;
                         }
                         else
-                            $But_R3="Ravitaillement pour <img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion3_u1_n.$Avion3_u2_n.$Avion3_u3_n;
+                            $But_R3="Ravitaillement pour <img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'> ici et pour <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> possible à ".$Avion3_u1_n.$Avion3_u2_n.$Avion3_u3_n;
                         if(!$Avion3_Lease and $Avion3_Nbr <1 and $Usine3_1 and $Avion3_u1_fa ==$country and $Avion3_u1_f ==$country)
                             $Return_R3="<form action='em_gestioncdt3' method='post'><input type='hidden' name='unitet' value='".$Unite."'><input type='hidden' name='Transfer_esc' value=".$Avion3_u1."><input type='hidden' name='Transfer_val' value='1'><input type='hidden' name='cr' value='".$CT_Refit."'>
-							<img src='/images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Retour à ".$Avion3_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<img src='images/CT".$CT_Refit.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Retour à ".$Avion3_u1_n."' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                     if($Base >0 and $Usine >0 and $Faction_Flag ==$Faction and $Faction_Air ==$Faction)
                     {
@@ -792,13 +792,13 @@ if(isset($_SESSION['AccountID']))
                             $Avion3_Usine=true;
                         if($Avion1_Nbr <$MaxFlight and $Avion1_Usine and $lend_lease1)
                             $But_R1="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='1'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='2'>".$ghq_hidden_ravit."
-							<br><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<br><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                         if($Avion2_Nbr <$MaxFlight and $Avion2_Usine and $lend_lease2)
                             $But_R2="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='2'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='2'>".$ghq_hidden_ravit."
-							<br><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<br><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                         if($Avion3_Nbr <$MaxFlight and $Avion3_Usine and $lend_lease3)
                             $But_R3="<form action='em_ia3.php' method='post'><input type='hidden' name='flight' value='3'><input type='hidden' name='Unite' value='".$Unite."'><input type='hidden' name='CT' value='2'>".$ghq_hidden_ravit."
-							<br><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							<br><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Ravitailler' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
                     }
                 }
                /*$But_F1.=$But_R1;
@@ -874,7 +874,7 @@ if(isset($_SESSION['AccountID']))
                 {
                     if(!$porte_avions)
                         $gestion_txt.="<form action='index.php?view=em_gestioncdt2' method='post'><input type='hidden' name='unitet' value='".$Unite."'><input type='hidden' name='hydra' value='".$Hydravion."'>
-						<div class='i-flex'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Déménager' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
+						<div class='i-flex'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Déménager' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
                     if($GHQ and ($Unite_Type==10 or $Unite_Type==12))
                         $gestion_txt.=$PA_Button;
                 }
@@ -948,9 +948,9 @@ if(isset($_SESSION['AccountID']))
                     else{
                         if($Credits >=$CT_Restore and !$Mission_IA and ($Pilotes <$Pilotes_max or $Pilotes_fatigues >0))
                             $remonter_moral_txt="<form action='em_ia1.php' method='post'><input type='hidden' name='reset' value='5'><input type='hidden' name='Unite' value='".$Unite."'>
-                                <div class='i-flex'><img src='/images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Remonter le moral' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Cette action ramène les pilotes à la base, attention si cette unité a une mission en cours!</span></a></div></form>";
+                                <div class='i-flex'><img src='images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Remonter le moral' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Cette action ramène les pilotes à la base, attention si cette unité a une mission en cours!</span></a></div></form>";
                         else
-                            $remonter_moral_txt="<img src='/images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><i>Remonter le moral</i> <a href='#' class='popup'><img src='images/help.png'><span>Cette action requiert l'action du jour de l'unité.</span></a>";
+                            $remonter_moral_txt="<img src='images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><i>Remonter le moral</i> <a href='#' class='popup'><img src='images/help.png'><span>Cette action requiert l'action du jour de l'unité.</span></a>";
                         if(!$Mission_IA)
                             $rappel_txt="<form action='em_ia1.php' method='post'><input type='hidden' name='reset' value='1'><input type='hidden' name='Unite' value='".$Unite."'><input type='Submit' class='btn btn-sm btn-warning' value='Rappeler à la base'></form>";
                         $pilotes_txt='<div class="panel panel-war">
@@ -980,13 +980,13 @@ if(isset($_SESSION['AccountID']))
                             if(!$Enis)
                             {
                                 $garnison_txt="<form action='em_ia1.php' method='post'><input type='hidden' name='reset' value='4'><input type='hidden' name='Unite' value='".$Unite."'>
-								<br><img src='/images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remonter le moral des troupes' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Les effectifs ne peuvent excéder 50 hommes</span></a></form>";
+								<br><img src='images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Remonter le moral des troupes' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Les effectifs ne peuvent excéder 50 hommes</span></a></form>";
                             }
                             else
                                 $garnison_txt="<div class='alert alert-danger'>L'aérodrome est sous le feu des troupes ennemies!</div>";
                         }
                         else
-                            $garnison_txt="<img src='/images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><i>Remonter le moral des troupes</i><a href='#' class='popup'><img src='images/help.png'><span>L'aérodrome doit être contrôlé par votre nation</span></a>";
+                            $garnison_txt="<img src='images/CT".$CT_Restore.".png' title='Montant en Crédits Temps que nécessite cette action'><i>Remonter le moral des troupes</i><a href='#' class='popup'><img src='images/help.png'><span>L'aérodrome doit être contrôlé par votre nation</span></a>";
                     }
                     //Missions
                     $choix17="";
@@ -1413,7 +1413,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>
                                             </div>
-											<div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+											<div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 											<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form></div></div></div>";
                                         }
                                         if($Paras_units)
@@ -1453,7 +1453,7 @@ if(isset($_SESSION['AccountID']))
                                                         <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                     </div>
                                                 </div>
-                                                <div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+                                                <div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
                                                 <input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                         }
                                         if($Cdo_units)
@@ -1493,7 +1493,7 @@ if(isset($_SESSION['AccountID']))
                                                         <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                     </div>
                                                 </div>
-                                                <div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+                                                <div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
                                                 <input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                         }
                                         $Missi_txt="Ravitaillement <a href='#' class='popup'><img src='images/help.png'><span>Mission permettant aux unités terrestres IA sur le lieu de destination de ne pas subir le malus d attrition</span></a>";
@@ -1576,7 +1576,7 @@ if(isset($_SESSION['AccountID']))
 											        <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>                                            
                                             </div>
-                                            <div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+                                            <div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 											<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                     }
                                     if($Lieuxlongo and $Credits >=2)
@@ -1631,7 +1631,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>
                                             </div>
-                                            <div class='i-flex mt-2'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
+                                            <div class='i-flex mt-2'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a><input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
                                         $Strat_Output_txt.="<div class='alert alert-info'>Les missions longues distances permettent d'atteindre des objectifs éloignés grâce aux réservoirs supplémentaires. Les avions en mission longue distance sont cependant nettement moins performants au combat.</div></div></div>";
                                     }
                                 }
@@ -1678,7 +1678,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>
                                             </div>
-											<div class='i-flex mt-2'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+											<div class='i-flex mt-2'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 											<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                     }
                                     else
@@ -1753,7 +1753,7 @@ if(isset($_SESSION['AccountID']))
 												        <select name='Flight' class='form-control'>".$Flight_txt_tac."</select>
 												    </div>
 												</div>
-												<div class='i-flex mt-2'><img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+												<div class='i-flex mt-2'><img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 												<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>".$Aide_txt_btac."</div></div>";
                                         }
                                         else
@@ -1806,7 +1806,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt_tac."</select>
                                                 </div>
                                             </div>
-											<div class='i-flex mt-2'><img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+											<div class='i-flex mt-2'><img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 											<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                     }
                                     else
@@ -1908,7 +1908,7 @@ if(isset($_SESSION['AccountID']))
 												        <select name='Flight' class='form-control'>".$Flight_txt_rec."</select>
 												    </div>
 												</div>
-												<div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+												<div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
 												<input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form></div></div>";
                                         }
                                     }
@@ -1967,7 +1967,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>
                                             </div>
-                                            <div class='i-flex mt-2'><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+                                            <div class='i-flex mt-2'><img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
                                             <input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
                                         if($Unite_Type ==1 or $Unite_Type ==12)
                                             $Tac_Output_txt.="<div class='alert alert-info'>Les avions en patrouille pourront intercepter les avions ennemis approchant de 1000m plus haut à 3000m plus bas que l'altitude de mission. La météo peut réduire cette distance.
@@ -2029,7 +2029,7 @@ if(isset($_SESSION['AccountID']))
                                                     <select name='Flight' class='form-control'>".$Flight_txt."</select>
                                                 </div>
                                             </div>
-                                            <div class='i-flex mt-2'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
+                                            <div class='i-flex mt-2'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a>
                                             <input type='submit' value='Valider' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></div></form>";
                                         $Tac_Output_txt.="<div class='alert alert-info'>Les missions longues distances permettent d'atteindre des objectifs éloignés grâce aux réservoirs supplémentaires. Les avions en mission longue distance sont cependant nettement moins performants au combat.</div></div></div>";
                                     }

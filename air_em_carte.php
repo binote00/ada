@@ -1,9 +1,9 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once './jfv_inc_sessions.php';
 $OfficierID=$_SESSION['Officier_em'];
 if($OfficierID >0)
 {
-	include_once('./jfv_include.inc.php');
+	include_once './jfv_include.inc.php';
 	//include_once('./jfv_txt.inc.php');
 	//$country=$_SESSION['country'];
 	if(!$Front)$Front=GetData("Officier_em","ID",$OfficierID,"Front");
@@ -92,4 +92,3 @@ if($OfficierID >0)
 	$img="<img src='images/wall_map.jpg'>";
 	include_once('./default.php');*/
 }
-?>

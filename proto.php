@@ -976,7 +976,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0)
 		</td>		
 	</tr>
 	</table>
-	<input type="submit" value="Valider" class='btn btn-default' onclick='this.disabled=true;this.form.submit();'> <img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'></form>
+	<input type="submit" value="Valider" class='btn btn-default' onclick='this.disabled=true;this.form.submit();'> <img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'></form>
 <?
 	}
 	else

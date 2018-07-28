@@ -234,7 +234,7 @@ if($OfficierEMID >0)
                     elseif($BaseAerienne !=1 and $BaseAerienne !=2){
                         $piste_txt.="
                         <div class='alert alert-danger'>
-                             <img src='/images/CT".$CT_MAX.".png' title='Montant en Crédits Temps que nécessite cette action'> + ".$ouvriers_piste_dur." Ouvriers pour poser un revêtement en dur sur la piste
+                             <img src='images/CT".$CT_MAX.".png' title='Montant en Crédits Temps que nécessite cette action'> + ".$ouvriers_piste_dur." Ouvriers pour poser un revêtement en dur sur la piste
                         </div>";
                     }
                     $piste_txt = PrintInfraCard('Piste', 'pisted.png', $piste_txt);
@@ -388,7 +388,7 @@ if($OfficierEMID >0)
 								<Input type='Radio' name='recce' value='1'>- Oui<br>";
                     }
                     else
-                        $reco_txt="<h4><small>Ordonner de camoufler le site d'urgence <img src='/images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'></small></h4>
+                        $reco_txt="<h4><small>Ordonner de camoufler le site d'urgence <img src='images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'></small></h4>
 						<div class='alert alert-danger'>La présence d'avions d'observation ennemis empêche le camouflage ou vous ne disposez pas de suffisamment de CT pour effectuer cette action</div>";
                     $reco_txt = PrintInfraCard('Camouflage', 'camouflage.png', $reco_txt);
                 }

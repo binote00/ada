@@ -99,11 +99,11 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 					$detail_txt="<form action='index.php?view=em_depots_flux' method='post'><input type='hidden' name='Lieu' value='".$data['ID']."'>
 						<input type='Submit' value='Flux' class='btn btn-default btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
 					if($data['Usine_muns'] >4 and $data['Industrie'] >0)
-						$data['Nom']="<img src='/images/ammo_icon.png' title='Grand producteur de munitions de niveau ".$data['Usine_muns']."'>".$data['Nom'];
+						$data['Nom']="<img src='images/ammo_icon.png' title='Grand producteur de munitions de niveau ".$data['Usine_muns']."'>".$data['Nom'];
 					elseif($data['Usine_muns'] >0 and $data['Industrie'] >0)
-						$data['Nom']="<img src='/images/ammo2_icon.png' title='Petit producteur de munitions de niveau ".$data['Usine_muns']."'>".$data['Nom'];
+						$data['Nom']="<img src='images/ammo2_icon.png' title='Petit producteur de munitions de niveau ".$data['Usine_muns']."'>".$data['Nom'];
 					if($data['Oil'] >0 and $data['Industrie'] >0)
-						$data['Nom']="<img src='/images/poil_icon.png' title='Producteur de carburant de niveau ".$data['Oil']."'>".$data['Nom'];
+						$data['Nom']="<img src='images/poil_icon.png' title='Producteur de carburant de niveau ".$data['Oil']."'>".$data['Nom'];
 					if(!$data['Industrie'] and ($data['Oil'] or $data['Usine_muns']))
 						echo "<tr><th style='color:red;'>".$data['Nom'].$detail_txt."</th>";
 					else
@@ -111,7 +111,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 					if($Credits >=8 and ($OfficierEMID ==$Commandant or $Admin or $GHQ))
 						echo "<td><form action='index.php?view=ground_bruler_depot' method='post' onsubmit=\"return confirm('Etes vous certain de vouloir brûler le dépôt?');\">
 						<input type='hidden' name='Div' value='9999'><input type='hidden' name='Cible' value='".$data['ID']."'>
-						<img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Brûler' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
+						<img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Brûler' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
 					else
 						echo '<td>N/A</td>';
 					if(!$data['Industrie'])
@@ -272,12 +272,12 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
         <th>'.$Stock_8_total.'</th><th>'.$Stock_13_total.'</th><th>'.$Stock_20_total.'</th><th>'.$Stock_30_total.'</th><th>'.$Stock_40_total.'</th><th>'.$Stock_50_total.'</th><th>'.$Stock_60_total.'</th><th>'.$Stock_75_total.'</th><th>'.$Stock_90_total.'</th><th>'.$Stock_105_total.'</th><th>'.$Stock_125_total.'</th><th>'.$Stock_150_total.'</th>
         <th>'.$Stock_b50_total.'</th><th>'.$Stock_b125_total.'</th><th>'.$Stock_b250_total.'</th><th>'.$Stock_b500_total.'</th><th>'.$Stock_b1000_total.'</th><th>'.$Stock_b2000_total.'</th><th>'.$Stock_b300_total.'</th><th>'.$Stock_b400_total.'</th><th>'.$Stock_b800_total.'</th><th>'.$Stock_b30_total.'</th><th>'.$Stock_b80_total.'</th>
         </tr></table></div></div>';
-		echo "<h3><img src='/images/ammo_icon.png'><img src='/images/ammo2_icon.png'> Usines de munitions</h3>
+		echo "<h3><img src='images/ammo_icon.png'><img src='/images/ammo2_icon.png'> Usines de munitions</h3>
 		<div class='alert alert-warning'>- Si l'usine n'est pas détruite et qu'elle est sous le contrôle de la nation contrôlant le lieu, le stock de munitions augmente chaque jour en fonction du niveau de l'usine et de son état.
 		<br>- Seules les usines de niveau 5 ou supérieur produisent des calibres supérieurs à 40mm ainsi que des bombes, torpilles, charges et autres mines.
 		<br>- La production des munitions de 8 et 13mm est multipliée par 5 (10 pour les USA).
 		<br>- La production des munitions de 200mm, 300mm, 360mm, des bombes de 1000kg et 2000kg est divisée par 10.</div>
-		<h3><img src='/images/poil_icon.png'>  Raffineries</h3>
+		<h3><img src='images/poil_icon.png'>  Raffineries</h3>
 		<div class='alert alert-warning'>- Si l'usine n'est pas détruite et qu'elle est sous le contrôle de la nation contrôlant le lieu, les stocks d'essence et de diesel augmentent chaque jour en fonction du niveau de la raffinerie et de l'état de l'usine.</div>";
 	}
 	else

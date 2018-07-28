@@ -1573,7 +1573,7 @@ if(isset($_SESSION['AccountID']) AND $PlayerID >0)
 		</td>		
 	</tr></table>
 	<p class='lead'>Fourniture des pièces <?echo round($Efficacite_ravit);?>% <a href='#' class='popup'><img src='images/help.png'><span>Le % influe sur le coût en CT</span></a></p>
-	<input type="submit" value="Valider" class='btn btn-default' onclick='this.disabled=true;this.form.submit();'> <img src='/images/CT<?echo $malus_ravit;?>.png' title='Montant en Crédits Temps que nécessite cette action'></form>
+	<input type="submit" value="Valider" class='btn btn-default' onclick='this.disabled=true;this.form.submit();'> <img src='images/CT<?echo $malus_ravit;?>.png' title='Montant en Crédits Temps que nécessite cette action'></form>
 <?
 	}
 	else

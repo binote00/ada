@@ -151,7 +151,7 @@ if ($OfficierEMID > 0) {
                     else
                         $LongPisteMax = 1951;
                     if ($Tour < 100) {
-                        $piste_txt = "<img src='images/vehicules/vehicule2.gif' title='Tour'> <img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                        $piste_txt = "<img src='images/vehicules/vehicule2.gif' title='Tour'> <img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 						<select name='tour' style='width: 100px'>		
 							<option value='0'>0</option>";
                         if ($Tour < 90 and $Credits >= 2 and $Ouvriers > GetModCT(9, $country, $EM_CT)) {
@@ -171,7 +171,7 @@ if ($OfficierEMID > 0) {
                         $piste_txt .= "</select> ouvriers pour accélérer la réparation de la tour";
                     }
                     if ($QualitePiste < 90) {
-                        $piste_txt .= "<br><img src='images/bulldozer.png' title='Réparation Piste'> <img src='/images/CT24.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                        $piste_txt .= "<br><img src='images/bulldozer.png' title='Réparation Piste'> <img src='images/CT24.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 						<select name='rpiste' style='width: 100px'>		
 							<option value='0'>0</option>";
                         if ($Credits >= 24 and $Ouvriers > GetModCT(99, $country, $EM_CT))
@@ -183,7 +183,7 @@ if ($OfficierEMID > 0) {
                         $piste_txt .= "</select> ouvriers pour réparer la piste (" . $QualitePiste . "% actuellement + 20% par 100 ouvriers)";
                     }
                     if ($LongPiste < $LongPisteMax and $QualitePiste == 100) {
-                        $piste_txt .= "<br><img src='images/pistel.png' title='Piste'> <img src='/images/CT30.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                        $piste_txt .= "<br><img src='images/pistel.png' title='Piste'> <img src='images/CT30.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 						<select name='piste' style='width: 100px'>		
 							<option value='0'>0</option>";
                         if ($Credits >= 30 and $Ouvriers > GetModCT(99, $country, $EM_CT))
@@ -192,14 +192,14 @@ if ($OfficierEMID > 0) {
                     }
                     $ouvriers_piste_dur = GetModCT(199, $country, $EM_CT);
                     if ($BaseAerienne == 3 and $QualitePiste == 100 and $Ouvriers >= $ouvriers_piste_dur and $Credits >= $CT_MAX) {
-                        $piste_txt .= "<br><img src='images/pisted.png' title='Piste'> <img src='/images/CT" . $CT_MAX . ".png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                        $piste_txt .= "<br><img src='images/pisted.png' title='Piste'> <img src='images/CT" . $CT_MAX . ".png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 						<select name='dur' style='width: 100px'><option value='0'>0</option><option value='1'>" . $ouvriers_piste_dur . "</option></select> ouvriers pour poser un revêtement en dur sur la piste 
 						<a href='#' class='popup'><img src='images/help.png'><span>Une piste en dur permet aux avions de décoller par temps de pluie. La piste doit être à 100%</span></a>";
                     } elseif ($BaseAerienne != 1 and $BaseAerienne != 2)
-                        $piste_txt .= "<br><img src='images/pisted.png' title='Piste'> <img src='/images/CT" . $CT_MAX . ".png' title='Montant en Crédits Temps que nécessite cette action'> + " . $ouvriers_piste_dur . " Ouvriers pour poser un revêtement en dur sur la piste";
+                        $piste_txt .= "<br><img src='images/pisted.png' title='Piste'> <img src='images/CT" . $CT_MAX . ".png' title='Montant en Crédits Temps que nécessite cette action'> + " . $ouvriers_piste_dur . " Ouvriers pour poser un revêtement en dur sur la piste";
                 }
                 if ($Radar_Ori > 0 and $Radar < 100 and ($Flag_Radar == $country or $Mode == 2)) {
-                    $radar_txt = "<br><img src='images/vehicules/vehicule14.gif' title='Radar'> <img src='/images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                    $radar_txt = "<br><img src='images/vehicules/vehicule14.gif' title='Radar'> <img src='images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 					<select name='radar' style='width: 100px'>		
 						<option value='0'>0</option>";
                     if ($Radar < 90 and $Credits >= 3 and $Ouvriers > GetModCT(19, $country, $EM_CT))
@@ -215,7 +215,7 @@ if ($OfficierEMID > 0) {
                     $radar_txt .= "</select>ouvriers pour accélérer la réparation du radar";
                 }
                 if ($Gare_Ori > 0 and $Gare < 100 and ($Flag_Gare == $country or $Mode == 2)) {
-                    $gare_txt = "<br><img src='images/vehicules/vehicule9.gif' title='Gare'> <img src='/images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                    $gare_txt = "<br><img src='images/vehicules/vehicule9.gif' title='Gare'> <img src='images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 					<select name='gare' style='width: 100px'>		
 						<option value='0'>0</option>";
                     if ($Gare < 90 and $Credits >= 3 and $Ouvriers > GetModCT(9, $country, $EM_CT))
@@ -231,7 +231,7 @@ if ($OfficierEMID > 0) {
                     $gare_txt .= "</select>ouvriers pour accélérer la réparation du noeud ferroviaire";
                 }
                 if ($Pont_Ori > 0 and $Pont < 100 and ($Flag_Pont == $country or $Mode == 2)) {
-                    $pont_txt = "<br><img src='images/vehicules/vehicule10.gif' title='Pont'> <img src='/images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                    $pont_txt = "<br><img src='images/vehicules/vehicule10.gif' title='Pont'> <img src='images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 					<select name='pont' style='width: 100px'>		
 						<option value='0'>0</option>";
                     if ($Pont < 90 and $Credits >= 3 and $Ouvriers > GetModCT(9, $country, $EM_CT))
@@ -247,7 +247,7 @@ if ($OfficierEMID > 0) {
                     $pont_txt .= "</select>ouvriers pour accélérer la réparation du pont";
                 }
                 if ($Port_Ori > 0 and $Port < 100 and ($Flag_Port == $country or $Mode == 2)) {
-                    $port_txt = "<br><img src='images/vehicules/vehicule12.gif' title='Port'> <img src='/images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                    $port_txt = "<br><img src='images/vehicules/vehicule12.gif' title='Port'> <img src='images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 					<select name='port' style='width: 100px'>		
 						<option value='0'>0</option>";
                     if ($Port < 90 and $Credits >= 3 and $Ouvriers > GetModCT(9, $country, $EM_CT))
@@ -264,7 +264,7 @@ if ($OfficierEMID > 0) {
                 }
                 if ($Industrie > 0 and ($Flag_Usine == $country or $Mode == 2)) {
                     if ($Industrie < 100) {
-                        $usine_txt = "<br><img src='images/vehicules/vehicule5.gif' title='Usine'> <img src='/images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
+                        $usine_txt = "<br><img src='images/vehicules/vehicule5.gif' title='Usine'> <img src='images/CT3.png' title='Montant en Crédits Temps que nécessite cette action'> Envoyer
 						<select name='usine' style='width: 100px'><option value='0'>0</option>";
                         if ($Industrie < 100 and $Credits >= 3 and $Ouvriers > GetModCT(9, $country, $EM_CT))
                             $usine_txt .= "<option value='1'>10</option>";
@@ -302,11 +302,11 @@ if ($OfficierEMID > 0) {
                     if ($Trait == 5) $Cr_cam -= 2;
                     if ($Cr_cam < 1) $Cr_cam = 1;
                     if ($Credits >= $Cr_cam) {
-                        $reco_txt = "<br><img src='images/camouflage.png'> <img src='/images/CT" . $Cr_cam . ".png' title='Montant en Crédits Temps que nécessite cette action'> Ordonner de camoufler le site d'urgence<br>
+                        $reco_txt = "<br><img src='images/camouflage.png'> <img src='images/CT" . $Cr_cam . ".png' title='Montant en Crédits Temps que nécessite cette action'> Ordonner de camoufler le site d'urgence<br>
 								<Input type='Radio' name='recce' value='0' checked>- Non<br>
 								<Input type='Radio' name='recce' value='1'>- Oui<br>";
                     } else
-                        $reco_txt = "<br><img src='images/camouflage.png'> <img src='/images/CT" . $Cr_cam . ".png' title='Montant en Crédits Temps que nécessite cette action'> Ordonner de camoufler le site d'urgence<br>
+                        $reco_txt = "<br><img src='images/camouflage.png'> <img src='images/CT" . $Cr_cam . ".png' title='Montant en Crédits Temps que nécessite cette action'> Ordonner de camoufler le site d'urgence<br>
 						La présence d'avions d'observation ennemis empêche le camouflage ou vous ne disposez pas de suffisamment de CT pour effectuer cette action";
                 }
                 if ($Flag == $country and ($ValStrat or $BaseAerienne)) {

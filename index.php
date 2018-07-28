@@ -18,7 +18,7 @@ $view='update';
 if ($AccountID < 8 and $AccountID > 0) {
     error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
     $Date_up = date('Y-m-d');
-    Update($Date_up);
+//    Update($Date_up);
     //$view = Insec($_GET['view']);
 } else {
     error_reporting(0);

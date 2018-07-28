@@ -702,11 +702,11 @@ if(isset($_SESSION['AccountID']) AND $_SESSION['Mission_Choose'] ==false)
 		else
 		{
 			$_SESSION['Distance'] =0;
-			/*echo "<h6>Vous avez déjà effectué le maximum de missions disponibles pour aujourd'hui, ou vous ne disposez pas de suffisamment de temps <img src='/images/CT0.png'> pour effectuer la mission.</h6>";
+			/*echo "<h6>Vous avez déjà effectué le maximum de missions disponibles pour aujourd'hui, ou vous ne disposez pas de suffisamment de temps <img src='images/CT0.png'> pour effectuer la mission.</h6>";
 			echo "<img src='images/briefing.jpg'>";
 			echo "<h6>Reposez-vous un peu ou profitez de votre temps libre et revenez demain!</h6>";*/
 			echo "<h1>Repos forcé</h1><img src='images/briefing.jpg'>";
-			echo "<p>Vous avez déjà effectué le maximum de missions disponibles pour aujourd'hui, ou vous ne disposez pas de suffisamment de temps <img src='/images/CT0.png'> pour effectuer la mission.</p>";
+			echo "<p>Vous avez déjà effectué le maximum de missions disponibles pour aujourd'hui, ou vous ne disposez pas de suffisamment de temps <img src='images/CT0.png'> pour effectuer la mission.</p>";
 			echo "<p>Reposez-vous un peu ou profitez de votre temps libre et revenez demain!</p>";
 			echo "<a href='index.php' class='btn btn-default' title='Retour'>Retour</a>";
 		}

@@ -103,57 +103,57 @@ if($OfficierEMID >0 xor $OfficierID >0)
 	if($Credits >=4 and $Faction_Flag ==$Faction and $Fortification <50 and $Placement ==0 and !$Enis)
 		$mes.="<form action='index.php?view=ground_fort' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Fortifier' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Fortifier' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Fortifier</b> possible sur la caserne d'un lieu revendiqué par sa faction à condition que les fortifications soient inférieures au niveau 5 et qu'aucune troupe ennemie ne soit présente<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Fortifier</b> possible sur la caserne d'un lieu revendiqué par sa faction à condition que les fortifications soient inférieures au niveau 5 et qu'aucune troupe ennemie ne soit présente<br>";
 	if($Credits >=4 and $Pont >0 and $Placement ==5 and ($Recce or $Faction_Flag ==$Faction))
 		$mes.="<form action='index.php?view=ground_deponter' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Détruire le pont' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Détruire le pont' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Détruire le pont</b> possible sur le fleuve d'un lieu reconnu ou revendiqué par sa faction<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Détruire le pont</b> possible sur le fleuve d'un lieu reconnu ou revendiqué par sa faction<br>";
 	if($Credits >=4 and $Pont_Ori ==100 and $Pont <100 and $Placement ==5 and ($Recce or $Faction_Flag ==$Faction))
 		$mes.="<form action='index.php?view=ground_ponter' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Ponter' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Ponter' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Ponter</b> possible sur le fleuve d'un lieu reconnu ou revendiqué par sa faction<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Ponter</b> possible sur le fleuve d'un lieu reconnu ou revendiqué par sa faction<br>";
 	if($Credits >=4 and $NoeudF >0 and $Placement ==3 and $Faction_Flag ==$Faction)
 		$mes.="<form action='index.php?view=ground_saboter_gare' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Saboter la gare' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Saboter la gare' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Saboter la gare</b> possible sur la gare d'un lieu revendiqué par sa faction<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Saboter la gare</b> possible sur la gare d'un lieu revendiqué par sa faction<br>";
     if($Credits >=8 and $NoeudF_Ori ==100 and $NoeudF <100 and $Placement ==3 and $Faction_Flag ==$Faction)
         $mes.="<form action='index.php?view=ground_repare_gare' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer la gare' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer la gare' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
     else
-        $help_txt.="<img src='/images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Réparer la gare</b> possible sur la gare d'un lieu revendiqué par sa faction<br>";
+        $help_txt.="<img src='images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Réparer la gare</b> possible sur la gare d'un lieu revendiqué par sa faction<br>";
 	if($Credits >=4 and $Port >0 and $Placement ==4 and $Faction_Flag ==$Faction)
 		$mes.="<form action='index.php?view=ground_saboter_port' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Saboter le port' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Saboter le port' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Saboter le port</b> possible sur le port d'un lieu revendiqué par sa faction<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Saboter le port</b> possible sur le port d'un lieu revendiqué par sa faction<br>";
     if($Credits >=8 and $Port_Ori ==100 and $Port <100 and $Placement ==4 and $Faction_Flag ==$Faction)
         $mes.="<form action='index.php?view=ground_repare_port' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer le port' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer le port' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
     else
-        $help_txt.="<img src='/images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Réparer le port</b> possible sur le port d'un lieu revendiqué par sa faction<br>";
+        $help_txt.="<img src='images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Réparer le port</b> possible sur le port d'un lieu revendiqué par sa faction<br>";
 	if($Credits >=4 and $Faction_Flag ==$Faction and ($Zone ==0 or $Zone ==1 or $Zone ==7 or $Zone ==8) and !$Enis)
 		$mes.="<form action='index.php?view=ground_mine' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Miner' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Miner' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Miner</b> possible sur un lieu (de type <img src='images/zone0.jpg'><img src='images/zone1.jpg'><img src='images/zone7.jpg'><img src='images/zone8.jpg'>) revendiqué par sa faction à condition qu'aucune troupe ennemie ne soit présente<br>";
+		$help_txt.="<img src='images/CT4.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Miner</b> possible sur un lieu (de type <img src='images/zone0.jpg'><img src='images/zone1.jpg'><img src='images/zone7.jpg'><img src='images/zone8.jpg'>) revendiqué par sa faction à condition qu'aucune troupe ennemie ne soit présente<br>";
 	if($Credits >=8 and ($Zone ==0 or $Zone ==1 or $Zone ==7 or $Zone ==8) and !$Enis and $Recce)
 		$mes.="<form action='index.php?view=ground_demine' method='post'>
 		<input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Cible' value='".$Cible."'>
-		<img src='/images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Déminer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+		<img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Déminer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 	else
-		$help_txt.="<img src='/images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Déminer</b> possible sur un lieu (de type <img src='images/zone0.jpg'><img src='images/zone1.jpg'><img src='images/zone7.jpg'><img src='images/zone8.jpg'>) reconnu à condition qu'aucune troupe ennemie ne soit présente<br>";
+		$help_txt.="<img src='images/CT8.png' title='Credits Temps nécessaires pour exécuter cette action'><b>Déminer</b> possible sur un lieu (de type <img src='images/zone0.jpg'><img src='images/zone1.jpg'><img src='images/zone7.jpg'><img src='images/zone8.jpg'>) reconnu à condition qu'aucune troupe ennemie ne soit présente<br>";
 	$titre='Génie';
 	if(is_file('images/lieu/lieu'.$Cible.'.jpg'))
 		$img='images/lieu/lieu'.$Cible.'.jpg';

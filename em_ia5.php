@@ -212,7 +212,7 @@ if(isset($_SESSION['AccountID']))
 							if($Torpille >=1 and $Credits >=GetModCT(8*$CT_Mult,$country,$EM_CT,0,$Pil_Front) and ($Zone ==6 or $Plage or $Port_Ori))
 								echo "<option value='800'>Torpille (".GetModCT(8*$CT_Mult,$country,$EM_CT,0,$Pil_Front)."CT)</option>";
 							echo "</option></select></td><td>".$Zones_txt."</td></tr>
-							<tr><td><img src='/images/CT99.png' title='Montant en Crédits Temps variable selon option choisie'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
+							<tr><td><img src='images/CT99.png' title='Montant en Crédits Temps variable selon option choisie'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
 							</table></form>";
 						}
 					}

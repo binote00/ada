@@ -191,7 +191,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 							if(!$datac['Too_Late'] and ($OfficierEMID ==$Commandant or $Admin))
 							{
 								$bouton_virer="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$Commandant_u.">
-												<img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+												<img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 								$Cdt.="<br><i><span class='text-danger'>".$datac['Activite']."</span></i>".$bouton_virer;
 							}
 							else
@@ -236,9 +236,9 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
                         while($datap=mysqli_fetch_array($Pilotes_result,MYSQLI_ASSOC))
                         {
                             if($datap['Courage'] >0 and $datap['Moral'] >0)
-                                $skill_txt.="<a href='#' class='popup'><img src='/images/skills/skill".$datap['ID']."p.png'><span>".substr($datap['Infos'],strpos($datap['Infos'], '['),strlen($datap['Infos']))."</span></a>";
+                                $skill_txt.="<a href='#' class='popup'><img src='images/skills/skill".$datap['ID']."p.png'><span>".substr($datap['Infos'],strpos($datap['Infos'], '['),strlen($datap['Infos']))."</span></a>";
                             else
-                                $skill_txt.="<a href='#' class='popup'><img class='img_opa' src='/images/skills/skill".$datap['ID']."p.png'><span>".substr($datap['Infos'],strpos($datap['Infos'], '['),strlen($datap['Infos']))."</span></a>";
+                                $skill_txt.="<a href='#' class='popup'><img class='img_opa' src='images/skills/skill".$datap['ID']."p.png'><span>".substr($datap['Infos'],strpos($datap['Infos'], '['),strlen($datap['Infos']))."</span></a>";
                         }
                         mysqli_free_result($Pilotes_result);
                     }
@@ -261,7 +261,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 							if(!$datac['Too_Late'] and ($OfficierEMID ==$Commandant or $Admin))
 							{
 								$bouton_virer="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$Officier_Technique.">
-												<img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+												<img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 								$OT.="<br><i><span class='text-danger'>".$datac['Activite']."</span></i>".$bouton_virer;
 							}
 							else
@@ -285,7 +285,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 							if(!$datac['Too_Late'] and ($OfficierEMID ==$Commandant or $Admin))
 							{
 								$bouton_virer="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$Officier_Adjoint_u.">
-												<img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
+												<img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 								$OA.="<br><i><span class='text-danger'>".$datac['Activite']."</span></i>".$bouton_virer;
 							}
 							else

@@ -61,7 +61,7 @@ if(isset($_SESSION['AccountID']) AND $Unite >0)
 						<td>".$data['Degats']."-".$dg_max."</td><td>".$data['Portee']."m</td></tr>";
 					}
 				}
-				$dca_pieces="<h2>Porte-avions ".GetData("Cible","ID",$Porte_avions,"Nom")."</h2><p><img src='/images/vehicules/vehicule".$Porte_avions.".gif'></p>
+				$dca_pieces="<h2>Porte-avions ".GetData("Cible","ID",$Porte_avions,"Nom")."</h2><p><img src='images/vehicules/vehicule".$Porte_avions.".gif'></p>
 				<table class='table'><thead><tr><th>Nom</th><th>Calibre</th><th>Dégats Max</th><th>Plafond</th></tr></thead>".$dca_pieces."</table>";
 			}
 			else

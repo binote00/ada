@@ -309,7 +309,7 @@ function Infrastructures($Date)
 				Stock_Munitions_30=Stock_Munitions_30+'$up_stock20_40',Stock_Munitions_40=Stock_Munitions_40+'$up_stock20_40' WHERE ID='$ID'");*/
 			}
 			/*if($datal['ValeurStrat'] >0){
-                $Max_Garnison=($datal['ValeurStrat']*200)+100;
+                $Max_Garnison=($datal['ValeurStrat']*100)+100;
                 if($datal['Garnison'] < $Max_Garnison)
                     $query_add=',Garnison=Garnison+10';
             }*/
