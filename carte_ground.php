@@ -1741,6 +1741,6 @@ if($_SESSION['AccountID'] and ($PlayerID xor $OfficierID xor $OfficierEMID))
     <script src="./js/lib/bootstrap.min.js"></script>
     <script src="./js/lib/jquery.cookie.js"></script>
     <script src="./js/main.js"></script>
-    <script type="text/javascript" src="dhtml_tooltip.js"></script>
+    <script type="text/javascript" src="./js/dhtml_tooltip.js"></script>
     </body></html>
 <?}?>
