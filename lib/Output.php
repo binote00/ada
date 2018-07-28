@@ -70,4 +70,67 @@ trait Output
     {
         return '<a href="' . $link . '" class="btn btn-' . $class . '">' . $caption . '</a>';
     }
+
+    /**
+     * Bouton Modal bootstrap
+     *
+     * @param string $target_id
+     * @param string $btn_text
+     * @param string $btn_class
+     * @return string
+     */
+    public static function btnModal($target_id, $btn_text, $btn_class = 'primary')
+    {
+        return '<button type="button" class="btn btn-' . $btn_class . '" data-toggle="modal" data-target="#' . $target_id . '">' . $btn_text . '</button>';
+    }
+
+    /**
+     * Link Modal bootstrap
+     *
+     * @param string $target_id
+     * @param string $caption
+     * @return string
+     */
+    public static function linkModal($target_id, $caption)
+    {
+        return '<a href="#" class="link" data-toggle="modal" data-target="#' . $target_id . '">' . $caption . '</a>';
+    }
+
+
+    /**
+     * Générateur de Modal bootstrap
+     *
+     * @param string $modal_id
+     * @param string $modal_title
+     * @param string $modal_body
+     * @param string $modal_footer
+     * @param string $modal_size
+     * @return string
+     */
+    public static function viewModal($modal_id, $modal_title, $modal_body, $modal_footer = '', $modal_size = '')
+    {
+        if ($modal_size == 'lg') {
+            $modal_size = ' modal-lg';
+        } elseif ($modal_size == 'hg') {
+            $modal_size = ' modal-hg';
+        }
+        return '<div class="modal fade" tabindex="-1" id="' . $modal_id . '">
+          <div class="modal-dialog' . $modal_size . '">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">' . $modal_title . '</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ' . $modal_body . '
+              </div>
+              <div class="modal-footer">
+                ' . $modal_footer . '
+              </div>
+            </div>
+          </div>
+        </div>';
+    }
 }
