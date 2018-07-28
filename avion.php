@@ -1,11 +1,11 @@
 <?php
-require_once('./jfv_inc_sessions.php');
-include_once('./jfv_include.inc.php');
-$ID=Insec($_GET['avion']);
+require_once './jfv_inc_sessions.php';
+include_once './jfv_include.inc.php';
+$ID = Insec($_GET['avion']);
 dbconnect();
 $resavions = $dbh->query("SELECT ID,Nom FROM Avion ORDER BY Nom ASC");
-while($dataa = $resavions->fetchObject()){
-    $avions.='<option value="'.$dataa->ID.'">'.$dataa->Nom.'</option>';
+while ($dataa = $resavions->fetchObject()) {
+    $avions .= '<option value="' . $dataa->ID . '">' . $dataa->Nom . '</option>';
 }
 $header = '
     <!DOCTYPE html>
@@ -27,50 +27,58 @@ $footer = '
     <script src="js/bs4/bootstrap.min.js"></script>
     </body>
     </html>';
-if(is_numeric($ID))
-{
-    include_once('./jfv_air_inc.php');
-    include_once('./jfv_txt.inc.php');
-    include_once('./jfv_combat.inc.php');
-    include_once('./jfv_avions.inc.php');
+if (is_numeric($ID)) {
+    include_once './jfv_air_inc.php';
+    include_once './jfv_txt.inc.php';
+    include_once './jfv_combat.inc.php';
+    include_once './jfv_avions.inc.php';
 
+    /**
+     * @param int $alt
+     * @param int $alt_ref
+     * @param int $plafond
+     * @param int $VitesseH
+     * @param int $VitesseB
+     * @return float|int
+     */
     function GetSpeeds($alt, $alt_ref, $plafond, $VitesseH, $VitesseB){
-        if($plafond >= $alt){
-            if($alt > $alt_ref)
-                $Vit = $VitesseH+((($VitesseH-$VitesseB)/$alt_ref)*($alt_ref-$alt));
-            elseif($alt <=$alt_ref)
-                $Vit = $VitesseB+((($VitesseH-$VitesseB)/$alt_ref)*$alt);
-        }
-        else{
+        if ($alt_ref <= 0) return 0;
+        if ($plafond >= $alt) {
+            if ($alt > $alt_ref)
+                $Vit = $VitesseH + ((($VitesseH - $VitesseB) / $alt_ref) * ($alt_ref - $alt));
+            elseif ($alt <= $alt_ref)
+                $Vit = $VitesseB + ((($VitesseH - $VitesseB) / $alt_ref) * $alt);
+        } else {
             $Vit = 0;
         }
         return $Vit;
     }
 
-    function GetPuiss($puissance, $compressor, $alt, $alt_ref){
-        if($compressor ==2)
-        {
-            if($alt <$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt_ref-$alt)/10000)));
-        }
-        elseif($compressor ==3)
-        {
-            if($alt >$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt-$alt_ref)/10000)));
-        }
-        elseif($compressor ==1)
-        {
-            if($alt >=$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt-$alt_ref)/10000)));
-            elseif($alt <$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt_ref-$alt)/20000)));
-        }
-        else
-        {
-            if($alt >=$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt-$alt_ref)/5000)));
-            elseif($alt <$alt_ref)
-                $Puiss=floor($puissance/(1+(($alt_ref-$alt)/10000)));
+    /**
+     * @param int $puissance
+     * @param int $compressor
+     * @param int $alt
+     * @param int $alt_ref
+     * @return float
+     */
+    function GetPuiss($puissance, $compressor, $alt, $alt_ref)
+    {
+        if ($compressor == 2) {
+            if ($alt < $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt_ref - $alt) / 10000)));
+        } elseif ($compressor == 3) {
+            if ($alt > $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt - $alt_ref) / 10000)));
+        } elseif ($compressor == 1) {
+            if ($alt >= $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt - $alt_ref) / 10000)));
+            elseif ($alt < $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt_ref - $alt) / 20000)));
+        } else {
+            if ($alt >= $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt - $alt_ref) / 5000)));
+            elseif ($alt < $alt_ref)
+                $Puiss = floor($puissance / (1 + (($alt_ref - $alt) / 10000)));
         }
         return $Puiss;
     }
