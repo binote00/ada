@@ -1,12 +1,12 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_ground.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_ground.inc.php';
 	$Vehicule=Insec($_POST['Ve']);
 	$Reput=Insec($_POST['Cr']);
 	$Retraite=Insec($_POST['Nid']);
@@ -91,8 +91,8 @@ if($OfficierEMID >0)
 				$Skill_p=$Skills_1[mt_rand(0,count($Skills_1)-1)];
 			if(!$Retraite)$Retraite=Get_Retraite(99,$country,40);
 			$Front=GetFrontByCoord($Retraite);
-			$query2="INSERT INTO Regiment_IA (Pays,Front,Vehicule_ID,Lieu_ID,Vehicule_Nbr,Placement,HP,Camouflage,Experience,Moral,Distance,Move,Skill,Avions,Autonomie)";
-			$query2.="VALUES ('$country','$Front','$Vehicule','$Retraite','$Veh_Nbr','$Placement','$HP',1,'$Experience',100,'$Portee',1,'$Skill_p','$Hydra_Nbr','$Autonomie')";
+			$query2="INSERT INTO Regiment_IA (Pays,Front,Vehicule_ID,Lieu_ID,Vehicule_Nbr,Placement,HP,Camouflage,Experience,Moral,Distance,Move,Skill,Avions,Autonomie) 
+            VALUES ('$country','$Front','$Vehicule','$Retraite','$Veh_Nbr','$Placement','$HP',1,'$Experience',100,'$Portee',1,'$Skill_p','$Hydra_Nbr','$Autonomie')";
 			$con=dbconnecti();
 			$ok2=mysqli_query($con,$query2);
 			if($Vehicule ==5392) //Dépot flottant
@@ -118,4 +118,3 @@ if($OfficierEMID >0)
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page</h1>";
-?>

@@ -1,9 +1,9 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID = $_SESSION['Officier_em'];
 if ($OfficierID > 0 xor $OfficierEMID > 0) {
-    include_once('./jfv_include.inc.php');
+    include_once './jfv_include.inc.php';
     $reg = Insec($_GET['reg']);
     $matos = Insec($_GET['matos']);
     $country = $_SESSION['country'];
@@ -64,22 +64,22 @@ if ($OfficierID > 0 xor $OfficierEMID > 0) {
                 or ($Adjoint_Terre > 0 and ($Adjoint_Terre == $OfficierEMID))
                 or ($Officier_Mer > 0 and ($Officier_Mer == $OfficierEMID))
                 or ($Officier_Log > 0 and ($Officier_Log == $OfficierEMID))
-                or $country ==3 or $country ==5 or $country ==10 or $country ==15 or $country ==17 or $country ==18 or $country ==19 or $country ==20 or $country ==35
+                or $country ==BEL or $country ==NL or $country ==GRE or $country ==BUL or $country ==YOU or $country ==ROU or $country ==HUN or $country ==FIN or $country ==NOR
                 or $Admin ==1)
                 $Ordre_ok = true;
         }
         if ($Ordre_ok) {
             if(!$Move){
-                include_once('./jfv_ground.inc.php');
+                include_once './jfv_ground.inc.php';
                 $list_matos=Get_Matos_List($Categorie,$Type_Veh,$mobile,$Arme_AT);
                 if(in_array($matos,$list_matos)){
-                    if(!IsWar($Flag,$country) and (($mobile !=5 and !IsWar($Flag_Usine,$country) and $Placement ==PLACE_USINE) or ($mobile ==5 and !IsWar($Flag_Port,$country)))){
+                    if(!IsWar($Flag,$country) and (($mobile !=MOBILE_WATER and !IsWar($Flag_Usine,$country) and $Placement ==PLACE_USINE) or ($mobile ==MOBILE_WATER and !IsWar($Flag_Port,$country)))){
                         $ok_up = $dbh->prepare("UPDATE Regiment_IA SET Matos=:matos,Move=1,Position=0 WHERE ID=:reg");
                         $ok_up->bindValue('matos', $matos, 1);
                         $ok_up->bindValue('reg', $reg, 1);
                         $ok_up->execute();
                         if ($ok_up->rowCount())
-                            $_SESSION['msg'] = '<h2>Equipement</h2>L\'équipement <img src="/images/skills/skille' . $matos . '.png"> a été ajouté à l\'unité!';
+                            $_SESSION['msg'] = '<h2>Equipement</h2>L\'équipement <img src="images/skills/skille' . $matos . '.png"> a été ajouté à l\'unité!';
                         else
                             $_SESSION['msg_red'] = 'Erreur';
                     }

@@ -1,15 +1,15 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0) //xor $OfficierID >0
 {
 	$Ordre_ok=false;
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_ground.inc.php');
-    include_once('./jfv_inc_em.php');
-	include_once('./jfv_txt.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_ground.inc.php';
+    include_once './jfv_inc_em.php';
+	include_once './jfv_txt.inc.php';
 	$Reg=Insec($_POST['Unit']);
     $con=dbconnecti();
 	if($OfficierID >0)
@@ -428,7 +428,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
                     if($up_renf >$Stock)$up_renf=$Stock;
                     if($up_renf <1)$up_renf=1;
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Moral=100,Visible=0,Move=1,Move_time='0000-00-00 00:00:00' WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Moral=100,Visible=0,Move=1,Position=0,Move_time='0000-00-00 00:00:00' WHERE ID='$Reg'");
                     mysqli_close($con);
                     if($reset_r)
                     {
@@ -539,7 +539,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
                         elseif($Skill ==146)
                             $Briseur_Blocus=80;
                         $con=dbconnecti();
-                        if($Port_Ori_Dest)$resulti_dest=mysqli_query($con,"SELECT COUNT(*),MAX(c.Vitesse),r.Skill,l.Port_Ori FROM Regiment_IA as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Lieu' AND r.Position=27 AND c.Type>14 AND r.Vehicule_Nbr>0 AND c.Vitesse>35 AND r.HP>c.HP/2");
+                        if($Port_Ori_Dest)$resulti_dest=mysqli_query($con,"SELECT COUNT(*),MAX(c.Vitesse),r.Skill FROM Regiment_IA as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Lieu' AND r.Position=27 AND c.Type>14 AND r.Vehicule_Nbr>0 AND c.Vitesse>35 AND r.HP>c.HP/2");
                         $resultsmoke=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND p.Faction='$Faction' AND r.Lieu_ID='$Depot' AND r.Position=37 AND c.Arme_Art>0 AND r.Vehicule_Nbr>0"),0);
                         $resulti=mysqli_query($con,"SELECT COUNT(*),MAX(c.Vitesse),r.Skill FROM Regiment_IA as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Depot' AND r.Position=27 AND c.Type>14 AND r.Vehicule_Nbr>0 AND c.Vitesse>35 AND r.HP>c.HP/2");
                         //$resulti2=mysqli_query($con,"SELECT COUNT(*),MAX(c.Vitesse) FROM Regiment as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$Lieu' AND r.Position=27 AND c.Type>14 AND r.Vehicule_Nbr>0 AND c.Vitesse>35 AND r.HP>c.HP/2");
@@ -2000,6 +2000,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 			else
                 $_SESSION['msg_red'] = 'Erreur de déchargement!';
             header( 'Location : ./index.php?view=ground_em_ia');
+            die;
 			$img="<img src='images/dechargement.jpg' style='width:100%;'>";
 		}
 		if(!$mes and !$Admin)
@@ -2011,11 +2012,11 @@ if($OfficierEMID >0) //xor $OfficierID >0
 			if(!$OfficierEMID)
 				$menu="<form action='index.php?view=ground_bat' method='post'><input type='Submit' value='Retour au menu' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 			else
-				$menu="<form action='index.php?view=ground_em_ia_list' method='post'><input type='Submit' value='Retour au menu' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+				$menu="<form action='index.php?view=ground_em_ia_list' method='post'><input type='submit' value='Retour au menu' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 			if($Reset !=9)
 				$menu.="<br><form action='index.php?view=ground_em_ia' method='post'><input type='hidden' name='Reg' value='".$Reg."'><input type='Submit' value='Retour à la Cie' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 		}
-		include_once('./default.php');
+		include_once './default.php';
 	}
 	else
 		echo '<div class="alert alert-danger">Vous n\'êtes pas autorisé à commander cette unité</div>';
