@@ -2690,7 +2690,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                 if(!$GHQ or $Admin or $Nation_IA)
                 {
                     //Revendication
-                    if ($Nation_IA && $Pays_Ori != $country) {
+                    if ($Nation_IA && $Faction == ALLIES && $Pays_Ori != $country) {
                         $revendication = false;
                     } elseif(($Type_Veh ==95 or $Detection >10) and $Position !=6 and $Position !=11 and $Position !=12 and $Position !=13 and $Position !=14 and $Credits >=2 and !$Enis_combi and !$Move and $Vehicule_Nbr >0) {
                         $revendication = true;
