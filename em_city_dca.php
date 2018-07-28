@@ -1,15 +1,15 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0)
 {
-    require_once('./jfv_include.inc.php');
-    include_once('./jfv_txt.inc.php');
-    include_once('./jfv_inc_em.php');
+    require_once './jfv_include.inc.php';
+    include_once './jfv_txt.inc.php';
+    include_once './jfv_inc_em.php';
     if($Premium) {
 
-        include_once('./jfv_ground.inc.php');
-        include_once('./jfv_combat.inc.php');
+        include_once './jfv_ground.inc.php';
+        include_once './jfv_combat.inc.php';
 
         $cible = Insec($_GET['id']);
         $Matos_mun=array(1,2,6,7,8);

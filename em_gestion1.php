@@ -1,18 +1,18 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once './jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {
 	$OfficierEMID=$_SESSION['Officier_em'];
 	if($OfficierEMID >0)
 	{
 		$country=$_SESSION['country'];
-		include_once('./jfv_include.inc.php');
-		include_once('./jfv_txt.inc.php');
+		include_once './jfv_include.inc.php';
+		include_once './jfv_txt.inc.php' ;
 		$Unites_Type=Insec($_POST['type']);
 		$Lieu_g=Insec($_POST['lieu']);
-		include_once('./jfv_inc_em.php');
-		include_once('./menu_em.php');
-		//include_once('./menu_staff.php');
+		include_once './jfv_inc_em.php' ;
+		include_once './menu_em.php' ;
+		//include_once './menu_staff.php';
 		if(($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint or $OfficierEMID ==$Officier_EM or $GHQ) and $Front !=12)
 		{
 			if($Lieu_g and ($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM))
@@ -100,7 +100,7 @@ if(isset($_SESSION['AccountID']))
 				}*/
 				if($Radar >0 and $Radar <100 and $Flag ==$country and $Flag_Radar ==$country)
 				{
-					$toolbar.="<tr><td align='left'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+					$toolbar.="<tr><td align='left'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 					<select name='radar' style='width: 100px'><option value='0'>0</option>";
 						if($Radar <90 and $Credits >=2 and $Ouvriers >19){
 						$toolbar.="<option value='1'>20</option>";
@@ -116,7 +116,7 @@ if(isset($_SESSION['AccountID']))
 				}
 				if($Gare >0 and $Gare <100 and $Flag ==$country and $Flag_Gare ==$country)
 				{
-					$toolbar.="<tr><td align='left'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+					$toolbar.="<tr><td align='left'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 					<select name='gare' style='width: 100px'><option value='0'>0</option>";
 						if($Gare <90 and $Credits >=2 and $Ouvriers >19){
 						$toolbar.="<option value='1'>20</option>";
@@ -132,7 +132,7 @@ if(isset($_SESSION['AccountID']))
 				}
 				if($Port >0 and $Port <100 and $Flag ==$country and $Flag_Port ==$country)
 				{
-					$toolbar.="<tr><td align='left'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+					$toolbar.="<tr><td align='left'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 					<select name='port' style='width: 100px'><option value='0'>0</option>";
 						if($Port <90 and $Credits >=2 and $Ouvriers >19){
 						$toolbar.="<option value='1'>20</option>";
@@ -148,7 +148,7 @@ if(isset($_SESSION['AccountID']))
 				}
 				if($Industrie >0 and $Industrie <100 and $Flag ==$country and $Flag_Usine ==$country)
 				{
-					$toolbar.="<tr><td align='left'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+					$toolbar.="<tr><td align='left'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 					<select name='usine' style='width: 100px'><option value='0'>0</option>";
 						if($Industrie <90 and $Credits >=2 and $Ouvriers >19)
 							$toolbar.="<option value='1'>20</option>";
@@ -172,7 +172,7 @@ if(isset($_SESSION['AccountID']))
 						$LongPisteMax=1951;
 					if($Tour <100)
 					{
-						$toolbar.="<tr><td align='left'><img src='/images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+						$toolbar.="<tr><td align='left'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 						<select name='tour' style='width: 100px'><option value='0'>0</option>";
 							if($Tour <90 and $Credits >=2 and $Ouvriers >9){
 							$toolbar.="<option value='1'>10</option>";
@@ -188,7 +188,7 @@ if(isset($_SESSION['AccountID']))
 					}
 					if($LongPiste <$LongPisteMax and $QualitePiste ==100)
 					{
-						$toolbar.="<tr><td align='left'><img src='/images/CT30.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
+						$toolbar.="<tr><td align='left'><img src='images/CT30.png' title='Montant en Crédits Temps que nécessite cette action'>- Envoyer
 						<select name='piste' style='width: 100px'><option value='0'>0</option>";	
 						if($Credits >=30 and $Ouvriers >99)
 							$toolbar.="<option value='1'>100</option>";
@@ -204,10 +204,10 @@ if(isset($_SESSION['AccountID']))
 					$Cr_cam=7+$Observation-$CT_Discount;
 					if($Cr_cam <1)$Cr_cam=1;
 					if($Credits >$Cr_cam)
-						$toolbar.="<tr><td align='left'><img src='/images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'>- Ordonner de camoufler le site d'urgence<br>
+						$toolbar.="<tr><td align='left'><img src='images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'>- Ordonner de camoufler le site d'urgence<br>
 								<Input type='Radio' name='recce' value='0' checked>- Non<br><Input type='Radio' name='recce' value='1'>- Oui<br></td></tr>";
 					else
-						$toolbar.="<tr><td align='left'><img src='/images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'>- Ordonner de camoufler le site d'urgence<br>
+						$toolbar.="<tr><td align='left'><img src='images/CT".$Cr_cam.".png' title='Montant en Crédits Temps que nécessite cette action'>- Ordonner de camoufler le site d'urgence<br>
 						La présence d'avions d'observation ennemis empêche le camouflage ou vous ne disposez pas de suffisamment de CT pour effectuer cette action</td></tr>";
 				}
 				if($ValeurStrat)
@@ -219,9 +219,9 @@ if(isset($_SESSION['AccountID']))
 					$toolbar.="<tr><td align='left' title='Si le lieu a une valeur stratégique non nulle et que depuis au moins 3 jours ce lieu est vierge de toute attaque, les infrastructures détruites (0%) sont remises à 1%'>- Annuler la réparation automatique des infrastructures (actuellement : ".$Auto_repare.")<br>
 							<Input type='Radio' name='auto_repa' value='0' checked>- Ne rien changer<br><Input type='Radio' name='auto_repa' value='2'>- Non<br><Input type='Radio' name='auto_repa' value='1'>- Oui<br></td></tr>";
 				}
-				$toolbar.="</table><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form><hr>";
+				$toolbar.="</table><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form><hr>";
 				$Cible=$Lieu_g;
-				include_once('./em_city_ground.php');
+				include_once 'em_city_ground.php';
 			}
 			elseif($Unites_Type and ($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint))
 			{
@@ -310,7 +310,7 @@ if(isset($_SESSION['AccountID']))
 		<form action='index.php?view=em_gestion2' method='post'>
 		<h2>Transférer des avions entre les unités</h2>
 		<table class='table'>
-			<thead><tr><th>Avions</th><th>Du</th><th>Au</th><th><img src='/images/CT40.png' title='Montant en Crédits Temps que nécessite cette action'> Intervertir la dotation complète</th></tr></thead>
+			<thead><tr><th>Avions</th><th>Du</th><th>Au</th><th><img src='images/CT40.png' title='Montant en Crédits Temps que nécessite cette action'> Intervertir la dotation complète</th></tr></thead>
 			<tr><td>
 				<select name="nbr" class='form-control' style="width: 200px">
 					<option value="0">0</option>
@@ -345,7 +345,7 @@ if(isset($_SESSION['AccountID']))
 				<td><Input type='Radio' name='intervertir' value='0' checked>- Non<br></td>
 			</tr>
 			<tr>
-				<td><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td>
+				<td><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td>
 				<td><select name="sqna" class='form-control' style="width: 200px">		
 					<option value="2"><?echo $Sqn?> 2</option>
 					<option value="3"><?echo $Sqn?> 3</option>
@@ -364,25 +364,25 @@ if(isset($_SESSION['AccountID']))
 		Un(e) <?echo $Sqn;?> ne peut contenir plus de <?echo GetMaxFlight($Unites_Type,0,0);?> avions à la suite d'un transfert<br>
 		Intervertir permet d'échanger intégralement la dotation entre 2 <?echo $Sqn;?>, peu importe les avions utilisés. Il existe cependant une limite de 1000km entre les unités pour cette action.</i></p>
 	<?*/if($modele){?>
-	<h2><img src='/images/CT12.png' title='Montant en Crédits Temps que nécessite cette action'> Remplacer un modèle d'avion par de l'équipement de réserve</h2>
+	<h2><img src='images/CT12.png' title='Montant en Crédits Temps que nécessite cette action'> Remplacer un modèle d'avion par de l'équipement de réserve</h2>
 		<form action='index.php?view=em_gestion2' method='post'>
 		<table class='table'>
 			<thead><tr><th colspan='2'>Unité</th><th>Avion</th></tr></thead>
 			<tr>
-				<td><select name="unitec" class='form-control' style="width:200px"><? echo $Units;?></select></td>
+				<td><select name="unitec" class='form-control' style="width:200px"><?=$Units?></select></td>
 				<td><select name="sqnc" class='form-control' style="width: 200px">		
-					<option value="1"><?echo $Sqn?> 1</option>
-					<option value="2"><?echo $Sqn?> 2</option>
-					<option value="3"><?echo $Sqn?> 3</option>
+					<option value="1"><?=$Sqn?> 1</option>
+					<option value="2"><?=$Sqn?> 2</option>
+					<option value="3"><?=$Sqn?> 3</option>
 				</select></td>
-				<td><select name="avionc" class='form-control' style="width: 300px"><?echo $modele;?></select></td>
+				<td><select name="avionc" class='form-control' style="width: 300px"><?=$modele?></select></td>
 			</tr>
-		</table><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>
+		</table><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>
 	<?}?>
 	<hr>
 	<h2>Unités</h2>
 	<div style='overflow:auto; height: 400px;'>
-	<?echo $flights;?>
+	<?=$flights?>
 	</div>
 	<?
 			}
@@ -393,4 +393,3 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-?>

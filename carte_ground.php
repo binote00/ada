@@ -1,15 +1,20 @@
-<? 
-require_once('./jfv_inc_sessions.php');
-$PlayerID=$_SESSION['PlayerID'];
-//$OfficierID=$_SESSION['Officier'];
-$OfficierEMID=$_SESSION['Officier_em'];
+<?php
+require_once './jfv_inc_sessions.php';
+$PlayerID = $_SESSION['PlayerID'];
+$OfficierID = $_SESSION['Officier'];
+$OfficierEMID = $_SESSION['Officier_em'];
 if($_SESSION['AccountID'] and ($PlayerID xor $OfficierID xor $OfficierEMID))
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_map.inc.php');
-	include_once('./jfv_nav.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_ground.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_map.inc.php';
+	include_once './jfv_nav.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_ground.inc.php';
+
+    /**
+     * @param int $MapID
+     * @return string
+     */
 	function GetMapLabel($MapID)
 	{
 		if($MapID ==1)return 'Europe Sud-Est';
@@ -700,39 +705,39 @@ if($_SESSION['AccountID'] and ($PlayerID xor $OfficierID xor $OfficierEMID))
 		$pays_icons=array(1,2,3,4,5,6,7,8,9,10,15,17,18,19,20,35,36);
 		foreach($pays_icons as $key => $value)
 		{
-			echo ".lieu_fort".$value."{background-image: url(../images/map/icone_fort".$value.".png);}";
-			echo ".lieu_oil".$value."{background-image: url(../images/map/icone_oil".$value.".gif);width: 32px;height: 30px;}";
-			echo ".lieu_usine".$value."{background-image: url(../images/map/icone_usine".$value.".gif);width: 31px;height: 30px;}";
-			echo ".lieu_air".$value."{background-image: url(../images/map/lieu_air".$value.".png);width: 35px;height: 18px;}";
-			echo ".lieu_city".$value."{background-image: url(../images/map/lieu_city".$value.".png);width: 27px;height: 35px;}";
-			echo ".lieu_depot".$value."{background-image: url(../images/map/lieu_depot".$value.".png);width: 35px;height: 24px;}";
-			echo ".lieu_gare".$value."{background-image: url(../images/map/lieu_gare".$value.".png);width: 30px;height: 30px;}";
-			echo ".lieu_piste".$value."{background-image: url(../images/map/lieu_piste".$value.".png);width: 30px;height: 16px;}";
-			echo ".lieu_pistec".$value."{background-image: url(../images/map/lieu_pistec".$value.".png);width: 15px;height: 16px;}";
-			echo ".lieu_pont".$value."{background-image: url(../images/map/lieu_pont".$value.".png);width: 30px;height: 24px;position: absolute;z-index: 3;}";
-			echo ".lieu_port".$value."{background-image: url(../images/map/lieu_port".$value.".png);width: 28px;height: 28px;}";
-			echo ".lieu_portb".$value."{background-image: url(../images/map/lieu_portb".$value.".png);width: 28px;height: 28px;}";
-			echo ".lieu_ports".$value."{background-image: url(../images/map/lieu_ports".$value.".png);width: 28px;height: 28px;}";
-			echo ".lieu_route".$value."{background-image: url(../images/map/lieu_route".$value.".png);width: 30px;height: 25px;}";
-			echo ".lieu_usined".$value."{background-image: url(../images/map/lieu_usined".$value.".png);width: 30px;height: 30px;}";
-			echo ".lieu".$value."{background-image: url(../images/map/lieu".$value.".png);}";
-			echo ".flag".$value."{background-image: url(../images/".$value."20.gif);width: 20px;height: 20px;}";
-			echo ".troops".$value."{background-image: url(../images/map/troops".$value.".png);width: 21px;height: 30px;position: absolute;z-index: 5;}";
-			echo ".ships".$value."{background-image: url(../images/map/ships".$value.".png);width: 36px;height: 25px;position: absolute;z-index: 5;}";
-			echo ".foret".$value."{background-image: url(../images/map/foret".$value.".png);width: 30px;height: 30px;position: absolute;z-index: 2;}";
-			echo ".mountain".$value."{background-image: url(../images/map/mountain".$value.".png);width: 30px;height: 30px;position: absolute;z-index: 2;}";
+			echo ".lieu_fort".$value."{background-image: url(images/map/icone_fort".$value.".png);}";
+			echo ".lieu_oil".$value."{background-image: url(images/map/icone_oil".$value.".gif);width: 32px;height: 30px;}";
+			echo ".lieu_usine".$value."{background-image: url(images/map/icone_usine".$value.".gif);width: 31px;height: 30px;}";
+			echo ".lieu_air".$value."{background-image: url(images/map/lieu_air".$value.".png);width: 35px;height: 18px;}";
+			echo ".lieu_city".$value."{background-image: url(images/map/lieu_city".$value.".png);width: 27px;height: 35px;}";
+			echo ".lieu_depot".$value."{background-image: url(images/map/lieu_depot".$value.".png);width: 35px;height: 24px;}";
+			echo ".lieu_gare".$value."{background-image: url(images/map/lieu_gare".$value.".png);width: 30px;height: 30px;}";
+			echo ".lieu_piste".$value."{background-image: url(images/map/lieu_piste".$value.".png);width: 30px;height: 16px;}";
+			echo ".lieu_pistec".$value."{background-image: url(images/map/lieu_pistec".$value.".png);width: 15px;height: 16px;}";
+			echo ".lieu_pont".$value."{background-image: url(images/map/lieu_pont".$value.".png);width: 30px;height: 24px;position: absolute;z-index: 3;}";
+			echo ".lieu_port".$value."{background-image: url(images/map/lieu_port".$value.".png);width: 28px;height: 28px;}";
+			echo ".lieu_portb".$value."{background-image: url(images/map/lieu_portb".$value.".png);width: 28px;height: 28px;}";
+			echo ".lieu_ports".$value."{background-image: url(images/map/lieu_ports".$value.".png);width: 28px;height: 28px;}";
+			echo ".lieu_route".$value."{background-image: url(images/map/lieu_route".$value.".png);width: 30px;height: 25px;}";
+			echo ".lieu_usined".$value."{background-image: url(images/map/lieu_usined".$value.".png);width: 30px;height: 30px;}";
+			echo ".lieu".$value."{background-image: url(images/map/lieu".$value.".png);}";
+			echo ".flag".$value."{background-image: url(images/".$value."20.gif);width: 20px;height: 20px;}";
+			echo ".troops".$value."{background-image: url(images/map/troops".$value.".png);width: 21px;height: 30px;position: absolute;z-index: 5;}";
+			echo ".ships".$value."{background-image: url(images/map/ships".$value.".png);width: 36px;height: 25px;position: absolute;z-index: 5;}";
+			echo ".foret".$value."{background-image: url(images/map/foret".$value.".png);width: 30px;height: 30px;position: absolute;z-index: 2;}";
+			echo ".mountain".$value."{background-image: url(images/map/mountain".$value.".png);width: 30px;height: 30px;position: absolute;z-index: 2;}";
 		}
 		for($s=0;$s<11;$s++)
 		{
-			echo ".strat".$s."{background-image: url(../images/strat".$s.".png);}";
+			echo ".strat".$s."{background-image: url(images/strat".$s.".png);}";
 			if($s ==10)$s++;
-			echo ".zone".$s."{background-image: url(../images/zone".$s.".jpg);}";
+			echo ".zone".$s."{background-image: url(images/zone".$s.".jpg);}";
 		}
 		?>
 	</style>
 	</head><body><div id="dhtmltooltip"></div>
-<?
-	include_once('./jfv_inc_em.php');
+<?php
+	include_once './jfv_inc_em.php';
 	if($OfficierEMID >0)
 	{
 		$DB='Officier_em';
@@ -1312,12 +1317,12 @@ if($_SESSION['AccountID'] and ($PlayerID xor $OfficierID xor $OfficierEMID))
 				elseif($Mode ==8 and ($Armee or $OfficierEMID ==$Commandant or $Admin))
 				{
 				    if($Armee)
-    					$queryt_pays="r.Pays='$country' AND d.Armee='$Armee' AND";
+    					$queryt_pays="r.Pays='$country' AND d.Armee='$Armee' AND ";
 				    else
-				        $queryt_pays="r.Pays='$country' AND";
+				        $queryt_pays="r.Pays='$country' AND ";
                     $Troupes=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r 
                     LEFT JOIN Division as d ON r.Division=d.ID
-                    WHERE ".$queryt_pays." r.Vehicule_Nbr >0 AND r.Lieu_ID='".$data['ID']."'"),0);
+                    WHERE ".$queryt_pays."r.Vehicule_Nbr >0 AND r.Lieu_ID='".$data['ID']."'"),0);
 					if($Troupes >0)
 					{
 						if($Zone ==6){
