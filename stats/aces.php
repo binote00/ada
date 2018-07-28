@@ -138,4 +138,3 @@ if($_SESSION['AccountID'] >0)
 	else
 		echo "<table class='table'><tr><td><img src='images/acces_premium.png'></td></tr><tr><td>Ces statistiques sont réservées aux utilisateurs Premium</td></tr></table>";
 }
-?>
