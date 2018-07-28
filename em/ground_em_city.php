@@ -1,14 +1,14 @@
 ﻿<?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 $OfficierID=$_SESSION['Officier_em'];
 if($OfficierID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_map.inc.php');
-	include_once('./jfv_nav.inc.php');
-	include_once('./jfv_ground.inc.php');
-	include_once('./jfv_txt.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_map.inc.php';
+	include_once './jfv_nav.inc.php';
+	include_once './jfv_ground.inc.php';
+	include_once './jfv_txt.inc.php';
 	$Front=GetData("Officier_em","ID",$OfficierID,"Front");
 	$con=dbconnecti();	
 	$result2=mysqli_query($con,"SELECT Commandant,Adjoint_Terre,Officier_Mer FROM Pays WHERE Pays_ID='$country' AND Front='$Front'");
@@ -145,7 +145,7 @@ if($OfficierID >0)
 			if($Flag == $country or $Admin ==1)
 			{
 				$dca="<img src='images/vehicules/vehicule16.gif' title='DCA niveau ".$Cible_DefenseAA."'><br>";
-				$Garnison="<img src='images/vehicule107.gif'> ".$Garnison;
+				$Garnison="<img src='images/vehicules/vehicule107.gif'> ".$Garnison;
 				if($Fortification)
 					$Fortification="<img src='images/icone_fort.gif' title='Fortifications niveau ".$Fortification."'>";
 				if($Cible_base)
@@ -271,8 +271,10 @@ if($OfficierID >0)
 			$intro="<table class='table'><thead><tr><th>Occupation</th><th>Revendication</th><th>Valeur stratégique</th><th>Terrain</th><th>Météo</th></tr></thead>
 			<tr><td><img src='images/flag".$Occupant."p.jpg' title='".GetPays($Occupant)."'></td><td>".$Rev."</td><td>".$Valstrat_icon."</td><td><img src='images/zone".$Zone.".jpg' title='".$Region."'><br>".$Plage_txt."</td>
 			<td><img src='images/meteo".$Meteo.".jpg' title='". $Meteo_txt."'></td></tr></table>";
-			$mes.="<table class='table'><thead><tr><th>DCA</th><th>Garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th><th>Fortification</th><th>Infrastructures</th></tr></thead>
-			<tr><td>".$dca."</td><td>".$Garnison."</td><td>".$Fortification."</td><td>".$icones."</td></tr></table>";
+            require_once 'help/aide_garnison.php';
+			$mes.= Output::viewModal('help-aide-garnison', 'aide', $modal_txt).
+                "<table class='table'><thead><tr><th>DCA</th><th>Garnison ".Output::linkModal('help-aide-garnison', '<img src="images/help.png">')."</th><th>Fortification</th><th>Infrastructures</th></tr></thead>
+			    <tr><td>".$dca."</td><td>".$Garnison."</td><td>".$Fortification."</td><td>".$icones."</td></tr></table>";
 			if($Admin ==1)$mes.=$Admin_txt;
 			if($air_units or $units)
 			{
@@ -287,5 +289,5 @@ if($OfficierID >0)
 	}
 	else
 		$mes="<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
-	include_once('./default_blank.php');
+	include_once './default_blank.php';
 }

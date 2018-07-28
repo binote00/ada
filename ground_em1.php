@@ -327,9 +327,11 @@ if ($OfficierEMID > 0) {
                     if ($repa_txt) $repa_txt = "<hr><div class='row'>" . $repa_txt . "</div>";
                 }
             }
+            require_once 'help/aide_garnison.php';
+            echo Output::viewModal('help-aide-garnison', 'aide', $modal_txt);
             echo "<h1>" . $Nom_lieu . "</h1><h2>Le front dispose de " . $Ouvriers . " ouvriers disponibles</h2>
 			<form action='index.php?view=ground_em2' method='post'><input type='hidden' name='lieu' value='" . $ID_lieu . "'><table class='table'>
-				<tr><thead><th>DCA</th><th>Fortifications</th><th>Garnison <a href='help/aide_garnison.php' target='_blank' title='Aide'><img src='images/help.png'></a></th></thead></tr>
+				<tr><thead><th>DCA</th><th>Fortifications</th><th>Garnison " . Output::linkModal('help-aide-garnison', '<img src="images/help.png">') . "</th></thead></tr>
 				<tr><th><a href='#' class='popup'><img src='images/vehicules/vehicule16.gif'> Niveau " . $DCA_temp . "<span>La nation a installé " . $DCA_actu . " pièces de DCA sur un total de " . $DCA_Max . " disponibles</span></th>
 				<th><img src='images/icone_fort.gif' title='Fortifications de la caserne'> Niveau " . $Fortification . "</th>
 				<th><img src='images/vehicules/vehicule107.gif' title='Garnison'> " . $Garnison . " hommes</th></tr>
@@ -337,7 +339,7 @@ if ($OfficierEMID > 0) {
 			</table>
 			" . $radar_txt . $gare_txt . $port_txt . $usine_txt . $piste_txt . $reco_txt . $repa_txt . "
 			<br><input type='submit' value='VALIDER' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>
-			<p><a href='index.php?view=ground_em_infras' class='btn btn-default' title='Retour'>Retour au menu</a></p>";
+			<p>" . Output::linkBtn('index.php?view=ground_em_infras', 'Retour au menu') . "</p>";
         }//lieu_g
     } else
         echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
