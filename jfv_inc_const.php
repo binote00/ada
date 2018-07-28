@@ -84,6 +84,65 @@
 	define('TYPE_DCA','12');
 	define('TYPE_LOCO','13');
 
+    //Veh_Cat
+    define('CAT_TRUCK','1');
+    define('CAT_BL_LG','2');
+    define('CAT_TANK','3');
+    define('CAT_CDT_CAR','4');
+    define('CAT_INF','5');
+    define('CAT_MG','6');
+    define('CAT_CAV','7');
+    define('CAT_ART','8');
+    define('CAT_AT_GUN','9');
+    define('CAT_LOCO','13');
+    define('CAT_DCA','15');
+    define('CAT_SUB','17');
+    define('CAT_LAND','18');
+    define('CAT_MINE','19');
+    define('CAT_BB','20');
+    define('CAT_CV','21');
+    define('CAT_DD','22');
+    define('CAT_CL','23');
+    define('CAT_CA','24');
+
+    //mobile
+    define('MOBILE_WHEEL', 1);
+    define('MOBILE_TRACK', 2);
+    define('MOBILE_FOOT', 3);
+    define('MOBILE_RAIL', 4);
+    define('MOBILE_WATER', 5);
+
+    //Missions
+    define('MISSION_APPUI', '1');
+    define('MISSION_BOMB_TAC', '2');
+    define('MISSION_CHASSE_LIBRE', '3');
+    define('MISSION_ESCORTE', '4');
+    define('MISSION_RECO_TAC', '5');
+    define('MISSION_ATTAQUE', '6');
+    define('MISSION_PAT_DEF', '7');
+    define('MISSION_BOMB_STRAT', '8');
+    define('MISSION_INTERCEPT', '9');
+    define('MISSION_ATTAQUE_NAVAL', '11');
+    define('MISSION_BOMB_NAVAL', '12');
+    define('MISSION_TORPILLAGE', '13');
+    define('MISSION_MOUILLAGE', '14');
+    define('MISSION_RECO_STRAT', '15');
+    define('MISSION_BOMB_STRAT_NUIT', '16');
+    define('MISSION_CHASSE_NUIT', '17');
+    define('MISSION_SAUVETAGE', '18');
+    define('MISSION_SAUVETAGE_MER', '19');
+    define('MISSION_PATHFINDER', '21');
+    define('MISSION_SAUVETAGE_NUIT', '22');
+    define('MISSION_RAVITAILLEMENT', '23');
+    define('MISSION_PARACHUTAGE', '24');
+    define('MISSION_PARACHUTAGE_NUIT', '25');
+    define('MISSION_SUP_AERIENNE', '26');
+    define('MISSION_PARACHUTAGE_CDO', '27');
+    define('MISSION_INFILTRATION_CDO', '28');
+    define('MISSION_PAT_ASM', '29');
+    define('MISSION_INTRUDER', '31');
+    define('MISSION_VEILLE', '32');
+
 	//Placement
     define('PLACE_CASERNE', '0');
     define('PLACE_AERODROME', '1');
