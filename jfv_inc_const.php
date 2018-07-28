@@ -83,6 +83,8 @@
 	define('TYPE_VEH_AA','11');
 	define('TYPE_DCA','12');
 	define('TYPE_LOCO','13');
+    define('TYPE_CV','21');
+    define('TYPE_SUB','37');
 
     //Veh_Cat
     define('CAT_TRUCK','1');
