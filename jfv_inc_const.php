@@ -22,6 +22,7 @@
 
 	//CONST
     define('EMAIL_LOG', 'binote@hotmail.com');
+    define('CT_MAX', 50);
 
     //Countries
 	define('DE','1');

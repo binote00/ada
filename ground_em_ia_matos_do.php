@@ -1,8 +1,7 @@
 <?php
 require_once './jfv_inc_sessions.php';
-//$OfficierID=$_SESSION['Officier'];
 $OfficierEMID = $_SESSION['Officier_em'];
-if ($OfficierID > 0 xor $OfficierEMID > 0) {
+if ($OfficierEMID > 0) {
     include_once './jfv_include.inc.php';
     $reg = Insec($_GET['reg']);
     $matos = Insec($_GET['matos']);
@@ -10,19 +9,19 @@ if ($OfficierID > 0 xor $OfficierEMID > 0) {
     if ($OfficierEMID and $reg >0 and $matos >0 and $country >0) {
         $_SESSION['reg'] = $reg;
         dbconnect();
-        $resulto = $dbh->prepare("SELECT Front,Credits,Trait,Armee FROM Officier_em WHERE ID=:offid");
+        $resulto = $dbh->prepare("SELECT Front,Trait,Armee FROM Officier_em WHERE ID=:offid");
         $resulto->bindValue('offid', $OfficierEMID, 1);
         $resulto->execute();
         $datao = $resulto->fetchObject();
         $Front = $datao->Front;
-        $Credits = $datao->Credits;
         $Trait = $datao->Trait;
         $Armee = $datao->Armee;
         if ($Armee > 0) {
-            $reg_pre = $dbh->prepare("SELECT d.Armee,r.Move,r.Placement,c.mobile,c.Categorie,c.Arme_AT,l.Flag,l.Flag_Usine,l.Flag_Port FROM Regiment_IA as r,Division as d,Cible as c,Lieu as l WHERE r.Division=d.ID AND r.Vehicule_ID=c.ID AND r.Lieu_ID=l.ID AND r.ID=:reg");
+            $reg_pre = $dbh->prepare("SELECT r.CT,d.Armee,r.Move,r.Placement,c.mobile,c.Categorie,c.Arme_AT,l.Flag,l.Flag_Usine,l.Flag_Port FROM Regiment_IA as r,Division as d,Cible as c,Lieu as l WHERE r.Division=d.ID AND r.Vehicule_ID=c.ID AND r.Lieu_ID=l.ID AND r.ID=:reg");
             $reg_pre->bindValue('reg', $reg, 1);
             $reg_pre->execute();
             $datar = $reg_pre->fetchObject();
+            $Credits = $datar->CT;
             $Move = $datar->Move;
             $Placement = $datar->Placement;
             $mobile = $datar->mobile;
@@ -38,10 +37,11 @@ if ($OfficierID > 0 xor $OfficierEMID > 0) {
             $resadmin->execute();
             $dataa = $resadmin->fetchObject();
             $Admin = $dataa->Admin;
-            $reg_pre = $dbh->prepare("SELECT r.Move,r.Placement,c.mobile,c.Categorie,c.Type,c.Arme_AT,l.Flag,l.Flag_Usine,l.Flag_Port FROM Regiment_IA as r,Cible as c,Lieu as l WHERE r.Vehicule_ID=c.ID AND r.Lieu_ID=l.ID AND r.ID=:reg");
+            $reg_pre = $dbh->prepare("SELECT r.CT,r.Move,r.Placement,c.mobile,c.Categorie,c.Type,c.Arme_AT,l.Flag,l.Flag_Usine,l.Flag_Port FROM Regiment_IA as r,Cible as c,Lieu as l WHERE r.Vehicule_ID=c.ID AND r.Lieu_ID=l.ID AND r.ID=:reg");
             $reg_pre->bindValue('reg', $reg, 1);
             $reg_pre->execute();
             $datar = $reg_pre->fetchObject();
+            $Credits = $datar->CT;
             $Move = $datar->Move;
             $Placement = $datar->Placement;
             $mobile = $datar->mobile;

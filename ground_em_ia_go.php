@@ -1,8 +1,7 @@
 <?php
 require_once './jfv_inc_sessions.php';
-//$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
-if($OfficierEMID >0) //xor $OfficierID >0
+if($OfficierEMID >0)
 {
 	$Ordre_ok=false;
 	$country=$_SESSION['country'];
@@ -12,28 +11,14 @@ if($OfficierEMID >0) //xor $OfficierID >0
 	include_once './jfv_txt.inc.php';
 	$Reg=Insec($_POST['Unit']);
     $con=dbconnecti();
-	if($OfficierID >0)
+	if($OfficierEMID)
 	{
-		$resulto=mysqli_query($con,"SELECT Front,Credits FROM Officier WHERE ID='$OfficierID'");
+		$resulto=mysqli_query($con,"SELECT Front,Trait,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
 		if($resulto)
 		{
 			while($datao=mysqli_fetch_array($resulto,MYSQLI_ASSOC))
 			{
 				$Front=$datao['Front'];
-				$Credits=$datao['Credits'];
-			}
-			mysqli_free_result($resulto);
-		}
-	}
-	elseif($OfficierEMID)
-	{
-		$resulto=mysqli_query($con,"SELECT Front,Credits,Trait,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
-		if($resulto)
-		{
-			while($datao=mysqli_fetch_array($resulto,MYSQLI_ASSOC))
-			{
-				$Front=$datao['Front'];
-				$Credits=$datao['Credits'];
 				$Trait=$datao['Trait'];
 				$Armee=$datao['Armee'];
 			}
@@ -87,7 +72,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 			{
 				$Division_Cdt=mysqli_result(mysqli_query($con,"SELECT Cdt FROM Division WHERE ID='$Divisiono'"),0);
 				if($Division_Cdt ==$OfficierID)$Ordre_ok=true;
-				$menu="<a href='index.php?view=ground_div' class='btn btn-default' title='Retour'>Retour</a>";
+				$menu = Output::linkBtn('index.php?view=ground_div', 'Retour');
 			}
 		}
 		elseif($Armee >0)
@@ -122,7 +107,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 		$CT_Action=Insec($_POST['CT']);
 		$Retraite=Get_Retraite($Front,$country,30);
 		$Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='$country'"),0);
-		$result3=mysqli_query($con,"SELECT r.Vehicule_ID,r.Vehicule_Nbr,r.Experience,r.Lieu_ID,r.Position,r.Placement,r.Division,r.Transit_Veh,r.Autonomie,r.Move,r.Ravit,r.Skill,r.Matos,r.HP,r.objectif,r.Camouflage,r.Visible,
+		$result3=mysqli_query($con,"SELECT r.CT,r.Vehicule_ID,r.Vehicule_Nbr,r.Experience,r.Lieu_ID,r.Position,r.Placement,r.Division,r.Transit_Veh,r.Autonomie,r.Move,r.Ravit,r.Skill,r.Matos,r.HP,r.objectif,r.Camouflage,r.Visible,
 		c.Categorie,c.Type,c.Taille,c.Vitesse,c.Conso,c.HP as HP_max,l.NoeudF_Ori,l.Port_Ori,l.Flag,l.Flag_Gare,l.Mines_m,l.Meteo,l.Stock_Essence_1,l.Recce_mines_m_ax,l.Recce_mines_m_al
 		FROM Regiment_IA as r,Lieu as l,Cible as c WHERE r.Lieu_ID=l.ID AND r.Vehicule_ID=c.ID AND r.ID='$Reg'")
 		or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : gemiago-reg');
@@ -131,6 +116,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 		{
 			while($data=mysqli_fetch_array($result3,MYSQLI_ASSOC))
 			{
+                $Credits=$data['CT'];
 				$Type_Veh=$data['Type'];
 				$Categorie=$data['Categorie'];
 				$Vitesse=$data['Vitesse'];
@@ -226,13 +212,10 @@ if($OfficierEMID >0) //xor $OfficierID >0
 			if($Division_reg >0 and $Lieu >0 and $Credits >=24)
 			{
 				$Front_Dest=GetFrontByCoord($Lieu);
-				if($OfficierID >0)
-					UpdateData("Officier","Credits",-24,"ID",$OfficierID);
-				elseif($OfficierEMID >0)
-					UpdateData("Officier_em","Credits",-24,"ID",$OfficierEMID);
+                $Credits -= 24;
 				$con=dbconnecti();
 				$reset1=mysqli_query($con,"UPDATE Division SET Front='$Front_Dest',Base='$Lieu' WHERE ID='$Division_reg'");
-				$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Front='$Front_Dest',Move=1 WHERE ID='$Reg'");
+				$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Front='$Front_Dest',Move=1,CT=$Credits WHERE ID='$Reg'");
 				mysqli_close($con);
 				$mes='<div class="alert alert-success">La base arrière de la division a été changée avec succès!<br>Elle opère à présent sur le front '.GetFront($Front_Dest).'</div>';
 			}
@@ -301,8 +284,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
                 {
                     UpdateData("Regiment_IA","HP",5000,"ID",$Reg,$HP_max);
                     UpdateData("Regiment_IA","Experience",-10,"ID",$Reg);
+                    $Credits -= $CT_cale;
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Placement=4,Position=34,Moral=100,Move=1 WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Placement=4,Position=34,Moral=100,Move=1,CT=$Credits WHERE ID='$Reg'");
                     $HP_actu=mysqli_result(mysqli_query($con,"SELECT HP FROM Regiment_IA WHERE ID='$Reg'"),0);
                     mysqli_close($con);
                     if($Veh ==5001 or $Veh ==5124 or $Type_veh ==37 or $Type_veh ==14)
@@ -318,10 +302,6 @@ if($OfficierEMID >0) //xor $OfficierID >0
                         elseif($Type_veh ==18 or $Type_veh ==19 or $Type_veh ==20 or $Type_veh ==21)
                             SetData("Regiment_IA","Vehicule_Nbr",1,"ID",$Reg);
                     }
-                    if($OfficierID >0)
-                        UpdateData("Officier","Credits",-$CT_cale,"ID",$OfficierID);
-                    elseif($OfficierEMID >0)
-                        UpdateData("Officier_em","Credits",-$CT_cale,"ID",$OfficierEMID);
                     $_SESSION['msg'] = 'Le navire a été réparé';
                 }
                 else
@@ -330,15 +310,11 @@ if($OfficierEMID >0) //xor $OfficierID >0
             }
             elseif($Renforts ==3)
             {
-                if($Credits >=4)
+                if($Credits >=50)
                 {
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=1,Moral=100,Experience=250,Visible=0,Move=1 WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=1,Moral=100,Experience=250,Visible=0,Move=1,CT=0 WHERE ID='$Reg'");
                     mysqli_close($con);
-                    if($OfficierID >0)
-                        UpdateData("Officier","Credits",-4,"ID",$OfficierID);
-                    elseif($OfficierEMID >0)
-                        UpdateData("Officier_em","Credits",-4,"ID",$OfficierEMID);
                     $_SESSION['msg'] = 'Le train a été réparé';
                 }
                 else
@@ -349,14 +325,11 @@ if($OfficierEMID >0) //xor $OfficierID >0
             {
                 if($Credits >=4)
                 {
+                    $Credits -=4;
                     $con=dbconnecti();
                     if($Conso)$reset_l=mysqli_query($con,"UPDATE Lieu SET Stock_Essence_1=Stock_Essence_1-".$Conso." WHERE ID='$Lieu_ID'");
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA as r,Cible as c SET r.Visible=0,r.Move=1,r.Autonomie=c.Autonomie,r.Avions=c.Hydra_Nbr WHERE r.Vehicule_ID=c.ID AND r.ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA as r,Cible as c SET r.Visible=0,r.Move=1,r.Autonomie=c.Autonomie,r.Avions=c.Hydra_Nbr,r.CT=$Credits WHERE r.Vehicule_ID=c.ID AND r.ID='$Reg'");
                     mysqli_close($con);
-                    if($OfficierID >0)
-                        UpdateData("Officier","Credits",-4,"ID",$OfficierID);
-                    elseif($OfficierEMID >0)
-                        UpdateData("Officier_em","Credits",-4,"ID",$OfficierEMID);
                     $_SESSION['msg'] = 'Le navire a été ravitaillé.<br>'.$Conso.'L de Diesel ont été transférés du dépôt.';
                 }
                 else
@@ -378,15 +351,11 @@ if($OfficierEMID >0) //xor $OfficierID >0
                     mysqli_free_result($result1);
                     unset($dataa);
                 }
-                if($Credits >=$CT_MAX)
+                if($Credits >=CT_MAX)
                 {
                     UpdateData("Regiment_IA","HP",5000,"ID",$Reg,$HP_max);
-                    if($OfficierID >0)
-                        UpdateData("Officier","Credits",-$CT_MAX,"ID",$OfficierID);
-                    elseif($OfficierEMID >0)
-                        UpdateData("Officier_em","Credits",-$CT_MAX,"ID",$OfficierEMID);
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=1,Placement=4,Position=34,Moral=100,Experience=Experience-10,Move=1 WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=1,Placement=4,Position=34,Moral=100,Experience=Experience-10,Move=1,CT=0 WHERE ID='$Reg'");
                     mysqli_close($con);
                     $_SESSION['msg'] = 'Le navire a été mis en cale sèche en vue d\'être radoubé.';
                 }
@@ -427,8 +396,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
                     }
                     if($up_renf >$Stock)$up_renf=$Stock;
                     if($up_renf <1)$up_renf=1;
+                    $Credits -= $CT_Renf;
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Moral=100,Visible=0,Move=1,Position=0,Move_time='0000-00-00 00:00:00' WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Moral=100,Visible=0,Move=1,Position=0,Move_time='0000-00-00 00:00:00' WHERE ID='$Reg'");
                     mysqli_close($con);
                     if($reset_r)
                     {
@@ -438,10 +408,6 @@ if($OfficierEMID >0) //xor $OfficierID >0
                             if($down_exp <1)$down_exp=1;
                             UpdateData("Regiment_IA","Experience",-$down_exp,"ID",$Reg);
                         }
-                        if($OfficierID >0)
-                            UpdateData("Officier","Credits",-$CT_Renf,"ID",$OfficierID);
-                        elseif($OfficierEMID >0)
-                            UpdateData("Officier_em","Credits",-$CT_Renf,"ID",$OfficierEMID);
                         $_SESSION['msg'] = 'La Compagnie a été renforcée';
                     }
                     else
@@ -1244,42 +1210,36 @@ if($OfficierEMID >0) //xor $OfficierID >0
 				<a href='#' class='popup'><input type='Submit' value='Torpillage en surface' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Peut cibler les navires gravement endommagés peu importe la distance<br>Vulnérable à la riposte des navires en position Appui</span></a></form>
 				<form action='index.php?view=ground_pldef' method='post'>
 				<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='12'>
-				<a href='#' class='popup'><input type='Submit' value='Torpillage en plongée' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Vitesse réduite<br>Camouflage et Initiative augmentés<br>Vulnérable au grenadage des navires en position ASM</span></a></form>";
+				<a href='#' class='popup'><input type='submit' value='Torpillage en plongée' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Vitesse réduite<br>Camouflage et Initiative augmentés<br>Vulnérable au grenadage des navires en position ASM</span></a></form>";
 			}
 			elseif($Position ==40 and !$Move)
 			{
 				if($Credits >=$CT_Action and $CT_Action >0)
 				{
-					if($OfficierID >0)
-						UpdateData("Officier","Credits",-$CT_Action,"ID",$OfficierID);
-					elseif($OfficierEMID >0)
-						UpdateData("Officier_em","Credits",-$CT_Action,"ID",$OfficierEMID);
+                    $Credits -=$CT_Action;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Position='$Position',Visible=1,Move=1,Atk=1,Atk_time=NOW() WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Position=$Position,Visible=1,Move=1,Atk=1,Atk_time=NOW() WHERE ID=$Reg");
 					mysqli_close($con);
 					$mes='<div class="alert alert-warning">Vos navires se positionnent pour une attaque à la torpille</div>';
 					$img="<img src='images/nav_torp.jpg' style='width:50%;'>";
 					$menu="<form action='index.php?view=ground_pldef' method='post'>
 					<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='2'>
-					<a href='#' class='popup'><input type='Submit' value='Torpillage' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Peut cibler les navires gravement endommagés peu importe la distance<br>Vulnérable à la riposte des navires en position Appui</span></a></form>";
+					<a href='#' class='popup'><input type='submit' value='Torpillage' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Peut cibler les navires gravement endommagés peu importe la distance<br>Vulnérable à la riposte des navires en position Appui</span></a></form>";
 				}
 			}
 			elseif($Position ==30 and !$Move)
 			{
 				if($Credits >=$CT_Action and $CT_Action >0)
 				{
-					if($OfficierID >0)
-						UpdateData("Officier","Credits",-$CT_Action,"ID",$OfficierID);
-					elseif($OfficierEMID >0)
-						UpdateData("Officier_em","Credits",-$CT_Action,"ID",$OfficierEMID);
+                    $Credits -=$CT_Action;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Position='$Position',Visible=1,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Position='$Position',Visible=1,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
 					$mes='<div class="alert alert-warning">Le navire engage les navires ennemis</div>';
 					$img="<img src='images/nav_gunfire.jpg' style='width:50%;'>";
 					$menu="<form action='index.php?view=ground_pldef' method='post'>
 					<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='1'>
-					<input type='Submit' value='Tirer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+					<input type='submit' value='Tirer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 				}
 			}
 			/*elseif($Position ==31) //Anciennes unités Pacifique
@@ -1310,7 +1270,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 				$img="<img src='images/nav_gunfire.jpg' style='width:50%;'>";
 				$menu="<form action='index.php?view=ground_atk' method='post'><input type='hidden' name='Cible' value='".$Depot."'>
 				<input type='hidden' name='Action' value='110'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='".$Veh."'>
-				<input type='Submit' value='Bombardement' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+				<input type='submit' value='Bombardement' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 			}
 			elseif(($Position ==34 or $Position ==35) and !$Move)
 			{
@@ -1374,8 +1334,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
 							$Long_max=$Longitude_base+3;
 						}
 						$Stock_var='Stock_Munitions_'.$Arme_Cal;
+						$Credits -=$CT_Spec;
 						$con=dbconnecti();
-						$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Visible=1,Atk=1,Atk_time=NOW(),Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+						$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Visible=1,Atk=1,Atk_time=NOW(),Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 						$getflotted=mysqli_result(mysqli_query($con,"SELECT d.ID FROM Regiment_IA as r,Depots as d,Pays as p WHERE r.Pays=p.Pays_ID AND p.Faction='$Faction' AND r.Lieu_ID='$Lieu_ID' AND r.ID=d.Reg_ID AND d.".$Stock_var." >='$Conso_Mun'"),0);
 						if(!$getflotted)
 						{
@@ -1396,10 +1357,10 @@ if($OfficierEMID >0) //xor $OfficierID >0
 							$depot_nom='le dépôt de <b>'.$depot_nom.'</b>';
 						if($Position ==34)
 						{
-							if($OfficierID >0)
-								UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
-							elseif($OfficierEMID >0)
-								UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
+//							if($OfficierID >0)
+//								UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
+//							elseif($OfficierEMID >0)
+//								UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
 							$mes='<div class="alert alert-warning">Votre artillerie bombarde les unités ennemies<br><b>'.$Conso_Mun.' Obus de '.$Arme_Cal.'mm</b> ont été attribués à l\'unité depuis '.$depot_nom.'</div>';
 							$img="<img src='images/attack.jpg' style='width:50%;'>";
 							$menu="<form action='index.php?view=ground_pldef' method='post'>
@@ -1417,7 +1378,7 @@ if($OfficierEMID >0) //xor $OfficierID >0
 					}
 					else{
                         $mes='<div class="alert alert-danger">Aucun dépôt disposant de la munition requise n\'a pu être trouvé!</div>';
-                        mail('binote@hotmail.com','ADA : DEBUG ground_em_ia_go','Faction = '.$Faction.' Lieu = '.$Lieu_ID.' Lat_min '.$Lat_min.' Lat_max '.$Lat_max.' Long_min '.$Long_min.' Long_max '.$Long_max.' Stock '.$Stock_var.' Conso '.$Conso_Mun);
+                        mail(EMAIL_LOG,'ADA : DEBUG ground_em_ia_go','Faction = '.$Faction.' Lieu = '.$Lieu_ID.' Lat_min '.$Lat_min.' Lat_max '.$Lat_max.' Long_min '.$Long_min.' Long_max '.$Long_max.' Stock '.$Stock_var.' Conso '.$Conso_Mun);
                     }
 				}
 				elseif(!$Arme_Art)
@@ -1436,15 +1397,12 @@ if($OfficierEMID >0) //xor $OfficierID >0
 					$CT_Spec=2+floor($Reput_Renf/10);
 				if($Credits >=$CT_Spec)
 				{
+				    $Credits -=$CT_Spec;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
 					if($Position ==48)
 					{
-						if($OfficierID >0)
-							UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
-						elseif($OfficierEMID >0)
-							UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
 						$mes='<div class="alert alert-warning">Vos troupes lancent un assaut sur les troupes défendant l\'aérodrome</div>';
 						$img="<img src='images/attack.jpg' style='width:50%;'>";
 						$menu="<form action='index.php?view=ground_atk_garnison' method='post'><input type='hidden' name='Cible' value='".$Depot."'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='".$Veh."'><input type='hidden' name='Mode' value='48'>
@@ -1463,15 +1421,12 @@ if($OfficierEMID >0) //xor $OfficierID >0
 					$CT_Spec=2+floor($Reput_Renf/10);
 				if($Credits >=$CT_Spec)
 				{
+                    $Credits -=$CT_Spec;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
 					if($Position ==38)
 					{
-						if($OfficierID >0)
-							UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
-						elseif($OfficierEMID >0)
-							UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
 						$mes='<div class="alert alert-warning">Vos troupes lancent un assaut sur la garnison ennemie</div>';
 						$img="<img src='images/attack.jpg' style='width:50%;'>";
 						$menu="<form action='index.php?view=ground_atk_garnison' method='post'><input type='hidden' name='Cible' value='".$Depot."'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='".$Veh."'><input type='hidden' name='Mode' value='38'>
@@ -1490,12 +1445,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
 					$CT_Spec=2+floor($Reput_Renf/10);
 				if($Credits >=$CT_Spec)
 				{
-					if($OfficierID >0)
-						UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
-					elseif($OfficierEMID >0)
-						UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
+                    $Credits -=$CT_Spec;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
 					$mes='<div class="alert alert-warning">Vos troupes cherchent à attaquer d\'éventuelles unités ennemies</div>';
 					$img="<img src='images/attack.jpg' style='width:50%;'>";
@@ -1510,12 +1462,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
 				$CT_Spec=4+floor($Reput_Renf/10);
 				if($Credits >=$CT_Spec)
 				{
-					if($OfficierID >0)
-						UpdateData("Officier","Credits",-$CT_Spec,"ID",$OfficierID);
-					elseif($OfficierEMID >0)
-						UpdateData("Officier_em","Credits",-$CT_Spec,"ID",$OfficierEMID);
+                    $Credits -=$CT_Spec;
 					$con=dbconnecti();
-					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
+					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Visible=1,Atk_Eni=0,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
 					$mes='<div class="alert alert-warning">Vos troupes cherchent à disperser d\'éventuelles unités d\'infanterie ennemies désorganisées</div>';
 					$img="<img src='images/attack.jpg' style='width:50%;'>";
@@ -1549,12 +1498,9 @@ if($OfficierEMID >0) //xor $OfficierID >0
 			elseif($Position ==23 or $Position ==24)
 			{
 			    if($Credits >=1){
-                    if($OfficierID >0)
-                        UpdateData("Officier","Credits",-1,"ID",$OfficierID);
-                    elseif($OfficierEMID >0)
-                        UpdateData("Officier_em","Credits",-1,"ID",$OfficierEMID);
+			        $Credits -=1;
                     $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Position='$Position' WHERE ID='$Reg'");
+                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Position='$Position' WHERE ID='$Reg'");
                     mysqli_close($con);
                     if($Position ==24)
                         $_SESSION['msg'] = 'Le navire se place en veille anti-sous-marine';
