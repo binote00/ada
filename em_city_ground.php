@@ -942,11 +942,11 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                     if ($Admin == 1) {
                         $Admin_txt = "Long=" . $Long . " / Lat=" . $Lat . " / Mines=" . $Mines_m . " / Reco=" . $Recce . " (" . $Recce_PlayerID . " - " . $Recce_PlayerID_TAL . " - " . $Recce_PlayerID_TAX . ")<br>
                         <a href='archives_ville.php?ville=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives Lieu</a> <a href='em_city_combats.php?id=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives des combats</a> <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>
-                        <a href='admin_city_reveal.php?id=" . $Cible . "&f=1' class='btn btn-danger'>Reveal Axe</a>
-                        <a href='admin_city_reveal.php?id=" . $Cible . "&f=2' class='btn btn-danger'>Reveal Allies</a>
-                        <a href='admin_city_recce.php?id=" . $Cible . "' class='btn btn-danger'>Recce</a>
-                        <a href='admin_city_meteo.php?id=" . $Cible . "&m=1' class='btn btn-danger'>Meteo+</a>
-                        <a href='admin_city_meteo.php?id=" . $Cible . "&m=2' class='btn btn-danger'>Meteo-</a>
+                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=1' class='btn btn-danger'>Reveal Axe</a>
+                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=2' class='btn btn-danger'>Reveal Allies</a>
+                        <a href='admin/admin_city_recce.php?id=" . $Cible . "' class='btn btn-danger'>Recce</a>
+                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=1' class='btn btn-danger'>Meteo+</a>
+                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=2' class='btn btn-danger'>Meteo-</a>
                         ";
                         //<a href='em_city_journal.php?id=".$Cible."' target='_blank' class='btn btn-primary'>Archives aériennes</a>";
                         $query_dem = "(SELECT DISTINCT Unit.Mission_Type_D,Pays.Pays_ID,Unit.Nom,Lieu.Recce,Lieu.ID FROM Unit,Lieu,Pays 
