@@ -1,4 +1,4 @@
-﻿<h1><?echo $Unite_Nom;?></h1>
+﻿<h1><?=$Unite_Nom?></h1>
 <h2>Temps libre</h2>
 <a class='btn btn-default' title="Remise en forme" href='index.php?view=escadrille_o'>Forme</a>
 <a class='btn btn-default' title="Service" href='index.php?view=escadrille_s'>Service</a>
