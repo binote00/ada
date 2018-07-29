@@ -112,7 +112,7 @@ if ($OfficierEMID > 0) {
                 $CT_Repa = $data['Reput'];
                 if ($CT_Repa < $CT_Repa_Min) $CT_Repa = $CT_Repa_Min;
                 if ($Repa_ok and $Repa >= $Repa_Nbr and $Credits >= $CT_Repa and $data['Reput'] < $CT_MAX)
-                    $Repa_txt = "<form action='em_prod_repa2.php' method='post'><input type='hidden' name='veh' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+                    $Repa_txt = "<form action='em/em_prod_repa2.php' method='post'><input type='hidden' name='veh' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
                 else
                     $Repa_txt = '';
                 $Rate = "<span class='text-danger'>0</span>";
