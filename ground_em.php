@@ -1,13 +1,13 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierID >0 xor $OfficierEMID >0)
 {
     $country=$_SESSION['country'];
-    include_once('./jfv_include.inc.php');
-    include_once('./jfv_ground.inc.php');
-    include_once('./jfv_txt.inc.php');
+    include_once './jfv_include.inc.php';
+    include_once './jfv_ground.inc.php';
+    include_once './jfv_txt.inc.php';
     /*if($OfficierID >0)
     {
         $con=dbconnecti();
@@ -197,7 +197,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                     if($List_div)$List_div='<h3>Divisions</h3>'.$List_div;
                     if($List_esc)$List_esc='<h3>Escadrilles</h3>'.$List_esc;
                     $armee_list.="<tr><td>".$data['Nom']."<br><a href='#clp-".$data['ID']."' data-toggle='collapse' class='bn btn-sm btn-primary'>Troupes</a><div class='collapse' id='clp-".$data['ID']."'>".$List_div."<hr>".$List_esc."</div></td>
-                        <td>".$data['Ville']."<form action='index.php?view=ar_chg_base' method='post'><input type='hidden' name='Armee' value='".$data['ID']."'>
+                        <td>".$data['Ville']."<form action='index.php?view=ground/ar_chg_base' method='post'><input type='hidden' name='Armee' value='".$data['ID']."'>
 						<select name='Base' class='form-control' style='width: 150px'><option value='0'>Ne pas changer</option>".$base_list."</select>
 						<input type='submit' value='Changer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
                     if($data['Cdt'])
@@ -213,7 +213,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             }
                             mysqli_free_result($result);
                         }
-                        $armee_list.="<td>".$Nom_Cdt."<br><i>".$Activite."</i><form action='index.php?view=quit_armee' method='post'><input type='hidden' name='Armee' value='".$Armee_Cdt."'><input type='hidden' name='Off' value='".$data['Cdt']."'>
+                        $armee_list.="<td>".$Nom_Cdt."<br><i>".$Activite."</i><form action='index.php?view=ground/quit_armee' method='post'><input type='hidden' name='Armee' value='".$Armee_Cdt."'><input type='hidden' name='Off' value='".$data['Cdt']."'>
 						<input type='submit' value='Retirer' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
                         $modal_txt='<table class="table table-striped"><thead><tr><th>Consigne</th><th>Lieu</th></tr></thead>';
                         if($data['Objectif']){
@@ -222,14 +222,14 @@ if($OfficierID >0 xor $OfficierEMID >0)
                         }
                         else
                             $modal_txt.='<tr><th>Objectif</th><td>Aucun';
-                        $modal_txt.='<form action="index.php?view=ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
+                        $modal_txt.='<form action="index.php?view=ground/ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
 						<select name="obj" class="form-control" style="width: 150px"><option value="0">Ne pas changer</option>'.$Lieux_obj.'</select>
 						<input type="submit" value="Changer" class="btn btn-warning btn-sm" onclick="this.disabled=true;this.form.submit();"></form></td></tr>';
                         if($data['limite_ouest'])
                             $modal_txt.='<tr><th>Limite Ouest</th><td>'.GetData("Lieu","ID",$data['limite_ouest'],"Nom");
                         else
                             $modal_txt.='<tr><th>Limite Ouest</th><td>Aucune';
-                        $modal_txt.='<form action="index.php?view=ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
+                        $modal_txt.='<form action="index.php?view=ground/ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
 						<select name="lo" class="form-control" style="width: 150px"><option value="0">Ne pas changer</option>'.$Lieux_obj.'</select>
 						<input type="submit" value="Changer" class="btn btn-warning btn-sm" onclick="this.disabled=true;this.form.submit();"></form></td></tr>';
                         if($data['limite_nord']){
@@ -237,21 +237,21 @@ if($OfficierID >0 xor $OfficierEMID >0)
                         }
                         else
                             $modal_txt.='<tr><th>Limite Nord</th><td>Aucune';
-                        $modal_txt.='<form action="index.php?view=ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
+                        $modal_txt.='<form action="index.php?view=ground/ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
 						<select name="ln" class="form-control" style="width: 150px"><option value="0">Ne pas changer</option>'.$Lieux_obj.'</select>
 						<input type="submit" value="Changer" class="btn btn-warning btn-sm" onclick="this.disabled=true;this.form.submit();"></form></td></tr>';
                         if($data['limite_est'])
                             $modal_txt.='<tr><th>Limite Est</th><td>'.GetData("Lieu","ID",$data['limite_est'],"Nom");
                         else
                             $modal_txt.='<tr><th>Limite Est</th><td>Aucune';
-                        $modal_txt.='<form action="index.php?view=ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
+                        $modal_txt.='<form action="index.php?view=ground/ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
 						<select name="le" class="form-control" style="width: 150px"><option value="0">Ne pas changer</option>'.$Lieux_obj.'</select>
 						<input type="submit" value="Changer" class="btn btn-warning btn-sm" onclick="this.disabled=true;this.form.submit();"></form></td></tr>';
                         if($data['limite_sud'])
                             $modal_txt.='<tr><th>Limite Sud</th><td>'.GetData("Lieu","ID",$data['limite_sud'],"Nom");
                         else
                             $modal_txt.='<tr><th>Limite Sud</th><td>Aucune';
-                        $modal_txt.='<form action="index.php?view=ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
+                        $modal_txt.='<form action="index.php?view=ground/ar_chg_obj" method="post"><input type="hidden" name="Armee" value='.$data['ID'].'>
 						<select name="ls" class="form-control" style="width: 150px"><option value="0">Ne pas changer</option>'.$Lieux_obj.'</select>
 						<input type="submit" value="Changer" class="btn btn-warning btn-sm" onclick="this.disabled=true;this.form.submit();"></form></td></tr>';
                         $modal_txt.='</table>';
@@ -287,7 +287,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             $fronts_list="<option value='5'>Arctique</option><option value='1'>Est</option><option value='4'>Nord</option>";
                         else
                             $fronts_list='';
-                        $armee_list.="<td>".GetFront($data['Front'])."<form action='index.php?view=ghq_chg_armee' method='post'><input type='hidden' name='Div' value='".$data['ID']."'>
+                        $armee_list.="<td>".GetFront($data['Front'])."<form action='index.php?view=ground/ghq_chg_armee' method='post'><input type='hidden' name='Div' value='".$data['ID']."'>
 						<select name='Front' class='form-control' style='width: 200px'><option value='99'>Aucun</option>".$fronts_list."</select>
 						<input type='submit' value='Changer' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
                     }
@@ -378,14 +378,14 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             }
                             mysqli_free_result($result);
                         }
-                        $div_list.="<td>".$Nom_Cdt."<br><i>".$Activite."</i><form action='index.php?view=quit_division' method='post'><input type='hidden' name='Off' value='".$data['Cdt']."'>
-                        <input type='Submit' value='Retirer' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
+                        $div_list.="<td>".$Nom_Cdt."<br><i>".$Activite."</i><form action='index.php?view=ground/quit_division' method='post'><input type='hidden' name='Off' value='".$data['Cdt']."'>
+                        <input type='submit' value='Retirer' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
                     }
                     else
                         $div_list.="<td></td>";*/
                     $div_list.='<td>'.$Armee_txt.'</td><td>'.$div_nbr_bat.'</td>';
                     if($Front ==99)
-                        $div_list.="<td>".GetFront($data['Front'])."<form action='index.php?view=ghq_chg_div' method='post'><input type='hidden' name='Div' value='".$Division_d."'>
+                        $div_list.="<td>".GetFront($data['Front'])."<form action='index.php?view=ground/ghq_chg_div' method='post'><input type='hidden' name='Div' value='".$Division_d."'>
 						<select name='Front' class='form-control' style='width: 200px'><option value='99'>Aucun</option><option value='5'>Arctique</option><option value='1'>Est</option><option value='2'>Méditerranéen</option><option value='4'>Nord</option><option value='0'>Ouest</option><option value='3'>Pacifique</option></select>
 						<input type='submit' value='Changer' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form></td>";
                     elseif($data['atk'])
@@ -416,7 +416,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 						<thead><tr><th colspan='2'>Ordre du jour</th></tr></thead>
 						<tr><td>Envoyer l'ordre du jour aux officiers de votre front (250 caractères max.)<td></tr>
 						<tr><td><textarea name='officier_msg' rows='5' cols='50' class='form-control'></textarea></td></tr>
-						<tr><td><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
+						<tr><td><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
 					</table></form>
 					</div><div class='col-lg-6 col-md-12'>
 					<form action='index.php?view=ground_em_orders' method='post'>

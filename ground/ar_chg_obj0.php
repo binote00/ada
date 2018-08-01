@@ -1,11 +1,11 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once '../jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0)
 {
     $armee=Insec($_POST['armee']);
     $country=$_SESSION['country'];
-    include_once('./jfv_include.inc.php');
+    include_once '../jfv_include.inc.php';
     $con=dbconnecti();
     $result=mysqli_query($con,"SELECT Front FROM Officier_em WHERE ID='$OfficierEMID'");
     if($result)
