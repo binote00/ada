@@ -1,14 +1,14 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 $AccountID=$_SESSION['AccountID'];
 if($_SESSION['AccountID'] >0)
 {
 	$OfficierEMID=$_SESSION['Officier_em'];
 	if($OfficierEMID >0)
 	{
-		include_once('./jfv_include.inc.php');
-		include_once('./jfv_txt.inc.php');
-		include_once('./jfv_access.php');
+		include_once './jfv_include.inc.php';
+		include_once './jfv_txt.inc.php';
+		include_once './jfv_access.php';
 		$country=$_SESSION['country'];
 		$Admin=GetData("Joueur","ID",$_SESSION['AccountID'],"Admin");
 		if($PlayerID >0)
@@ -36,7 +36,9 @@ if($_SESSION['AccountID'] >0)
 		}
 		if($Admin >0 or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint or $OfficierEMID ==$Officier_Rens or $OfficierEMID ==$Adjoint_Terre)
 		{
-			$Lieu=Insec($_GET['ville']);
+		    if (!$Lieu) {
+                $Lieu=Insec($_GET['ville']);
+            }
 			$con=dbconnecti();
 			$Lieu=mysqli_real_escape_string($con,$Lieu);
 			$result=mysqli_query($con,"SELECT Nom,Port_Ori,Pont_Ori,NoeudF_Ori,NoeudR,Industrie,BaseAerienne,Impass,Plage,Detroit,Flag FROM Lieu WHERE ID='$Lieu'");
@@ -152,11 +154,11 @@ if($_SESSION['AccountID'] >0)
 			$mes="<p>Ces données sont classifiées. <br>Votre rang ne vous permet pas d'accéder à ces informations.</p>";
 			$img="<img src='images/top_secret.gif'>";
 		}
-		$titre=$Lieu_Nom;
-		$mes=$Event;
-		include_once('./default_blank.php');
+		$modal_txt = $Event;
+//		$titre=$Lieu_Nom;
+//		$mes=$Event;
+//		include_once './default_blank.php';
 	}
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-?>

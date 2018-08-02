@@ -1,119 +1,37 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_inc_em.php');
-	include_once('./menu_em.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_inc_em.php';
+	include_once './menu_em.php';
 	if($GHQ or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM or $OfficierEMID ==$Officier_Rens)
 	{
-		include_once('./jfv_ground.inc.php');
-        $Tri=Insec($_POST['Tri']);
-		if(!$Tri)$Tri=10;
-		switch($Tri)
-		{
-			case 1:
-				$Tri='Pays';
-			break;
-			case 2:
-				$Tri='DefenseAA_temp';
-			break;
-			case 3:
-				$Tri='Industrie';
-			break;
-			case 4:
-				$Tri='NoeudF';
-			break;
-			case 5:
-				$Tri='Pont';
-			break;
-			case 6:
-				$Tri='QualitePiste';
-			break;
-			case 7:
-				$Tri='Port';
-			break;
-			case 8:
-				$Tri='Radar';
-			break;
-			case 9:
-				$Tri='Last_Attack';
-			break;
-			case 10:
-				$Tri='Nom';
-			break;
-			case 11:
-				$Tri='ValeurStrat';
-			break;
-			case 12:
-				$Tri='Couverture_PJ';
-			break;
-			case 13:
-				$Tri='Tour';
-			break;
-			case 14:
-				$Tri='Couverture_Nuit_PJ';
-			break;
-			case 15:
-				$Tri='Garnison';
-			break;
-			case 16:
-				$Tri='Fortification';
-			break;
-			case 17:
-				$Tri='Oil';
-			break;
-			case 18:
-				$Tri='Recce';
-			break;
-			case 19:
-				$Tri='Auto_repare';
-			break;
-			case 20:
-				$Tri='Depot_prive';
-			break;
-			case 21:
-				$Tri='Port_level';
-			break;
-			default:
-				$Tri='Nom';
-			break;
-		}
-		/*if($country ==1)
-			$QFlag_txt="Flag IN (1,15,18,19,20)";
-		elseif($country ==2)
-			$QFlag_txt="Flag IN (2,3,5,10,35)";
-		elseif($country ==6)
-			$QFlag_txt="Flag IN (6,24)";
-		elseif($country ==7 and $Front ==3)
-			$QFlag_txt="Flag IN (4,7)";
-		elseif($country ==8)
-			$QFlag_txt="Flag IN (8,17)";
-		else*/
-			$QFlag_txt="Flag='$country' AND Zone !=6";
+		include_once './jfv_ground.inc.php';
+		$QFlag_txt="Flag=$country AND Zone !=6";
 		if($GHQ)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt;
 		elseif($Front ==3)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >67 ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >67";
 		elseif($Front ==2)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude <43 AND Longitude <50 ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude <43 AND Longitude <50";
 		elseif($Front ==1)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >14 AND Longitude <50 AND Latitude >41 AND Latitude <=50.5 ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >14 AND Longitude <50 AND Latitude >41 AND Latitude <=50.5";
 		elseif($Front ==4)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >14 AND Longitude <50 AND Latitude >50.5 ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude >14 AND Longitude <50 AND Latitude >50.5";
 		elseif($Front ==5)
-			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude <50 AND Latitude >60 ORDER BY $Tri DESC,Nom ASC";
+			$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Longitude <50 AND Latitude >60";
 		else
 		{
 			if($country ==7)
-				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude <60 AND Longitude <=14 ORDER BY $Tri DESC,Nom ASC";
+				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude <60 AND Longitude <=14";
 			elseif($country ==4)
-				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude >=40 AND Latitude <60 AND Longitude <=14 ORDER BY $Tri DESC,Nom ASC";
+				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude >=40 AND Latitude <60 AND Longitude <=14";
 			else
-				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude >=43 AND Latitude <60 AND Longitude <=14 ORDER BY $Tri DESC,Nom ASC";
+				$query="SELECT * FROM Lieu WHERE ".$QFlag_txt." AND Latitude >=43 AND Latitude <60 AND Longitude <=14";
 		}
 		$con=dbconnecti();
 		$result=mysqli_query($con,$query);
@@ -190,32 +108,15 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
         $_SESSION['msg']=false;
         $_SESSION['msg_red']=false;
 		echo $Alert."<h3>Informations nationales</h3><div class='row'><div class='col-md-6'>".$Nat."</div><div class='col-md-6'><div class='alert alert-info'>".$Rets."</div></div></div>";?>
-	    <div style='overflow:auto; width: 100%;'><table class='table table-striped table-condensed'>
+	    <div style='overflow:auto; width: 100%;'><table class='table table-dt table-striped table-condensed'>
 		<thead><tr>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="10"><input type='Submit' class='btn btn-sm btn-default' value='Nom'></form></th>
-			<th title='Valeur Stratégique'><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="11"><input type='Submit' class='btn btn-sm btn-default' value='Valeur'></form></th>
-			<th><span class='btn btn-sm btn-default'>Terrain</span></th>
-			<th><span class='btn btn-sm btn-default'><a href='#' class='popup'>Infr<span>Infranchissable. Direction depuis laquelle aucun déplacement n'est possible depuis ou vers ce lieu</span></a></span></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="1"><input type='submit' class='btn btn-sm btn-default' value='Pays'></form></th>
-			<th title='Troupes terrestres contrôlant le lieu'><span class='btn btn-sm btn-default'>Controle</span></th>
-			<th><span class='btn btn-sm btn-default'>Action</span></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="2"><input type='Submit' class='btn btn-sm btn-default' value='DCA'></form></th>
-			<th title='Fortifications'><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="16"><input type='submit' class='btn btn-sm btn-default' value='Fort'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="3"><input type='Submit' class='btn btn-sm btn-default' value='Industrie'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="17"><input type='Submit' class='btn btn-sm btn-default' value='Raffinerie'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="4"><input type='Submit' class='btn btn-sm btn-default' value='Gare'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="21"><input type='Submit' class='btn btn-sm btn-default' value='Port'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="7"><input type='Submit' class='btn btn-sm btn-default' value='Docks'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="5"><input type='Submit' class='btn btn-sm btn-default' value='Pont'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="6"><input type='Submit' class='btn btn-sm btn-default' value='Piste'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="13"><input type='Submit' class='btn btn-sm btn-default' value='Tour'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="8"><input type='Submit' class='btn btn-sm btn-default' value='Radar'></form></th>
-			<th><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="15"><input type='Submit' class='btn btn-sm btn-default' value='Garnison'></form></th>
-			<th title='Camouflage du site'><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="18"><input type='Submit' class='btn btn-sm btn-default' value='Cam'></form></th>
-			<th title='Réparations automatiques désactivées : Si le lieu a une valeur stratégique non nulle et que depuis au moins 3 jours ce lieu est vierge de toute attaque, les infrastructures détruites (0%) sont remises à 1%'><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="19"><input type='Submit' class='btn btn-sm btn-default' value='Auto'></form></th>
-			<th title='Dépôt réservé aux unités terrestres'><form action='index.php?view=ville' method='post'><input type='hidden' name='Tri' value="20"><input type='submit' class='btn btn-sm btn-default' value='Depot'></form></th>
+            <th>Nom</th><th title='Valeur Stratégique'>Valeur</th><th>Terrain</th><th><a href='#' class='popup'>Infr<span>Infranchissable. Direction depuis laquelle aucun déplacement n'est possible depuis ou vers ce lieu</span></a></th>
+            <th>Pays</th><th title='Troupes terrestres contrôlant le lieu'>Flag</th><th>Action</th><th title='Défense Contre Avions'>DCA</th><th title='Fortifications'>Fort</th><th>Industrie</th><th>Raffinerie</th>
+            <th>Gare</th><th>Port</th><th>Docks</th><th>Pont</th><th>Piste</th><th>Tour</th><th>Radar</th><th>Garnison</th><th title='Camouflage du site'>Cam</th>
+            <th><a href='#' class='popup'>Auto<span>Réparations automatiques désactivées : Si le lieu a une valeur stratégique non nulle et qu'aucune attaque n'a eu lieu ici depuis au moins 3 jours, les infrastructures détruites (0%) sont remises à 1%</span></a></th>
+            <th><a href='#' class='popup'>Depot<span>Dépôt réservé aux unités terrestres</span></a></th>
 		</tr></thead>
-<?		if($result)
+<?php	if($result)
 		{
 			while($data=mysqli_fetch_array($result)) 
 			{
@@ -226,16 +127,23 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 					$dca_txt='N/A';
 					$data['Fortification']='N/A';
 				}
-				elseif($data['DefenseAA_temp'] >0)
-				{
-					if($data['Flag'] ==$country and ($GHQ or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM))
-						$dca_txt=$data['DefenseAA_temp']." <form action='index.php?view=ground_em2' method='post'><input type='hidden' name='lieu' value='".$ID_city."'><input type='hidden' name='dcad' value='1'>
-						<input type='submit' value='-' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+				elseif($data['DefenseAA_temp'] >0) {
+                    if ($data['Flag'] == $country and ($GHQ or $OfficierEMID == $Commandant or $OfficierEMID == $Officier_EM)) {
+                        $dca_txt = $data['DefenseAA_temp'].'<div class="row" style="padding-left: 0.5rem;"><div style="display:inline-block">';
+                        include 'form/f_em_dca_up.php';
+                        $dca_txt .= '</div><div  style="display:inline-block">';
+                        include 'form/f_em_dca_down.php';
+                        $dca_txt.='</div></div>';
+//                        "<form action='index.php?view=ground_em2' method='post'><input type='hidden' name='lieu' value='".$ID_city."'><input type='hidden' name='dcad' value='1'>
+//						<input type='submit' value='-' class='btn btn-danger btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+                    }
 					else
 						$dca_txt=$data['DefenseAA_temp'];
 				}
-				else
-					$dca_txt="<span class='text-danger'>0</span>";		
+				else {
+                    $dca_txt="<span class='text-danger'>0</span>";
+                    include 'form/f_em_dca_up.php';
+                }
 				if(!$data['Pont'] and $data['Pont_Ori'])
 					$Pont="<span class='text-danger'>Détruit</span>";
 				elseif($data['Pont'] ==100 and $data['Pont_Ori'])
@@ -244,7 +152,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
                     $Pont="<span class='text-danger'>".$data['Pont']."%</span>";
                 }
 				else
-					$Pont='N/A';
+					$Pont='Aucun';
                 if($Admin and $data['Pont_Ori'])
                     $Pont.='<br><form action="ville_pont_des.php" method="post"><input type="hidden" name="lieu" value="'.$ID_city.'"><input type="submit" value="Sauter" class="btn btn-sm btn-danger" onclick="this.disabled=true;this.form.submit();"></form>';
 				if(!$data['Port'] and $data['Port_Ori'])
@@ -254,7 +162,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				elseif($data['Port'] <100 and $data['Port_Ori'])
 					$Port="<span class='text-danger'>".$data['Port']."%</span>";
 				else
-					$Port='N/A';
+					$Port='Aucun';
 				if($data['Port_Ori'])
 				{
 					if($data['Port_level'] ==3)
@@ -269,7 +177,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				if($data['BaseAerienne'] and !$data['QualitePiste'])
 					$Piste="<img src='images/base".$data['BaseAerienne'].$data['Zone'].".png'><br><span class='text-danger'>Détruit</span>";
 				elseif(!$data['BaseAerienne'])
-					$Piste='N/A';
+					$Piste='Aucune';
 				elseif($data['QualitePiste'] <100)
 					$Piste="<img src='images/base".$data['BaseAerienne'].$data['Zone'].".png'><br><span class='text-danger'>".$data['QualitePiste']."%</span>";
 				else
@@ -277,7 +185,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				if($data['BaseAerienne'] and !$data['Tour'])
 					$Tour="/<span class='text-danger'>Détruite</span>";
 				elseif(!$data['BaseAerienne'])
-					$Tour='N/A';
+					$Tour='Aucune';
 				elseif($data['Tour'] <100)
 					$Tour="/<span class='text-danger'>".$data['Tour']."%</span>";
 				else
@@ -289,7 +197,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				elseif($data['NoeudF'] <100 and $data['NoeudF_Ori'])
 					$Gare="<span class='text-danger'>".$data['NoeudF']."%</span>";
 				else
-					$Gare='N/A';
+					$Gare='Aucune';
 				if(!$data['Radar'] and $data['Radar_Ori'])
 					$Radar="<span class='text-danger'>Détruit</span>";
 				elseif($data['Radar'] ==100 and $data['Radar_Ori'])
@@ -297,7 +205,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				elseif($data['Radar'] <100 and $data['Radar_Ori'])
 					$Radar="<span class='text-danger'>".$data['Radar']."%</span>";
 				else
-					$Radar='N/A';
+					$Radar='Aucun';
 				if(!$data['Industrie'] and $data['TypeIndus'])
 					$Usine="<span class='text-danger'>Détruite</span>";
 				elseif($data['Industrie'] ==100 and $data['TypeIndus'])
@@ -305,11 +213,11 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				elseif($data['Industrie'] <100 and $data['TypeIndus'])
 					$Usine="<span class='text-danger'>".$data['Industrie']."%</span>";
 				else
-					$Usine='N/A';
+					$Usine='Aucune';
 				if($data['Oil'] >0)
 					$Oil="<b>Niv ".$data['Oil']."</b>";
 				else
-					$Oil='N/A';
+					$Oil='Aucune';
 				if($data['Zone'] ==6)
 				{				
 					$Nom="<span class='text-primary'>".$data['Nom']."</span>";
@@ -335,8 +243,8 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 						$Depot='Non';
 				}
 				else
-					$Depot='N/A';
-				$Max_Garnison=($data['ValeurStrat']*200)+100;
+					$Depot='Aucun';
+				$Max_Garnison=($data['ValeurStrat']*100)+100;
 				if(!$data['Garnison'])$data['Garnison']='<span class="text-danger">0</span>';
 				$Cible="<form action='index.php?view=em_city_ground' method='post'><input type='hidden' name='id' value='".$ID_city."'>
 						<input type='submit' value='Détail' class='btn btn-primary btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";

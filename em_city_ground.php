@@ -940,8 +940,12 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                     $Plage_txt = "<img src='images/plage.jpg' title='Zone propice au débarquement'>";
                 if ($Officier_acces or $Admin == 1) {
                     if ($Admin == 1) {
+                        $Lieu = $Cible;
+                        require_once 'em/archives_ville.php';
+                        $Archives_txt = Output::viewModal('em-archives-ville', 'Archives', $modal_txt).Output::linkModal('em-archives-ville', 'Archives Lieu', 'btn btn-primary');
                         $Admin_txt = "Long=" . $Long . " / Lat=" . $Lat . " / Mines=" . $Mines_m . " / Reco=" . $Recce . " (" . $Recce_PlayerID . " - " . $Recce_PlayerID_TAL . " - " . $Recce_PlayerID_TAX . ")<br>
-                        <a href='archives_ville.php?ville=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives Lieu</a> <a href='em_city_combats.php?id=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives des combats</a> <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>
+                        ".$Archives_txt."
+                        <a href='em_city_combats.php?id=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives des combats</a> <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>
                         <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=1' class='btn btn-danger'>Reveal Axe</a>
                         <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=2' class='btn btn-danger'>Reveal Allies</a>
                         <a href='admin/admin_city_recce.php?id=" . $Cible . "' class='btn btn-danger'>Recce</a>

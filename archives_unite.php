@@ -1,5 +1,5 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
+﻿<?php
+require_once 'jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {
 	$Unite=false;
@@ -8,8 +8,8 @@ if(isset($_SESSION['AccountID']))
 	if($OfficierEMID >0 or $PlayerID >0)
 	{
 		$country=$_SESSION['country'];
-		include_once('./jfv_include.inc.php');
-		include_once('./jfv_txt.inc.php');
+		include_once 'jfv_include.inc.php';
+		include_once 'jfv_txt.inc.php';
 		if($OfficierEMID >0)
 		{
 			$con=dbconnecti();
@@ -171,7 +171,7 @@ if(isset($_SESSION['AccountID']))
 		if($noaccess)
 		{
 			$mes="Ces données sont classifiées. Votre rang ne vous permet pas d'accéder à ces informations.";
-			include_once('./menu_escadrille.php');
+			include_once 'view/menu_escadrille.php';
 			echo "<table class='table'>
 				<tr><td><img src='images/top_secret.gif'></td></tr>
 				<tr><td>Ces données sont classifiées.</td> </tr>
@@ -211,10 +211,9 @@ if(isset($_SESSION['AccountID']))
 			<tr><th>Dotation d'origine</th></tr>
 			<tr><td>".$Dotation_Base."</td></tr>
 			<tr><th>Base de formation : ".$Base_ori."</th></tr></table></div>";
-			include_once('./default_blank.php');
+			include_once 'default_blank.php';
 		}
 	}
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-?>

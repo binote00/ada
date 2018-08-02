@@ -26,4 +26,3 @@ echo "<a href='index.php?view=esc_gestion' class='btn btn-default' title='Gérer
 		<a href='index.php?view=esc_gestionpers' class='btn btn-default' title='Gérer le personnel spécialisé'>Personnel</a>
 		<a class='btn btn-warning' title='Urgences' href='index.php?view=esc_gestioncdt0_c'>Urgence</a>";
 //<a href='index.php?view=esc_archives' class='btn btn-default' title='Consulter les archives'>Archives</a>
-?>
