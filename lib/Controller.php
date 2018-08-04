@@ -7,8 +7,9 @@
 
 class Controller
 {
-    use DBManager;
-
+    /**
+     * @return string
+     */
     protected static function getClassName()
     {
         return get_called_class();
@@ -18,7 +19,7 @@ class Controller
      * @param $id
      * @return mixed
      */
-    protected static function getById($id)
+    public static function getById($id)
     {
         return DBManager::getData(self::getClassName(), '*', 'ID', $id, '', '', '', 'OBJECT');
     }
@@ -28,7 +29,7 @@ class Controller
      * @param mixed $value
      * @return mixed
      */
-    protected static function getByField($field, $value)
+    public static function getByField($field, $value)
     {
         return DBManager::getData(self::getClassName(), '*', $field, $value, '', '', '', 'OBJECT');
     }
@@ -39,7 +40,7 @@ class Controller
      * @param string $select
      * @return mixed
      */
-    protected static function getSelectByField($field, $value, $select)
+    public static function getSelectByField($field, $value, $select)
     {
         return DBManager::getData(self::getClassName(), $select, $field, $value, '', '', '', 'OBJECT');
     }
@@ -50,7 +51,7 @@ class Controller
      * @param mixed $value
      * @return mixed
      */
-    protected static function setById($id, $field, $value)
+    public static function setById($id, $field, $value)
     {
         return DBManager::setData(self::getClassName(), $field, $value, 'ID', $id);
     }

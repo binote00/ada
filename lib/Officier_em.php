@@ -5,14 +5,7 @@
  * Time: 14:29
  */
 
-class Officier_em
+class Officier_em extends Controller
 {
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getById($id)
-    {
-        return DBManager::getData('Officier_em', '*', 'ID', $id, '', '', '', 'OBJECT');
-    }
+
 }

@@ -110,7 +110,7 @@ trait DBManager
     private static function bindValues($result, $params)
     {
         if (is_array($params)) {
-            $nbr = 0;
+            $nbr = 1;
             foreach ($params as $param) {
                 if ($param != 'NOW()') {
                     $result->bindValue($nbr, $param, 2);
@@ -192,7 +192,7 @@ trait DBManager
      * @param string $fetch
      * @return array|bool|int|mixed|PDOStatement
      */
-    public static function getDataSQL($sql, $params, $fetch = 'RESULT')
+    public static function getDataSQL($sql, $params = '', $fetch = 'RESULT')
     {
         $dbh = DB::connect();
         $result = $dbh->prepare($sql);

@@ -8,36 +8,6 @@
 class Lieu extends Controller
 {
     /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getById($id)
-    {
-        return parent::getById($id);
-    }
-
-    /**
-     * @param string $field
-     * @param mixed $value
-     * @return mixed
-     */
-    public static function getByField($field, $value)
-    {
-        return parent::getByField($field, $value);
-    }
-
-    /**
-     * @param int $id
-     * @param string $field
-     * @param mixed $value
-     * @return mixed
-     */
-    public static function setById($id, $field, $value)
-    {
-        return parent::setById($id, $field, $value);
-    }
-
-    /**
      * @param int $nation
      * @return array|bool|int|mixed|PDOStatement
      */
