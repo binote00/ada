@@ -525,7 +525,7 @@ if($ground_em_ia_naval == true) //Navire
                         if($Regs_div)
                             $Decharger="<form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='Dech' value='".$Fret."'>
                             <select name='Reg_div' class='form-control' style='width: 150px'>".$Regs_div."</select>
-                            <input type='Submit' value='Ravitailler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+                            <input type='submit' value='Ravitailler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
                     }*/
                 }
                 if($Vehicule ==5124 and $Longitude <-52 and ($country ==2 or $country ==7))
@@ -562,8 +562,19 @@ if($ground_em_ia_naval == true) //Navire
                     mysqli_free_result($resultgr);
                 }
                 if($Regs_gr)
-                    $Atk_Options="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><select name='Reg_gr' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Regs_gr."</select><input class='btn btn-sm btn-warning' type='submit' value='Ravitailler un navire' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                <td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Ravitailler un navire en pleine mer</span></a></td></tr>";
+                    $Atk_Options="<tr>
+                                      <td>
+                                          <form action='index.php?view=ground_em_ia_go' method='post'>
+                                            <input type='hidden' name='Unit' value='".$Unit."'>
+                                            <select name='Reg_gr' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Regs_gr."</select>
+                                            <input class='btn btn-sm btn-warning' type='submit' value='Ravitailler un navire' onclick='this.disabled=true;this.form.submit();'>
+                                          </form>
+                                      </td>
+                                      <td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td>
+                                      <td>0</td>
+                                      <td>N/A</td>
+                                      <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Ravitailler un navire en pleine mer</span></a></td>
+                                 </tr>";
             }
             elseif($Vehicule ==5392)
                 $Atk_Options="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='fretd' value='1'><select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Fret_options."</select><input class='btn btn-sm btn-warning' type='submit' value='Charger' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une quantité minimale est nécessaire dans le dépôt pour pouvoir transporter du fret</span></a></td></tr>";
@@ -590,8 +601,8 @@ if($ground_em_ia_naval == true) //Navire
         {
             if($Meteo >$Meteo_Move_Limit)
             {
-                $CT_Bomb=2-$Sec_EM;
-                $CT_Torp=4-$Sec_EM;
+                $CT_Bomb=0; //2-$Sec_EM;
+                $CT_Torp=0; //4-$Sec_EM;
                 if($Sub_IA)
                 {
                     $Pos_torp=28;
@@ -629,22 +640,22 @@ if($ground_em_ia_naval == true) //Navire
                                     <td>".$Range."m</td>
                                     <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tentative de repérage et de grenadage d'éventuels sous-marins ennemis présents dans la même zone.</span></a></td></tr>";
                 }
-                elseif($Categorie ==25 and $Detroit >0 and $Credits >=4 and $Mines_m <100) //Mouilleur mines
+                elseif($Categorie ==25 and $Detroit >0 and $Mines_m <100) //Mouilleur mines
                 {
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_miner' method='post'>
                                 <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu."'>
                                 <input type='submit' value='Miner' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                <td><img src='images/CT4.png' title='Montant en Crédits Temps que nécessite cette action'><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                 <td>1 Jour</td>
                                 <td>".$Range."m</td>
                                 <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Mouiller des mines marines dans la zone</span></a></td></tr>";
                 }
-                elseif($Categorie ==19 and $Detroit >0 and $Credits >=8) //Dragueur mines
+                elseif($Categorie ==19 and $Detroit >0) //Dragueur mines
                 {
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_deminer' method='post'>
                                 <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu."'>
-                                <input type='Submit' value='Deminer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                <td><img src='images/CT8.png' title='Montant en Crédits Temps que nécessite cette action'><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                <input type='submit' value='Deminer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
+                                <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                 <td>1 Jour</td>
                                 <td>".$Range."m</td>
                                 <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Détecter et éventuellement retirer des mines marines dans la zone</span></a></td></tr>";
@@ -675,7 +686,7 @@ if($ground_em_ia_naval == true) //Navire
                         if($Range >$Max_Range)$Range=$Max_Range;
                         $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Bomb."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='30'>
                                     <input type='submit' value='Engagement' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                    <td><div class='i-flex'><img src='images/CT".$CT_Bomb.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                    <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
                                     <td>".$Range."m</td>
                                     <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Bombardement visant une unité ennemie sur le même lieu. Compte comme action du jour.</span></a></td></tr>";
@@ -722,16 +733,12 @@ if($ground_em_ia_naval == true) //Navire
                     elseif($Skill ==170)
                         $Range*=(1+((20*$Rudels)/10));
                     $Range=round($Range);
-                    if($Torp_IA){
+                    if($Torp_IA)
                         $Pos_torp=40;
-                        $Torp_CT="<img src='images/CT".$CT_Torp.".png' title='Montant en Crédits Temps que nécessite cette action'>";
-                    }
-                    else
-                        $CT_Torp=0;
                     if($Credits >=$CT_Torp or $Sub_IA)
                         $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Torp."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='".$Pos_torp."'>
                                     <input type='submit' value='Torpillage' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                    <td><div class='i-flex'>".$Torp_CT."<a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                    <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
                                     <td>".$Range."m</td>
                                     <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Vous ne pourrez cibler que les unités détectées au préalable par une reco. Vérifiez la présence d'unités détectées dans la fenêtre de situation.</span></a></td></tr>";
@@ -914,7 +921,7 @@ if($ground_em_ia_naval == true) //Navire
                 mysqli_close($con);
                 $Enis_Port_combi=$Enis_Port+$Enis2_Port;
                 if($Enis_Port_combi)
-                    $Renforts_txt='<tr><td colspan="3" class="text-center text-danger">Réparation impossible<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Ce navire ne peut être réparé sur une zone de combat</span></a></td></tr>';
+                    $Renforts_txt='<tr><td colspan="2" class="text-center text-danger">Réparation impossible</td><td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Ce navire ne peut être réparé sur une zone de combat</span></a></td></tr>';
                 elseif(!$Move and $Credits >=$CT_cale and (
                         ($HP<$HP_max and $HP>0) or
                         ($Vehicule_Nbr<1 and ($Vehicule ==5001 or $Vehicule ==5124 or $Type_Veh ==37 or $Type_Veh ==14)) or
@@ -943,13 +950,13 @@ if($ground_em_ia_naval == true) //Navire
                                         <td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Des infrastructures portuaires sous le contrôle de votre faction sont nécessaires pour permettre les réparations des navires à cet endroit</span></a></td>
                                    </tr>';
                 else
-                    $Renforts_txt='<tr><td colspan="3" class="text-center text-danger">Réparation impossible<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Ce navire ne peut être réparé actuellement</span></a></td></tr>';
+                    $Renforts_txt='<tr><td colspan="2" class="text-center text-danger">Réparation impossible</td><td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Ce navire ne peut être réparé actuellement</span></a></td></tr>';
             }
             else
-                $Renforts_txt='<tr><td colspan="3" class="text-center text-danger">Réparation impossible<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Les infrastructures de ce port ne permettent pas de réparations pour des navires de ce type</span></a></td></tr>';
+                $Renforts_txt='<tr><td colspan="2" class="text-center text-danger">Réparation impossible</td><td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Les infrastructures de ce port ne permettent pas de réparations pour des navires de ce type</span></a></td></tr>';
         }
         else
-            $Renforts_txt='<tr><td colspan="3" class="text-center text-danger">Réparation impossible<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Des infrastructures portuaires sous le contrôle de votre faction sont nécessaires pour permettre les réparations des navires à cet endroit</span></a></td></tr>';
+            $Renforts_txt='<tr><td colspan="2" class="text-center text-danger">Réparation impossible</td><td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Des infrastructures portuaires sous le contrôle de votre faction sont nécessaires pour permettre les réparations des navires à cet endroit</span></a></td></tr>';
         if($HP_max)
             $hp_good=round(($HP/$HP_max)*100);
         else
@@ -966,7 +973,7 @@ if($ground_em_ia_naval == true) //Navire
                                 <ul>
                                     <li>Chaque action du jour réduit cette valeur de 1. D\'autres actions également comme le déplacement, la riposte de la DCA, l\'envoi des avions de bord en mission, la riposte depuis une position d\'appui ou encore toute action offensive (engagement, bombardement côtier, etc...) réduit cette valeur de 1.</li>
                                     <li>Lorsque cette valeur atteint 0, le navire ne peut plus effectuer aucune action offensive ni choisir de position tactique (excepté la dispersion et l\'écran de fumée).</li>
-                                    <li>Dès que le navire rejoint un port allié de valeur 4 ou supérieur, il peut se ravitailler (<img src="images/action_jour_icon.png" alt="Action du Jour"> + <img src="images/CT4.png" alt="Crédits Temps">) et remonter la valeur de jours en mer à son maximum.</li>
+                                    <li>Dès que le navire rejoint un port allié de valeur 4 ou supérieur, il peut se ravitailler (<img src="images/action_jour_icon.png" alt="Action du Jour">) et remonter la valeur de jours en mer à son maximum.</li>
                                     <li>Les navires cargos peuvent ravitailler les navires de leur nation en mer, cette action comptant comme action du jour.</li>
                                 </ul>
                             </span>

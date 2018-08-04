@@ -209,10 +209,9 @@ if($OfficierEMID >0)
 		}
 		elseif($Reset ==6 and !$Move)
 		{
-			if($Division_reg >0 and $Lieu >0 and $Credits >=24)
+			if($Division_reg >0 and $Lieu >0)
 			{
 				$Front_Dest=GetFrontByCoord($Lieu);
-                $Credits -= 24;
 				$con=dbconnecti();
 				$reset1=mysqli_query($con,"UPDATE Division SET Front='$Front_Dest',Base='$Lieu' WHERE ID='$Division_reg'");
 				$reset2=mysqli_query($con,"UPDATE Regiment_IA SET Front='$Front_Dest',Move=1,CT=$Credits WHERE ID='$Reg'");
@@ -325,7 +324,6 @@ if($OfficierEMID >0)
             {
                 if($Credits >=4)
                 {
-                    $Credits -=4;
                     $con=dbconnecti();
                     if($Conso)$reset_l=mysqli_query($con,"UPDATE Lieu SET Stock_Essence_1=Stock_Essence_1-".$Conso." WHERE ID='$Lieu_ID'");
                     $reset_r=mysqli_query($con,"UPDATE Regiment_IA as r,Cible as c SET r.Visible=0,r.Move=1,r.Autonomie=c.Autonomie,r.Avions=c.Hydra_Nbr,r.CT=$Credits WHERE r.Vehicule_ID=c.ID AND r.ID='$Reg'");
@@ -1229,9 +1227,9 @@ if($OfficierEMID >0)
 			}
 			elseif($Position ==30 and !$Move)
 			{
-				if($Credits >=$CT_Action and $CT_Action >0)
-				{
-                    $Credits -=$CT_Action;
+//				if($Credits >=$CT_Action and $CT_Action >0)
+//				{
+//                    $Credits -=$CT_Action;
 					$con=dbconnecti();
 					$reset2=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Position='$Position',Visible=1,Move=1".$Autonomie_txt." WHERE ID='$Reg'");
 					mysqli_close($con);
@@ -1240,7 +1238,7 @@ if($OfficierEMID >0)
 					$menu="<form action='index.php?view=ground_pldef' method='post'>
 					<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='1'>
 					<input type='submit' value='Tirer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
-				}
+//				}
 			}
 			/*elseif($Position ==31) //Anciennes unités Pacifique
 			{
@@ -1300,12 +1298,13 @@ if($OfficierEMID >0)
 					mysqli_free_result($result1);
 					unset($dataa);
 				}
-				$CT_Spec=floor($Reput_Renf/10);
-				if($OfficierEMID)
-					$CT_Off=2;
-				else
-					$CT_Off=4;
-				if($Position ==34)$CT_Spec+=$CT_Off;
+//				$CT_Spec=floor($Reput_Renf/10);
+//				if($OfficierEMID)
+//					$CT_Off=2;
+//				else
+//					$CT_Off=4;
+//				if($Position ==34)$CT_Spec+=$CT_Off;
+                $CT_Spec = 0;
 				if($Credits >=$CT_Spec and $Conso_Mun and ($Arme_Art or $Arme_AT))
 				{
 				    if($Arme_Art)
@@ -1390,11 +1389,12 @@ if($OfficierEMID >0)
 			}
 			elseif($Position ==48 and !$Move)
 			{
-				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
-				if($OfficierEMID)
-					$CT_Spec=floor($Reput_Renf/10);
-				else
-					$CT_Spec=2+floor($Reput_Renf/10);
+//				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
+//				if($OfficierEMID)
+//					$CT_Spec=floor($Reput_Renf/10);
+//				else
+//					$CT_Spec=2+floor($Reput_Renf/10);
+                $CT_Spec = 0;
 				if($Credits >=$CT_Spec)
 				{
 				    $Credits -=$CT_Spec;
@@ -1414,11 +1414,12 @@ if($OfficierEMID >0)
 			}
 			elseif($Position ==38 and !$Move)
 			{
-				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
-				if($OfficierEMID)
-					$CT_Spec=floor($Reput_Renf/10);
-				else
-					$CT_Spec=2+floor($Reput_Renf/10);
+//				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
+//				if($OfficierEMID)
+//					$CT_Spec=floor($Reput_Renf/10);
+//				else
+//					$CT_Spec=2+floor($Reput_Renf/10);
+                $CT_Spec = 0;
 				if($Credits >=$CT_Spec)
 				{
                     $Credits -=$CT_Spec;
@@ -1438,11 +1439,12 @@ if($OfficierEMID >0)
 			}
 			elseif($Position ==36 and !$Move)
 			{
-				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
-				if($OfficierEMID)
-					$CT_Spec=floor($Reput_Renf/10);
-				else
-					$CT_Spec=2+floor($Reput_Renf/10);
+//				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
+//				if($OfficierEMID)
+//					$CT_Spec=floor($Reput_Renf/10);
+//				else
+//					$CT_Spec=2+floor($Reput_Renf/10);
+                $CT_Spec = 0;
 				if($Credits >=$CT_Spec)
 				{
                     $Credits -=$CT_Spec;
@@ -1458,8 +1460,9 @@ if($OfficierEMID >0)
 			}
 			elseif($Position ==39 and !$Move)
 			{
-				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
-				$CT_Spec=4+floor($Reput_Renf/10);
+//				$Reput_Renf=GetData("Cible","ID",$Veh,"Reput");
+//				$CT_Spec=4+floor($Reput_Renf/10);
+                $CT_Spec = 0;
 				if($Credits >=$CT_Spec)
 				{
                     $Credits -=$CT_Spec;

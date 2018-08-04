@@ -1,11 +1,11 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
 	$ouvriers=Insec($_POST['ouvriers']);
 	$recce=Insec($_POST['recce']);
 	$usine=Insec($_POST['usine']);
@@ -22,7 +22,7 @@ if($OfficierEMID >0)
 	$lieu=Insec($_POST['lieu']);
 	$depot_off=Insec($_POST['depot_off']);
 	$auto_repa=Insec($_POST['auto_repa']);
-	include_once('./jfv_inc_em.php');
+	include_once './jfv_inc_em.php';
 	$no=false;
 	if($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM or $GHQ or $Admin)
 	{
@@ -327,12 +327,12 @@ if($OfficierEMID >0)
 			echo "<p>Vos ordres ont été exécutés!</p>";
 		}
 		if($GHQ)
-			echo "<a href='index.php?view=ville' class='btn btn-default' title='Retour'>Retour au menu</a>";
+		    Output::linkBtn('index.php?view=ville', 'Retour au menu');
 		else
 		{
 			if($lieu)
-				echo "<form action='index.php?view=ground_em1' method='post'><input type='hidden' name='lieu' value='".$lieu."'><input type='Submit' value='Retour' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>"; //lieu
-			echo "<a href='index.php?view=ground_em_infras' class='btn btn-default' title='Retour'>Retour au menu</a>";
+				echo "<form action='index.php?view=ground_em1' method='post'><input type='hidden' name='lieu' value='".$lieu."'><input type='submit' value='Retour' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>"; //lieu
+            Output::linkBtn('index.php?view=ground_em_infras', 'Retour au menu');
 		}
 	}
 	else

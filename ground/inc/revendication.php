@@ -39,7 +39,7 @@ if(($Type_Veh ==95 or $Detection >10) and $Position !=6 and $Position !=11 and $
             if($Faction !=$Faction_Place and !$Esc_Oqp)
                 $Atk_Options.="<tr><td><form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='cible' value='".$Lieu."'><input type='hidden' name='rev' value='".$Rev_mode."'>
                                         <input type='submit' value='Revendiquer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                        <td><div class='i-flex'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
+                                        <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
                                         <td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Revendiquer un lieu stratégique nécessite que le lieu soit reconnu soit via une reco terrestre ou une reco stratégique.<br>Les lieux non stratégiques peuvent être revendiqués sans reco préalable.<br>Pour revendiquer une caserne, la garnison doit être éliminée au préalable.</span></a></td></tr>";
             elseif($Placement ==1 and $Esc_Oqp)
                 $Atk_Options.="<div class='alert alert-danger'>Des avions ennemis occupent l'aérodrome</div>";
@@ -230,7 +230,7 @@ if(($Type_Veh ==95 or $Detection >10) and $Position !=6 and $Position !=11 and $
             if($Rev_ok)
                 $Atk_Options.="<tr><td><form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='cible' value='".$Lieu."'><input type='hidden' name='rev' value='3'>
                                         <input type='submit' value='Revendiquer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                        <td><div class='i-flex'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
+                                        <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
                                         <td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Revendiquer un lieu stratégique nécessite que le lieu soit reconnu soit via une reco tactique ou une reco stratégique.<br>Les lieux non stratégique peuvent être revendiqués sans reco préalable.<br>Pour revendiquer une caserne, la garnison doit être éliminée au préalable.</span></a></td></tr>";
             else
                 $Atk_Options.="<div class='alert alert-danger'>Les zones nécessaires à la revendication de la caserne ne sont pas sous contrôle de votre faction</div>";

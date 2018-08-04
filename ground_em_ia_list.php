@@ -638,7 +638,7 @@ if($OfficierEMID >0)
 							    elseif($data3['Vehicule_ID'] >5000)
                                     $help_txt_fuir='Cette action permettra à l\'unité d\'agir, mais réduira sa robustesse de 50%';
 								$Action.="<form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$data3['ID']."'><input type='hidden' name='reset' value='9'><input type='hidden' name='Max' value='".$data3['Vehicule_Nbr']."'>
-								<a href='#' class='popup'><input type='Submit' value='Fuir' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'>
+								<a href='#' class='popup'><input type='submit' value='Fuir' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'>
 								<span>".$help_txt_fuir."</span></a></form>";
 								if($data3['Vehicule_ID']<5000 and $data3['Vehicule_Nbr'] >0 and $data3['Atk_Eni'])
 								{
@@ -649,7 +649,7 @@ if($OfficierEMID >0)
 												<input type='hidden' name='Veh' value='".$data3['Vehicule_ID']."'>
 												<input type='hidden' name='Reg' value='".$data3['ID']."'>
 												<input type='hidden' name='Pass' value='".$data3['Vehicule_Nbr']."'>
-									<a href='#' class='popup'><input type='Submit' value='Riposter' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'>
+									<a href='#' class='popup'><input type='submit' value='Riposter' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'>
 									<span>Cette action permettra de tenter de contre-attaquer l'unité qui vous a engagé</span></a></form>";
 								}
 							}

@@ -1,81 +1,40 @@
 <?php
-require_once('./jfv_inc_sessions.php');
-$OfficierEMID=$_SESSION['Officier_em'];
-//$OfficierID=$_SESSION['Officier'];
-if($OfficierEMID >0 xor $OfficierID >0)
-{
-	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_ground.inc.php');
-	include_once('./jfv_txt.inc.php');
-	$Cat=Insec($_POST['Cat']);
-	$mode=Insec($_POST['Mode']);
-	$Reg=Insec($_POST['Reg']);
-	$Lieu=Insec($_POST['Lieu']);
-	if($Cat >0 and ($Reg >0 or $mode !=1))
-	{
-		$con=dbconnecti();
-		$Date_Campagne=mysqli_result(mysqli_query($con,"SELECT `Date` FROM Conf_Update WHERE ID=2"),0);
-		$Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='$country'"),0);
-		$Lease_Score=mysqli_result(mysqli_query($con,"SELECT Special_Score FROM Pays WHERE ID='$country'"),0);
-		if($OfficierEMID)
-			$result=mysqli_query($con,"SELECT Reputation,Avancement,Credits,Trait,Front FROM Officier_em WHERE ID='$OfficierEMID'");
-		else
-			$result=mysqli_query($con,"SELECT Reputation,Avancement,Credits,Trait,Front FROM Officier WHERE ID='$OfficierID'");
-		//mysqli_close($con);
-		if($result)
-		{
-			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
-			{
-				$Reputation=$data['Reputation'];
-				$Avancement=$data['Avancement'];
-				$Trait_o=$data['Trait'];
-				$Credits_ori=$data['Credits'];
-				$Front_ori=$data['Front'];
-			}
-			mysqli_free_result($result);
-			unset($data);
-		}
-		/*if($country ==7 and $Cat >16)
-			$Retraite=2149;
-		else
-			$Retraite=Get_Retraite($Front,$country,40);*/
-			/*if($Admin ==1)
-				$Credits_ori=$CT_MAX;*/
-		$titre='Hangar';
-		$titre_up="<thead><tr>  
-				<th width='10%'>Matériel</th>     
-				<th width='1%'>Détail</th> 
-				<th width='2%'>Dispo</th>
-				<th width='2%'>Créer</th>
-				<th width='2%'>Robustesse</th>                                           
-				<th width='5%'>Armement</th>  
-				<th width='5%'>Soutien</th>  
-				<th width='5%'>Anti-tank</th>
-				<th width='5%'>DCA</th>
-				<th width='2%'>Portee</th>
-				<th width='2%'>Blindage</th>                            
-				<th width='2%'>Vitesse</th>                            
-				<th width='2%'>Taille</th>                            
-				<th width='2%'>Détection</th> 
-				<th width='2%'>Autonomie</th> 
-				<th width='2%'>Fiabilite</th>
-				<th width='2%'>Charge</th>
-				</tr></thead>";		
-		$mes="<div class='alert alert-info'>Changer le matériel de cette unité ramènera son expérience à une valeur de 50 et lui attribuera une nouvelle compétence tactique aléatoire de niveau 1</div>
-		<h2>Matériel disponible</h2><div><table class='table table-striped table-responsive'>".$titre_up;
-		$Nid=Get_Retraite($Front_ori,$country,40,$Cat);
-		if($Cat ==100 or $Cat==14 or $Cat==19 or $Cat==25 or $Cat==30) //navires de soutien
-			$query="SELECT * FROM Cible WHERE ID IN(5001,5002,5204,5205,5124,5392) ORDER BY Reput ASC,HP ASC,Nom ASC"; //Navires
-		elseif($Cat >16 and $Cat <25)
-			$query="SELECT * FROM Cible WHERE Pays='$country' AND Date <='$Date_Campagne' AND Unit_ok=1 AND mobile=5 AND Categorie='$Cat' ORDER BY Reput ASC,HP ASC,Nom ASC"; //Navires
-		else
-			$query="SELECT * FROM Cible WHERE Pays='$country' AND Date <='$Date_Campagne' AND Unit_ok=1 AND mobile NOT IN (4,5) AND Categorie='$Cat' AND Reput <='$Credits_ori' AND Premium=0 AND (Lease=0 OR Lease <='$Lease_Score') ORDER BY Reput ASC,HP ASC,Nom ASC";
-		$result=mysqli_query($con,$query);
-		if($result)
-		{
-			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
-			{
+require_once './jfv_inc_sessions.php';
+$OfficierEMID = $_SESSION['Officier_em'];
+if ($OfficierEMID > 0) {
+    $country = $_SESSION['country'];
+    include_once './jfv_include.inc.php';
+    include_once './jfv_ground.inc.php';
+    include_once './jfv_txt.inc.php';
+    $Cat = Insec($_POST['Cat']);
+    $mode = Insec($_POST['Mode']);
+    $Reg = Insec($_POST['Reg']);
+    $Lieu = Insec($_POST['Lieu']);
+    if ($Cat > 0 and ($Reg > 0 or $mode != 1)) {
+        $Date_Campagne = Conf_Update::getCampaignDate();
+        $Faction = Pays::getFaction($country);
+        $Lease_Score = Pays::getSelectByField('ID', $id, 'Special_Score')->Special_Score;
+        $OfficierEM = Officier_em::getById($OfficierEMID);
+        $Reputation = $OfficierEM->Reputation;
+        $Avancement = $OfficierEM->Avancement;
+        $Front_ori = $OfficierEM->Front;
+        $Nid = Get_Retraite($Front_ori, $country, 40, $Cat);
+        $table = '';
+        $Credits_ori = 50;
+        $con = dbconnecti();
+        if ($Cat == 100 or $Cat == 14 or $Cat == 19 or $Cat == 25 or $Cat == 30) //navires de soutien
+            $query = "SELECT * FROM Cible WHERE ID IN(5001,5002,5204,5205,5124,5392) ORDER BY Reput ASC,HP ASC,Nom ASC";
+        elseif ($Cat > 16 and $Cat < 25)
+            $query = "SELECT * FROM Cible WHERE Pays=? AND Date <='$Date_Campagne' AND Unit_ok=1 AND mobile=5 AND Categorie=? ORDER BY Reput ASC,HP ASC,Nom ASC"; //Navires
+        else
+            $query = "SELECT * FROM Cible WHERE Pays=? AND Date <='$Date_Campagne' AND Unit_ok=1 AND mobile NOT IN (4,5) AND Categorie=? AND Premium=0 AND (Lease=0 OR Lease <='$Lease_Score') ORDER BY Reput ASC,HP ASC,Nom ASC";
+        $result = DBManager::getDataSQL($query, [$country, $Cat], 'ALL');
+//        $result = mysqli_query($con, $query);
+//		if($result)
+//		{
+//			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
+//			{
+            foreach($result as $data) {
 				$ID=$data['ID'];
 				$mobile=$data['mobile'];
 				$Fiabilite=$data['Fiabilite'];
@@ -244,21 +203,21 @@ if($OfficierEMID >0 xor $OfficierID >0)
 								<input type='hidden' name='Ve' value='".$data['ID']."'>
 								<input type='hidden' name='Cr' value='".$Reput."'>
 								<input type='hidden' name='Reg' value='".$Reg."'>
-								<input type='Submit' value='".$Reput." CT' class='btn btn-".$btn_class."' onclick='this.disabled=true;this.form.submit();'></form></td>";
+								<input type='submit' value='".$Reput." CT' class='btn btn-".$btn_class."' onclick='this.disabled=true;this.form.submit();'></form></td>";
 							elseif($OfficierEMID >0)
 								$Creer_txt="<td><form action='index.php?view=ground_em_ia_create_do' method='post'>
 								<input type='hidden' name='Ve' value='".$data['ID']."'>
 								<input type='hidden' name='Cr' value='".$Reput."'>
 								<input type='hidden' name='Nid' value='".$Nid."'>
-								<input type='Submit' value='".$Reput." CT' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form></td>";
+								<input type='submit' value='".$Reput." CT' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form></td>";
 						}
 					}
 					elseif($Prod <50)
 						$Creer_txt="<td class='text-danger' title='Votre nation doit réparer les usines détruites'>Usines ".$Prod."%</td>";
 					else
 						$Creer_txt="<td class='text-danger' title='Votre nation doit réparer les modèles détruits'>".$Reste." Dispo</td>";
-					$mes.="<tr><td><img src='images/vehicules/vehicule".$data['ID'].".gif' title='".$data['Nom']."'><br>".$Usine1_Nom."</td>
-					<td><form><input type='button' value='Détail' class='btn btn-primary' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>
+					$table.="<tr><td><img src='images/vehicules/vehicule".$data['ID'].".gif' title='".$data['Nom']."'><br>".$Usine1_Nom."</td>
+					<td><form><input type='button' value='Détail' class='btn btn-primary btn-sm' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>
 					<td>".$Reste_txt."</td>
 					".$Creer_txt."
 					<td>".$HP."</td>
@@ -271,14 +230,14 @@ if($OfficierEMID >0 xor $OfficierID >0)
 					<td>".$Vitesse."</td>
 					<td>".$Taille."</td>
 					<td>".$Detection."</td>
-					<td>".$Autonomie." (".$Fuel.")</td>
+					<td>".$Autonomie."</td>
 					<td>".$Fiabilite."</td>
 					<td>".$Charge."</td></tr>";
 				}
 				else
 				{
-					$mes.="<tr><td><img src='images/vehicules/vehicule".$data['ID'].".gif' title='".$data['Nom']."'></td>
-					<td><form><input type='button' value='Détail' class='btn btn-primary' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>
+                    $table.="<tr><td><img src='images/vehicules/vehicule".$data['ID'].".gif' title='".$data['Nom']."'></td>
+					<td><form><input type='button' value='Détail' class='btn btn-primary btn-sm' onclick=\"window.open('cible.php?cible=".$data['ID']."','Fiche','width=820,height=840,scrollbars=1')\"></form></td>
 					<td>".$Reste."</td>
 					<td class='btn btn-danger'>".$Reput." CT</td>
 					<td>".$HP."</td>
@@ -291,20 +250,46 @@ if($OfficierEMID >0 xor $OfficierID >0)
 					<td>".$Vitesse."</td>
 					<td>".$Taille."</td>
 					<td>".$Detection."</td>
-					<td>".$Autonomie." (".$Fuel.")</td>
+					<td>".$Autonomie."</td>
 					<td>".$Fiabilite."</td>
 					<td>".$Charge."</td></tr>";
 				}
 			}
-			mysqli_free_result($result);
-			unset($data);
-		}
-		$mes.='</table></div>';
-		if($OfficierEMID)
-			$menu="<a href='index.php?view=ground_em_ia_list' class='btn btn-default' title='Retour'>Retour</a>";
-		else
-			$menu="<a href='index.php?view=ground_bat' class='btn btn-default' title='Retour'>Retour</a>";
-		include_once('./default.php');
+//			mysqli_free_result($result);
+//			unset($data);
+//		}
+
+        //Output
+        $titre = 'Hangar';
+        $mes = Output::ShowAdvert('Changer le matériel de cette unité ramènera son expérience à une valeur de 50 et lui attribuera une nouvelle compétence tactique aléatoire de niveau 1', 'info');
+        $mes .= '<h2>Matériel disponible</h2>';
+        if ($table) {
+            $titre_up = "<thead><tr>  
+				<th width='10%'>Matériel</th>     
+				<th width='1%'>Détail</th> 
+				<th width='2%'>Dispo</th>
+				<th width='2%'>Créer</th>
+				<th width='2%'>Robustesse</th>                                           
+				<th width='5%'>Armement</th>  
+				<th width='5%'>Soutien</th>  
+				<th width='5%'>Anti-tank</th>
+				<th width='5%'>DCA</th>
+				<th width='2%'>Portee</th>
+				<th width='2%'>Blindage</th>                            
+				<th width='2%'>Vitesse</th>                            
+				<th width='2%'>Taille</th>                            
+				<th width='2%'>Détection</th> 
+				<th width='2%'>Autonomie</th> 
+				<th width='2%'>Fiabilite</th>
+				<th width='2%'>Charge</th>
+				</tr></thead>";
+            $mes .= '<table class="table table-dt table-striped table-responsive">' . $titre_up . $table . '</table>';
+        }
+        if ($OfficierEMID)
+            $menu = Output::linkBtn('index.php?view=ground_em_ia_list', 'Retour');
+        else
+            $menu = Output::linkBtn('index.php?view=ground_bat', 'Retour');
+        include_once './default.php';
 	}
 	else
 		echo 'Tsss!';

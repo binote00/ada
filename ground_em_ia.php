@@ -366,129 +366,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
 
             if($OfficierEMID ==$Commandant or $GHQ or $Admin or $Ordres_Mer)
             {
-                $Type=$Type_Veh;
-                if(!$Ordres_Mer){
-                    $menu_cat_list="<p><a class='btn btn-default' href='index.php?view=ground_em_ia_list'>Tout</a>";
-                    if($Type ==8)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_8'>Artillerie</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_8'>Artillerie</a>";
-                    if($Type ==9)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_9'>Anti-Tank</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_9'>Anti-Tank</a>";
-                    if($Type ==2)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_2'>Blindé Léger</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_2'>Blindé Léger</a>";
-                    if($Type ==3)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_3'>Blindé</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_3'>Blindé</a>";
-                    if($Type ==15)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_15'>DCA</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_15'>DCA</a>";
-                    if($Type ==5)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_5'>Infanterie</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_5'>Infanterie</a>";
-                    if($Type ==6)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_6'>Mitrailleuse</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_6'>Mitrailleuse</a>";
-                    if($Type ==13)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_13'>Train</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_13'>Train</a>";
-                    if($Type ==1)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_1'>Camion</a>";
-                    else
-                        $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_1'>Camion</a>";
-                }
-                if($Type ==21)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_21'>Porte-avions</a>";
-                elseif($country ==2 or $country ==7 or $country ==9)
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_21'>Porte-avions</a>";
-                if($Type ==20)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_20'>Cuirassé</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_20'>Cuirassé</a>";
-                if($Type ==24)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_24'>Croiseur Ld</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_24'>Croiseur Ld</a>";
-                if($Type ==23)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_23'>Croiseur Lg</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_23'>Croiseur Lg</a>";
-                if($Type ==22)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_22'>Corvette</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_22'>Corvette</a>";
-                if($Type ==17)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_17'>Sous-marin</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_17'>Sous-marin</a>";
-                if($Type ==100)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_100'>Soutien</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_100'>Soutien</a>";
-                if($Type ==10)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_10'>Cargo</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_10'>Cargo</a>";
-                /*if($Type ==4)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_4'>Command</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-default' href='index.php?view=ground_em_ia_list_4'>Command</a>";*/
-                if($Type ==89)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_89'>Réserve</a>";
-                elseif(!$Ordres_Mer)
-                    $menu_cat_list.="<a class='btn btn-info' href='index.php?view=ground_em_ia_list_89'>Réserve</a>";
-                if($Type ==95)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_95'>Transit</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_95'>Transit</a>";
-                if($Type ==91)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_91'>Mission</a>";
-                elseif($Admin)
-                    $menu_cat_list.="<a class='btn btn-success' href='index.php?view=ground_em_ia_list_91'>Mission</a>";
-                if(!$Ordres_Mer){
-                    if($Type ==92)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_92'>Danger</a>";
-                    elseif($GHQ or $Premium)
-                        $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_92'>Danger</a>";
-                    if($Type ==93)
-                        $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_93'>Repli</a>";
-                    elseif($GHQ or $Premium)
-                        $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_93'>Repli</a>";
-                }
-                if($Type ==96)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_96'>Camo</a>";
-                elseif($GHQ or $Premium)
-                    $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_96'>Camo</a>";
-                if($Type ==88)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_88'>Attente</a>";
-                elseif($Admin)
-                    $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_88'>Attente</a>";
-                if($Type ==94)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_94'>Réparer</a>";
-                else
-                    $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_94'>Réparer</a>";
-                if($Type ==98)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_98'>Demob</a>";
-                elseif(!$Ordres_Mer)
-                    $menu_cat_list.="<a class='btn btn-warning' href='index.php?view=ground_em_ia_list_98'>Demob</a>";
-                if($Type ==90)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_90'>GHQ</a>";
-                elseif($GHQ)
-                    $menu_cat_list.="<a class='btn btn-danger' href='index.php?view=ground_em_ia_list_90'>GHQ</a>";
-                if($Type ==97)
-                    $menu_cat_list.="<a class='btn btn-primary' href='index.php?view=ground_em_ia_list_97'>Move</a>";
-                elseif($GHQ)
-                    $menu_cat_list.="<a class='btn btn-danger' href='index.php?view=ground_em_ia_list_97'>Move</a>";
-                $menu_cat_list.='</p>';
+                include_once 'view/menu_cat_list.php';
             }
             if($Vehicule_Nbr >0 and (!$GHQ or $Admin or $Nation_IA)) //Demande mission & Situation unités de la zone
             {
@@ -847,7 +725,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                         if(!$Atk)
                         {
                             $output_dest.="<form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='reset' value='9'><input type='hidden' name='Max' value='".$Vehicule_Nbr."'>
-                            <a href='#' class='popup'><input type='Submit' value='Fuir' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'>
+                            <a href='#' class='popup'><input type='submit' value='Fuir' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'>
                             <span>Cette action permettra à l'unité d'agir, mais réduira ses effectifs à 1</span></a></form>";
                         }
                     }
@@ -1319,18 +1197,16 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             if(!$Vehicule_Nbr)
                             {
                                 if($Credits >=$Reput_Renf){
-                                    $Renforts_txt='<tr><td>
-                                                            <form action="ground_em_ia_go.php" method="post">
-                                                                <input type="hidden" name="renf" value="1">
-                                                                <input type="hidden" name="Unit" value="'.$Unit.'">
-                                                                <input type="hidden" name="Max" value="'.$Max_Veh.'">
-                                                                <img src="images/CT'.$Reput_Renf.'.png" title="Credits Temps nécessaires pour exécuter cette action">
-                                                                <input class="btn btn-sm btn-warning" type="submit" value="Renforts">
-                                                            </form>
-                                                        </td>
-                                                        <td>'.$Reste.'</td>
-                                                        <td>'.$up_renf.'</td>
-                                                   </tr>';
+                                    $form = new Form();
+                                    $Renforts_txt = '<tr><td>' .
+                                        $form->CreateForm('ground_em_ia_go.php', 'POST', '')
+                                            ->AddInput('Unit', '', 'hidden', $Unit)
+                                            ->AddInput('Max', '', 'hidden', $Max_Veh)
+                                            ->AddInput('renf', '', 'hidden', 1)
+                                            ->EndForm('Renforts', 'warning btn-sm', 'A') . '</td>
+                                        <td>'.$Reste.'</td>
+                                        <td>'.$up_renf.'</td>
+                                    </tr>';
                                 }
                                 else
                                     $Renforts_txt='<tr><td colspan="3">Crédits Temps insuffisants ('.$Credits.'/'.$Reput_Renf.')</td></tr>';
@@ -1348,18 +1224,16 @@ if($OfficierID >0 xor $OfficierEMID >0)
                             elseif($Trait ==4 and ($Categorie ==5 or $Categorie ==6 or $Type_Veh ==6 or $Type_Veh ==12))
                                 $Reput_Renf=floor($Reput_Renf/2);
                             if($Credits >=$Reput_Renf){
-                                $Renforts_txt='<tr><td>
-                                                       <form action="ground_em_ia_go.php" method="post">
-                                                                <input type="hidden" name="renf" value="1">
-                                                                <input type="hidden" name="Unit" value="'.$Unit.'">
-                                                                <input type="hidden" name="Max" value="'.$Max_Veh.'">
-                                                                <img src="images/CT'.$Reput_Renf.'.png" title="Credits Temps nécessaires pour exécuter cette action">
-                                                                <input class="btn btn-sm btn-warning" type="submit" value="Renforts">
-                                                       </form>
-                                                    </td>
-                                                    <td>'.$Reste.'</td>
-                                                    <td>'.$up_renf.'<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Pour se renforcer, l\'unité doit se trouver sur la base arrière <b>'.$Retraite_Nom.'</b> pour un coût de <b>'.$Reput_Renf_ori.'CT</b>, ou sur l\'usine de production <b>'.$Usine1_Nom.'</b> pour un coût de <b>1CT</b>. Compte comme une action du jour.</span></a></td>
-                                               </tr>';
+                                $form = new Form();
+                                $Renforts_txt = '<tr><td>' .
+                                    $form->CreateForm('ground_em_ia_go.php', 'POST', '')
+                                        ->AddInput('Unit', '', 'hidden', $Unit)
+                                        ->AddInput('Max', '', 'hidden', $Max_Veh)
+                                        ->AddInput('renf', '', 'hidden', 1)
+                                        ->EndForm('Renforts', 'warning btn-sm', 'A') . '</td>
+                                        <td>'.$Reste.'</td>
+                                        <td>'.$up_renf.'<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Pour se renforcer, l\'unité doit se trouver sur la base arrière <b>'.$Retraite_Nom.'</b> pour un coût de <b>'.$Reput_Renf_ori.'CT</b>, ou sur l\'usine de production <b>'.$Usine1_Nom.'</b> pour un coût de <b>1CT</b>. Compte comme une action du jour.</span></a></td>
+                                    </tr>';
                             }
                             else
                                 $Renforts_txt='<tr><td colspan="3">Crédits Temps insuffisants ('.$Credits.'/'.$Reput_Renf.')</td></tr>';
@@ -1422,7 +1296,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                 if($Faction !=$Faction_Place and !$Esc_Oqp)
                                     $Atk_Options.="<tr><td><form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='cible' value='".$Lieu."'><input type='hidden' name='rev' value='".$Rev_mode."'>
                                         <input type='submit' value='Revendiquer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                        <td><div class='i-flex'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
+                                        <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
                                         <td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Revendiquer un lieu stratégique nécessite que le lieu soit reconnu soit via une reco terrestre ou une reco stratégique.<br>Les lieux non stratégiques peuvent être revendiqués sans reco préalable.<br>Pour revendiquer une caserne, la garnison doit être éliminée au préalable.</span></a></td></tr>";
                                 elseif($Placement ==1 and $Esc_Oqp)
                                     $Atk_Options.="<div class='alert alert-danger'>Des avions ennemis occupent l'aérodrome</div>";
@@ -1613,7 +1487,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                 if($Rev_ok)
                                     $Atk_Options.="<tr><td><form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='cible' value='".$Lieu."'><input type='hidden' name='rev' value='3'>
                                         <input type='submit' value='Revendiquer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                        <td><div class='i-flex'><img src='images/CT2.png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
+                                        <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
                                         <td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Revendiquer un lieu stratégique nécessite que le lieu soit reconnu soit via une reco tactique ou une reco stratégique.<br>Les lieux non stratégique peuvent être revendiqués sans reco préalable.<br>Pour revendiquer une caserne, la garnison doit être éliminée au préalable.</span></a></td></tr>";
                                 else
                                     $Atk_Options.="<div class='alert alert-danger'>Les zones nécessaires à la revendication de la caserne ne sont pas sous contrôle de votre faction</div>";
@@ -1830,13 +1704,15 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                         if($Conso_mun_art <0)$Conso_mun_art=0;
                                     }
                                 }
-                                if($OfficierEMID)
-                                    $CT_Spec=2+floor($Reput_Renf/10)-$Fiabilite;
-                                else
-                                    $CT_Spec=4+floor($Reput_Renf/10)-$Sec_EM-$Fiabilite;
-                                if($CT_Spec <1)$CT_Spec=1;
-                                $CT_Spec_Blitz=$CT_Spec-2;
-                                if($CT_Spec_Blitz <1)$CT_Spec_Blitz=1;
+//                                if($OfficierEMID)
+//                                    $CT_Spec=2+floor($Reput_Renf/10)-$Fiabilite;
+//                                else
+//                                    $CT_Spec=4+floor($Reput_Renf/10)-$Sec_EM-$Fiabilite;
+//                                if($CT_Spec <1)$CT_Spec=1;
+//                                $CT_Spec_Blitz=$CT_Spec-2;
+//                                if($CT_Spec_Blitz <1)$CT_Spec_Blitz=1;
+                                $CT_Spec_Blitz = 0;
+                                $CT_Spec = 0;
                                 if(!$Pas_libre and $Position !=2 and $Position !=3 and $Position !=10 and $Position !=14 and
                                     (($Arme_Art and ($Stock_Art >=$Conso_mun_art or $Ravit)) or ($Arme_AT and ($Stock_AT >=$Conso_mun_at or $Ravit)))
                                 ) //Arti
@@ -1860,7 +1736,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                             if($Zone ==6)$Range+=($Experience*9);
                                             $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='conso_mun' value='".$Conso_mun_art."'><input type='hidden' name='pos' value='34'>
                                                             <input type='submit' value='Bombardement' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                                            <td><div class='i-flex'><img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                                            <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                                             <td>".$Conso_mun_art."x ".$Arme_Cal."mm</td>
                                                             <td>".$Range."m</td>
                                                             <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tir à distance sur les unités détectées situées sur le même lieu. L'unité passera en mode combat pour une durée de 24h.</span></a></td></tr>";
@@ -1876,7 +1752,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                             if($Meteo <-69)$Range /=2;
                                             $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='conso_mun' value='".$Conso_mun_at."'><input type='hidden' name='pos' value='34'>
                                                             <input type='submit' value='Tirer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                                            <td><div class='i-flex'><img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
+                                                            <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                                             <td>".$Conso_mun_at."x ".$Arme_Cal."mm</td>
                                                             <td>".$Range."m</td>
                                                             <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tir direct à distance sur les unités détectées situées sur le même lieu. L'unité passera en mode combat pour une durée de 24h.</span></a></td></tr>";
@@ -1936,7 +1812,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                             $Init=$Experience+(($Radio*5)+($Tourelle*5))+$bonus_init;
                                             $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='conso_mun' value='".$Conso_mun_at."'><input type='hidden' name='pos' value='36'>
                                             <input type='submit' value='Attaque' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'>											
-                                            </form></td><td><div class='i-flex'><img src='images/CT".$CT_Spec_Blitz.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour' title='Compte comme action du jour'></div><span>La reconnaissance compte comme action du jour</span></a></div></td>
+                                            </form></td><td><div class='i-flex'><a href='#' class='popup'><div class='action-jour' title='Compte comme action du jour'></div><span>La reconnaissance compte comme action du jour</span></a></div></td>
                                             <td><img src='images/oil_icon.png' title='".$Conso_tot."L'> + ".$Conso_mun_at."x ".$Arme_Cal."mm</td>
                                             <td><a href='#' class='popup'>".$Range."m<span>Portée de Tir - Allonge de Raid</span></a><br>".$Range_txt."</td>
                                             <td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Attaque des unités détectées situées sur la même zone. Compte comme action du jour. L'unité passera en mode combat pour une durée de 24h.<br>Une percée réussie infligeant des dégâts à l'unité attaquée forcera cette dernière à passer en mode combat pour 24h.</span></a><a href='#' class='popup'>".$Init."<span>Modificateur d'initiative et de tactique<br>Ce modificateur est augmenté par la présence d'unités alliées en appui sur la même zone que votre unité, et diminué par la présence d'unités ennemies en ligne, en appui, en embuscade ou en position défensive sur la même zone que votre unité</a></td></tr>";
@@ -1973,10 +1849,10 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                     if($inf_eni_routed_zone)
                                         $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='conso_mun' value='0'><input type='hidden' name='pos' value='39'>
                                         <input type='submit' value='Dispersion' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'>
-                                        </form></td><td><div class='i-flex'><img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>".$Conso_tot."L</td><td><a href='#' class='popup'>".$Range."m<span>Portée de Tir - Allonge de Raid</span></a><br>".$Range_txt."</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tentative de dispersion des unités d'infanterie ennemies désorganisées situées sur la même zone.</span></a></td></tr>";
+                                        </form></td><td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>".$Conso_tot."L</td><td><a href='#' class='popup'>".$Range."m<span>Portée de Tir - Allonge de Raid</span></a><br>".$Range_txt."</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tentative de dispersion des unités d'infanterie ennemies désorganisées situées sur la même zone.</span></a></td></tr>";
                                     $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='conso_mun' value='0'><input type='hidden' name='pos' value='36'>
                                     <input type='submit' value='Attaque' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'>
-                                    </form></td><td><div class='i-flex'><img src='images/CT".$CT_Spec.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>".$Conso_tot."L</td><td><a href='#' class='popup'>".$Range."m<span>Portée de Tir - Allonge de Raid</span></a><br>".$Range_txt."</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Assaut d'infanterie contre les unités ennemies situées sur la même zone.</span></a></td></tr>";
+                                    </form></td><td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>".$Conso_tot."L</td><td><a href='#' class='popup'>".$Range."m<span>Portée de Tir - Allonge de Raid</span></a><br>".$Range_txt."</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Assaut d'infanterie contre les unités ennemies situées sur la même zone.</span></a></td></tr>";
                                 }
                                 elseif($Pas_libre)
                                     $Atk_Options.='<div class="alert alert-danger">Attaque impossible actuellement</div>';
@@ -1984,19 +1860,19 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                     $Atk_Options.='<div class="alert alert-danger">Pour pouvoir attaquer, l\'unité doit être en mouvement</div>';
                                 if($Faction_Flag !=$Faction and ($Categorie ==2 or $Categorie ==3 or $Categorie ==5 or $Categorie ==7) and ($Position ==4 or $Position ==0) and ($Placement ==1 or $Placement ==0))
                                 {
-                                    if($Recce or !$ValeurStrat)// and $Credits >=$CT_Spec_Blitz)
+                                    if($Recce or !$ValeurStrat and $Credits >=$CT_Spec_Blitz)
                                     {
                                         if($Placement ==0 and $Garnison)
                                             $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='38'>
                                             <input type='submit' value='Assaut' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                            <td><div class='i-flex'><img src='images/CT".$CT_Spec_Blitz.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>0</td><td>".$Range."m</td><td>N/A</td></tr>";
+                                            <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>0</td><td>".$Range."m</td><td>N/A</td></tr>";
                                         elseif($Placement ==1)
                                         {
                                             $Esc_Oqp=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Unit as u,Pays as p WHERE u.Base='$Lieu' AND u.Pays=p.ID AND p.Faction<>'$Faction' AND Etat=1 AND Garnison >0"),0);
                                             if($Esc_Oqp)
                                                 $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='48'>
                                                 <a href='#' class='popup'><div class='i-flex help_icon'></div><span>Assaut des troupes défendant l'aérodrome</span></a><input type='submit' value='Assaut' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
-                                                <td><div class='i-flex'><img src='images/CT".$CT_Spec_Blitz.".png' title='Montant en Crédits Temps que nécessite cette action'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>0</td><td>".$Range."m</td><td>N/A</td></tr>";
+                                                <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td><td>0</td><td>".$Range."m</td><td>N/A</td></tr>";
                                         }
                                     }
                                     else
@@ -2059,6 +1935,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                     $Pos_titre='Action';
                 }
             }
+
             //Compétence Tactique
             if($Skill)
             {
@@ -2221,6 +2098,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
             }
             elseif($Vehicule !=424 and $Type_Veh !=1)
                 $Upgrade_txt="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Cette unité est éprouvée par les combats. Elle peut être améliorée sur une usine produisant du matériel plus performant.</div>";
+
             //Equipement
             if($Type_Veh ==93 and $Matos ==28){
                 $con=dbconnecti();
@@ -2228,6 +2106,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                 mysqli_close($con);
             }
             $next_skill=11;
+
             if($GHQ) //Menu GHQ
             {
                 if($Vehicle !=424 and $Type_Veh !=95)
@@ -2345,7 +2224,7 @@ if($OfficierID >0 xor $OfficierEMID >0)
                                                         <input class="btn btn-sm btn-warning" type="submit" value="Ravitailler">
                                                     </form>
                                                 </td>
-                                                <td><div class="i-flex"><img src="images/CT4.png" title="Credits Temps nécessaires pour exécuter cette action"><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></div></td>
+                                                <td><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></td>
                                                 <td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Permet de récupérer le maximum de jours de mer</span></a></td>
                                            </tr>';
                         if($Port_ok and !$Enis_Port_combi){

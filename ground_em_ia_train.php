@@ -298,7 +298,7 @@ if ($ground_em_ia_train == true) {
         $Pos_ori = "Obus de " . $Fret . "mm";
     if ($Fret and $Faction == $Faction_Flag and $Faction == $Faction_Gare and $ValeurStrat > 3)
         $Atk_Options .= "<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='" . $Unit . "'><input type='hidden' name='base' value='" . $Lieu . "'><input type='hidden' name='Dech' value='" . $Fret . "'><input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td>0</td><td>0</td><td>N/A</td><td>N/A</td></tr>";
-    if ($Vehicule_Nbr < 1 and $NoeudF > 0 and $Faction == $Faction_Flag and $Faction == $Faction_Gare and $Credits >= 50)
+    if ($Vehicule_Nbr < 1 and $NoeudF > 0 and $Faction == $Faction_Flag and $Faction == $Faction_Gare)
         $Renforts_txt = '<tr><td>
                                             <form action="index.php?view=ground_em_ia_go" method="post">
                                                 <input type="hidden" name="renf" value="3">
@@ -306,7 +306,7 @@ if ($ground_em_ia_train == true) {
                                                 <input class="btn btn-sm btn-warning" type="submit" value="Réparer">
                                             </form>
                                         </td>
-                                        <td><div class="i-flex"><img src="images/CT50.png" title="Credits Temps nécessaires pour exécuter cette action"><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></div></td>
+                                        <td><div class="i-flex"><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></div></td>
                                    </tr>';
     else
         $Renforts_txt = '<tr><td colspan="3" class="text-center text-danger">Réparation impossible<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Une gare en bon état contrôlée par votre faction est nécessaire pour la réparation</span></a></td></tr>';
