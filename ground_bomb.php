@@ -1,13 +1,13 @@
 <?php
-require_once('./jfv_inc_sessions.php');
+require_once './jfv_inc_sessions.php';
 //$OfficierID=$_SESSION['Officier'];
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0 xor $OfficierID >0)
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_combat.inc.php');
-	include_once('./jfv_ground.inc.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_combat.inc.php';
+	include_once './jfv_ground.inc.php';
 	$Action=Insec($_POST['Action']);
 	$CT=Insec($_POST['CT']);
 	$Veh=Insec($_POST['Veh']);
@@ -54,7 +54,7 @@ if($OfficierEMID >0 xor $OfficierID >0)
 				}
 				$con=dbconnecti();
 				$result=mysqli_query($con,"SELECT Vehicule_Nbr,Experience,Position,Lieu_ID,Muns,HP,Camouflage,Skill,Matos,Front FROM $DB_reg WHERE ID='$Reg'");
-				$result2=mysqli_query($con,"SELECT Nom,Reput,Arme_Art,Arme_AT,Optics,Portee,Blindage_t,Taille,HP,Vitesse,mobile,Type,Arme_Art_mun FROM Cible WHERE ID='$Veh'");
+				$result2=mysqli_query($con,"SELECT Nom,Reput,Arme_Art,Arme_AT,Optics,Portee,Blindage_t,Taille,HP,Vitesse,mobile,Type,Arme_Art_mun,Fiabilite FROM Cible WHERE ID='$Veh'");
 				if($result)
 				{
 					while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -96,9 +96,13 @@ if($OfficierEMID >0 xor $OfficierID >0)
 						$Taille=$data['Taille']/$Camouflage;
 						$mobile=$data['mobile'];
 						$Type_v=$data['Type'];
-                        if($Type_v ==11 or $Type_v ==12)
+                        if($Type_v == TYPE_VEH_AA or $Type_v == TYPE_DCA)
                             $Arme_Art=$data['Arme_AT'];
-						$Optics=$data['Optics'];
+                        elseif($Type_v == TYPE_ART)
+                            $Barrage = floor($data['Arme_Art_mun']+($data['Fiabilite']*2));
+                        elseif($Type == TYPE_ART_MOB)
+                            $Barrage = floor($data['Arme_Art_mun']/2)+($data['Fiabilite']*2);
+                        $Optics=$data['Optics'];
 						if($Matos ==9)$Optics+=5;
 						elseif($Matos ==12)$Optics+=10;
 						elseif($Matos ==10)$Vitesse*=1.1;
@@ -551,7 +555,10 @@ if($OfficierEMID >0 xor $OfficierID >0)
 									SetData($DB,"Position",8,"ID",$Reg_eni);
 								if($Pos_eni !=8 and $Pos_eni !=9)
 									AddEventGround(431,$Vehicule,$OfficierID,$Reg_eni_events,$Lieu,1,$Reg);
-								if($Update_Moral_eni and $Officier_eni >0)
+								//% d'immobiliser l'unité
+                                if(mt_rand(0,100) <= $Barrage)
+                                    SetData($DB,"Move",1,"ID",$Reg_eni);
+                                if($Update_Moral_eni and $Officier_eni >0)
 								{
 									$Perte_moral=0-$Vehicule_Nbr-$Update_Moral_eni;
 									UpdateData("Regiment","Moral",$Perte_moral,"ID",$Reg_eni);
@@ -860,12 +867,12 @@ if($OfficierEMID >0 xor $OfficierID >0)
 						if($OfficierEMID >0 and !$OfficierID)
 						{
 							UpdateData("Officier_em","Reputation",10,"ID",$OfficierEMID);
-							$menu="<form action='index.php?view=ground_em_ia' method='post'><input type='hidden' name='Reg' value='".$Reg."'><input type='Submit' value='Retour' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+							$menu="<form action='index.php?view=ground_em_ia' method='post'><input type='hidden' name='Reg' value='".$Reg."'><input type='submit' value='Retour' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 						}
 						if($Update_XP or $Update_Reput or $Update_XP_eni)
-							mail("binote@hotmail.com","Aube des Aigles: Combat : Bombardement","Officier/EM : ".$OfficierID."/".$OfficierEMID." dans les environs de : ".$Lieu."<br>Attaque de ".$Veh_Nom." sur ".$Veh_Nom_eni." <html>".$mes.$msg_debug."</html>", "Content-type: text/html; charset=utf-8");
+							mail(EMAIL_LOG,"Aube des Aigles: Combat : Bombardement","Officier/EM : ".$OfficierID."/".$OfficierEMID." dans les environs de : ".$Lieu."<br>Attaque de ".$Veh_Nom." sur ".$Veh_Nom_eni." <html>".$mes.$msg_debug."</html>", "Content-type: text/html; charset=utf-8");
 						$_SESSION['ground_bomb']=false;
-						include_once('./default.php');
+						include_once './default.php';
 					}
 					else
 						echo "<h6>Votre unité ne dispose pas d'un armement approprié!</h6>";
@@ -875,14 +882,14 @@ if($OfficierEMID >0 xor $OfficierID >0)
 					$titre='Bombardement annulé';
 					$img="<img src='images/congestion".$country.".jpg'>";
 					$mes="L'arme de votre unité n'a pas la portée suffisante! (".$Range."/2500)";
-					include_once('./default.php');
+					include_once './default.php';
 				}
 				else
 				{
 					$titre='Bombardement annulé';
 					$img="<img src='images/congestion".$country.".jpg'>";
 					$mes="Un trop grand nombre d'unités occupent cette zone, vous empêchant d'effectuer votre action!";
-					include_once('./default.php');
+					include_once './default.php';
 				}
 			}
 			else

@@ -125,6 +125,11 @@ if (is_numeric($ID))
 					else
 						$Riposte_txt=$Arme_Art_Mu." tir(s)";
 				}
+				if($data['Type'] == TYPE_ART) {
+                    $Specs.=($data['Arme_Art_mun']+($data['Fiabilite']*2))."% de chance d'immobiliser une cible bombardée<br>";
+                } elseif($data['Type'] == TYPE_ART_MOB) {
+                    $Specs.=(floor($data['Arme_Art_mun']/2)+($data['Fiabilite']*2))."% de chance d'immobiliser une cible bombardée<br>";
+                }
 			}
 			if($data['Arme_AT'])
 			{
@@ -538,8 +543,8 @@ if (is_numeric($ID))
 		</tr>
 		*/?>
         </tr>
-        <tr class="bg_brown"><th colspan='4'>Actions</th></tr>
-        <tr onmouseover="this.style.background='#FFFFE0'"  onmouseout="this.style.background='#ECDDC1'"><td class='specs' colspan='4'><?=$Atk_txt?></td></tr>
+<!--        <tr class="bg_brown"><th colspan='4'>Actions</th></tr>-->
+<!--        <tr onmouseover="this.style.background='#FFFFE0'"  onmouseout="this.style.background='#ECDDC1'"><td class='specs' colspan='4'>--><?//=$Atk_txt?><!--</td></tr>-->
 		<tr class="bg_brown"><th colspan='4'>Spécificités</th></tr>
 		<tr onmouseover="this.style.background='#FFFFE0'"  onmouseout="this.style.background='#ECDDC1'"><td class='specs' colspan='4'><?=$Specs?></td></tr>
 		<tr class="bg_brown"><th colspan='4'>Photo</th></tr>
