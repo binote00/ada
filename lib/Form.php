@@ -13,8 +13,6 @@ class Form
 {
     private $id;
     private $output;
-    private $callout = '<div class="bl-memories">';
-    private $callout_end = '</div>';
 
     /**
      * @return mixed
@@ -76,10 +74,18 @@ class Form
      *
      * @param string $btnValue
      * @param string $btnClass
+     * @param string $icon
      * @return string
      */
-    public function EndForm($btnValue, $btnClass = 'primary')
+    public function EndForm($btnValue, $btnClass = 'primary', $icon = '')
     {
+        if ($icon != '') {
+            if ($icon === 'A') {
+                $this->output .= '<img src="images/action_jour_icon.png" title="Consomme l\'Action du Jour" alt="Action du Jour">';
+            } elseif (intval($icon) <= 50) {
+                $this->output .= '<img src="images/CT' . $icon . '.png" title="Montant en Crédits Temps que nécessite cette action">';
+            }
+        }
         //Font-Awesome button
         if (substr($btnValue, 0, 2) == 'fa') {
             $this->output .= '<button type="submit" class="btn btn-' . $btnClass . '"><i class="' . $btnValue . '"></i></button></form>';
@@ -126,7 +132,7 @@ class Form
         } else {
             $id = $this->getId() . '-' . $name;
         }
-        $return .= $this->callout.'<input type="' . $type . '" class="form-control' . $class . '" name="' . $name . '" id="' . $id . '"' . $placeholder . $value . $attr . '>' . $this->callout_end;
+        $return .= '<input type="' . $type . '" class="form-control' . $class . '" name="' . $name . '" id="' . $id . '"' . $placeholder . $value . $attr . '>';
         $this->output .= $return;
         return $this;
     }
