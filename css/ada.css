@@ -29,6 +29,10 @@ a.popup:hover,a.popup:focus{
 a.popup{
     color:#000;
 }
+a.popup i
+{
+	text-transform: unset;
+}
 a.popup span
 {
 	position:absolute; 

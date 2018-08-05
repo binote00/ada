@@ -9,7 +9,7 @@ if ($OfficierEMID > 0) {
     $Vehicule = Insec($_POST['Ve']);
     $Reput = Insec($_POST['Cr']);
     $Retraite = Insec($_POST['Nid']);
-    if ($Vehicule > 0 and $Reput > 0) {
+    if ($Vehicule > 0 && $Reput > 0) {
         $Veh = Cible::getById($Vehicule);
         if ($mobile == MOBILE_WATER) {
             $Placement = 8;
@@ -27,14 +27,14 @@ if ($OfficierEMID > 0) {
                 $Veh_Nbr = floor($Stock);
         }
 
-        if ($Veh->Type != 13 and $Veh->Type != 1) {
+        if ($Veh->Type != 13 && $Veh->Type != 1) {
             if ($Veh->Type == 37) //Sub
                 $Skills_1 = array(25, 32, 35, 37, 43);
             elseif ($Veh->Type == 21) //PA
                 $Skills_1 = array(25, 30, 36);
-            elseif ($Veh->Type == 20 or $Veh->Type == 19 or $Veh->Type == 18) //Cuirassé & Croiseur
+            elseif ($Veh->Type == 20 || $Veh->Type == 19 || $Veh->Type == 18) //Cuirassé & Croiseur
                 $Skills_1 = array(15, 22, 25, 30, 31, 33, 34, 35, 36, 38, 41);
-            elseif ($Veh->Type == 15 or $Veh->Type == 16 or $Veh->Type == 17) //Escorteurs
+            elseif ($Veh->Type == 15 || $Veh->Type == 16 || $Veh->Type == 17) //Escorteurs
                 $Skills_1 = array(25, 30, 35, 36, 37, 39, 40, 42);
             elseif ($Veh->Type == 14) //Pt navires
                 $Skills_1 = array(25, 35, 36);
@@ -50,11 +50,11 @@ if ($OfficierEMID > 0) {
                 $Skills_1 = array(1, 2, 3, 5, 6, 9, 10, 16, 18, 19, 21, 24, 25);
             elseif ($Veh->Type == 12)
                 $Skills_1 = array(6, 9, 12, 14, 25, 30);
-            elseif ($Veh->Type == 7 or $Veh->Type == 10 or $Veh->Type == 91)
+            elseif ($Veh->Type == 7 || $Veh->Type == 10 || $Veh->Type == 91)
                 $Skills_1 = array(1, 2, 5, 6, 9, 10, 16, 18, 19, 21, 24, 25);
             elseif ($Veh->Type == 11)
                 $Skills_1 = array(1, 2, 5, 6, 9, 10, 16, 18, 19, 21, 25, 30);
-            elseif ($Veh->Type == 2 or $Veh->Type == 3 or $Veh->Type == 5 or $Veh->Type == 93)
+            elseif ($Veh->Type == 2 || $Veh->Type == 3 || $Veh->Type == 5 || $Veh->Type == 93)
                 $Skills_1 = array(1, 2, 5, 6, 9, 10, 16, 18, 19, 21, 25);
             elseif ($Veh->Type == 1) //Camions
                 $Skills_1 = array(6, 25);

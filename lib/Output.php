@@ -134,4 +134,18 @@ trait Output
           </div>
         </div>';
     }
+
+    /**
+     * @param string $caption
+     * @param string $popuptext
+     * @param string $captioncolor [default, primary, info, warning, danger]
+     * @return string
+     */
+    public static function popup($caption, $popuptext, $captioncolor = '')
+    {
+        if ($captioncolor) {
+            $caption = '<i class="text-' . $captioncolor . '">' . $caption . '</i>';
+        }
+        return '<a href="#" class="popup">' . $caption . '<span>' . $popuptext . '</span></a>';
+    }
 }

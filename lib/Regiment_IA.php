@@ -5,27 +5,12 @@
  * Time: 15:34
  */
 
-class Regiment_IA extends \Ada_Controller\Controller
+class Regiment_IA extends Controller
 {
     /**
      * @param $id
      * @return mixed
      */
-    public static function getById($id)
-    {
-        return parent::getById($id);
-    }
-
-    /**
-     * @param string $field
-     * @param mixed $value
-     * @return mixed
-     */
-    public static function getByField($field, $value)
-    {
-        return parent::getByField($field, $value);
-    }
-
     public static function getCombatTimers($id)
     {
         $select = "Atk_time,

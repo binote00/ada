@@ -1,14 +1,14 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if($OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_ground.inc.php');
-	include_once('./jfv_inc_em.php');
-	include_once('./menu_em.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_ground.inc.php';
+	include_once './jfv_inc_em.php';
+	include_once './menu_em.php';
 	if($OfficierEMID ==$Commandant or $OfficierEMID ==$Adjoint_Terre or $OfficierEMID ==$Officier_Mer or $GHQ or $Admin or $Armee >0)
 	{
 		$today=getdate();
@@ -661,7 +661,7 @@ if($OfficierEMID >0)
 						}
 						else
 							$Action="<form action='index.php?view=ground_em_ia' method='post'><input type='hidden' name='Reg' value='".$data3['ID']."'>
-							<input type='Submit' value='Ordres' class='btn btn-sm btn-".$btn_color_ordres."' onclick='this.disabled=true;this.form.submit();'></form>";
+							<input type='submit' value='Ordres' class='btn btn-sm btn-".$btn_color_ordres."' onclick='this.disabled=true;this.form.submit();'></form>";
 						if($data3['Experience'] >249)
 							$Exp_txt="<span class='label label-success'>".$data3['Experience']."XP</span>";
 						elseif($data3['Experience'] >49)
@@ -684,17 +684,17 @@ if($OfficierEMID >0)
                             $admin_menu = '<th>Admin</th>';
                             $admin_col = '<td><div class="caret" data-toggle="collapse" data-target="#clp-'.$data3['ID'].'"></div>
                                             <div class="collapse" id="clp-'.$data3['ID'].'">
-                                                <form action="ground_em_ia_admin.php" method="post">
+                                                <form action="admin/ground_em_ia_admin.php" method="post">
                                                     <input type="hidden" name="id" value="'.$data3['ID'].'">
                                                     <input type="hidden" name="mode" value="1">
                                                     <input class="btn btn-sm btn-info" type="submit" value="Hide">
                                                 </form>
-                                                <form action="ground_em_ia_admin.php" method="post">
+                                                <form action="admin/ground_em_ia_admin.php" method="post">
                                                     <input type="hidden" name="id" value="'.$data3['ID'].'">
                                                     <input type="hidden" name="mode" value="2">
                                                     <input class="btn btn-sm btn-info" type="submit" value="See">
                                                 </form>
-                                                <form action="ground_em_ia_admin.php" method="post">
+                                                <form action="admin/ground_em_ia_admin.php" method="post">
                                                     <input type="hidden" name="id" value="'.$data3['ID'].'">
                                                     <input type="hidden" name="mode" value="3">
                                                     <input class="btn btn-sm btn-info" type="submit" value="Free">
@@ -805,17 +805,17 @@ if($OfficierEMID >0)
 				echo "<hr><h2>Création de Compagnie EM</h2>
 				<form action='index.php?view=ground_em_ia_create' method='post'>
 				<select name='Cat' class='form-control' style='width: 200px'>".$cat_em."</select>
-				<input type='Submit' value='Créer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Unités indépendantes pouvant être attachées à une division ou placées en réserve du front. Une fois créées, ces unités apparaissent dans la liste des Compagnies EM. Un quota est imposé par nation et par front.</span></a></form><hr>";
+				<input type='submit' value='Créer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><img src='images/help.png'><span>Unités indépendantes pouvant être attachées à une division ou placées en réserve du front. Une fois créées, ces unités apparaissent dans la liste des Compagnies EM. Un quota est imposé par nation et par front.</span></a></form><hr>";
 			}
 		}
 		if($GHQ and $Type ==98)
-			echo "<form action='index.php?view=ghq_remob' method='post'><input type='Submit' value='Remonter le moral' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form><hr>";
+			echo "<form action='index.php?view=ghq_remob' method='post'><input type='submit' value='Remonter le moral' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form><hr>";
 		elseif($GHQ)
-			echo "<div class='row'><div class='col-md-2'><a class='btn btn-primary' href='index.php?view=em_vehs'>Véhicules en service</a></div><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='Submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
+			echo "<div class='row'><div class='col-md-2'><a class='btn btn-primary' href='index.php?view=em_vehs'>Véhicules en service</a></div><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
 		elseif($Armee)
-			echo "<div class='row'><div class='col-md-2'><a class='btn btn-primary' href='index.php?view=ground_em_div'>Armée</a></div><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='Submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
+			echo "<div class='row'><div class='col-md-2'><a class='btn btn-primary' href='index.php?view=ground_em_div'>Armée</a></div><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
 		else
-			echo "<div class='row'><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='Submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
+			echo "<div class='row'><div class='col-md-2'><form action='index.php?view=ground_attrition' method='post'><input type='submit' value='Attrition des unités' class='btn btn-primary' onclick='this.disabled=true;this.form.submit();'></form></div></div><hr>";
 		if($EM_units)
 		{
 			//<div style='overflow:auto; height: 640px;'>
@@ -857,7 +857,7 @@ if($OfficierEMID >0)
 				else
 					$Move=Afficher_Image('images/led_green.png','','',10);
 				$Action="<form action='index.php?view=ground_em_ia' method='post'><input type='hidden' name='Reg' value='".$data3['ID']."'>
-				<input type='Submit' value='Ordres' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+				<input type='submit' value='Ordres' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 				echo "<tr><td>".$data3['ID']."e</td><td>".$data3['Vehicule_Nbr']." ".GetVehiculeIcon($data3['Vehicule_ID'],$data3['Pays'],0,0,$Front)."</td><td>".$Move." ".$data3['Ville']."</td><td>".GetPosGr($data3['Position']).' '.GetPlace($data3['Placement'])."</td><td>".$Action."</td></tr>";
 			}
 			mysqli_free_result($result3);
@@ -1011,7 +1011,7 @@ if($OfficierEMID >0)
 			<div class='alert alert-warning'>Vous pouvez également postuler à une fonction de <a href='#' class='popup'><b>Commandant d'armée</b><span>Le commandant d'armée donne les ordres quotidiens aux unités que lui attribue son commandant de front, tels que les déplacements et les actions offensives. Veiller à l'approvisionnement de ses troupes et à la communication avec l'état-major est recommandé.</span></a> si vous voulez prendre le contrôle d'une armée (troupes terrestres) ou d'une flotte (troupes navales).<br>La nomination sera validée ou non par le Commandant en Chef du front ou le Planificateur Stratégique.
 			<br>En cas de changement de front, veillez à demander votre mutation via le profil de votre officier <b>avant</b> de postuler.</div>
 			<form action='index.php?view=postuler_armee' method='post'><input type='hidden' name='off' value='".$OfficierEMID."'><input type='hidden' name='country' value='".$country."'>
-			<input type='hidden' name='Front' value='".$Front."'><input type='hidden' name='poste' value='20'><input type='Submit' value='Postuler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+			<input type='hidden' name='Front' value='".$Front."'><input type='hidden' name='poste' value='20'><input type='submit' value='Postuler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
 		}
 	}
 	elseif($OfficierEMID)
@@ -1021,7 +1021,7 @@ if($OfficierEMID >0)
 		<div class='alert alert-warning'>Vous pouvez également postuler à une fonction de <a href='#' class='popup'><b>Commandant d'armée</b><span>Le commandant d'armée donne les ordres quotidiens aux unités que lui attribue son commandant de front, tels que les déplacements et les actions offensives. Veiller à l'approvisionnement de ses troupes et à la communication avec l'état-major est recommandé.</span></a> si vous voulez prendre le contrôle d'une armée (troupes terrestres) ou d'une flotte (troupes navales).<br>La nomination sera validée ou non par le Commandant en Chef du front ou le Planificateur Stratégique.
 		<br>En cas de changement de front, veillez à demander votre mutation via le profil de votre officier <b>avant</b> de postuler.</div>
 		<form action='index.php?view=postuler_armee' method='post'><input type='hidden' name='off' value='".$OfficierEMID."'><input type='hidden' name='country' value='".$country."'>
-		<input type='hidden' name='Front' value='".$Front."'><input type='hidden' name='poste' value='20'><input type='Submit' value='Postuler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
+		<input type='hidden' name='Front' value='".$Front."'><input type='hidden' name='poste' value='20'><input type='submit' value='Postuler' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form>";
 	}
 }
 else

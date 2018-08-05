@@ -5,26 +5,26 @@
  * Time: 14:31
  */
 
-class GHQ
+class GHQ extends Controller
 {
     /**
      * @param int $country
      * @return mixed
      */
-    public static function getByCountry($country)
+    public static function getPlanif($country)
     {
-        return DBManager::getData('Officier_em', '*', 'Pays', $country, '', '', '', 'OBJECT');
+        return DBManager::getData('Officier_em', 'Planificateur', 'Pays', $country, '', '', '', 'OBJECT')->Planificateur;
     }
 
     /**
      * @param int $country
-     * @param int $officier
+     * @param int $officierid
      * @return bool
      */
-    public static function isPlanif($country, $officier)
+    public static function isPlanif($country, $officierid)
     {
-        $ghq = self::getByCountry($country);
-        if($officier == $ghq->Planificateur) {
+        $planif = self::getPlanif($country);
+        if($officierid == $planif) {
             return true;
         } else {
             return false;

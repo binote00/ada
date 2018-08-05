@@ -557,7 +557,9 @@ if ($OfficierEMID > 0) {
                 $_SESSION['msg_red'] = 'Erreur lors de l\'amélioration de la Compagnie d\'état-major !';
         } else
             $_SESSION['msg_red'] = 'L\'unité ne bénéficie pas des crédits suffisants !';
-        header('Location : ./index.php?view=ground_em_ia');
+        var_dump($ok2);
+        header('Location: index.php?view=ground_em_ia');
+        header('Location: ../index.php?view=ground_em_ia_list');
     }
 } else
     echo "<h1>Vous devez être connecté pour accéder à cette page</h1>";

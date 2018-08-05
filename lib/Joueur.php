@@ -5,14 +5,7 @@
  * Time: 13:42
  */
 
-class Joueur
+class Joueur extends Controller
 {
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getById($id)
-    {
-        return DBManager::getData('Joueur', '*', 'ID', $id, '', '', '', 'OBJECT');
-    }
+
 }
