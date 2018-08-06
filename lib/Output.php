@@ -92,7 +92,7 @@ trait Output
      * @param string $class
      * @return string
      */
-    public static function linkModal($target_id, $caption, $class)
+    public static function linkModal($target_id, $caption, $class = '')
     {
         return '<a href="#" class="link ' . $class . '" data-toggle="modal" data-target="#' . $target_id . '">' . $caption . '</a>';
     }
