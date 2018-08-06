@@ -43,7 +43,7 @@ if ($OfficierEMID > 0) {
         $Ordre_ok = true;
         $Ordres_Div = true;
         $GHQ = true;
-        if (in_array($Nations_IA, $country)) {
+        if (in_array($country, $Nations_IA)) {
             $Nation_IA = true;
         }
     } elseif ($Commandant > 0 and ($Commandant == $OfficierEMID)) {
