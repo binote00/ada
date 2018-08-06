@@ -18,7 +18,7 @@ $view='update';
 if ($AccountID < 8 and $AccountID > 0) {
     error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
     $Date_up = date('Y-m-d');
-//    Update($Date_up);
+    Update($Date_up);
     //$view = Insec($_GET['view']);
 } else {
     error_reporting(0);
@@ -997,7 +997,7 @@ if ($Show_all or $Show_ground) {
                                     <li><a href="index.php?view=infos">Encyclopedie</a></li>
                                     <li><a href="index.php?view=regles">Aide</a></li>
                                     <? if ($Premium > 0) { ?>
-                                        <li><a href="index.php?view=archives">Archives</a></li>
+                                        <li><a href="index.php?view=form/f_archives">Archives</a></li>
                                     <? } ?>
                                 </ul>
                             </li>
@@ -1066,7 +1066,7 @@ if ($Show_all or $Show_ground) {
                                         <li><a href="index.php?view=ground_em_carte">Cartes</a></li>
                                         <li><a href="index.php?view=em_depots">Depots</a></li>
                                         <? if ($Front != 99 or $Admin) { ?>
-                                            <li><a href="index.php?view=ground_em_infras">Infrastructures</a></li>
+<!--                                            <li><a href="index.php?view=ground_em_infras">Infrastructures</a></li>-->
                                             <li><a href="index.php?view=em_rens_new">Intelligence</a></li>
                                         <? } ?>
                                         <li><a href="index.php?view=em_production2">Production</a></li>

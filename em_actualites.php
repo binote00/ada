@@ -1,20 +1,17 @@
-﻿<?
-require_once('./jfv_inc_sessions.php');
-$PlayerID=$_SESSION['PlayerID'];
-//$OfficierID=$_SESSION['Officier'];
-$OfficierEMID=$_SESSION['Officier_em'];
-if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
+﻿<?php
+require_once './jfv_inc_sessions.php';
+$PlayerID = $_SESSION['PlayerID'];
+$OfficierEMID = $_SESSION['Officier_em'];
+if($PlayerID >0 xor $OfficierEMID >0)
 {
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	$Land=$_SESSION['country'];
+    include_once './jfv_include.inc.php';
+    include_once './jfv_txt.inc.php';
+    $Land = $_SESSION['country'];
 	if($PlayerID >0)
 	{
 		$MIA=GetData("Pilote","ID",$PlayerID,"MIA");
 		$query="SELECT Front,Avancement FROM Pilote WHERE ID='$PlayerID'";
 	}
-	/*elseif($OfficierID >0)
-		$query="SELECT Front,Avancement FROM Officier WHERE ID='$OfficierID'";*/
 	elseif($OfficierEMID >0)
 		$query="SELECT Front,Avancement,Postuler,Mutation,Armee FROM Officier_em WHERE ID='$OfficierEMID'";
 	if(!$MIA and $_SESSION['Distance'] ==0)
@@ -190,7 +187,7 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 				}
 				else
 					$$Adj="<div class='row text-center'><img src='images/persos/general0.png'></div><div class='row'><a href='#' class='popup'><i class='label label-default'>Poste vacant</i><span>Il peut consulter les cartes, l'état des dépôts, les rapports et les alertes<br>Il contrôle les unités aériennes stratégiques et les unités tactiques de réserve, non assignées à une armée.</span></a></div>";
-				if($Officier_EM)
+				/*if($Officier_EM)
 				{
 					$resulto=mysqli_query($con,"SELECT ID,Nom,Avancement,DATE_FORMAT(Credits_Date,'%d-%m-%Y') as Activite,Photo,Photo_Premium FROM Officier_em WHERE ID='$Officier_EM'");
 					if($resulto)
@@ -209,11 +206,11 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 						mysqli_free_result($resulto);
 					}
 				}
-				/*elseif($OfficierEMID >0 and !$Postuler and !$Armee and !$Mutation and $Front !=12 and $Front ==$Front_Off)
+				elseif($OfficierEMID >0 and !$Postuler and !$Armee and !$Mutation and $Front !=12 and $Front ==$Front_Off)
 				{
 					$$Off="<div class='row text-center'><img src='images/persos/general0.png'></div><div class='row'><form action='index.php?view=postuler_em1' method='post'><input type='hidden' name='off' value='".$OfficierEMID."'><input type='hidden' name='country' value='".$Land."'><input type='hidden' name='Front' value='".$Front."'><input type='hidden' name='poste' value='3'>
 						<input type='submit' value='Postuler' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form></div>";
-				}*/
+				}
 				else
 					$$Off="<div class='row text-center'><img src='images/persos/general0.png'></div><div class='row'><a href='#' class='popup'><i class='label label-default'>Poste vacant</i><span>Il peut consulter les cartes et l'état des infrastructures<br>Il gère les infrastructures des lieux contrôlés par sa nation</span></a></div>";
 				/*if($Cdt_Chasse)
@@ -472,19 +469,14 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 					</div>
 				</div>
 				<div class='row'>
-					<div class='col-md-6 text-center'>
+					<div class='col-md-4 text-center'>
 						<h3>".GetGenStaff($Land,8)."</h3>".$Mer."
 					</div>
-					<div class='col-md-6 text-center'>
+					<div class='col-md-4 text-center'>
 						<h3>".GetGenStaff($Land,2)."</h3>".$Adj."
 					</div>
-				</div><hr>
-				<div class='row'>
-					<div class='col-md-6 text-center'>
+					<div class='col-md-4 text-center'>
 						<h3>".GetGenStaff($Land,6)."</h3>".$Log."
-					</div>
-					<div class='col-md-6 text-center'>
-						<h3>".GetGenStaff($Land,3)."</h3>".$Off."
 					</div>
 				</div>";
 			if($Army)
@@ -532,6 +524,6 @@ if($PlayerID >0 xor $OfficierID >0 xor $OfficierEMID >0)
 }
 else
 {
-	include_once('./menu_actus.php');
+	include_once './menu_actus.php';
 	echo "<img src='images/top_secret.gif'><div class='alert alert-danger'>Ces données sont classifiées.<br>Votre rang ne vous permet pas d'accéder à ces informations.</div>";
 }

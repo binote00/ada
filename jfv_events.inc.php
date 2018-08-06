@@ -1,15 +1,14 @@
 <?php
-require_once('./jfv_inc_sessions.php');
-include_once('./jfv_include.inc.php');
-include_once('./jfv_txt.inc.php');
-include_once('./jfv_nav.inc.php');
-include_once('./jfv_msg.inc.php');
+require_once './jfv_inc_sessions.php';
+include_once './jfv_include.inc.php';
+include_once './jfv_txt.inc.php';
+include_once './jfv_nav.inc.php';
+include_once './jfv_msg.inc.php';
 
 function Update($Date)
 {
 	$con=dbconnecti();
 	$res_conf_up=mysqli_query($con,"SELECT ID,Date FROM Conf_Update WHERE ID IN(1,2)");
-	mysqli_close($con);
 	if($res_conf_up)
 	{
 		while($datarcu=mysqli_fetch_array($res_conf_up,MYSQLI_ASSOC)) 
@@ -35,9 +34,9 @@ function Update($Date)
 				$Axe_nations='1,6,9,15,18,19,20,24';
 				$Allie_nations='2,3,4,5,7,8,10,35';
 			}
-			$con=dbconnecti();
 			$ok_up=mysqli_query($con,"UPDATE Conf_Update SET Date=ADDDATE(Date,1) WHERE ID=2");
-			$ok_up2=mysqli_query($con,"UPDATE Pays SET Pool_ouvriers=100,Co_Lieu_Mission=0");//Reset Nations
+            $ok_up2=mysqli_query($con,"UPDATE Conf_Update SET Date='$Date' WHERE ID=1");
+			$ok_up3=mysqli_query($con,"UPDATE Pays SET Pool_ouvriers=100,Co_Lieu_Mission=0");//Reset Nations
 			//$Score_Axe=mysqli_result(mysqli_query($con,"SELECT SUM(Valeurstrat) FROM Lieu WHERE Flag IN (".$Axe_nations.")"),0);
 			//$Score_Allie=mysqli_result(mysqli_query($con,"SELECT SUM(Valeurstrat) FROM Lieu WHERE Flag IN (".$Allie_nations.")"),0);
 			$up2=mysqli_query($con,"UPDATE Pays SET Score=Score+(SELECT SUM(Valeurstrat) FROM Lieu WHERE Flag IN (".$Axe_nations.")) WHERE ID=1");
@@ -52,27 +51,27 @@ function Update($Date)
 			WHERE Etat=1 AND Prototype=0 AND Production >0 AND ('$Campagne' BETWEEN Engagement AND Fin_Prod) AND DATEDIFF(Fin_Prod,Engagement) >0");
 			mysqli_close($con);
 			if(!$ok_up)
-				mail('binote@hotmail.com','Aube des Aigles: Update Date','Erreur de mise à jour de la Date Campagne :'.$Score);
-			if(!$ok_up2)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour du pool ouvrier et des missions de coop de nation');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Campaign Date','Erreur de mise à jour de la Date Campagne');
+            if(!$ok_up2)
+                mail(EMAIL_LOG,'Aube des Aigles: Update Date','Erreur de mise à jour de la Date de mise à jour');
+			if(!$ok_up3)
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour du pool ouvrier et des missions de coop de nation');
 			if(!$up2)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour du Score Axe');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour du Score Axe');
 			if(!$up3)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour du Score Allié');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour du Score Allié');
 			if(!$result3)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour des avions en service');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour des avions en service');
 			if(!$updateprod)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour de la production des véhicules');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour de la production des véhicules');
 			if(!$updateprod2)
-				mail('binote@hotmail.com','Aube des Aigles: Update Error','Erreur de mise à jour de la production des avions');
+				mail(EMAIL_LOG,'Aube des Aigles: Update Error','Erreur de mise à jour de la production des avions');
 			/*Chk_Event($Campagne);
 			usleep(10);*/
 			Attrition_IA();
 			InitDay();
 			usleep(10);
 			Infrastructures($Campagne);
-			usleep(10);
-			SetData("Conf_Update","Date",$Date,"ID",1);
 		}
 	}
 }
@@ -179,13 +178,11 @@ function Attrition_IA()
 				{
 					if($dataat['Categorie'] ==4)
 					{
-						$Lieu_Veh_Allies=false;
 						$Lieu_Veh_Allies=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA WHERE Lieu_ID=".$Lieu_ID." AND Pays=".$dataat['Pays']." AND ID<>".$dataat['Reg']." AND Vehicule_Nbr >0"),0);
 						if($Lieu_Veh_Allies)$Attrition=false;
 					}
 					else
 					{
-						$Lieu_Veh_Cdt=false;
 						$Lieu_Veh_Cdt=mysqli_result(mysqli_query($con,"SELECT r.Lieu_ID FROM Regiment_IA as r,Cible as c WHERE r.Vehicule_ID=c.ID AND r.Division=".$dataat['Division']." AND c.Categorie=4 AND r.Vehicule_Nbr=1"),0);
 						if($Lieu_Veh_Cdt ==$Lieu_ID)$Attrition=false;
 					}
@@ -216,19 +213,15 @@ function Attrition_IA()
 		}
 		mysqli_free_result($resultat);
 		unset($dataat);
-		if(is_array($Reg_Atr))
+		if(isset($Reg_Atr) && is_array($Reg_Atr))
 		{
 			if(array_count_values($Reg_Atr) >0)
 			{
-				$Reg_Atr_in=implode(',',$Reg_Atr);
-				$reset=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=Vehicule_Nbr-1,Mission_Type_D=23,Mission_Lieu_D=Lieu_ID WHERE ID IN(".$Reg_Atr_in.")");
-				/*if($reset)
-					return '<br>Attrition_IA : Regiments IA ('.$Reg_Atr_in.') sur lieux ennemis ont subi attrition!';
-				else
-					return '<br>Attrition_IA : ERREUR';*/
+				$Reg_Atr_in = implode(',',$Reg_Atr);
+				$reg_update = mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=Vehicule_Nbr-1,Mission_Type_D=23,Mission_Lieu_D=Lieu_ID WHERE ID IN(".$Reg_Atr_in.")");
+				if (!$reg_update)
+                    mail(EMAIL_LOG,'Aube des Aigles: Update Attrition_IA','Erreur '.mysqli_error($con));
 			}
-			/*else
-				return '<br>Attrition_IA : Aucun Régiment IA soumis à une attrition';*/
 		}
 	}
 	mysqli_close($con);
@@ -237,42 +230,10 @@ function Attrition_IA()
 function Infrastructures($Date)
 {
 	$Saison=GetSaison($Date);
-	if($Date >'1943-01-01')
-		$Rockets_prod=",Stock_Bombes_80=Stock_Bombes_80+'$up_stock'";
-	else
-		$Rockets_prod='';
 	$con=dbconnecti();
-	$resultl=mysqli_query($con,"SELECT ID,Latitude,Longitude,ValeurStrat,Industrie,Usine_muns,Flag,Flag_Usine,boostProd,Garnison FROM Lieu WHERE Last_Attack <'$Date'");
-	$resultinf=mysqli_query($con,"SELECT ID,BaseAerienne,Tour,QualitePiste,TypeIndus,Industrie,NoeudF_Ori,NoeudF,Pont_Ori,Pont,Port_Ori,Port,Radar_Ori,Radar,Auto_repare FROM Lieu WHERE Last_Attack BETWEEN ('$Date' - INTERVAL 365 DAY) AND ('$Date' - INTERVAL 3 DAY) AND Auto_repare >0");
+	$resultl=mysqli_query($con,"SELECT * FROM Lieu WHERE Last_Attack <'$Date'");
 	$upstockoil=mysqli_query($con,"UPDATE Lieu SET Stock_Essence_100=Stock_Essence_100+(Industrie*Oil*20*(1+(boostProd/10))),Stock_Essence_87=Stock_Essence_87+(Industrie*Oil*100*(1+(boostProd/10))),Stock_Essence_1=Stock_Essence_1+(Industrie*Oil*20*(1+(boostProd/10))) WHERE Oil >0 AND Industrie >0");
 	//Infras détruites et Raffineries
-	if($resultinf)
-	{
-		while($datainf=mysqli_fetch_array($resultinf,MYSQLI_ASSOC)) 
-		{
-			$query_inf=false;
-			if($datainf['BaseAerienne'])
-			{
-				if($datainf['Tour'] ==0)
-					$query_inf.=",Tour=1";
-				if($datainf['QualitePiste'] ==0)
-					$query_inf.=",QualitePiste=1";
-			}
-			if($datainf['TypeIndus'] and $datainf['Industrie'] ==0)
-				$query_inf.=",Industrie=1";
-			if($datainf['NoeudF_Ori'] and $datainf['NoeudF'] ==0)
-				$query_inf.=",NoeudF=1";
-			if($datainf['Pont_Ori'] and $datainf['Pont'] ==0)
-				$query_inf.=",Pont=1";
-			if($datainf['Port_Ori'] and $datainf['Port'] ==0)
-				$query_inf.=",Port=1";
-			if($datainf['Radar_Ori'] and $datainf['Radar'] ==0)
-				$query_inf.=",Radar=1";
-			$updateinf=mysqli_query($con,"UPDATE Lieu SET Meteo=0".$query_inf." WHERE ID=".$datainf['ID']);
-		}
-		mysqli_free_result($resultinf);
-		unset($datainf);
-	}
 	if($resultl)
 	{
 		while($datal=mysqli_fetch_array($resultl,MYSQLI_ASSOC)) 
@@ -286,6 +247,10 @@ function Infrastructures($Date)
 				$up_stock=mt_rand(1,$up_max)*$boostProd;
 				$up_stock8=$up_stock*15*$boostProd;
 				$up_stock20_40=$up_stock*2*$boostProd;
+                if($Date >'1943-01-01')
+                    $Rockets_prod=",Stock_Bombes_80=Stock_Bombes_80+'$up_stock'";
+                else
+                    $Rockets_prod='';
 				if($datal['Flag'] ==7)
 					$up_stock13=$up_stock*10*$boostProd;
 				else
@@ -308,23 +273,57 @@ function Infrastructures($Date)
 				/*$upstock1=mysqli_query($con,"UPDATE Lieu SET Stock_Munitions_8=Stock_Munitions_8+'$up_stock8',Stock_Munitions_13=Stock_Munitions_13+'$up_stock13',Stock_Munitions_20=Stock_Munitions_20+'$up_stock20_40',
 				Stock_Munitions_30=Stock_Munitions_30+'$up_stock20_40',Stock_Munitions_40=Stock_Munitions_40+'$up_stock20_40' WHERE ID='$ID'");*/
 			}
-			/*if($datal['ValeurStrat'] >0){
-                $Max_Garnison=($datal['ValeurStrat']*100)+100;
-                if($datal['Garnison'] < $Max_Garnison)
-                    $query_add=',Garnison=Garnison+10';
-            }*/
+            $skip = false;
+			if (($datal['BaseAerienne'] && $datal['Flag_Air'] != $datal['Flag'])
+			    || ($datal['TypeIndus'] && $datal['Flag_Usine'] != $datal['Flag'])
+                || ($datal['NoeudF_Ori'] && $datal['Flag_Gare'] != $datal['Flag'])
+                || ($datal['Pont_Ori'] && $datal['Flag_Pont'] != $datal['Flag'])
+                || ($datal['Port_Ori'] && $datal['Flag_Port'] != $datal['Flag'])
+                || ($datal['Radar_Ori'] && $datal['Flag_Radar'] != $datal['Flag'])
+                || ($datal['NoeudR'] && $datal['Flag_Route'] != $datal['Flag'])
+                || ($datal['Plage'] && $datal['Flag_Plage'] != $datal['Flag'])
+            ) {
+			    $skip = true;
+            }
+            if (!$skip) {
+                $Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID=".$datal['Flag']),0);
+                $Enis_oq=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r,Pays as p WHERE r.Pays=p.ID AND p.Faction<>'$Faction' AND r.Lieu_ID='$ID' AND r.Vehicule_Nbr >0"),0);
+                if (!$Enis_oq) {
+                    if($datal['ValeurStrat'] >0){
+                        $Max_Garnison=($datal['ValeurStrat']*100)+100;
+                        if($datal['Garnison'] < $Max_Garnison)
+                            $query_add=',Garnison=Garnison+10';
+                    }
+                    if($datal['BaseAerienne'])
+                    {
+                        if($datal['Tour'] < 100)
+                            $query_add.=",Tour=".($datal['Tour']+1);
+                        if($datal['QualitePiste'] < 100)
+                            $query_add.=",QualitePiste=".($datal['QualitePiste']+1);
+                    }
+                    if($datal['TypeIndus'] and $datal['Industrie'] < 100)
+                        $query_add.=",Industrie=".($datal['Industrie']+1);
+                    if($datal['NoeudF_Ori'] and $datal['NoeudF'] < 100)
+                        $query_add.=",NoeudF=".($datal['NoeudF']+1);
+                    if($datal['Pont_Ori'] and $datal['Pont'] < 100)
+                        $query_add.=",Pont=".($datal['NoeudF']+1);
+                    if($datal['Port_Ori'] and $datal['Port'] < 100)
+                        $query_add.=",Port=".($datal['Port']+1);
+                    if($datal['Radar_Ori'] and $datal['Radar'] < 100)
+                        $query_add.=",Radar=".($datal['Radar']+1);
+                }
+            }
 			$Meteo_ar=GetMeteo($Saison,$datal['Latitude'],$datal['Longitude']);
 			$Meteo=$Meteo_ar[1];
 			$upmeteo=mysqli_query($con,"UPDATE Lieu SET Meteo='$Meteo',Meteo_Hour=7".$query_add." WHERE ID='$ID'");
+            if (!$upmeteo)
+                mail(EMAIL_LOG,'Aube des Aigles: Update Infrastructures','Erreur '.mysqli_error($con));
 			unset($Meteo_ar);
 		}
 		mysqli_free_result($resultl);
-		unset($data);
 	}
-	if(!$resultinf)
-		mail('binote@hotmail.com','Aube des Aigles: Update AutoRepare','Erreur de réparation des infras détruites');
 	if(!$upstockoil)
-		mail('binote@hotmail.com','Aube des Aigles: Update Stock_Oil','Erreur de mise à jour des stocks de carburant');
+		mail(EMAIL_LOG,'Aube des Aigles: Update Stock_Oil','Erreur de mise à jour des stocks de carburant');
 }
 //Nécessite l'appel de l'include "jfv_const.inc.php" pour la constante '$Date_debut'.
 function Chk_Event($Campagne)
@@ -345,13 +344,13 @@ function Chk_Event($Campagne)
 			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 			{
 				Do_Event($data['Date'],$data['Type'],$data['Lieu'],$data['Pays'],$data['Unite'],$data['Avion'],$data['Avion_Nbr']);
-				//mail ('binote@hotmail.com', 'Aube des Aigles: Chk_Event' , 'Event trouvé :'.$data['Type']);
+				//mail (EMAIL_LOG, 'Aube des Aigles: Chk_Event' , 'Event trouvé :'.$data['Type']);
 			}
 			mysqli_free_result($result);
 			unset($result);
 		}
 		/*else
-			mail ('binote@hotmail.com', 'Aube des Aigles: Chk_Event' , 'Aucun Event trouvé');*/
+			mail (EMAIL_LOG, 'Aube des Aigles: Chk_Event' , 'Aucun Event trouvé');*/
 	//}
 }
 //Type : 1=Bataille, 2=Bombardement, 40=Occupation, 41=Mouvement, 21=Renfort, 50=Nouvel Avion, 51=Nouvelle Unité
@@ -393,11 +392,11 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 				SetData("Unit","Avion".$Lieu."_Bombe_Nbr",$Bombe_Nbr,"ID",$Unit);
 			}
 			AddEvent("Avion",141,$avion,1,$Unit,$Base,$avion_Nbr);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Renfort '.$Date,'Unité '.$Unit.' Avion'.$Lieu.' : '.$avion_Nbr.' '.$avion);
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Renfort '.$Date,'Unité '.$Unit.' Avion'.$Lieu.' : '.$avion_Nbr.' '.$avion);
 		break;
 		case 31:	/*Mutation PNJ
 			SetData("Pilote_IA","Unit",$Unit,"ID",$avion);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Mutation '.$Date,'Pilote '.$avion.' est muté au '.$Unit);*/
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Mutation '.$Date,'Pilote '.$avion.' est muté au '.$Unit);*/
 		break;
 		case 40:	/*Occupation
 			$Faction_eni=GetData("Pays","ID",$Pays,"Faction");
@@ -450,7 +449,7 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 					if($units_auto_move)
 					{
 						$units_move=implode(", ",$units_auto_move);
-						mail('binote@hotmail.com','Aube des Aigles: Do_Event Occupation Auto-Move '.$Date,"Unités (".$units_move.") déplacées depuis le Lieu ".$Lieu);
+						mail(EMAIL_LOG,'Aube des Aigles: Do_Event Occupation Auto-Move '.$Date,"Unités (".$units_move.") déplacées depuis le Lieu ".$Lieu);
 					}
 				}
 			}
@@ -461,7 +460,7 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 			$reset_tr2=mysqli_query($con,"DELETE FROM Flak WHERE Unit=0");
 			mysqli_close($con);
 			unset($reset);
-			//mail('binote@hotmail.com','Aube des Aigles: Do_Event Occupation '.$Date,'Pays '.$Pays.' occupe '.$Lieu);*/
+			//mail(EMAIL_LOG,'Aube des Aigles: Do_Event Occupation '.$Date,'Pays '.$Pays.' occupe '.$Lieu);*/
 		break;
 		case 41:	/*Mouvement
 			//Camouflage 0 et Piste >=50 si unité étrangère occupe le terrain
@@ -499,14 +498,14 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 			$reset2=mysqli_query($con,"UPDATE Pilote_IA SET Avion=0,Cible=0,Couverture=0,Couverture_Nuit=0,Escorte=0,Alt=0,Task=0 WHERE Unit='$Unit'");
 			mysqli_close($con);
 			AddEvent("Avion",41,1,1,$Unit,$Lieu);
-			//mail('binote@hotmail.com','Aube des Aigles: Do_Event Mouvement '.$Date,'Unité '.$Unit.' fait Mouvement vers la base de '.$Lieu);*/
+			//mail(EMAIL_LOG,'Aube des Aigles: Do_Event Mouvement '.$Date,'Unité '.$Unit.' fait Mouvement vers la base de '.$Lieu);*/
 		break;
 		case 42:	//Capitulation
 			$con=dbconnecti();
 			$reset=mysqli_query($con,"UPDATE Lieu SET Recce=0,Recce_PlayerID=0 WHERE Pays='$Pays'");
 			$reset2=mysqli_query($con,"UPDATE Unit SET Etat=0 WHERE Pays='$Pays'");
 			mysqli_close($con);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Capitulation '.$Date,'Pays '.$Pays.' capitule.');
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Capitulation '.$Date,'Pays '.$Pays.' capitule.');
 		break;
 		case 43:	//Alliance
 			if($Pays ==6 or $Pays ==8)
@@ -518,18 +517,18 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 			$reset=mysqli_query($con,"UPDATE Unit SET Commandant=NULL,Officier_Adjoint=NULL,Officier_Technique=NULL,Mission_Lieu=0,Mission_Type=0,Mission_Lieu_D=0,Mission_Type_D=0 WHERE Pays='$Pays'");
 			$reset1=mysqli_query($con,"UPDATE Pays SET Faction='$avion_Nbr' WHERE ID='$Pays'");
 			mysqli_close($con);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Alliance '.$Date,'Pays '.$Pays.' rejoint la faction '.$avion_Nbr);
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Alliance '.$Date,'Pays '.$Pays.' rejoint la faction '.$avion_Nbr);
 		break;
 		case 50:	//Nouvel Avion
 			/*SetData("Avion","Etat",1,"ID",$avion);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Nouvel Avion '.$Date,'Avion '.$avion);*/
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Nouvel Avion '.$Date,'Avion '.$avion);*/
 		break;
 		case 51:	//Nouvelle Unité
 			SetData("Unit","Etat",1,"ID",$Unit);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Nouvelle Unité '.$Date,'Unité '.$Unit.' arrive sur la base de '.$Lieu);
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Nouvelle Unité '.$Date,'Unité '.$Unit.' arrive sur la base de '.$Lieu);
 		break;
 		case 52:	/*Unité Dissoute
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Unité Dissoute '.$Date,'Unité '.$Unit.' dissoute');
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Unité Dissoute '.$Date,'Unité '.$Unit.' dissoute');
 			$Msg_diss="Votre unité a été dissoute.\n Vous avez été reversé dans une unité de réserve en attendant votre nouvelle affectation.\n Veuillez choisir votre prochaine unité via la demande de mutation classique.";
 			$Sujet_diss="Dissolution de votre unité";
 			//Affectation PJ restants
@@ -582,7 +581,7 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 					}
 					SetData("Pilote","Unit",$Reserve,"ID",$Pilote_ID);
 					SendMsg($Pilote_ID,$Expediteur,$Msg_diss,$Sujet_diss);
-					//mail('binote@hotmail.com','Aube des Aigles: Chk_Event','Event trouvé :'.$data['Type']);
+					//mail(EMAIL_LOG,'Aube des Aigles: Chk_Event','Event trouvé :'.$data['Type']);
 				}
 				mysqli_free_result($result);
 			}*/
@@ -608,11 +607,11 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 						$Pilote_ID=$data['ID'];
 						SetData("Pilote","Unit",$avion,"ID",$Pilote_ID);
 						SendMsgOff($Pilote_ID,0,$Msg_diss,$Sujet_diss,0,3);
-						//mail('binote@hotmail.com','Aube des Aigles: Chk_Event','Event trouvé :'.$data['Type']);
+						//mail(EMAIL_LOG,'Aube des Aigles: Chk_Event','Event trouvé :'.$data['Type']);
 					}
 					mysqli_free_result($result);
 				}
-				mail('binote@hotmail.com','Aube des Aigles: Do_Event Unité renommée '.$Date,'Unité '.$Unit.' dissoute');
+				mail(EMAIL_LOG,'Aube des Aigles: Do_Event Unité renommée '.$Date,'Unité '.$Unit.' dissoute');
 			}
 		break;
 		case 54:	//Unité changement de type
@@ -639,24 +638,24 @@ function Do_Event($Date,$Type,$Lieu,$Pays,$Unit=0,$avion=0,$avion_Nbr=0)
 			UpdateData("Pilote_IA","Pilotage",$avion_Nbr,"ID",$avion);
 			UpdateData("Pilote_IA","Tactique",$avion_Nbr,"ID",$avion);
 			UpdateData("Pilote_IA","Tir",$avion_Nbr,"ID",$avion);*/
-			//mail('binote@hotmail.com','Aube des Aigles: Do_Event Nouvelle Victoire '.$Date ,'As '.$avion.' a abattu '.$avion_Nbr.' avions ennemis ce jour');
+			//mail(EMAIL_LOG,'Aube des Aigles: Do_Event Nouvelle Victoire '.$Date ,'As '.$avion.' a abattu '.$avion_Nbr.' avions ennemis ce jour');
 		break;
 		case 61:	//Promotion PNJ
 			//SetData("Pilote_IA","Avancement",$Lieu,"ID",$avion);
-			//mail('binote@hotmail.com','Aube des Aigles: Do_Event Nouvelle Promotion '.$Date ,'As '.$avion.' a été promu au grade supérieur ce jour');
+			//mail(EMAIL_LOG,'Aube des Aigles: Do_Event Nouvelle Promotion '.$Date ,'As '.$avion.' a été promu au grade supérieur ce jour');
 		break;
 		case 62:	/*Reput PNJ
 			SetData("Pilote_IA","Reputation",$Lieu,"ID",$avion);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event Nouvelle Fonction '.$Date ,'As '.$avion.' a été promu à une fonction supérieure ce jour');*/
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event Nouvelle Fonction '.$Date ,'As '.$avion.' a été promu à une fonction supérieure ce jour');*/
 		break;
 		case 64:	/*Blesse PNJ
 			SetData("Pilote_IA","Actif",0,"ID",$avion);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event As Blessé '.$Date ,'As '.$avion.' a été blessé ce jour');*/
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event As Blessé '.$Date ,'As '.$avion.' a été blessé ce jour');*/
 		break;
 		case 65:	//Mort PNJ
 			if($avion)
 				SetData("Pilote_IA","Actif",0,"ID",$avion);
-			mail('binote@hotmail.com','Aube des Aigles: Do_Event As Tué '.$Date,'As '.$avion.' a été tué ce jour');
+			mail(EMAIL_LOG,'Aube des Aigles: Do_Event As Tué '.$Date,'As '.$avion.' a été tué ce jour');
 		break;
 	}
 }
@@ -678,29 +677,29 @@ function InitDay()
 	$initlieux=mysqli_query($con,"UPDATE Lieu SET Meteo=0,Meteo_Hour=0,Citernes=0,Camions=0,Recce=0,Recce_PlayerID=0,Recce_PlayerID_TAX=0,Recce_PlayerID_TAL=0,boostProd=0");
 	mysqli_close($con);
 	if(!$resetreg)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Régiments IA pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Régiments IA pas initialisés!');
 	/*if(!$result1)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Régiments joueurs sous le feu pas passés en cloué au sol!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Régiments joueurs sous le feu pas passés en cloué au sol!');
 	if(!$result2)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Régiments joueurs bombardés IA pas initialisés!');*/
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Régiments joueurs bombardés IA pas initialisés!');*/
 	if(!$result3)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Ateliers unités pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Ateliers unités pas initialisés!');
 	if(!$result4)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Demandes de Missions terrestres unités pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Demandes de Missions terrestres unités pas initialisés!');
 	/*if(!$result5)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Demandes de Missions terrestres officiers pas initialisés!');*/
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Demandes de Missions terrestres officiers pas initialisés!');*/
 	if(!$result6)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Pilotes pas entrainés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Pilotes pas entrainés!');
 	if(!$result7)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Pilotes pas reposés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Pilotes pas reposés!');
 	if(!$initlieux)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Lieux pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Lieux pas initialisés!');
 	if(!$resetacart)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Cie Artillerie pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Cie Artillerie pas initialisés!');
 	if(!$resetacmob)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Cie Mobiles pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Cie Mobiles pas initialisés!');
 	if(!$resetacinf)
-		mail('binote@hotmail.com','Aube des Aigles: Update : Init','Cie Infanterie pas initialisés!');
+		mail(EMAIL_LOG,'Aube des Aigles: Update : Init','Cie Infanterie pas initialisés!');
 }
 /*function diff_date($date1,$date2) 
 {

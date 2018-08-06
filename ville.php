@@ -248,8 +248,8 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				if(!$data['Garnison'])$data['Garnison']='<span class="text-danger">0</span>';
 				$Cible="<form action='index.php?view=em_city_ground' method='post'><input type='hidden' name='id' value='".$ID_city."'>
 						<input type='submit' value='Détail' class='btn btn-primary btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
-				if($GHQ or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM)$Cible.="<form action='index.php?view=ground_em_infras0' method='post'><input type='hidden' name='mode' value='1'><input type='hidden' name='lieu' value='".$ID_city."'>
-						<input type='submit' value='Gestion' class='btn btn-default btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+//				if($GHQ or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_EM)$Cible.="<form action='index.php?view=ground_em_infras0' method='post'><input type='hidden' name='mode' value='1'><input type='hidden' name='lieu' value='".$ID_city."'>
+//						<input type='submit' value='Gestion' class='btn btn-default btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
 				if($data['Impass'])
 					$Impass='<b>'.GetImpass($data['Impass']).'</b>';
 				else
