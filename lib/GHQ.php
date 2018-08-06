@@ -13,7 +13,7 @@ class GHQ extends Controller
      */
     public static function getPlanif($country)
     {
-        return DBManager::getData('Officier_em', 'Planificateur', 'Pays', $country, '', '', '', 'OBJECT')->Planificateur;
+        return DBManager::getData('GHQ', 'Planificateur', 'Pays', $country, '', '', '', 'OBJECT')->Planificateur;
     }
 
     /**
