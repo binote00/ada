@@ -1,10 +1,10 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {	
 	$PlayerID=$_SESSION['PlayerID'];
 	$OfficierEMID=$_SESSION['Officier_em'];
-	include_once('./jfv_include.inc.php');
+	include_once './jfv_include.inc.php';
 	$Unite=Insec($_POST['Unite']);
 	if(($PlayerID >0 or $OfficierEMID >0) AND $Unite >0)
 	{
@@ -52,7 +52,7 @@ if(isset($_SESSION['AccountID']))
 			$Flight=Insec($_POST['flight']);
 			$CT_Replace=Insec($_POST['CT']);
 			$country=$_SESSION['country'];
-			include_once('./jfv_txt.inc.php');
+			include_once './jfv_txt.inc.php';
 			if($OfficierEMID >0)
 				$DB='Officier_em';
 			elseif($PlayerID >0){
@@ -60,13 +60,13 @@ if(isset($_SESSION['AccountID']))
 				$OfficierEMID=$PlayerID;
 			}
 			$con=dbconnecti();
-			$result=mysqli_query($con,"SELECT Avancement,Credits,Front FROM $DB WHERE ID='$OfficierEMID'");
+            $Credits=mysqli_result(mysqli_query($con,"SELECT CT FROM Unit WHERE ID='$Unite'"),0);
+			$result=mysqli_query($con,"SELECT Avancement,Front FROM $DB WHERE ID='$OfficierEMID'");
 			if($result)
 			{
 				while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 				{
 					$Avancement=$data['Avancement'];
-					$Credits=$data['Credits'];
 					$Front=$data['Front'];
 				}
 				mysqli_free_result($result);
@@ -230,4 +230,4 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo '<h1>Vous devez être connecté pour accéder à cette page!</h1>';
-include_once('./index.php');
+include_once './index.php';

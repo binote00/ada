@@ -1,35 +1,36 @@
-<?
-require_once('./jfv_inc_sessions.php');
-if(isset($_SESSION['AccountID']))
-{	
-	include_once('./jfv_include.inc.php');
-	$OfficierEMID=$_SESSION['Officier_em'];
-	$Unite=Insec($_POST['Unite']);
-	if($OfficierEMID >0 AND $Unite >0)
+<?php
+require_once './jfv_inc_sessions.php';
+if (isset($_SESSION['AccountID'])) {
+    include_once './jfv_include.inc.php';
+    $OfficierEMID = $_SESSION['Officier_em'];
+    $Unite = Insec($_POST['Unite']);
+	if($OfficierEMID >0 && $Unite >0)
 	{
-		include_once('./jfv_air_inc.php');
-		include_once('./jfv_txt.inc.php');
-		include_once('./jfv_access.php');
-		include_once('./jfv_inc_em.php');
-		$Long_Mission=0;
-		$Cible=Insec($_POST['Cible']);
-		$Type=Insec($_POST['Type']);
-		$Avion1=Insec($_POST['Avion1']);
-		$Avion2=Insec($_POST['Avion2']);
-		$Avion3=Insec($_POST['Avion3']);
-		$Avion1nbr=Insec($_POST['Avion1nbr']);
-		$Avion2nbr=Insec($_POST['Avion2nbr']);
-		$Avion3nbr=Insec($_POST['Avion3nbr']);
-		$Mission_alt=Insec($_POST['Altitude']);
-		$Mission_Flight=Insec($_POST['Flight']);
-		$Cible_Atk=Insec($_POST['Cible_Atk']);
-		$Bomb_Form=Insec($_POST['Bombs']);
-		$Paras=Insec($_POST['Paras']);
-		$Zoneb=Insec($_POST['Zoneb']);
-		$Long_Mission=Insec($_POST['Long']);
-		$Reset=Insec($_POST['reset']);
-		$country=$_SESSION['country'];
-		$_SESSION['esc'] = $Unite;
+        include_once './jfv_air_inc.php';
+        include_once './jfv_txt.inc.php';
+        include_once './jfv_access.php';
+        include_once './jfv_inc_em.php';
+        $Long_Mission = 0;
+        $Cible = Insec($_POST['Cible']);
+        $Type = Insec($_POST['Type']);
+        $Avion1 = Insec($_POST['Avion1']);
+        $Avion2 = Insec($_POST['Avion2']);
+        $Avion3 = Insec($_POST['Avion3']);
+        $Avion1nbr = Insec($_POST['Avion1nbr']);
+        $Avion2nbr = Insec($_POST['Avion2nbr']);
+        $Avion3nbr = Insec($_POST['Avion3nbr']);
+        $Mission_alt = Insec($_POST['Altitude']);
+        $Mission_Flight = Insec($_POST['Flight']);
+        $Cible_Atk = Insec($_POST['Cible_Atk']);
+        $Bomb_Form = Insec($_POST['Bombs']);
+        $Paras = Insec($_POST['Paras']);
+        $Zoneb = Insec($_POST['Zoneb']);
+        $Long_Mission = Insec($_POST['Long']);
+        $Reset = Insec($_POST['reset']);
+        $country = $_SESSION['country'];
+        $_SESSION['esc'] = $Unite;
+        $Unit = Unit::getById($Unite);
+        $Credits = $Unit->CT;
 		if($Long_Mission)
 			$CT=2;
 		else
@@ -61,17 +62,17 @@ if(isset($_SESSION['AccountID']))
         */
 		elseif($Reset ==4)
 		{
-			$CT_Discount=Get_CT_Discount($Avancement);
-			if($GHQ)$CT_Discount+=4;
-			$CT_Refit=12-$CT_Discount;
-			if($Credits >=$CT_Refit)
-			{
+//			$CT_Discount=Get_CT_Discount($Avancement);
+//			if($GHQ)$CT_Discount+=4;
+//			$CT_Refit=12-$CT_Discount;
+//			if($Credits >=$CT_Refit)
+            if (!$Unit->Mission_IA) {
 				$con=dbconnecti();
-				$reset2=mysqli_query($con,"UPDATE Unit SET Garnison=50 WHERE ID='$Unite'");
+				$reset2=mysqli_query($con,"UPDATE Unit SET Garnison=50,Mission_IA=1 WHERE ID='$Unite'");
 				mysqli_close($con);	
-				UpdateData("Officier_em","Credits",-$CT_Refit,"ID",$OfficierEMID);
-				UpdateCarac($OfficierEMID,"Avancement",12,"Officier_em");
-				UpdateCarac($OfficierEMID,"Note",12,"Officier_em");
+//				UpdateData("Officier_em","Credits",-$CT_Refit,"ID",$OfficierEMID);
+//				UpdateCarac($OfficierEMID,"Avancement",12,"Officier_em");
+//				UpdateCarac($OfficierEMID,"Note",12,"Officier_em");
                 $_SESSION['msg_esc'] = 'Les troupes de défense sont réorganisées.';
 			}
             header( 'Location : index.php?view=em_ia');
@@ -81,19 +82,19 @@ if(isset($_SESSION['AccountID']))
         */
 		elseif($Reset ==5)
 		{
-			$CT_Discount=Get_CT_Discount($Avancement);
-			if($GHQ)$CT_Discount+=4;
-			$CT_Refit=12-$CT_Discount;
-			if($Trait==1)$CT_Refit-=2;
-			if($Credits >=$CT_Refit)
-			{
+//			$CT_Discount=Get_CT_Discount($Avancement);
+//			if($GHQ)$CT_Discount+=4;
+//			$CT_Refit=12-$CT_Discount;
+//			if($Trait==1)$CT_Refit-=2;
+//			if($Credits >=$CT_Refit)
+			if (!$Unit->Mission_IA) {
 				$con=dbconnecti();
 				$reset=mysqli_query($con,"UPDATE Pilote_IA SET Moral=100,Courage=100,Escorte=0,Couverture=0,Couverture_Nuit=0,Task=0,Cible=0,Avion=0,Alt=0,Endurance=0 WHERE Unit='$Unite'");
 				$reset2=mysqli_query($con,"UPDATE Unit SET Mission_Lieu=0,Mission_Type=0,Mission_IA=1 WHERE ID='$Unite'");
 				mysqli_close($con);	
-				UpdateData("Officier_em","Credits",-$CT_Refit,"ID",$OfficierEMID);
-				UpdateCarac($OfficierEMID,"Avancement",12,"Officier_em");
-				UpdateCarac($OfficierEMID,"Note",12,"Officier_em");
+//				UpdateData("Officier_em","Credits",-$CT_Refit,"ID",$OfficierEMID);
+//				UpdateCarac($OfficierEMID,"Avancement",12,"Officier_em");
+//				UpdateCarac($OfficierEMID,"Note",12,"Officier_em");
                 $_SESSION['msg_esc'] = 'Les pilotes de l\'escadrille sont rappelés à terre pour faire la fête au mess!<br>Aucun avion, et surtout aucun pilote, n\'est en vol jusqu\'à nouvel ordre.</div>';
                 header( 'Location : index.php?view=rapports');
 			}
@@ -118,8 +119,8 @@ if(isset($_SESSION['AccountID']))
 			}
 			else
 			{
-				include_once('./jfv_map.inc.php');
-				include_once('./jfv_combat.inc.php');
+				include_once './jfv_map.inc.php';
+				include_once './jfv_combat.inc.php';
 				function AddAtk_IA($Cible,$Unite,$Pilotes,$Avion,$Arme,$Alt,$Target,$Cycle,$DCA,$Escorte,$Couverture)
 				{
 					$date=date('Y-m-d G:i');
@@ -129,7 +130,7 @@ if(isset($_SESSION['AccountID']))
 					$ok=mysqli_query($con,$query);
 					if(!$ok){
 						$msg='Erreur de mise à jour : Lieu='.$Cible.' / Unite='.$Unite.' / Date='.$date.' '.mysqli_error($con);
-						mail('binote@hotmail.com','Aube des Aigles: AddAtk_IA Error',$msg);
+						mail(EMAIL_LOG,'Aube des Aigles: AddAtk_IA Error',$msg);
 					}
                     mysqli_close($con);
 				}
@@ -144,7 +145,7 @@ if(isset($_SESSION['AccountID']))
 					if(!$ok)
 					{
 						$msg.="Erreur de mise à jour : Lieu=".$Lieu." / Unite=".$Unite." / Date=".$date." ".mysqli_error($con);
-						mail('binote@hotmail.com','Aube des Aigles: AddIntercept Error',$msg);
+						mail(EMAIL_LOG,'Aube des Aigles: AddIntercept Error',$msg);
 					}
 				}*/
 				$Gain_Reput=0;
@@ -1981,9 +1982,10 @@ if(isset($_SESSION['AccountID']))
 							}
 							elseif($Type ==29) //ASM
 							{
-								if(!$Officier_Adjoint and $OfficierEMID ==$Commandant)$EM_CT=1;
-								elseif(!$Officier_Adjoint and !$Commandant)$EM_CT=1;
-								$CT=GetModCT(4,$country,$EM_CT);
+//								if(!$Officier_Adjoint and $OfficierEMID ==$Commandant)$EM_CT=1;
+//								elseif(!$Officier_Adjoint and !$Commandant)$EM_CT=1;
+//								$CT=GetModCT(4,$country,$EM_CT);
+                                $CT=0;
 								if($Credits >=$CT)
 								{
 									$Patrol_Nbr=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Pilote_IA as j,Pays as p WHERE j.Pays=p.ID AND p.Faction<>'$Faction' AND j.Couverture='$Cible' AND j.Cible='$Cible' AND j.Actif=1"),0);
@@ -2258,14 +2260,15 @@ if(isset($_SESSION['AccountID']))
 							}
 							elseif($Type ==8 or $Type ==16 or $Type ==23 or $Type ==24 or $Type ==27) //Bomb Strat, Parachutage
 							{
-								if(!$Officier_Adjoint and $OfficierEMID ==$Commandant)$EM_CT=1;
-								elseif(!$Officier_Adjoint and !$Commandant)$EM_CT=1;
-								if($Bomb_Form >999)
-									$CT=GetModCT(4,$country,$EM_CT);
-								elseif($Bomb_Form >499)
-									$CT=GetModCT(2,$country,$EM_CT);
-								else
-									$CT=1;
+//								if(!$Officier_Adjoint and $OfficierEMID ==$Commandant)$EM_CT=1;
+//								elseif(!$Officier_Adjoint and !$Commandant)$EM_CT=1;
+//								if($Bomb_Form >999)
+//									$CT=GetModCT(4,$country,$EM_CT);
+//								elseif($Bomb_Form >499)
+//									$CT=GetModCT(2,$country,$EM_CT);
+//								else
+//									$CT=1;
+                                $CT=0;
 								if($Credits >=$CT)
 								{
                                     //DCA
@@ -2868,10 +2871,11 @@ if(isset($_SESSION['AccountID']))
 						elseif($Trait ==16 and $Type ==4)$CT=0;
 						elseif($Trait ==3 and ($Type ==5 or $Type==2 or $Type==12))$CT-=1;
 						elseif($Trait ==4 and ($Type ==15 or $Type==8 or $Type==16))$CT-=1;
-						if($CT<1)$CT=1;
-						if($CT){
-							UpdateCarac($OfficierEMID,"Avancement",$CT,"Officier_em");
-							UpdateData("Officier_em","Credits",-$CT,"ID",$OfficierEMID);
+//						if($CT<1)$CT=1;
+						if($CT >0){
+//							UpdateCarac($OfficierEMID,"Avancement",$CT,"Officier_em");
+//							UpdateData("Officier_em","Credits",-$CT,"ID",$OfficierEMID);
+                            UpdateData("Unit","CT",-$CT,"ID",$Unite);
 						}
 					}
 					if(is_array($Avions_Down_DCA))
@@ -2921,4 +2925,4 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-include_once('./index.php');
+include_once './index.php';

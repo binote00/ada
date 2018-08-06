@@ -1,14 +1,14 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {	
 	$PlayerID=$_SESSION['PlayerID'];
 	$OfficierEMID=$_SESSION['Officier_em'];
-	include_once('./jfv_include.inc.php');
+	include_once './jfv_include.inc.php';
 	$Unite=Insec($_POST['Unite']);
 	if(($PlayerID >0 or $OfficierEMID >0) AND $Unite >0)
 	{
-		include_once('./jfv_txt.inc.php');
+		include_once './jfv_txt.inc.php';
 		$Flight=Insec($_POST['flight']);
 		$CT_Refit=Insec($_POST['CT']);
 		$GHQ=Insec($_POST['ghq']);
@@ -22,14 +22,13 @@ if(isset($_SESSION['AccountID']))
 			$OfficierEMID=$PlayerID;
 		}
 		$con=dbconnecti();
-		$result=mysqli_query($con,"SELECT Avancement,Credits,Admin FROM $DB WHERE ID='$OfficierEMID'");
-		//mysqli_close($con);
+        $Credits=mysqli_result(mysqli_query($con,"SELECT CT FROM Unit WHERE ID='$Unite'"),0);
+		$result=mysqli_query($con,"SELECT Avancement,Admin FROM $DB WHERE ID='$OfficierEMID'");
 		if($result)
 		{
 			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 			{
 				$Avancement=$data['Avancement'];
-				$Credits=$data['Credits'];
 				$Admin=$data['Admin'];
 			}
 			mysqli_free_result($result);
@@ -37,9 +36,7 @@ if(isset($_SESSION['AccountID']))
 		}
 		if($Credits >=$CT_Refit and $Flight >0)
 		{
-			//$con=dbconnecti();
 			$result=mysqli_query($con,"SELECT Nom,Type,Reputation,Base,Avion1,Avion2,Avion3,Avion1_Nbr,Avion2_Nbr,Avion3_Nbr FROM Unit WHERE ID='$Unite'");
-			//mysqli_close($con);
 			if($result)
 			{
 				while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -62,9 +59,7 @@ if(isset($_SESSION['AccountID']))
 			$Avion="Avion".$Flight;
 			$Avion_Nbr="Avion".$Flight."_Nbr";
 			$MaxFlight=GetMaxFlight($Unite_Type,$Unite_Reput,0);
-			//$con=dbconnecti();
 			$result1=mysqli_query($con,"SELECT Nom,Production,Stock,Usine1,Usine2,Usine3,Reserve FROM Avion WHERE ID='".$$Avion."'");
-			//mysqli_close($con);
 			if($result1)
 			{
 				while($data=mysqli_fetch_array($result1,MYSQLI_ASSOC))
@@ -80,7 +75,6 @@ if(isset($_SESSION['AccountID']))
 			if($CT_Refit >2)$Avion_Usine=true;
 			if($$Avion_Nbr <$MaxFlight and $Avion_Usine)
 			{
-				//$con=dbconnecti();
 				$Abattu=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Chasse WHERE Avion_loss='".$$Avion."' AND PVP=1"),0);
 				$DCA=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM DCA WHERE Avion='".$$Avion."'"),0);
 				$Service1=mysqli_result(mysqli_query($con,"SELECT SUM(Avion1_Nbr) FROM Unit WHERE Avion1='".$$Avion."' AND Etat=1"),0);
@@ -103,9 +97,9 @@ if(isset($_SESSION['AccountID']))
 						if($add_avions>=$MaxFlight)$add_avions=$MaxFlight;
 					}
 					UpdateData("Unit",$Avion_Nbr,$add_avions,"ID",$Unite,$MaxFlight);
-					UpdateCarac($OfficierEMID,"Avancement",$CT_Refit,$DB);
-					UpdateCarac($OfficierEMID,"Note",1,$DB);
-					if(!$Admin)UpdateData($DB,"Credits",-$CT_Refit,"ID",$OfficierEMID);
+//					UpdateCarac($OfficierEMID,"Avancement",$CT_Refit,$DB);
+//					UpdateCarac($OfficierEMID,"Note",1,$DB);
+					if(!$Admin)UpdateData("Unit","CT",-$CT_Refit,"ID",$Unite);
                     $_SESSION['msg_esc'] = 'Un <b>'.$Nom_Avion.'</b> '.GetAvionIcon($$Avion,$country,0,$Unite,$Front).' est ajouté au stock du <b>'.$Unite_Nom.'</b>';
 				}
 				else
@@ -115,7 +109,7 @@ if(isset($_SESSION['AccountID']))
 			else
                 $_SESSION['msg_esc_red'] = 'Ce type d\'avion ne peut être ravitaillé ici.';
 		}
-        header( 'Location : index.php?view=em_ia');
+        header( 'Location: index.php?view=em_ia');
         /*Old Way
         $titre="Ravitaillement";
 		$img="<img src='images/gestion_avions".$country.".jpg'><h2>".$Unite_Nom."</h2>";
@@ -130,5 +124,4 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-include_once('./index.php');
-?>
+include_once './index.php';

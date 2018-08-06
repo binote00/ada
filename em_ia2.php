@@ -1,22 +1,21 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {
 	$OfficierEMID=$_SESSION['Officier_em'];
 	if($OfficierEMID >0)
 	{
-		include_once('./jfv_include.inc.php');
-		include_once('./jfv_txt.inc.php');
+		include_once './jfv_include.inc.php';
+		include_once './jfv_txt.inc.php';
 		$country=$_SESSION['country'];
 		$con=dbconnecti();
-		$result=mysqli_query($con,"SELECT Avancement,Credits,Front,Pays,Trait,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
+		$result=mysqli_query($con,"SELECT Avancement,Front,Pays,Trait,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
 		//mysqli_close($con);
 		if($result)
 		{
 			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 			{
 				$Avancement=$data['Avancement'];
-				$Credits=$data['Credits'];
 				$Front=$data['Front'];
 				$Trait=$data['Trait'];
 				$country=$data['Pays'];
@@ -34,9 +33,8 @@ if(isset($_SESSION['AccountID']))
 			$Mission_Flight=Insec($_POST['Flight']);
 			if($Unite)
 			{
-				//$con=dbconnecti();
 				$result2=mysqli_query($con,"SELECT Commandant,Adjoint_EM,Officier_EM,Officier_Rens,Cdt_Chasse,Cdt_Bomb,Cdt_Reco,Cdt_Atk FROM Pays WHERE Pays_ID='$country' AND Front='$Front'");
-				$result=mysqli_query($con,"SELECT Nom,Type,Base,Armee,Avion1,Avion2,Avion3,Avion1_Nbr,Avion2_Nbr,Avion3_Nbr,Mission_Lieu,Mission_Type,Mission_alt,Mission_Lieu_D,Mission_Type_D FROM Unit WHERE ID='$Unite'");
+				$result=mysqli_query($con,"SELECT Nom,Type,Base,Armee,Avion1,Avion2,Avion3,Avion1_Nbr,Avion2_Nbr,Avion3_Nbr,Mission_Lieu,Mission_Type,Mission_alt,Mission_Lieu_D,Mission_Type_D,CT FROM Unit WHERE ID='$Unite'");
 				$Pilotes_max=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Pilote_IA WHERE Unit='$Unite' AND Actif='1'"),0);
 				$Pilotes=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Pilote_IA WHERE Unit='$Unite' AND Courage >0 AND Moral >0 AND Actif=1"),0);
 				mysqli_close($con);
@@ -74,6 +72,7 @@ if(isset($_SESSION['AccountID']))
 						$Mission_Lieu_D=$data['Mission_Lieu_D'];
 						$Mission_Type_D=$data['Mission_Type_D'];
 						$Unit_Armee=$data['Armee'];
+                        $Credits=$data['CT'];
 					}
 					mysqli_free_result($result);
 					unset($data);
@@ -145,7 +144,7 @@ if(isset($_SESSION['AccountID']))
 							$mes.="Erreur d'import de données.";
 						if($Cible)
 						{
-							include_once('./jfv_avions.inc.php');
+							include_once './jfv_avions.inc.php';
 							if($Unite_Type ==2 or $Unite_Type ==11)$Bomb_nuit_choix="<option value='16'>Bombardement stratégique de nuit</option>";
 							$Avion_Var="Avion".$Mission_Flight;
 							$Plafond=GetData("Avion","ID",$$Avion_Var,"Plafond");
@@ -209,7 +208,7 @@ if(isset($_SESSION['AccountID']))
 							if($Plafond >=4000)
 								echo "<option value='4000'>Moyenne altitude (4000m)</option>";
 							echo "<option value='3000' selected>Moyenne altitude (3000m)</option></select></td></tr>
-							<tr><td><img src='/images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
+							<tr><td><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
 							</table></form>";
 						}
 					}
@@ -228,5 +227,4 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-include_once('./index.php');
-?>
+include_once './index.php';

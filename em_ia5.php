@@ -1,22 +1,21 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 if(isset($_SESSION['AccountID']))
 {
 	$OfficierEMID=$_SESSION['Officier_em'];
 	if($OfficierEMID >0)
 	{
-		include_once('./jfv_include.inc.php');
-		include_once('./jfv_txt.inc.php');
+		include_once './jfv_include.inc.php';
+		include_once './jfv_txt.inc.php';
 		$country=$_SESSION['country'];
 		$con=dbconnecti();
-		$result=mysqli_query($con,"SELECT Avancement,Credits,Front,Pays,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
+		$result=mysqli_query($con,"SELECT Avancement,Front,Pays,Armee FROM Officier_em WHERE ID='$OfficierEMID'");
 		//mysqli_close($con);
 		if($result)
 		{
 			while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 			{
 				$Avancement=$data['Avancement'];
-				$Credits=$data['Credits'];
 				$Front=$data['Front'];
 				$country=$data['Pays'];
 				$Armee=$data['Armee'];
@@ -33,7 +32,7 @@ if(isset($_SESSION['AccountID']))
 			if($Unite)
 			{
 				$result2=mysqli_query($con,"SELECT Commandant,Adjoint_EM,Officier_EM,Officier_Rens,Cdt_Chasse,Cdt_Bomb,Cdt_Reco,Cdt_Atk FROM Pays WHERE Pays_ID='$country' AND Front='$Front'");
-				$result=mysqli_query($con,"SELECT Nom,Type,Armee,Base,Avion1,Avion2,Avion3,Avion1_Nbr,Avion2_Nbr,Avion3_Nbr,Mission_alt FROM Unit WHERE ID='$Unite'");
+				$result=mysqli_query($con,"SELECT Nom,Type,Armee,Base,Avion1,Avion2,Avion3,Avion1_Nbr,Avion2_Nbr,Avion3_Nbr,Mission_alt,CT FROM Unit WHERE ID='$Unite'");
 				if($result2)
 				{
 					while($data=mysqli_fetch_array($result2,MYSQLI_ASSOC))
@@ -64,6 +63,7 @@ if(isset($_SESSION['AccountID']))
 						$Avion2_Nbr=$data['Avion2_Nbr'];
 						$Avion3_Nbr=$data['Avion3_Nbr'];
 						$Mission_alt=$data['Mission_alt'];
+                        $Credits=$data['CT'];
 					}
 					mysqli_free_result($result);
 					unset($data);
@@ -139,7 +139,7 @@ if(isset($_SESSION['AccountID']))
 								$Miss_txt='Tactique';
 								$Mission_Type=2;
 							}
-							include_once('./jfv_avions.inc.php');
+							include_once './jfv_avions.inc.php';
 							$Avion_Var='Avion'.$Mission_Flight;
 							$Array_Mod=GetAmeliorations($$Avion_Var);
 							$Canon=$Array_Mod[3];
@@ -212,7 +212,7 @@ if(isset($_SESSION['AccountID']))
 							if($Torpille >=1 and $Credits >=GetModCT(8*$CT_Mult,$country,$EM_CT,0,$Pil_Front) and ($Zone ==6 or $Plage or $Port_Ori))
 								echo "<option value='800'>Torpille (".GetModCT(8*$CT_Mult,$country,$EM_CT,0,$Pil_Front)."CT)</option>";
 							echo "</option></select></td><td>".$Zones_txt."</td></tr>
-							<tr><td><img src='images/CT99.png' title='Montant en Crédits Temps variable selon option choisie'><input type='Submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
+							<tr><td><input type='submit' value='VALIDER' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'></td></tr>
 							</table></form>";
 						}
 					}
@@ -231,4 +231,4 @@ if(isset($_SESSION['AccountID']))
 }
 else
 	echo "<h1>Vous devez être connecté pour accéder à cette page!</h1>";
-include_once('./index.php');
+include_once './index.php';
