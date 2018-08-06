@@ -821,7 +821,7 @@ if($OfficierEMID >0)
 			//<div style='overflow:auto; height: 640px;'>
 			echo '<h2>Liste des Bataillons</h2>
 				'.$menu_cat_list.$Intro_txt.$GHQ_Rep_txt.'
-				<div><table class="table table-condensed"><thead><tr>'.$admin_menu.$GHQ_Front_Titre.'
+				<div><table class="table table-dt table-condensed"><thead><tr>'.$admin_menu.$GHQ_Front_Titre.'
 					<th>Division</th>
 					<th>Bataillon</th>
 					<th>Action</th>
