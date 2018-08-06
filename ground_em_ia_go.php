@@ -191,21 +191,21 @@ if($OfficierEMID >0)
             mysqli_close($con);
             //$img="<img src='images/em".$country.".jpg' style='width:100%;'>";
             $_SESSION['msg'] = $mes;
-            header( 'Location : index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
         }
 		elseif($Reset ==3)
 		{
 			SetData("Regiment_IA","Mission_Lieu_D",0,"ID",$Reg);
 			SetData("Regiment_IA","Mission_Type_D",0,"ID",$Reg);
             $_SESSION['msg'] = 'Vous annulez la demande de mission en cours!';
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
 		}
 		elseif($Reset ==5)
 		{			
 			SetData("Regiment_IA","Mission_Lieu_D",$Cible,"ID",$Reg);
 			SetData("Regiment_IA","Mission_Type_D",$Type_Dem,"ID",$Reg);
             $_SESSION['msg'] = 'Votre demande de mission aérienne a été validée.';
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
 		}
 		elseif($Reset ==6 and !$Move)
 		{
@@ -226,7 +226,7 @@ if($OfficierEMID >0)
 			$reset1=mysqli_query($con,"UPDATE Regiment_IA SET Position=4,Placement=4,Camouflage=1,Move=1,Visible=0,Transit_Veh=0 WHERE ID='$Reg'");
 			mysqli_close($con);
             $_SESSION['msg'] = 'Les troupes débarquent dans le port.';
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
 		}
 		elseif($Reset ==8 and !$Move)
 		{			
@@ -258,7 +258,7 @@ if($OfficierEMID >0)
 			$reset1=mysqli_query($con,"UPDATE Regiment_IA SET Vehicule_Nbr=".$Veh_final.",`Position`=6,HP=HP*0.5,Camouflage=1,Atk=0,Atk_Eni=0,Atk_time=NOW() - INTERVAL 1 DAY,Move_time=NOW() - INTERVAL 1 DAY WHERE ID='$Reg'");
 			mysqli_close($con);
             $_SESSION['msg'] = '<div class="alert alert-warning">Une arrière-garde est sacrifiée pour que l\'unité puisse fuir.</div>';
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
 		}
         elseif(!$Move and $Renforts){
             if($Renforts ==2)
@@ -305,7 +305,7 @@ if($OfficierEMID >0)
                 }
                 else
                     $_SESSION['msg_red'] = 'Le navire n\'a pas pu être réparé par manque de temps!';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
             }
             elseif($Renforts ==3)
             {
@@ -318,7 +318,7 @@ if($OfficierEMID >0)
                 }
                 else
                     $_SESSION['msg_red'] = 'Le train n\'a pas pu être réparé par manque de temps!';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
             }
             elseif($Renforts ==5)
             {
@@ -332,7 +332,7 @@ if($OfficierEMID >0)
                 }
                 else
                     $_SESSION['msg_red'] = 'Le navire n\'a pas pu être ravitaillé par manque de temps!';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
             }
             elseif($Renforts ==4)
             {
@@ -359,7 +359,7 @@ if($OfficierEMID >0)
                 }
                 else
                     $_SESSION['msg_red'] = 'Le navire n\'a pas pu être réparé par manque de temps!';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
             }
             elseif($Renforts ==1 and $Max_Veh >0)
             {
@@ -413,7 +413,7 @@ if($OfficierEMID >0)
                 }
                 else
                     $_SESSION['msg_red'] = 'La Compagnie n\'a pas pu être renforcée par manque de temps!';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
             }
         }
         elseif(!$Move and $Reg_gr)
@@ -423,7 +423,7 @@ if($OfficierEMID >0)
             $reset_r2=mysqli_query($con,"UPDATE Regiment_IA SET Move=1 WHERE ID='$Reg'");
             mysqli_close($con);
             $_SESSION['msg'] = 'Le navire a été ravitaillé';
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header('Location: index.php?view=ground_em_ia');
         }
         else
         {
@@ -808,14 +808,14 @@ if($OfficierEMID >0)
                             $reset=mysqli_query($con,"UPDATE Regiment_IA SET Move=1,Move_time=NOW() WHERE ID='$Reg'");
                             mysqli_close($con);
                             $_SESSION['msg'] = 'Vos troupes revendiquent le lieu!';
-                            header( 'Location : ./index.php?view=ground_em_ia');
+                            header('Location: index.php?view=ground_em_ia');
                         }
                         else
                             $mes="[Erreur gemiago-300] Veuillez signaler cette erreur sur le forum!";
                     }
                     else{
                         $_SESSION['msg_red'] = 'Vous ne pouvez pas revendiquer ce lieu!';
-                        header( 'Location : ./index.php?view=ground_em_ia');
+                        header('Location: index.php?view=ground_em_ia');
                     }
                 }
                 else
@@ -1020,7 +1020,7 @@ if($OfficierEMID >0)
                     }
                     else
                         $_SESSION['msg_red']='Trop d\'unités occupent déjà cette zone, l\'unité ne peut pas s\'y déplacer!';
-                    header( 'Location : ./index.php?view=ground_em_ia');
+                    header( 'Location: index.php?view=ground_em_ia');
                 }
             }
             elseif($Zone >0)
@@ -1158,7 +1158,7 @@ if($OfficierEMID >0)
 				mysqli_close($con);
 				//$img="<img src='images/embarquement.jpg' style='width:50%;'>";
                 $_SESSION['msg'] = 'Vos troupes embarquent sur des barges de transport';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header( 'Location: index.php?view=ground_em_ia');
 			}
 			elseif($Position ==12 and !$Move)
 			{
@@ -1205,7 +1205,7 @@ if($OfficierEMID >0)
 				$img="<img src='images/plongee.jpg' style='width:50%;'>";
 				$menu="<form action='index.php?view=ground_pldef' method='post'>
 				<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='2'>
-				<a href='#' class='popup'><input type='Submit' value='Torpillage en surface' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Peut cibler les navires gravement endommagés peu importe la distance<br>Vulnérable à la riposte des navires en position Appui</span></a></form>
+				<a href='#' class='popup'><input type='submit' value='Torpillage en surface' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Peut cibler les navires gravement endommagés peu importe la distance<br>Vulnérable à la riposte des navires en position Appui</span></a></form>
 				<form action='index.php?view=ground_pldef' method='post'>
 				<input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Reg."'><input type='hidden' name='Veh' value='0'><input type='hidden' name='Cible' value='0'><input type='hidden' name='Conso' value='0'><input type='hidden' name='Bomb' value='12'>
 				<a href='#' class='popup'><input type='submit' value='Torpillage en plongée' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><span>Vitesse réduite<br>Camouflage et Initiative augmentés<br>Vulnérable au grenadage des navires en position ASM</span></a></form>";
@@ -1510,7 +1510,7 @@ if($OfficierEMID >0)
                     else
                         $_SESSION['msg'] = 'Le navire se place en appui afin de couvrir les navires alliés de son artillerie';
                 }
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header( 'Location: index.php?view=ground_em_ia');
 			}
             elseif($Position ==14 and !$Move)
             {
@@ -1522,7 +1522,7 @@ if($OfficierEMID >0)
                 $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Position=14,Move=1".$Cam_txt." WHERE ID='$Reg'");
                 mysqli_close($con);
                 $_SESSION['msg'] = 'Vos troupes se positionnent afin de tenter de repérer toute incursion de l\'ennemi sur la zone';
-                header( 'Location : ./index.php?view=ground_em_ia');
+                header( 'Location: index.php?view=ground_em_ia');
             }
 			else
 			{
@@ -1531,7 +1531,7 @@ if($OfficierEMID >0)
 				$reset_r=mysqli_query($con,"UPDATE Regiment_IA SET Position='$Position'".$Cam_txt." WHERE ID='$Reg'");
 				mysqli_close($con);
 				//$mes='<div class="alert alert-warning">L\'unité a changé de position</div>';
-                header('Location: ./index.php?view=ground_em_ia');
+                header('Location: index.php?view=ground_em_ia');
 			}
 		}
 		if($Fret >0 and $Depot >0)

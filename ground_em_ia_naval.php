@@ -121,7 +121,7 @@ if($ground_em_ia_naval == true) //Navire
                 $Dist_max=425;
             else
                 $Dist_max=250;
-            $query="SELECT ID,Nom,Longitude,Latitude,Impass,Port,Zone,Flag FROM Lieu WHERE Longitude <=8.6 AND Latitude >44 AND (Port >0 OR Zone=6 OR Plage=1) AND ID NOT IN(".$Lieu.$Lieu_exc.") ORDER BY Nom ASC";
+            $query="SELECT ID,Nom,Longitude,Latitude,Impass,Port,Zone,Flag FROM Lieu WHERE Longitude <=8.6 AND Latitude >44 AND (Port >0 OR Zone=6 OR Plage=1) AND ID NOT IN(".$Lieu->ID.$Lieu_exc.") ORDER BY Nom ASC";
         }
         if($Long_range)
         {
@@ -222,7 +222,7 @@ if($ground_em_ia_naval == true) //Navire
                                                                 <div class="modal-body">
                                                                 <img class="img-flex" src="images/nav_evade.jpg">
                                                                 <div class="alert alert-warning">La '.$Regiment->ID.'e flottille composée de '.$Regiment->Vehicule_Nbr.' '.$Veh->Nom.' se déplacera vers <b>'.$data2[1].'</b></div>
-                                                                <form action="ground_em_ia_go.php" method="post"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu.'"><input type="hidden" name="cible" value="'.$data2[0].'"><input class="btn btn-danger" type="submit" value="confirmer"></form>'.$modal_conso.'</div>
+                                                                <form action="ground_em_ia_go.php" method="post"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu->ID.'"><input type="hidden" name="cible" value="'.$data2[0].'"><input class="btn btn-danger" type="submit" value="confirmer"></form>'.$modal_conso.'</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -468,9 +468,9 @@ if($ground_em_ia_naval == true) //Navire
                     elseif($Lieu->Stock_Essence_1)
                         $Fret_options.="<option value='1001' disabled>250000L de Diesel</option>";
                     if($Regiment->Fret ==888 and $Regiment->Vehicule_ID ==5124 and ($Regiment->Lieu_ID ==269 or $Regiment->Lieu_ID ==270 or $Regiment->Lieu_ID ==731 or $Regiment->Lieu_ID ==586 or $Regiment->Lieu_ID ==758 or $Regiment->Lieu_ID ==815))
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='Dech' value='888'><input type='hidden' name='base' value='".$Lieu."'><input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='Dech' value='888'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
                     elseif($Regiment->Fret >0 and $Regiment->Fret !=888 and $Regiment->Vehicule_ID !=5392)
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='Dech' value='".$Regiment->Fret."'><input type='hidden' name='base' value='".$Lieu."'><input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='Dech' value='".$Regiment->Fret."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
                 }
                 elseif($Regiment->Division and $Ordres_Div)
                 {
@@ -577,9 +577,9 @@ if($ground_em_ia_naval == true) //Navire
                                  </tr>";
             }
             elseif($Regiment->Vehicule_ID ==5392)
-                $Atk_Options="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='fretd' value='1'><select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Fret_options."</select><input class='btn btn-sm btn-warning' type='submit' value='Charger' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une quantité minimale est nécessaire dans le dépôt pour pouvoir transporter du fret</span></a></td></tr>";
+                $Atk_Options="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='fretd' value='1'><select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Fret_options."</select><input class='btn btn-sm btn-warning' type='submit' value='Charger' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une quantité minimale est nécessaire dans le dépôt pour pouvoir transporter du fret</span></a></td></tr>";
             else
-                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='Reg_div' value='".$Regiment->Division."'><select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Fret_options."</select><input class='btn btn-sm btn-warning' type='submit' value='Charger' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une quantité minimale est nécessaire dans le dépôt pour pouvoir transporter du fret</span></a></td></tr>";
+                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='Reg_div' value='".$Regiment->Division."'><select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option>".$Fret_options."</select><input class='btn btn-sm btn-warning' type='submit' value='Charger' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une quantité minimale est nécessaire dans le dépôt pour pouvoir transporter du fret</span></a></td></tr>";
         }
     }
     elseif(($Ordres_Cdt or $Ordres_Mer or $Ordres_Armee or $Ordres_Div or $Ordres_Bat) and (!$GHQ or $Admin or $Nation_IA))
@@ -606,7 +606,7 @@ if($ground_em_ia_naval == true) //Navire
                 if($Sub_IA)
                 {
                     $Pos_torp=28;
-                    $Atk_Options.="<tr><td><form action='index.php?view=ground_reco1' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu."'><input type='hidden' name='Conso' value='0'>
+                    $Atk_Options.="<tr><td><form action='index.php?view=ground_reco1' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
                                     <input type='submit' value='Reco' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>1 Jour</td><td>".$Range."m</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tente de révéler les unités présentes sur la même zone.</span></a></td></tr>";
                     if($Zone ==6 and $Autonomie >9 and $Regiment->Vehicule_ID ==5387)
                     {
@@ -627,13 +627,13 @@ if($ground_em_ia_naval == true) //Navire
                 elseif($Patrouilleur)
                 {
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_reco1' method='post'>
-                                    <input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu."'><input type='hidden' name='Conso' value='0'>
+                                    <input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
                                     <input type='submit' value='Reco' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>1 Jour</td><td>".$Range."m</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tente de révéler les unités présentes sur la même zone.<br>Action comptant comme action du jour</span></a></td></tr>";
                 }
                 elseif($ASM)
                 {
                     if($Zone ==6 or $Regiment->Placement ==8)
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_asm' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu."'><input type='hidden' name='Conso' value='0'>
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_asm' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
                                     <input type='submit' value='Grenadage' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
@@ -643,7 +643,7 @@ if($ground_em_ia_naval == true) //Navire
                 elseif($Veh->Categorie ==25 and $Lieu->Detroit >0 and $Lieu->Mines_m <100) //Mouilleur mines
                 {
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_miner' method='post'>
-                                <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu."'>
+                                <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu->ID."'>
                                 <input type='submit' value='Miner' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                 <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                 <td>1 Jour</td>
@@ -653,7 +653,7 @@ if($ground_em_ia_naval == true) //Navire
                 elseif($Veh->Categorie ==19 and $Lieu->Detroit >0) //Dragueur mines
                 {
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_deminer' method='post'>
-                                <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu."'>
+                                <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Cible' value='".$Lieu->ID."'>
                                 <input type='submit' value='Deminer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                 <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                 <td>1 Jour</td>
@@ -684,7 +684,7 @@ if($ground_em_ia_naval == true) //Navire
                         else
                             $Max_Range=20000;
                         if($Range >$Max_Range)$Range=$Max_Range;
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Bomb."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='30'>
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Bomb."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='pos' value='30'>
                                     <input type='submit' value='Engagement' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
@@ -694,7 +694,7 @@ if($ground_em_ia_naval == true) //Navire
                     if($Lieu->Zone !=6 and $Lieu->Flag !=$country)
                         $Pos_txt.="<option value='29'>Bombardement des fortifications (Action du jour)</option>";
                     if($Faction !=$Faction_Flag and $Lieu->Zone !=6 and $Lieu->Garnison and $Lieu->Recce)
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='33'>
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='pos' value='33'>
                                     <input type='submit' value='Bombardement' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
@@ -736,7 +736,7 @@ if($ground_em_ia_naval == true) //Navire
                     if($Torp_IA)
                         $Pos_torp=40;
                     if($Regiment->CT >=$CT_Torp or $Sub_IA)
-                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Torp."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='pos' value='".$Pos_torp."'>
+                        $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='CT' value='".$CT_Torp."'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='pos' value='".$Pos_torp."'>
                                     <input type='submit' value='Torpillage' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
                                     <td>1 Jour</td>
@@ -766,7 +766,7 @@ if($ground_em_ia_naval == true) //Navire
             if($Lieu->Flag_Port)$Faction_Port=GetData("Pays","ID",$Lieu->Flag_Port,"Faction");
             if($Lieu->Flag_Plage)$Faction_Plage=GetData("Pays","ID",$Lieu->Flag_Plage,"Faction");
             if(!$Regiment->Move and $Lieu->Port >10 and $Faction ==$Faction_Flag and $Faction ==$Faction_Port)
-                $Atk_Options='<tr><td><form action="index.php?view=ground_em_ia_go" method="post"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu.'"><input type="hidden" name="reset" value="7"><input class="btn btn-sm btn-warning" type="submit" value="Décharger" onclick="this.disabled=true;this.form.submit();"></form></td><td><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>';
+                $Atk_Options='<tr><td><form action="index.php?view=ground_em_ia_go" method="post"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu->ID.'"><input type="hidden" name="reset" value="7"><input class="btn btn-sm btn-warning" type="submit" value="Décharger" onclick="this.disabled=true;this.form.submit();"></form></td><td><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>';
             else
                 $txt_help.="<div class='alert alert-warning'>Ces troupes peuvent être débarquées dans un port aux infrastructures non détruites dont le lieu et le port sont contrôlés par votre faction</div>";
             $Positions="<form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><select name='pos' class='form-control' style='max-width:200px; display:inline;'>
@@ -784,7 +784,7 @@ if($ground_em_ia_naval == true) //Navire
                 if($Unitsa_Plage >4)
                     $txt_help.="<div class='alert alert-danger'>Un trop grand nombre de troupes se trouvent déjà sur la plage, empêchant tout débarquement</div>";
                 else
-                    $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='reset' value='8'>
+                    $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='reset' value='8'>
                                 <input type='submit' value='Débarquer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
             }
         }
@@ -832,7 +832,7 @@ if($ground_em_ia_naval == true) //Navire
                 $depot_info.="<tr><td><a href='#' class='popup'>".$Regiment->Avions."/".$Veh->Hydra_Nbr."<span>Nombre d'avions disponibles/maximum.<br>Récupérer des avions perdus est possible via l'action de ravitaillement dans un port.</span></a>
                             ".GetAvionIcon($Veh->Hydra,$country,0,0,$Regiment->Front)."</td><td></tr>";
                 if($Regiment->Avions and $Autonomie)
-                    $depot_info.="<tr><td><form action='index.php?view=ground_em_ia_hydra' method='post'><input type='hidden' name='Lieu' value='".$Lieu."'>
+                    $depot_info.="<tr><td><form action='index.php?view=ground_em_ia_hydra' method='post'><input type='hidden' name='Lieu' value='".$Lieu->ID."'>
                                 <a href='#' class='popup'><div class='i-flex help_icon'></div><span>Une mission aérienne consomme 1 jour d'autonomie du navire</span></a>
                                 <input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Hydra' value='".$Veh->Hydra."'>
                                 <input type='submit' value='Mission aérienne' class='btn btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td></tr>";
@@ -873,7 +873,7 @@ if($ground_em_ia_naval == true) //Navire
             if($Unitsa_Plage >4)
                 $txt_help.="<div class='alert alert-danger'>Un trop grand nombre de troupes se trouvent déjà dans le port, empêchant tout débarquement</div>";
             else
-                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='reset' value='7'>
+                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='reset' value='7'>
                             <input type='submit' value='Décharger' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
         }
         else
@@ -893,7 +893,7 @@ if($ground_em_ia_naval == true) //Navire
             if($Unitsa_Plage)
                 $txt_help.="<div class='alert alert-danger'>Un trop grand nombre de troupes se trouvent déjà sur la plage, empêchant tout débarquement</div>";
             else
-                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu."'><input type='hidden' name='reset' value='8'>
+                $Atk_Options.="<tr><td><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='base' value='".$Lieu->ID."'><input type='hidden' name='reset' value='8'>
                             <input type='submit' value='Débarquer' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>0</td><td>N/A</td><td>N/A</td></tr>";
         }
     }
@@ -984,5 +984,5 @@ if($ground_em_ia_naval == true) //Navire
         $front_carte=12;
     else
         $front_carte=$Regiment->Front;
-    $Carte_Bouton.="<div class='btn btn-sm btn-primary'><a href='carte_ground.php?map=".$front_carte."&mode=10&cible=".$Lieu."&reg=".$Unit."' onclick='window.open(this.href); return false;'>Voir la carte</a></div>";
+    $Carte_Bouton.="<div class='btn btn-sm btn-primary'><a href='carte_ground.php?map=".$front_carte."&mode=10&cible=".$Lieu->ID."&reg=".$Unit."' onclick='window.open(this.href); return false;'>Voir la carte</a></div>";
 }
