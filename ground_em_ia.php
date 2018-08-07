@@ -592,72 +592,105 @@ if ($OfficierEMID > 0) {
                         $Distance_depot=GetDistance(0,0,$Lieu->Longitude,$Lieu->Latitude,$datad['Longitude'],$datad['Latitude']);
                         if($Distance_depot[0] <=$Auto_Log)
                         {
+                            $depot_id = $datad['ID'];
                             $Depots_region[]=$datad['ID'];
-                            $Lieu->Stock_87[]=$datad['Stock_Essence_87'];
-                            $Lieu->Stock_100[]=$datad['Stock_Essence_100'];
-                            $Lieu->Stock_1[]=$datad['Stock_Essence_1'];
-                            $Lieu->Stock_13[]=$datad['Stock_Munitions_13'];
-                            $Lieu->Stock_20[]=$datad['Stock_Munitions_20'];
-                            $Lieu->Stock_30[]=$datad['Stock_Munitions_30'];
-                            $Lieu->Stock_40[]=$datad['Stock_Munitions_40'];
-                            $Lieu->Stock_50[]=$datad['Stock_Munitions_50'];
-                            $Lieu->Stock_60[]=$datad['Stock_Munitions_60'];
-                            $Lieu->Stock_75[]=$datad['Stock_Munitions_75'];
-                            $Lieu->Stock_90[]=$datad['Stock_Munitions_90'];
-                            $Lieu->Stock_105[]=$datad['Stock_Munitions_105'];
-                            $Lieu->Stock_125[]=$datad['Stock_Munitions_125'];
-                            $Lieu->Stock_150[]=$datad['Stock_Munitions_150'];
+                            $Stock_87[$depot_id]=$datad['Stock_Essence_87'];
+                            $Stock_100[$depot_id]=$datad['Stock_Essence_100'];
+                            $Stock_1[$depot_id]=$datad['Stock_Essence_1'];
+                            $Stock_13[$depot_id]=$datad['Stock_Munitions_13'];
+                            $Stock_20[$depot_id]=$datad['Stock_Munitions_20'];
+                            $Stock_30[$depot_id]=$datad['Stock_Munitions_30'];
+                            $Stock_40[$depot_id]=$datad['Stock_Munitions_40'];
+                            $Stock_50[$depot_id]=$datad['Stock_Munitions_50'];
+                            $Stock_60[$depot_id]=$datad['Stock_Munitions_60'];
+                            $Stock_75[$depot_id]=$datad['Stock_Munitions_75'];
+                            $Stock_90[$depot_id]=$datad['Stock_Munitions_90'];
+                            $Stock_105[$depot_id]=$datad['Stock_Munitions_105'];
+                            $Stock_125[$depot_id]=$datad['Stock_Munitions_125'];
+                            $Stock_150[$depot_id]=$datad['Stock_Munitions_150'];
                         }
                     }
                     mysqli_free_result($resultdepot);
                 }
-                $Lieu->Stock_87_max=Array_max($Lieu->Stock_87);
-                $Lieu->Stock_100_max=Array_max($Lieu->Stock_100);
-                $Lieu->Stock_1_max=Array_max($Lieu->Stock_1);
-                $Lieu->Stock_13_max=Array_max($Lieu->Stock_13);
-                $Lieu->Stock_20_max=Array_max($Lieu->Stock_20);
-                $Lieu->Stock_30_max=Array_max($Lieu->Stock_30);
-                $Lieu->Stock_40_max=Array_max($Lieu->Stock_40);
-                $Lieu->Stock_50_max=Array_max($Lieu->Stock_50);
-                $Lieu->Stock_60_max=Array_max($Lieu->Stock_60);
-                $Lieu->Stock_75_max=Array_max($Lieu->Stock_75);
-                $Lieu->Stock_90_max=Array_max($Lieu->Stock_90);
-                $Lieu->Stock_105_max=Array_max($Lieu->Stock_105);
-                $Lieu->Stock_125_max=Array_max($Lieu->Stock_125);
-                $Lieu->Stock_150_max=Array_max($Lieu->Stock_150);
+                $Stock_87_array=Array_max($Stock_87, true);
+                $Stock_87_max=$Stock_87_array[0];
+                $Stock_87_city=$Stock_87_array[1];
+                $Stock_100_array=Array_max($Stock_100, true);
+                $Stock_100_max=$Stock_100_array[0];
+                $Stock_100_city=$Stock_100_array[1];
+                $Stock_1_array=Array_max($Stock_1, true);
+                $Stock_1_max=$Stock_1_array[0];
+                $Stock_1_city=$Stock_1_array[1];
+                $Stock_13_array=Array_max($Stock_13, true);
+                $Stock_13_max=$Stock_13_array[0];
+                $Stock_13_city=$Stock_13_array[1];
+                $Stock_20_array=Array_max($Stock_20, true);
+                $Stock_20_max=$Stock_20_array[0];
+                $Stock_20_city=$Stock_20_array[1];
+                $Stock_30_array=Array_max($Stock_30, true);
+                $Stock_30_max=$Stock_30_array[0];
+                $Stock_30_city=$Stock_30_array[1];
+                $Stock_40_array=Array_max($Stock_40, true);
+                $Stock_40_max=$Stock_40_array[0];
+                $Stock_40_city=$Stock_40_array[1];
+                $Stock_50_array=Array_max($Stock_50, true);
+                $Stock_50_max=$Stock_50_array[0];
+                $Stock_50_city=$Stock_50_array[1];
+                $Stock_60_array=Array_max($Stock_60, true);
+                $Stock_60_max=$Stock_60_array[0];
+                $Stock_60_city=$Stock_60_array[1];
+                $Stock_75_array=Array_max($Stock_75, true);
+                $Stock_75_max=$Stock_75_array[0];
+                $Stock_75_city=$Stock_75_array[1];
+                $Stock_90_array=Array_max($Stock_90, true);
+                $Stock_90_max=$Stock_90_array[0];
+                $Stock_90_city=$Stock_90_array[1];
+                $Stock_105_array=Array_max($Stock_105, true);
+                $Stock_105_max=$Stock_105_array[0];
+                $Stock_105_city=$Stock_105_array[1];
+                $Stock_125_array=Array_max($Stock_125, true);
+                $Stock_125_max=$Stock_125_array[0];
+                $Stock_125_city=$Stock_125_array[1];
+                $Stock_150_array=Array_max($Stock_150, true);
+                $Stock_150_max=$Stock_150_array[0];
+                $Stock_150_city=$Stock_150_array[1];
                 if($Veh->Type ==93)
                     $Vehicule_Nbr_Conso=ceil($Regiment->Vehicule_Nbr/10);
                 else
                     $Vehicule_Nbr_Conso=$Regiment->Vehicule_Nbr;
                 $Conso_move=($Autonomie_Min*$Vehicule_Nbr_Conso)/5;
+                $Stock_carbu_city='';
                 if($Nation_IA or !$Veh->Carbu_ID)
                 {
                     $Octane1='';
                     $Colorc1="warning";
-                    $Lieu->Stock_carbu=65000;
+                    $Stock_carbu=65000;
                 }
                 elseif($Veh->Carbu_ID ==100)
                 {
                     $Octane1=" Octane 100";
                     $Colorc1="danger";
-                    $Lieu->Stock_carbu=$Lieu->Stock_100_max;
+                    $Stock_carbu=$Stock_100_max;
+                    $Stock_carbu_city=$Stock_100_city;
                 }
                 elseif($Veh->Carbu_ID ==1)
                 {
                     $Octane1=" Diesel";
                     $Colorc1="success";
-                    $Lieu->Stock_carbu=$Lieu->Stock_1_max;
+                    $Stock_carbu=$Stock_1_max;
+                    $Stock_carbu_city=$Stock_1_city;
                 }
                 elseif($Veh->Carbu_ID ==87)
                 {
                     $Octane1=" Octane 87";
                     $Colorc1="primary";
-                    $Lieu->Stock_carbu=$Lieu->Stock_87_max;
+                    $Stock_carbu=$Stock_87_max;
+                    $Stock_carbu_city=$Stock_87_city;
                 }
                 else{
                     $Octane1='';
                     $Colorc1="warning";
-                    $Lieu->Stock_carbu=0;
+                    $Stock_carbu=0;
                 }
                 $Carte_Log="<a href='carte_ground.php?map=".$Regiment->Front."&mode=12&cible=".$Lieu->ID."' class='btn btn-sm btn-primary' onclick='window.open(this.href); return false;'>Carte logistique</a>";
                 $Dist_max_ori=$Autonomie_Min;
@@ -785,7 +818,7 @@ if ($OfficierEMID > 0) {
                                     $icone="<a href='#' class='popup'><img src='images/route.gif'><span><b>Noeud Routier</b><ul><li>Les unités se déplaçant depuis un noeud routier ne subissent pas les malus dus au terrain.</li><li>Les unités se déplaçant entre deux noeuds routiers contrôlés par leur faction doublent leur distance de déplacement.</li><li>Les unités ennemies présentent sur le noeud routier (transformant la zone en zone de combat) annulent automatiquement tout bonus de déplacement.</li></ul></span></a>";
                                 else
                                     $icone="<img src='images/zone".$data['Zone'].".jpg'>";
-                                if(($Lieu->Stock_carbu >=($Dist_max*$Vehicule_Nbr_Conso/10)) or $Ravit)
+                                if(($Stock_carbu >=($Dist_max*$Vehicule_Nbr_Conso/10)) or $Ravit)
                                 {
                                     $modal_conso='<div class="alert alert-danger">Le déplacement rendra l\'unité inaccessible pendant 24h';
                                     if($Veh->mobile!=4 and $Veh->mobile!=5 and $Veh->Carbu_ID)$modal_conso.=' et consommera '.$Conso_move.'L '.$Octane1;
@@ -806,7 +839,7 @@ if ($OfficierEMID > 0) {
                                                             <div class="modal-body">
                                                                 <img class="img-flex" src="images/move_front'.$country.'.jpg">
                                                                 <div class="alert alert-warning">Le '.$Regiment->ID.'e bataillon composé de '.$Regiment->Vehicule_Nbr.' '.$Veh->Nom.' se déplacera vers <b>'.$data[1].'</b></div>
-                                                                <form action="ground_em_ia_go.php" method="post"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu->ID.'"><input type="hidden" name="cible" value="'.$data[0].'"><input class="btn btn-danger" type="submit" value="confirmer"></form>'.$modal_conso.'</div>
+                                                                <form action="ground_em_ia_go.php" method="post"><input type="hidden" name="depot_ravit" value="'.$Stock_carbu_city.'"><input type="hidden" name="Unit" value="'.$Unit.'"><input type="hidden" name="base" value="'.$Lieu->ID.'"><input type="hidden" name="cible" value="'.$data[0].'"><input class="btn btn-danger" type="submit" value="confirmer"></form>'.$modal_conso.'</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1430,7 +1463,9 @@ if ($OfficierEMID > 0) {
                             if($Veh->Arme_AT){
                                 $Arme_Cal=round(GetData("Armes","ID",$Veh->Arme_AT,"Calibre"));
                                 $Var_Stock='Stock_'.$Arme_Cal.'_max';
-                                $Lieu->Stock_AT=$$Var_Stock;
+                                $Stock_AT=$$Var_Stock;
+                                $Var_Stock_City='Stock_'.$Arme_Cal.'_city';
+                                $Stock_Arme_City=$$Var_Stock_City;
                                 $Conso_mun_at=floor($Veh->Arme_AT_mun/10)*$Regiment->Vehicule_Nbr;
                                 if($OfficierID and $Sec_Log){
                                     $Conso_mun_at=floor($Conso_mun_at((100-($Avancement/500))*0,01));
@@ -1440,7 +1475,9 @@ if ($OfficierEMID > 0) {
                             if($Veh->Arme_Art){
                                 $Arme_Cal=round(GetData("Armes","ID",$Veh->Arme_Art,"Calibre"));
                                 $Var_Stock='Stock_'.$Arme_Cal.'_max';
-                                $Lieu->Stock_Art=$$Var_Stock;
+                                $Stock_Art=$$Var_Stock;
+                                $Var_Stock_City='Stock_'.$Arme_Cal.'_city';
+                                $Stock_Arme_City=$$Var_Stock_City;
                                 if($Veh->Type ==6 or $Veh->Type ==8)
                                     $Conso_mun_art=$Veh->Arme_Art_mun*$Regiment->Vehicule_Nbr;
                                 else
@@ -1453,7 +1490,7 @@ if ($OfficierEMID > 0) {
                             $CT_Spec_Blitz = 0;
                             $CT_Spec = 0;
                             if(!$Pas_libre and $Regiment->Position !=2 and $Regiment->Position !=3 and $Regiment->Position !=10 and $Regiment->Position !=14 and
-                                (($Veh->Arme_Art and ($Lieu->Stock_Art >=$Conso_mun_art or $Ravit)) or ($Veh->Arme_AT and ($Lieu->Stock_AT >=$Conso_mun_at or $Ravit)))
+                                (($Veh->Arme_Art and ($Stock_Art >=$Conso_mun_art or $Ravit)) or ($Veh->Arme_AT and ($Stock_AT >=$Conso_mun_at or $Ravit)))
                             ) //Arti
                             {
                                 if($Regiment->CT >=$CT_Spec)
@@ -1500,10 +1537,10 @@ if ($OfficierEMID > 0) {
                             }
                             if(!$Pas_libre and ($Veh->Categorie ==2 or $Veh->Categorie ==3 or $Veh->Categorie ==7 or $Veh->Type ==11) and ($Regiment->Position ==4 or $Regiment->Position ==0) and $Veh->Arme_AT and $HasHostiles)
                             {
-                                if($Lieu->Stock_AT >=$Conso_mun_at or $Ravit)
+                                if($Stock_AT >=$Conso_mun_at or $Ravit)
                                 {
                                     //$Bl_conso="<span class='label label-".$Colorc1."' title='Consommation attaque ou reco'>".$Conso_tot."L ".$Octane1."</span>";
-                                    if($Lieu->Stock_carbu >=$Conso_tot or $Ravit)
+                                    if($Stock_carbu >=$Conso_tot or $Ravit)
                                     {
                                         $units_eni_zone=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r,Pays as p WHERE r.Pays=p.ID AND r.Lieu_ID='$Regiment->Lieu_ID' AND p.Faction<>'$Faction' AND r.Vehicule_Nbr >0 AND r.Position IN (1,3,5,10) AND r.Placement='$Regiment->Placement'"),0);
                                         $units_allies_zone=mysqli_result(mysqli_query($con,"SELECT COUNT(*) FROM Regiment_IA as r,Pays as p WHERE r.Pays=p.ID AND r.Lieu_ID='$Regiment->Lieu_ID' AND p.Faction='$Faction' AND r.Vehicule_Nbr >0 AND r.Position=5 AND r.Placement='$Regiment->Placement'"),0);
@@ -1630,7 +1667,7 @@ if ($OfficierEMID > 0) {
                         {
                             if($Veh->Carbu_ID and !$Bl_conso)
                                 $Bl_conso="<span class='label label-".$Colorc1."' title='Consommation attaque ou reco'>".$Conso_tot."L ".$Octane1."</span>";
-                            if($Lieu->Stock_carbu >=$Conso_tot or $Ravit)
+                            if($Stock_carbu >=$Conso_tot or $Ravit)
                             {
                                 $Atk_Options.="<tr><td><form action='index.php?view=ground_reco1' method='post'>
                                 <input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
@@ -1889,26 +1926,28 @@ if ($OfficierEMID > 0) {
                     //$Lieu->Stock_AA;
                     $Arme_Cal=round(GetData("Armes","ID",$Veh->Arme_AA,"Calibre"));
                     $Var_Stock_AA='Stock_'.$Arme_Cal.'_max';
-                    $Lieu->Stock_Arme=$$Var_Stock_AA;
+                    $Stock_Arme=$$Var_Stock_AA;
+                    $Var_Stock_City='Stock_'.$Arme_Cal.'_city';
+                    $Stock_Arme_City=$$Var_Stock_City;
                     $Conso_Arme=$Veh->Arme_AA_mun*$Regiment->Vehicule_Nbr;
                     $title_conso_atk='Consommation DCA';
                 }
                 elseif($Veh->Arme_AT)
                 {
-                    $Lieu->Stock_Arme=$Lieu->Stock_AT;
+                    $Stock_Arme=$Stock_AT;
                     $Conso_Arme=$Conso_mun_at;
                 }
                 elseif($Veh->Arme_Art)
                 {
-                    $Lieu->Stock_Arme=$Lieu->Stock_Art;
+                    $Stock_Arme=$Stock_Art;
                     $Conso_Arme=$Conso_mun_art;
                 }
-                if(!$Lieu->Stock_Arme && !$Ravit && $Regiment->Move)
+                if(!$Stock_Arme && !$Ravit && $Regiment->Move)
                     $depot_stock_mun='Mise à jour demain';
-                elseif(!$Lieu->Stock_Arme && !$Ravit)
+                elseif(!$Stock_Arme && !$Ravit)
                     $depot_stock_mun='<span class="text-danger">Vide!</span>';
                 else
-                    $depot_stock_mun=$Lieu->Stock_Arme;
+                    $depot_stock_mun=$Stock_Arme;
             }
             if($Lieu->ValeurStrat >=2 and $Lieu->Industrie and $Regiment->Placement == PLACE_USINE and $Faction ==$Faction_Flag)
             {
@@ -2170,7 +2209,7 @@ if ($OfficierEMID > 0) {
                             </div>
                         </div>';
         }
-        $Divisions=$Divisions_pre.Afficher_Image('images/div/div'.$Regiment->Division.'.png','images/'.$country.'div.png',$data['Nom'],0).$Divisions_end.$Divisions_modal;
+        $Divisions=$Divisions_pre.Afficher_Image('images/div/div'.$Regiment->Division.'.png','images/'.$country.'div.png','',0).$Divisions_end.$Divisions_modal;
         //--End Divisions--
         $Base_txt='<br><a href="#" class="popup">'.$Retraite_Nom.'<span>Lieu où cette unité peut se ravitailler.<br>La base arrière est définie par la <b>division</b> à laquelle appartient l\'unité.<br>Si l\'unité ne fait pas partie d\'une division, la base arrière est celle du front.</span></a>';
         if($Regiment->Placement ==5 and !$Lieu->Pont)$Etat_Pont_txt='<br><div class="alert alert-danger">Le pont est détruit !</div>';
@@ -2228,9 +2267,14 @@ if ($OfficierEMID > 0) {
                 $arme_ravit_txt='<tr><td colspan="3" class="text-success text-center">Ne nécessite pas de ravitaillement en munitions</td></tr>';
             }
             else{
+                if($Stock_Arme_City) {
+                    $Stock_mun_txt = Output::popup($depot_stock_mun, GetData('Lieu', 'ID', $Stock_Arme_City, 'Nom'));
+                } else {
+                    $Stock_mun_txt = $depot_stock_mun;
+                }
                 $arme_ravit_txt='<tr>
                                 <td>'.$Arme_Cal.'mm</td>
-                                <td>'.$depot_stock_mun.'</td>
+                                <td>'.$Stock_mun_txt.'</td>
                                 <td>'.$Conso_Arme.'</td>
                             </tr>';
             }
@@ -2238,9 +2282,14 @@ if ($OfficierEMID > 0) {
                 $carbu_ravit_txt='<tr><td colspan="3" class="text-success text-center">Ne nécessite pas de ravitaillement en carburant</td></tr>';
             }
             else{
+                if($Stock_carbu_city) {
+                    $Stock_carbu_txt = Output::popup($Stock_carbu, GetData('Lieu', 'ID', $Stock_carbu_city, 'Nom'));
+                } else {
+                    $Stock_carbu_txt = $Stock_carbu;
+                }
                 $carbu_ravit_txt='<tr>
                                 <td>'.$Octane1.'</td>
-                                <td>'.$Lieu->Stock_carbu.'</td>
+                                <td>'.$Stock_carbu_txt.'</td>
                                 <td>'.$Conso_move.'</td>
                             </tr>';
             }

@@ -104,6 +104,7 @@ if($OfficierEMID >0)
 		$Cible=Insec($_POST['Cible_dem']);
 		$Type_Dem=Insec($_POST['Type_dem']);
         $Reg_gr=Insec($_POST['Reg_gr']);
+        $depot_ravit=Insec($_POST['depot_ravit']);
 		$CT_Action=Insec($_POST['CT']);
 		$Retraite=Get_Retraite($Front,$country,30);
 		$Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='$country'"),0);
@@ -375,7 +376,7 @@ if($OfficierEMID >0)
                         $CT_Usine1=$data['Usine1'];
                         $CT_Usine2=$data['Usine2'];
                         $CT_Usine3=$data['Usine3'];
-                        $Stock=floor($data['Stock']);
+                        $Stock_Veh=floor($data['Stock']);
                     }
                     mysqli_free_result($result3);
                 }
@@ -392,7 +393,7 @@ if($OfficierEMID >0)
                         $up_renf=floor($Max_Veh/4);
                         $down_exp=floor($up_renf/2);
                     }
-                    if($up_renf >$Stock)$up_renf=$Stock;
+                    if($up_renf >$Stock_Veh)$up_renf=$Stock_Veh;
                     if($up_renf <1)$up_renf=1;
                     $Credits -= $CT_Renf;
                     $con=dbconnecti();
@@ -822,7 +823,8 @@ if($OfficierEMID >0)
                 {
                     if($Move_on and !$Bloque)
                     {
-                        if(!$Ravit){
+                        if(!$Ravit)
+                        {
                             if($Veh and $Depot)
                             {
                                 $con=dbconnecti();
@@ -861,69 +863,67 @@ if($OfficierEMID >0)
                                 }
                                 if($Carbu >0 and $Veh <5000 and $Veh !=424 and $Veh_Nbr >0 and !$reset_ret)
                                 {
-                                    if($Front ==3)
-                                    {
-                                        $Lat_min=$Latitude_base-5;
-                                        $Lat_max=$Latitude_base+5;
-                                        $Long_min=$Longitude_base-7;
-                                        $Long_max=$Longitude_base+7;
-                                    }
-                                    elseif($Front >0)
-                                    {
-                                        $Lat_min=$Latitude_base-4;
-                                        $Lat_max=$Latitude_base+4;
-                                        $Long_min=$Longitude_base-5;
-                                        $Long_max=$Longitude_base+5;
-                                    }
-                                    else
-                                    {
-                                        $Lat_min=$Latitude_base-2;
-                                        $Lat_max=$Latitude_base+2;
-                                        $Long_min=$Longitude_base-3;
-                                        $Long_max=$Longitude_base+3;
-                                        $Long_max=$Longitude_base+3;
+                                    if ($Carbu == 100) {
+                                        $Stock_var = "Stock_Essence_100";
+                                        $Octane = " Octane 100";
+                                    } elseif ($Carbu == 1) {
+                                        $Stock_var = "Stock_Essence_1";
+                                        $Octane = " Diesel";
+                                    } elseif ($Carbu == 87) {
+                                        $Stock_var = "Stock_Essence_87";
+                                        $Octane = " Octane 87";
                                     }
                                     $Distance_depot=GetDistance(0,0,$Longitude_dest,$Latitude_dest,$Longitude_base,$Latitude_base);
                                     if($Type_Veh ==93)
                                         $Vehicule_Nbr_Conso=ceil($Veh_Nbr/10);
                                     else
                                         $Vehicule_Nbr_Conso=$Veh_Nbr;
-                                    $Conso=($Distance_depot[0]*$Vehicule_Nbr_Conso)/5;
-                                    if($Carbu ==100)
-                                    {
-                                        $Stock_var="Stock_Essence_100";
-                                        $Octane=" Octane 100";
+                                    $Conso=round(($Distance_depot[0]*$Vehicule_Nbr_Conso)/5);
+                                    //si un dépôt est défini avant le déplacement
+                                    if ($depot_ravit) {
+                                        $reset_depot = DBManager::updateData('Lieu', $Stock_var, $Conso, '-', 'ID', $depot_ravit);
+                                    } else {
+                                        if ($Front == 3) {
+                                            $Lat_min = $Latitude_base - 6;
+                                            $Lat_max = $Latitude_base + 6;
+                                            $Long_min = $Longitude_base - 7;
+                                            $Long_max = $Longitude_base + 7;
+                                        } elseif ($Front > 0) {
+                                            $Lat_min = $Latitude_base - 4;
+                                            $Lat_max = $Latitude_base + 4;
+                                            $Long_min = $Longitude_base - 5;
+                                            $Long_max = $Longitude_base + 5;
+                                        } else {
+                                            $Lat_min = $Latitude_base - 2;
+                                            $Lat_max = $Latitude_base + 2;
+                                            $Long_min = $Longitude_base - 3;
+                                            $Long_max = $Longitude_base + 3;
+                                            $Long_max = $Longitude_base + 3;
+                                        }
+                                        $con=dbconnecti();
+                                        $getflotted=mysqli_result(mysqli_query($con,"SELECT d.ID FROM Regiment_IA as r,Depots as d,Pays as p WHERE r.Pays=p.Pays_ID AND p.Faction='$Faction' AND r.Lieu_ID='$Lieu_ID' AND r.ID=d.Reg_ID AND d.".$Stock_var." >='$Conso'"),0);
+                                        if (!$getflotted) {
+                                            $getdepot = mysqli_result(mysqli_query($con, "SELECT l.ID FROM Lieu as l,Pays as p WHERE l.Flag=p.Pays_ID AND p.Faction='$Faction' AND
+										(l.ID='$Lieu_ID' OR ((l.Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND (l.Longitude BETWEEN '$Long_min' AND '$Long_max'))) AND l." . $Stock_var . " >='$Conso' ORDER BY l." . $Stock_var . " DESC LIMIT 1"), 0);
+                                            if ($getdepot) {
+                                                $reset_depot = DBManager::updateData('Lieu', $Stock_var, $Conso, '-', 'ID', $getdepot);
+                                            }
+                                        } else {
+                                            $reset_depot = DBManager::updateData('Depots', $Stock_var, $Conso, '-', 'ID', $getflotted);
+                                        }
+                                        mysqli_close($con);
                                     }
-                                    elseif($Carbu ==1)
-                                    {
-                                        $Stock_var="Stock_Essence_1";
-                                        $Octane=" Diesel";
-                                    }
-                                    elseif($Carbu ==87)
-                                    {
-                                        $Stock_var="Stock_Essence_87";
-                                        $Octane=" Octane 87";
-                                    }
-                                    $con=dbconnecti();
-                                    $getflotted=mysqli_result(mysqli_query($con,"SELECT d.ID FROM Regiment_IA as r,Depots as d,Pays as p WHERE r.Pays=p.Pays_ID AND p.Faction='$Faction' AND r.Lieu_ID='$Lieu_ID' AND r.ID=d.Reg_ID AND d.".$Stock_var." >='$Conso'"),0);
-                                    if(!$getflotted)
-                                    {
-                                        $getdepot=mysqli_result(mysqli_query($con,"SELECT l.ID FROM Lieu as l,Pays as p WHERE l.Flag=p.Pays_ID AND p.Faction='$Faction' AND
-										(l.ID='$Lieu_ID' OR ((l.Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND (l.Longitude BETWEEN '$Long_min' AND '$Long_max'))) AND l.".$Stock_var." >='$Conso' ORDER BY l.".$Stock_var." DESC LIMIT 1"),0);
-                                        $resetconso=mysqli_query($con,"UPDATE Lieu SET ".$Stock_var."=".$Stock_var."-'$Conso' WHERE ID='".$getdepot."'");
-                                        $reset_depot=mysqli_affected_rows($con);
-                                    }
-                                    else
-                                    {
-                                        $resetconso=mysqli_query($con,"UPDATE Depots SET ".$Stock_var."=".$Stock_var."-'$Conso' WHERE ID='".$getflotted."'");
-                                        $reset_depot=mysqli_affected_rows($con);
-                                    }
-                                    mysqli_close($con);
                                     if($getflotted)
                                         $depot_nom='la flottille de ravitaillement au large';
-                                    else
+                                    elseif($depot_ravit)
+                                        $depot_nom="le dépôt de <b>".GetData("Lieu","ID",$depot_ravit,"Nom")."</b>";
+                                    elseif($getdepot)
                                         $depot_nom="le dépôt de <b>".GetData("Lieu","ID",$getdepot,"Nom")."</b>";
-                                    $_SESSION['msg'] .= '<b>'.$Conso.'L '.$Octane.'</b> ont été attribués à l\'unité depuis '.$depot_nom;
+                                    else
+                                        $depot_nom='';
+                                    if($depot_nom) {
+                                        $_SESSION['msg'] .= '<b>'.$Conso.'L '.$Octane.'</b> ont été attribués à l\'unité depuis '.$depot_nom;
+                                    }
                                 }
                                 else
                                     $reset_depot=1;
@@ -1746,7 +1746,7 @@ if($OfficierEMID >0)
 			else
                 $_SESSION['msg_red'] = 'Erreur de chargement!';
 			$img="<img src='images/dechargement.jpg' style='width:100%;'>";
-            header( 'Location : ./index.php?view=ground_em_ia');
+            header( 'Location: index.php?view=ground_em_ia');
 		}
 		elseif($Decharge >0){
 			$Qty=0;

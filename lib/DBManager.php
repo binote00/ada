@@ -253,6 +253,26 @@ trait DBManager
     }
 
     /**
+     * @param string $table
+     * @param string $setField
+     * @param int $modif
+     * @param string $operator [+,-,*,/]
+     * @param string $whereField
+     * @param string $whereValue
+     * @return int
+     */
+    public static function updateData($table, $setField, $modif, $operator = '+', $whereField = '', $whereValue = '')
+    {
+        $dbh = DB::connect();
+        $whereFields = self::getSelectFields($whereField, ' AND ', '=:field', true);
+        $query = "UPDATE $table SET $setField=$setField".$operator."$modif WHERE $whereFields";
+        $result = $dbh->prepare($query);
+        self::bindParams($result, $whereValue);
+        $result->execute();
+        return $result->rowCount();
+    }
+
+    /**
      * Convertisseur de date SQL
      *
      * @param string $date
