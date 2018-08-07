@@ -496,14 +496,14 @@ if ($OfficierEMID > 0) {
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Latitude BETWEEN 36.7 AND 38.2) AND (Longitude BETWEEN 12.5 AND 15.56) AND ID<>'$Lieu->ID'".$query_treve." ORDER BY Nom ASC";
                     elseif($Lieu->Latitude >36.6 and $Lieu->Longitude >19 and $Lieu->Longitude <26) //Grèce
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE Latitude >36.6 AND Longitude >19 AND Longitude <26 AND Zone<>6 AND Pays NOT IN (2,4,6)".$query_treve." AND ID NOT IN ('$Lieu->ID',2863,2864,2888,2889,2890,2891,2893) ORDER BY Nom ASC";
-                    elseif($Lieu->Pays_Ori ==6 and $Lieu->Latitude >38.2 and $Lieu->Longitude <19) //Italie
+                    elseif($Lieu->Pays ==6 and $Lieu->Latitude >38.2 and $Lieu->Longitude <19) //Italie
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Latitude BETWEEN 38.2 AND 45.5) AND (Longitude BETWEEN -2 AND 50) AND Zone<>6 AND Pays NOT IN (10,24)".$query_treve." AND ID NOT IN ('$Lieu->ID',435,450,465,1644,1647,2127,2306,2307,2308,2309,2310) ORDER BY Nom ASC";
                     elseif($Lieu->Longitude >34 and $Lieu->Longitude <45) //Moyen-Orient
                     {
                         $Autonomie_Max=100;
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE Latitude <37.3 AND Longitude >34 AND Longitude <50 AND Zone<>6".$query_treve." AND ID NOT IN ('$Lieu',529) ORDER BY Nom ASC";
                     }
-                    elseif($Lieu->Latitude <36.7 or ($Lieu->Longitude <12 and $Lieu->Latitude <37.3 and $Lieu->Pays_Ori !=6)) //AFN
+                    elseif($Lieu->Latitude <36.7 or ($Lieu->Longitude <12 and $Lieu->Latitude <37.3 and $Lieu->Pays !=6)) //AFN
                     {
                         $Autonomie_Max=100;
                         if($Lieu->Latitude <33 and $Lieu->Longitude <34 and $Lieu->Longitude >11.22)
@@ -523,7 +523,7 @@ if ($OfficierEMID > 0) {
                 }
                 elseif($Regiment->Front ==FRONT_EST or $Regiment->Front ==FRONT_NORD or $Regiment->Front ==FRONT_ARCTIC)
                 {
-                    if($Lieu->Pays_Ori ==FIN)
+                    if($Lieu->Pays ==FIN)
                     {
                         if($Lat_min <60)$Lat_min=60;
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6".$query_treve." AND ID NOT IN ('$Lieu->ID',1252) ORDER BY Nom ASC";
@@ -532,12 +532,12 @@ if ($OfficierEMID > 0) {
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN 33 AND 36.5) AND (Latitude BETWEEN 44.4 AND 46.5) AND Zone<>6".$query_treve." AND ID<>'$Lieu->ID' ORDER BY Nom ASC";
                     elseif($Lieu->Latitude <47 and $Lieu->Latitude>41 and $Lieu->Longitude >37 and $Lieu->Longitude <48) //Caucase
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN 37 AND 50) AND (Latitude BETWEEN 41 AND 48) AND Zone<>6".$query_treve." AND ID<>'$Lieu->ID' ORDER BY Nom ASC";
-                    elseif($Lieu->Pays_Ori ==8)
+                    elseif($Lieu->Pays ==8)
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6".$query_treve." AND ID NOT IN ('$Lieu->ID',1252) ORDER BY Nom ASC";
                     else
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6".$query_treve." AND ID NOT IN ('$Lieu->ID',1252) ORDER BY Nom ASC";
                 }
-                elseif($Regiment->Front ==3)
+                elseif($Regiment->Front ==FRONT_PAC)
                 {
                     if($Lieu->ID ==1610 or $Lieu->ID ==1618 or $Lieu->ID ==1637 or $Lieu->ID ==1869 or $Lieu->ID ==1894) //Ceylan
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE ID IN (1610,1618,1637,1869,1894) AND ID<>'$Lieu->ID' ORDER BY Nom ASC";
@@ -564,13 +564,13 @@ if ($OfficierEMID > 0) {
                 }
                 else
                 {
-                    if($Lieu->Pays_Ori ==1 or $Lieu->Pays_Ori ==3 or $Lieu->Pays_Ori ==4 or $Lieu->Pays_Ori ==5 or $Lieu->Pays_Ori ==6 or $Lieu->Pays_Ori ==36)
+                    if($Lieu->Pays ==1 or $Lieu->Pays ==3 or $Lieu->Pays ==4 or $Lieu->Pays ==5 or $Lieu->Pays ==6 or $Lieu->Pays ==36)
                     {
                         if($Long_max >14)$Long_max=14;
                         if($Lat_min <41)$Lat_min=41;
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude BETWEEN '$Long_min' AND '$Long_max') AND (Latitude BETWEEN '$Lat_min' AND '$Lat_max') AND Zone<>6 AND Pays IN(1,3,4,5,6,36) AND ID NOT IN ('$Lieu->ID',704,896) ORDER BY Nom ASC";
                     }
-                    elseif($Lieu->Pays_Ori ==2)
+                    elseif($Lieu->Pays ==2)
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE Latitude >49 AND Longitude <14 AND Zone<>6 AND Pays=2 AND ID<>'$Lieu->ID' ORDER BY Nom ASC";
                     elseif($Lieu->Pays==7)
                         $query="SELECT ID,Nom,Longitude,Latitude,NoeudR,NoeudF,Occupant,Flag,Flag_Route,Flag_Gare,Zone,Impass FROM Lieu WHERE (Longitude <-52 OR Longitude >235) AND Zone<>6 AND ID<>'$Lieu->ID' ORDER BY Nom ASC";
