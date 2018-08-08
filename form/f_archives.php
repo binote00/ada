@@ -1,7 +1,7 @@
 ﻿<?php
-include_once '../jfv_inc_sessions.php';
+include_once 'jfv_inc_sessions.php';
 if (isset($_SESSION['AccountID'])) {
-    include_once '../jfv_include.inc.php';
+    include_once 'jfv_include.inc.php';
     if ($_SESSION['Distance'] == 0) {
         $Premium = GetData("Joueur", "ID", $_SESSION['AccountID'], "Premium");
         if ($Premium) {
