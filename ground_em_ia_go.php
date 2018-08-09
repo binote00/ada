@@ -882,6 +882,10 @@ if($OfficierEMID >0)
                                     //si un dépôt est défini avant le déplacement
                                     if ($depot_ravit) {
                                         $reset_depot = DBManager::updateData('Lieu', $Stock_var, $Conso, '-', 'ID', $depot_ravit);
+                                        if (!$reset_depot) {
+                                            $stock_value = DBManager::getData('Lieu', $Stock_var, 'ID', $depot_ravit) - $Conso;
+                                            $reset_depot = DBManager::setData('Lieu', $Stock_var, $stock_value, 'ID', $depot_ravit);
+                                        }
                                     } else {
                                         if ($Front == 3) {
                                             $Lat_min = $Latitude_base - 6;

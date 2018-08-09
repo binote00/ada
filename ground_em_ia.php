@@ -38,7 +38,7 @@ if ($OfficierEMID > 0) {
             $Officier_Log = $Pays_front->Officier_Log;
         }
     }
-    if ($GHQ or $Admin) {
+    if ($GHQ || $Admin) {
         $Ordres_Cdt = true;
         $Ordre_ok = true;
         $Ordres_Div = true;
@@ -46,16 +46,16 @@ if ($OfficierEMID > 0) {
         if (in_array($country, $Nations_IA)) {
             $Nation_IA = true;
         }
-    } elseif ($Commandant > 0 and ($Commandant == $OfficierEMID)) {
+    } elseif ($Commandant > 0 && ($Commandant == $OfficierEMID)) {
         $Ordres_Cdt = true;
         $Ordre_ok = true;
-    } elseif ($Adjoint_Terre > 0 and ($Adjoint_Terre == $OfficierEMID)) {
+    } elseif ($Adjoint_Terre > 0 && ($Adjoint_Terre == $OfficierEMID)) {
         $Ordres_Adjoint = true;
         $Ordre_ok = true;
-    } elseif ($Officier_Mer > 0 and ($Officier_Mer == $OfficierEMID)) {
+    } elseif ($Officier_Mer > 0 && ($Officier_Mer == $OfficierEMID)) {
         $Ordres_Mer = true;
         $Ordre_ok = true;
-    } elseif ($Officier_Log > 0 and ($Officier_Log == $OfficierEMID)) {
+    } elseif ($Officier_Log > 0 && ($Officier_Log == $OfficierEMID)) {
         $Ordres_Log = true;
         $Ordre_ok = true;
     }
@@ -72,7 +72,7 @@ if ($OfficierEMID > 0) {
             $Ordre_ok = true;
         }
     }
-    if($Ordre_ok and $Unit >0)
+    if($Ordre_ok && $Unit >0)
     {
         $Premium = $Player->Premium;
         $Faction = Pays::getFaction($country);
@@ -111,11 +111,11 @@ if ($OfficierEMID > 0) {
         $matos_modal = getMatosAndSkills($Unit, $Veh, $Date_Campagne);
 
         //Process
-        if($OfficierEMID ==$Commandant or $GHQ or $Admin or $Ordres_Mer)
+        if($OfficierEMID ==$Commandant || $GHQ || $Admin || $Ordres_Mer)
         {
             include_once 'view/menu_cat_list.php';
         }
-        if($Regiment->Vehicule_Nbr >0 and (!$GHQ or $Admin or $Nation_IA)) //Demande mission & Situation unités de la zone
+        if($Regiment->Vehicule_Nbr >0 && (!$GHQ || $Admin || $Nation_IA)) //Demande mission & Situation unités de la zone
         {
             if(!$Regiment->Mission_Lieu_D)
                 $Mission_Lieu_D='<i>Aucune</i>';
@@ -351,7 +351,7 @@ if ($OfficierEMID > 0) {
                 }
             }
         }
-        if($Regiment->Vehicule_ID >5000 or $Regiment->Transit_Veh ==5000) //Navire
+        if($Regiment->Vehicule_ID >5000 || $Regiment->Transit_Veh ==5000) //Navire
         {
             $ground_em_ia_naval = true;
             include_once 'ground_em_ia_naval.php';
@@ -370,9 +370,9 @@ if ($OfficierEMID > 0) {
             if($Regiment->Placement ==PLACE_PLAGE)$Faction_Plage=GetData("Pays","ID",$Lieu->Flag_Plage,"Faction");
             if($Regiment->Placement ==PLACE_PLAGE && $Faction_Plage !=$Faction)
                 $Placements=Output::ShowAdvert('Cette unité ne peut quitter la plage tant que vos troupes ne contrôlent pas la zone','danger');
-            elseif($Regiment->Atk and $Regiment->mobile ==MOBILE_FOOT)
+            elseif($Regiment->Atk && $Regiment->mobile ==MOBILE_FOOT)
                 $Placements=Output::ShowAdvert('Vos troupes ne peuvent se déplacer directement après une attaque','danger');
-            elseif($Regiment->Position !=12 and $Regiment->Position !=13)
+            elseif($Regiment->Position !=12 && $Regiment->Position !=13)
             {
                 if(!$Pas_libre)
                 {
@@ -419,7 +419,7 @@ if ($OfficierEMID > 0) {
             else
                 $Placements='<span class="text-warning">En transit</span>';
             /*Lieux*/
-            if(!$Regiment->Move and $Regiment->Position !=12 and $Regiment->Position !=13)
+            if(!$Regiment->Move && $Regiment->Position !=12 && $Regiment->Position !=13)
             {
                 $Rasputitsa=false;
                 $Merzlota=false;
@@ -1029,21 +1029,21 @@ if ($OfficierEMID > 0) {
                 else
                     $Renforts_txt='<tr><td colspan="3" class="text-success text-center">Effectifs au maximum</td></tr>';
             }
-            elseif(!$Regiment->Move and $Regiment->Position ==12){
+            elseif(!$Regiment->Move && $Regiment->Position ==12){
                 $Decharger.="<br><form action='index.php?view=ground_em_ia_go' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='pos' value='4'><input type='submit' value='Annuler le Parachutage' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
             }elseif(!$Regiment->Move)
                 $Lieux_txt='Pas avant demain';
-            if(!$GHQ or $Admin or $Nation_IA)
+            if(!$GHQ || $Admin || $Nation_IA)
             {
                 //Revendication
                 if ($Nation_IA && $Faction == ALLIES && $Lieu->Pays != $country) {
                     $revendication = false;
-                } elseif(($Veh->Type ==95 or $Veh->Detection >10) and $Regiment->Position !=6 and $Regiment->Position !=11 and $Regiment->Position !=12 and $Regiment->Position !=13 and $Regiment->Position !=14 and !$Enis_combi and !$Regiment->Move and $Regiment->Vehicule_Nbr >0) {
+                } elseif(($Veh->Type ==95 || $Veh->Detection >10) && $Regiment->Position !=6 && $Regiment->Position !=11 && $Regiment->Position !=12 && $Regiment->Position !=13 && $Regiment->Position !=14 && !$Enis_combi && !$Regiment->Move && $Regiment->Vehicule_Nbr >0) {
                     $revendication = true;
                 }
                 if($revendication == true)
                 {
-                    if($Lieu->Recce or !$Lieu->ValeurStrat or $Regiment->Placement >0)
+                    if($Lieu->Recce || !$Lieu->ValeurStrat || $Regiment->Placement >0)
                     {
                         if($Veh->Type ==95)
                             $Rev_mode=2;
@@ -1072,15 +1072,15 @@ if ($OfficierEMID > 0) {
                                 $Faction_Place=GetData("Pays","ID",$Lieu->Flag_Radar,"Faction");
                             elseif($Regiment->Placement ==11)
                                 $Faction_Place=GetData("Pays","ID",$Lieu->Flag_Plage,"Faction");
-                            if($Faction !=$Faction_Place and !$Esc_Oqp)
+                            if($Faction !=$Faction_Place && !$Esc_Oqp)
                                 $Atk_Options.="<tr><td><form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><input type='hidden' name='cible' value='".$Lieu->ID."'><input type='hidden' name='rev' value='".$Rev_mode."'>
                                     <input type='submit' value='Revendiquer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Revendiquer compte comme action du jour</span></a></div></td>
                                     <td>0</td><td>N/A</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Revendiquer un lieu stratégique nécessite que le lieu soit reconnu soit via une reco terrestre ou une reco stratégique.<br>Les lieux non stratégiques peuvent être revendiqués sans reco préalable.<br>Pour revendiquer une caserne, la garnison doit être éliminée au préalable.</span></a></td></tr>";
-                            elseif($Regiment->Placement ==1 and $Esc_Oqp)
+                            elseif($Regiment->Placement ==1 && $Esc_Oqp)
                                 $Atk_Options.="<div class='alert alert-danger'>Des avions ennemis occupent l'aérodrome</div>";
                         }
-                        elseif($Regiment->Placement ==0 and $Faction_Flag !=$Faction and $Lieu->Garnison <1 and ($Lieu->Recce or !$Lieu->ValeurStrat))
+                        elseif($Regiment->Placement ==0 && $Faction_Flag !=$Faction && $Lieu->Garnison <1 && ($Lieu->Recce || !$Lieu->ValeurStrat))
                         {
                             $Rev_ok=false;
                             $Faction_Ori=GetData("Pays","ID",$Lieu->Pays,"Faction");
@@ -1094,7 +1094,7 @@ if ($OfficierEMID > 0) {
                                 $Pays_Rev=$country;
                                 $Faction_Rev=$Faction;
                             }
-                            if($Lieu->Flag_Pont and !$Faction_Pont)$Faction_Pont=GetData("Pays","ID",$Lieu->Flag_Pont,"Faction");
+                            if($Lieu->Flag_Pont && !$Faction_Pont)$Faction_Pont=GetData("Pays","ID",$Lieu->Flag_Pont,"Faction");
                             if($Lieu->Flag_Port)$Faction_Port=GetData("Pays","ID",$Lieu->Flag_Port,"Faction");
                             if($Lieu->Flag_Gare)$Faction_Gare=GetData("Pays","ID",$Lieu->Flag_Gare,"Faction");
                             if($Lieu->Flag_Route)$Faction_Route=GetData("Pays","ID",$Lieu->Flag_Route,"Faction");
@@ -1407,26 +1407,26 @@ if ($OfficierEMID > 0) {
             elseif($Veh->Type !=95)
             {
                 $Pos_titre='Position';
-                if($Regiment->Position !=12 and $Regiment->Position !=13)
+                if($Regiment->Position !=12 && $Regiment->Position !=13)
                 {
                     if(!$Pas_libre)
                     {
-                        if(!$GHQ or $Admin or $Nation_IA)
+                        if(!$GHQ || $Admin || $Nation_IA)
                         {
                             $Positions="<form action='ground_em_ia_go.php' method='post'><input type='hidden' name='Unit' value='".$Unit."'><select name='pos' class='form-control' style='max-width:200px; display:inline;'><option value='0'>Ne rien changer</option>";
                             if(!$Regiment->Move)
                                 $Positions.="<option value='2'>Retranché (conseillé pour les unités isolées)</option>";
-                            if(!$Regiment->Move and $Veh->Detection >10)
+                            if(!$Regiment->Move && $Veh->Detection >10)
                                 $Positions.="<option value='14'>Sentinelle [Consomme l'action du jour]</option>";
-                            if(!$Regiment->Move or (($Veh->mobile ==1 or $Veh->mobile ==2 or $Veh->mobile ==6) and $Veh->Type !=6))
+                            if(!$Regiment->Move || (($Veh->mobile ==MOBILE_WHEEL || $Veh->mobile ==MOBILE_TRACK || $Veh->mobile ==6) && $Veh->Type !=TYPE_ART))
                             {
                                 if(!$Regiment->Atk)$Positions.="<option value='5'>Appui (conseillé pour l'artillerie à vocation défensive ou la DCA)</option>";
-                                if($Lieu->Zone !=0 and $Lieu->Zone !=8 and $Regiment->Vehicule_Nbr >0)
+                                if($Lieu->Zone !=0 && $Lieu->Zone !=8 && $Regiment->Vehicule_Nbr >0)
                                     $Positions.="<option value='3'>Embuscade (conseillé pour l'artillerie AT)</option>";
                                 $Positions.="<option value='1'>Défensive (conseillé pour les unités motorisées ou la DCA)</option>
                                     <option value='10'>Ligne (conseillé pour l'infanterie ou l'artillerie AT)</option>
                                     <option value='4'>Mouvement (conseillé avant tout assaut ou attaque)</option>";
-                                if($Regiment->Placement ==4 or $Regiment->Placement ==11)
+                                if($Regiment->Placement ==PLACE_PORT || $Regiment->Placement ==PLACE_PLAGE)
                                 {
                                     /*if($Veh->Type ==90)
                                         $Positions.="<option value='32'>En attente de transit (compte comme action du jour)</option>";
@@ -1704,7 +1704,7 @@ if ($OfficierEMID > 0) {
         //Compétence Tactique
         if($Regiment->Skill)
         {
-            if($Regiment->Vehicule !=424 and $Veh->Type !=1)
+            if($Regiment->Vehicule !=424 && $Veh->Type !=1)
             {
                 $con1=dbconnecti(1);
                 $resultsk=mysqli_query($con1,"SELECT Nom,Rang,Infos FROM Skills_r WHERE ID='$Regiment->Skill'");
@@ -1735,7 +1735,7 @@ if ($OfficierEMID > 0) {
             }
             $Skill_txt="<a href='#' class='popup'><img src='images/skills/skillo".$Regiment->Skill.".png' style='max-width:15%;'><span>".$Skills_Infos."</span></a>";
         }
-        elseif($Regiment->Vehicule !=424 and $Veh->Type !=1 and $Regiment->Experience >49)
+        elseif($Regiment->Vehicule !=424 && $Veh->Type !=TYPE_TRUCK && $Regiment->Experience >49)
         {
             if($Veh->Type ==37) //Sub
             {
@@ -1861,11 +1861,11 @@ if ($OfficierEMID > 0) {
                 $Skill_txt="<a href='#' class='popup'><img src='images/skills/skillo".$Skill_p.".png' style='max-width:15%;'><span>".GetData("Skills_r","ID",$Skill_p,"Infos")."</span></a>";
             }
         }
-        elseif($Regiment->Vehicule !=424 and $Veh->Type !=1)
+        elseif($Regiment->Vehicule !=424 && $Veh->Type !=TYPE_TRUCK)
             $Upgrade_txt="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Cette unité est éprouvée par les combats. Elle peut être améliorée sur une usine produisant du matériel plus performant.</div>";
 
         //Equipement
-        if($Veh->Type ==93 and $Regiment->Matos ==28){
+        if($Veh->Type ==93 && $Regiment->Matos ==28){
             $con=dbconnecti();
             $update_skill=mysqli_query($con,"UPDATE Regiment_IA SET Matos=11 WHERE ID='$Unit'");
             mysqli_close($con);
@@ -1874,10 +1874,10 @@ if ($OfficierEMID > 0) {
 
         if($GHQ) //Menu GHQ
         {
-            if($Regiment->Vehicule !=424 and $Veh->Type !=95)
+            if($Regiment->Vehicule !=424 && $Veh->Type !=95)
             {
                 $ghq_txt="Front actuel <b>".GetFront($Regiment->Front)."</b><div class='row'>";
-                if($Lieu->Industrie and $Regiment->Placement ==6 and !$Regiment->Move and $Faction ==$Faction_Flag)
+                if($Lieu->Industrie && $Regiment->Placement ==6 && !$Regiment->Move && $Faction ==$Faction_Flag)
                 {
                     if(!$Faction_Usine)$Faction_Usine=GetData("Pays","ID",$Lieu->Flag_Usine,"Faction");
                     if($Faction ==$Faction_Usine)
@@ -1899,7 +1899,7 @@ if ($OfficierEMID > 0) {
                 }
                 $ghq_txt.="<div class='col-md-4'><form action='ghq_reserve.php' method='post'><input type='hidden' name='mode' value='".$Mode_res_GHQ."'><input type='hidden' name='Reg' value='".$Unit."'>
                 <a href='#' class='popup'><div class='help_icon'></div><span>Réserver cette unité pour le GHQ</span></a><input type='submit' value='".$Mode_res_GHQ_txt."' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form></div>";
-                if(in_array($Lieu->ID,$Transit_cities) and $Veh->Categorie !=4 and !$Regiment->Move)
+                if(in_array($Lieu->ID,$Transit_cities) && $Veh->Categorie !=4 && !$Regiment->Move)
                     $ghq_txt.="<div class='col-md-4'><form action='index.php?view=ghq_change_front' method='post'><input type='hidden' name='Reg' value='".$Unit."'>
                     <input type='hidden' name='Front' value='".$Regiment->Front."'><input type='hidden' name='Transit' value='".$Lieu->ID."'>
                     <input type='submit' value='Changer de front' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form></div>";
@@ -1908,7 +1908,7 @@ if ($OfficierEMID > 0) {
         }
         elseif(!$Regiment->Move) //Demander changement de front
         {
-            if(in_array($Lieu->ID,$Transit_cities) and $Veh->Categorie !=4)
+            if(in_array($Lieu->ID,$Transit_cities) && $Veh->Categorie !=4)
                 $ghq_txt.="<br><form action='index.php?view=ground_change_front' method='post'><input type='hidden' name='Reg' value='".$Unit."'>
                 <input type='hidden' name='Front' value='".$Regiment->Front."'><input type='hidden' name='Transit' value='".$Lieu->ID."'>
                 <input type='submit' value='Demander le changement de front' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form> <span title='Une demande sera envoyée au planificateur stratégique. Le changement de front retirera automatiquement la Cie de sa division actuelle'><div class='i-flex help_icon'></div></span></a>";
@@ -1916,12 +1916,12 @@ if ($OfficierEMID > 0) {
         $titre='Commandement des unités IA';
         $mes.=$menu_cat_list;
         //Hangar & Garage
-        if($Veh->mobile != MOBILE_RAIL and $Veh->mobile != MOBILE_WATER and $Veh_Type != TYPE_TRUCK and !$Regiment->Move)
+        if($Veh->mobile != MOBILE_RAIL && $Veh->mobile != MOBILE_WATER && $Veh_Type != TYPE_TRUCK && !$Regiment->Move)
         {
-            if($Veh->Arme_AT or $Veh->Arme_Art or $Veh->Categorie == CAT_DCA)
+            if($Veh->Arme_AT || $Veh->Arme_Art || $Veh->Categorie == CAT_DCA)
             {
                 $title_conso_atk='Consommation attaque';
-                if($Veh->Categorie == CAT_DCA and $Veh->Arme_AA)
+                if($Veh->Categorie == CAT_DCA && $Veh->Arme_AA)
                 {
                     //$Lieu->Stock_AA;
                     $Arme_Cal=round(GetData("Armes","ID",$Veh->Arme_AA,"Calibre"));
@@ -1949,13 +1949,13 @@ if ($OfficierEMID > 0) {
                 else
                     $depot_stock_mun=$Stock_Arme;
             }
-            if($Lieu->ValeurStrat >=2 and $Lieu->Industrie and $Regiment->Placement == PLACE_USINE and $Faction ==$Faction_Flag)
+            if($Lieu->ValeurStrat >=2 && $Lieu->Industrie && $Regiment->Placement == PLACE_USINE && $Faction ==$Faction_Flag)
             {
                 if(!$Faction_Usine)
                     $Faction_Usine=GetData("Pays","ID",$Lieu->Flag_Usine,"Faction");
                 if($Faction ==$Faction_Usine)
                 {
-                    if($Regiment->Experience <100 or $GHQ)
+                    if($Regiment->Experience <100 || $GHQ)
                         $Ravit_Options.="<div class='col-md-6'>
                         <form action='index.php?view=ground_em_ia_create' method='post'>
                             <input type='hidden' name='Reg' value='".$Unit."'>
@@ -1974,9 +1974,9 @@ if ($OfficierEMID > 0) {
                 }
             }
         }
-        elseif($Veh->mobile ==5 and !$Regiment->Move)
+        elseif($Veh->mobile ==5 && !$Regiment->Move)
         {
-            if($Lieu->ValeurStrat >=2 and $Lieu->Port_Ori and $Lieu->Port >0 and $Faction ==$Faction_Flag)
+            if($Lieu->ValeurStrat >=2 && $Lieu->Port_Ori && $Lieu->Port >0 && $Faction ==$Faction_Flag)
             {
                 if(!$Faction_Port)
                     $Faction_Port=GetData("Pays","ID",$Lieu->Flag_Port,"Faction");
@@ -1994,7 +1994,7 @@ if ($OfficierEMID > 0) {
                                             <td><a href="#" class="popup"><div class="action-jour"></div><span>Compte comme action du jour</span></a></td>
                                             <td><a href="#" class="popup"><div class="i-flex help_icon"></div><span>Permet de récupérer le maximum de jours de mer</span></a></td>
                                        </tr>';
-                    if($Port_ok and !$Enis_Port_combi){
+                    if($Port_ok && !$Enis_Port_combi){
                         if($Regiment->Experience <100)
                             $Renforts_txt.="<tr><td><form action='index.php?view=ground_em_ia_create' method='post'><input type='hidden' name='Reg' value='".$Unit."'>
                             <input type='hidden' name='Cat' value='".$Veh->Categorie."'><input type='hidden' name='Mode' value='1'><input type='hidden' name='Lieu' value='".$Lieu->ID."'>
@@ -2006,18 +2006,18 @@ if ($OfficierEMID > 0) {
         }
         if($Ravit ==1)$Conso_txt.="<br><a href='#' class='popup'><img src='images/map/air_ravit.png'><span>Ravitaillée par air</span></a>";
         //Begin Help Txt
-        if($Lieu->Zone ==0 or $Lieu->Zone ==8)
+        if($Lieu->Zone ==0 || $Lieu->Zone ==8)
         {
             if($Veh->mobile ==5)
                 $Zone_help_txt="Portée d'attaque maximale 2000m";
             else
             {
                 $Zone_help_txt="Portée d'attaque maximale 4000m";
-                if($Veh->Categorie ==2 or $Veh->Categorie ==3 or $Veh->mobile ==7)
+                if($Veh->Categorie ==2 || $Veh->Categorie ==3 || $Veh->mobile ==7)
                     $Zone_help_txt.="<br>Terrain propice à l'attaque surprise pour cette unité";
             }
         }
-        elseif($Lieu->Zone ==2 or $Lieu->Zone ==3 or $Lieu->Zone ==4 or $Lieu->Zone ==5 or $Lieu->Zone ==7 or $Lieu->Zone ==10)
+        elseif($Lieu->Zone ==2 || $Lieu->Zone ==3 || $Lieu->Zone ==4 || $Lieu->Zone ==5 || $Lieu->Zone ==7 || $Lieu->Zone ==10)
         {
             if($Lieu->Zone ==4)
                 $Zone_help_txt="Portée d'attaque maximale 1000m<br>";
@@ -2067,7 +2067,7 @@ if ($OfficierEMID > 0) {
         elseif($Regiment->Position ==10)
         {
             $Pos_help_txt="Attaque impossible<br>Bonus tactique défensif doublé<br>Vitesse nulle<br>Portée de bombardement, d'attaque et de raid réduite de moitié";
-            if($Veh->Categorie ==5 or $Veh->Categorie ==6 or $Veh->Categorie ==9)$Pos_help_txt.="<br>Chance de protéger les unités alliées contre les attaques terrestres";
+            if($Veh->Categorie ==5 || $Veh->Categorie ==6 || $Veh->Categorie ==9)$Pos_help_txt.="<br>Chance de protéger les unités alliées contre les attaques terrestres";
             if($Veh->Arme_AT)$Pos_help_txt.="<br>Riposte contre les attaques de véhicules";
         }
         elseif($Regiment->Position ==11)
@@ -2083,7 +2083,7 @@ if ($OfficierEMID > 0) {
         }
         elseif($Regiment->Position ==22)
             $Pos_help_txt="Un écran de fumée protégera le navire s'il est attaqué";
-        elseif($Regiment->Position ==23 and $Veh->Arme_Art)
+        elseif($Regiment->Position ==23 && $Veh->Arme_Art)
             $Pos_help_txt="Contre-batterie sur toutes les zones du lieu";
         elseif($Regiment->Position ==24)
             $Pos_help_txt="Augmente la protections des navires alliés situés dans la même zone face à un torpillage";
@@ -2093,7 +2093,7 @@ if ($OfficierEMID > 0) {
             $Pos_help_txt="Attaque impossible<br>Vitesse nulle<br>Bonus tactique défensif réduit de moitié<br>Portée de bombardement, d'attaque et de raid réduite de moitié";
         else
             $Pos_help_txt="Cette position n'offre aucun avantage à cette unité";
-        if($Regiment->Vehicule_ID <5000 and $Regiment->Vehicule_ID !=424)
+        if($Regiment->Vehicule_ID <5000 && $Regiment->Vehicule_ID !=424)
         {
             if(!$Regiment->Move){
                 if($Regiment->Placement ==1)
@@ -2142,13 +2142,13 @@ if ($OfficierEMID > 0) {
         if($Regiment->Matos)$Skill_txt.="<a href='#' class='popup'><img src='images/skills/skille".$Regiment->Matos.".png' style='max-width:15%;'><span>".$Reg_matos[$Regiment->Matos]."</span></a>";
         if(!$Retraite_Nom)$Retraite_Nom=GetData("Lieu","ID",$Retraite,"Nom");
         if($Regiment->Bataillon)$Bat_Nbr=$Regiment->Bataillon.'e Bat';
-        if($Regiment->Position==0 or $Regiment->Position==4)$txt_intro_help="<div class='alert alert-danger'><b>Cette unité est dans une position vulnérable</b>. Veillez à mettre l'unité en position adéquate après tout déplacement.</div>";
+        if($Regiment->Position==0 || $Regiment->Position==4)$txt_intro_help="<div class='alert alert-danger'><b>Cette unité est dans une position vulnérable</b>. Veillez à mettre l'unité en position adéquate après tout déplacement.</div>";
         //Output
         //--Divisions--
-        if(($Admin or $Ordres_Cdt
-                or ($Ordres_Mer and !$GHQ and $Veh->mobile ==5)
-                or ($Ordres_Adjoint and $Veh->mobile!=5)
-            ) and $Veh->Type !=95 and $Veh->Type !=1 and $Veh->mobile!=4 and $Regiment->Vehicule_ID !=5392 and $Regiment->Vehicule_ID !=5001 and $Regiment->Vehicule_ID !=5124){
+        if(($Admin || $Ordres_Cdt
+                || ($Ordres_Mer && !$GHQ && $Veh->mobile ==5)
+                || ($Ordres_Adjoint && $Veh->mobile!=5)
+            ) && $Veh->Type !=95 && $Veh->Type !=1 && $Veh->mobile!=4 && $Regiment->Vehicule_ID !=5392 && $Regiment->Vehicule_ID !=5001 && $Regiment->Vehicule_ID !=5124){
             //Division & Armées
             if($Veh->mobile ==5)
                 $Mar_bool='1';
@@ -2212,7 +2212,7 @@ if ($OfficierEMID > 0) {
         $Divisions=$Divisions_pre.Afficher_Image('images/div/div'.$Regiment->Division.'.png','images/'.$country.'div.png','',0).$Divisions_end.$Divisions_modal;
         //--End Divisions--
         $Base_txt='<br><a href="#" class="popup">'.$Retraite_Nom.'<span>Lieu où cette unité peut se ravitailler.<br>La base arrière est définie par la <b>division</b> à laquelle appartient l\'unité.<br>Si l\'unité ne fait pas partie d\'une division, la base arrière est celle du front.</span></a>';
-        if($Regiment->Placement ==5 and !$Lieu->Pont)$Etat_Pont_txt='<br><div class="alert alert-danger">Le pont est détruit !</div>';
+        if($Regiment->Placement ==5 && !$Lieu->Pont)$Etat_Pont_txt='<br><div class="alert alert-danger">Le pont est détruit !</div>';
         //Menu GHQ
         if($ghq_txt){
             $ghq_txt='<div class="col-md-6 col-sm-12"><div class="panel panel-war" style="margin-top:10px; width: 300px;">
@@ -2326,7 +2326,7 @@ if ($OfficierEMID > 0) {
             $colorNbr = 'primary';
         else
             $colorNbr = 'success';
-        if($Admin and !$Regiment->Move){
+        if($Admin && !$Regiment->Move){
             dbconnect();
             $reslieux=$dbh->query("SELECT ID,Nom,Flag FROM Lieu ORDER BY Nom");
             while($lieux_admin=$reslieux->fetchObject()){

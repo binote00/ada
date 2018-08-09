@@ -1004,7 +1004,7 @@ if($OfficierEMID >0)
 		}
 		else
 			$OI_txt="Aucun officier n'occupe ce poste sur ce front<br><br>Si vous êtes intéressé par l'aspect gestion des infrastructures du jeu,<br>vous pouvez créer un officier d'état-major sur la page de connexion du jeu et postuler <a href='index.php?view=em_actus' class='lien'>ici</a>";
-		echo "<h1>Etat-Major</h1><table class='table table-condensed'><thead><tr><th>Commandant en Chef</th><th>Officier Terrestre</th><th>Officier Maritime</th><th>Officier Logistique</th><th>Officier Renseignement</th><th>Officier Infrastructures</th></tr></thead><tr><td>".$CO_txt."</td><td>".$AO_txt."</td><td>".$MO_txt."</td><td>".$OL_txt."</td><td>".$OR_txt."</td><td>".$OI_txt."</td></tr></table>";
+		echo "<h1>Etat-Major</h1><table class='table table-condensed'><thead><tr><th>Commandant de Front</th><th>Commandant de la réserve</th><th>Officier Maritime</th><th>Officier Logistique</th></tr></thead><tr><td>".$CO_txt."</td><td>".$AO_txt."</td><td>".$MO_txt."</td><td>".$OL_txt."</td></tr></table>";
 		if($OfficierEMID)
 		{
 			echo "<h2>Commandants d'armées</h2>			

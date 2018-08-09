@@ -287,7 +287,7 @@ trait DBManager
         }
         if ($mode == 'BIRTH') {
             return 'DATE_FORMAT(' . $date . ',\'%d-%m-%Y\') AS ' . $alias;
-        } elseif ($mode == 'LOG') {
+        } else {
             return 'DATE_FORMAT(' . $date . ',\'%d-%m %H:%i\') AS ' . $alias;
         }
     }
