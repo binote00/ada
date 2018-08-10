@@ -106,6 +106,7 @@ if($OfficierEMID >0)
         $Reg_gr=Insec($_POST['Reg_gr']);
         $depot_ravit=Insec($_POST['depot_ravit']);
 		$CT_Action=Insec($_POST['CT']);
+
 		$Retraite=Get_Retraite($Front,$country,30);
 		$Faction=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='$country'"),0);
 		$result3=mysqli_query($con,"SELECT r.CT,r.Vehicule_ID,r.Vehicule_Nbr,r.Experience,r.Lieu_ID,r.Position,r.Placement,r.Division,r.Transit_Veh,r.Autonomie,r.Move,r.Ravit,r.Skill,r.Matos,r.HP,r.objectif,r.Camouflage,r.Visible,
@@ -364,56 +365,42 @@ if($OfficierEMID >0)
             }
             elseif($Renforts ==1 and $Max_Veh >0)
             {
-                $con=dbconnecti();
-                $result3=mysqli_query($con,"SELECT Reput,Usine1,Usine2,Usine3,Stock FROM Cible WHERE ID='$Veh'")
-                or die('Le jeu a rencontré une erreur, merci de le signaler sur le forum avec la référence suivante : gemiago-veh');
-                mysqli_close($con);
-                if($result3)
-                {
-                    while($data=mysqli_fetch_array($result3,MYSQLI_ASSOC))
-                    {
-                        $CT_Renf=$data['Reput'];
-                        $CT_Usine1=$data['Usine1'];
-                        $CT_Usine2=$data['Usine2'];
-                        $CT_Usine3=$data['Usine3'];
-                        $Stock_Veh=floor($data['Stock']);
+                $Vehicule = Cible::getById($Veh);
+                $Stock_Veh = floor($Vehicule->Stock);
+                if ($Lieu_ID == $Vehicule->Usine1 || $Lieu_ID == $Vehicule->Usine2 || $Lieu_ID == $Vehicule->Usine3) {
+                    if ($Max_Veh > $Stock_Veh) {
+                        $Veh_Final = $Stock_Veh;
+                    } else {
+                        $Veh_Final = $Max_Veh;
                     }
-                    mysqli_free_result($result3);
+                    $down_exp = 1;
+                } else {
+                    if ($Max_Veh > 25) {
+                        $up_renf = floor($Max_Veh / 10);
+                        $down_exp = floor($up_renf / 10);
+                    } else {
+                        $up_renf = floor($Max_Veh / 4);
+                        $down_exp = floor($up_renf / 2);
+                    }
+                    if ($up_renf > $Stock_Veh) $up_renf = $Stock_Veh;
+                    $Veh_Final = $Veh_Nbr += $up_renf;
                 }
-                if($Lieu_ID ==$CT_Usine1 or $Lieu_ID ==$CT_Usine2 or $Lieu_ID ==$CT_Usine3)$CT_Renf=1;
-                if($Credits >=$CT_Renf)
-                {
-                    if($Max_Veh >25)
-                    {
-                        $up_renf=floor($Max_Veh/10);
-                        $down_exp=floor($up_renf/10);
-                    }
-                    else
-                    {
-                        $up_renf=floor($Max_Veh/4);
-                        $down_exp=floor($up_renf/2);
-                    }
-                    if($up_renf >$Stock_Veh)$up_renf=$Stock_Veh;
-                    if($up_renf <1)$up_renf=1;
-                    $Credits -= $CT_Renf;
-                    $con=dbconnecti();
-                    $reset_r=mysqli_query($con,"UPDATE Regiment_IA SET CT=$Credits,Moral=100,Visible=0,Move=1,Position=0,Move_time='0000-00-00 00:00:00' WHERE ID='$Reg'");
-                    mysqli_close($con);
+                if ($Experience > 50) {
+                    $Exp_Final = $Experience - floor($down_exp);
+                } else {
+                    $Exp_Final = $Experience;
+                }
+                try {
+                    $reset_r = DBManager::getDataSQL("UPDATE Regiment_IA 
+                        SET Vehicule_Nbr=?,Experience=?,Moral=100,Visible=0,Move=1,Position=0,Move_time='0000-00-00 00:00:00'
+                        WHERE ID = $Reg", [$Veh_Final, $Exp_Final]);
                     if($reset_r)
-                    {
-                        UpdateData("Regiment_IA","Vehicule_Nbr",$up_renf,"ID",$Reg,$Max_Veh);
-                        if($Experience >50)
-                        {
-                            if($down_exp <1)$down_exp=1;
-                            UpdateData("Regiment_IA","Experience",-$down_exp,"ID",$Reg);
-                        }
                         $_SESSION['msg'] = 'La Compagnie a été renforcée';
-                    }
                     else
                         $_SESSION['msg_red'] = 'La Compagnie n\'a pas pu être renforcée!';
+                } catch (Exception $exc) {
+                    $_SESSION['msg_red'] = '[ERREUR] : La Compagnie n\'a pas pu être renforcée!';
                 }
-                else
-                    $_SESSION['msg_red'] = 'La Compagnie n\'a pas pu être renforcée par manque de temps!';
                 header('Location: index.php?view=ground_em_ia');
             }
         }

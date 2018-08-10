@@ -1011,7 +1011,7 @@ if ($OfficierEMID > 0) {
                                     ->AddInput('renf', '', 'hidden', 1)
                                     ->EndForm('Renforts', 'warning btn-sm', 'A') . '</td>
                                     <td>'.$Reste.'</td>
-                                    <td>'.$up_renf.'<a href="#" class="popup"><div class="i-flex help_icon"></div><span>Pour se renforcer, l\'unité doit se trouver sur la base arrière <b>'.$Retraite_Nom.'</b> pour un coût de <b>'.$Reput_Renf_ori.'CT</b>, ou sur l\'usine de production <b>'.$Usine1_Nom.'</b> pour un coût de <b>1CT</b>. Compte comme une action du jour.</span></a></td>
+                                    <td>'.Output::popup($up_renf, 'Pour se renforcer, l\'unité doit se trouver sur la base arrière <b>'.$Retraite_Nom.'</b> pour se renforcer de <b>'.$up_renf.'</b>, ou sur l\'usine de production <b>'.$Usine1_Nom.'</b> pour se renforcer au <b>maximum</b> (en fonction des stocks disponibles)').'</td>
                                 </tr>';
                         }
                         else

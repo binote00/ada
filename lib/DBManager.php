@@ -226,11 +226,9 @@ trait DBManager
     {
         $dbh = DB::connect();
         if ($whereField and $whereValue) {
-            $setFields = self::getSelectFields($setField, $values, '=:data');
+            $setFields = self::getSelectFields($setField, $values, '=:data', true);
             $whereFields = self::getSelectFields($whereField, ' AND ', '=:field', true);
             $query = "UPDATE $table SET $setFields WHERE $whereFields";
-            /*mail(LOG_EMAIL, 'MEMORIES : SET DATA', $query);
-            echo $query;*/
             $result = $dbh->prepare($query);
             self::bindParams($result, $whereValue);
             self::bindParams($result, $values, true);
@@ -265,9 +263,10 @@ trait DBManager
     {
         $dbh = DB::connect();
         $whereFields = self::getSelectFields($whereField, ' AND ', '=:field', true);
-        $query = "UPDATE $table SET $setField=$setField".$operator."$modif WHERE $whereFields";
+        $query = "UPDATE $table SET $setField=:data".$operator."$modif WHERE $whereFields";
         $result = $dbh->prepare($query);
         self::bindParams($result, $whereValue);
+        self::bindParams($result, $setField, true);
         $result->execute();
         return $result->rowCount();
     }
