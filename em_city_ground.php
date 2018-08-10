@@ -9,10 +9,9 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
     include_once './jfv_txt.inc.php';
     include_once './jfv_inc_em.php';
     $country = $_SESSION['country'];
+    $con = dbconnecti();
     if ($OfficierEMID) {
-        $con = dbconnecti();
         $result = mysqli_query($con, "SELECT Front,Avancement,Armee FROM Officier WHERE ID='$OfficierEMID'");
-        mysqli_close($con);
         if ($result) {
             while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $Front = $data['Front'];
@@ -22,9 +21,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
             mysqli_free_result($result);
         }
     } elseif ($PlayerID) {
-        $con = dbconnecti();
         $result = mysqli_query($con, "SELECT Front,Avancement,Renseignement FROM Pilote WHERE ID='$PlayerID'");
-        mysqli_close($con);
         if ($result) {
             while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $Front = $data['Front'];
@@ -34,9 +31,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
             mysqli_free_result($result);
         }
     } elseif ($OfficierID) {
-        $con = dbconnecti();
         $result = mysqli_query($con, "SELECT Front,Avancement,Trait FROM Officier WHERE ID='$OfficierID'");
-        mysqli_close($con);
         if ($result) {
             while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $Front = $data['Front'];
@@ -46,6 +41,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
             mysqli_free_result($result);
         }
     }
+    mysqli_close($con);
     if ($Admin == 1 or $Avancement > 9999 or $OfficierEMID > 0 or $Renseignement > 100 or $Trait_o == 23 or $GHQ)
         $Officier_acces = true;
     elseif ($Avancement > 499)
@@ -462,7 +458,6 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                     $Dist_max_final = $Dist_max_skill;
                     $voyage = mysqli_query($con, "SELECT Nom,Longitude,Latitude,Pays,NoeudR,NoeudF_Ori,Port_Ori,`Zone`,Flag,Impass 
 					FROM Lieu WHERE (Longitude BETWEEN '$Long'-3 AND '$Long'+3) AND (Latitude BETWEEN '$Lat'-2 AND '$Lat'+2) AND ID!='$Cible' ORDER BY Nom");
-                    //mysqli_close($con);
                     if ($voyage) {
                         while ($datav = mysqli_fetch_array($voyage, MYSQLI_ASSOC)) {
                             $coord = 0;
@@ -1010,6 +1005,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                     }
                     //Demandes en cours
                     $txt = '';
+                    if(!$con)$con=dbconnecti();
                     $result = mysqli_query($con, $query_dem);
                     $result_mi = mysqli_query($con, $query_mi);
                     if ($result) {
