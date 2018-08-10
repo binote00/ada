@@ -912,9 +912,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                         $dca_pieces = "<h2>Composition de la défense anti-aérienne des infrastructures</h2><table class='table'>
 							<thead><tr><th>Type</th><th>Altitude</th></tr></thead>" . $dca_piecei . "</table>";
                     if ($Flag_Air == $country) {
-                        //$con=dbconnecti();
                         $dca_res = mysqli_query($con, "SELECT DCA_ID,DCA_Nbr,DCA_Exp,Alt,Unit FROM Flak WHERE Lieu='$Cible'");
-                        //mysqli_close($con);
                         if ($dca_res) {
                             while ($data_flak = mysqli_fetch_array($dca_res, MYSQLI_ASSOC)) {
                                 $DCA_ID = $data_flak['DCA_ID'];
@@ -936,34 +934,25 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                 if ($Officier_acces or $Admin == 1) {
                     if ($Admin == 1) {
                         $Lieu = $Cible;
-                        require_once 'em/archives_ville.php';
-                        $Archives_txt = Output::viewModal('em-archives-ville', 'Archives', $modal_txt).Output::linkModal('em-archives-ville', 'Archives Lieu', 'btn btn-primary');
-                        $Admin_txt = "Long=" . $Long . " / Lat=" . $Lat . " / Mines=" . $Mines_m . " / Reco=" . $Recce . " (" . $Recce_PlayerID . " - " . $Recce_PlayerID_TAL . " - " . $Recce_PlayerID_TAX . ")<br>
-                        ".$Archives_txt."
-                        <a href='em_city_combats.php?id=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives des combats</a> <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>
-                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=1' class='btn btn-danger'>Reveal Axe</a>
-                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=2' class='btn btn-danger'>Reveal Allies</a>
-                        <a href='admin/admin_city_recce.php?id=" . $Cible . "' class='btn btn-danger'>Recce</a>
-                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=1' class='btn btn-danger'>Meteo+</a>
-                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=2' class='btn btn-danger'>Meteo-</a>
-                        ";
                         //<a href='em_city_journal.php?id=".$Cible."' target='_blank' class='btn btn-primary'>Archives aériennes</a>";
-                        $query_dem = "(SELECT DISTINCT Unit.Mission_Type_D,Pays.Pays_ID,Unit.Nom,Lieu.Recce,Lieu.ID FROM Unit,Lieu,Pays 
-						WHERE Lieu.ID='$Cible' AND Unit.Pays=Pays.Pays_ID AND Unit.Mission_Lieu_D >0 AND Unit.Mission_Type_D >0 AND Unit.Mission_Lieu_D=Lieu.ID) 
-						UNION (SELECT DISTINCT r.Mission_Type_D,r.Pays,r.ID,l.Recce,l.ID FROM Lieu as l,Regiment_IA as r,Pays as p 
-						WHERE r.Pays=p.Pays_ID AND r.Mission_Lieu_D=l.ID AND r.Mission_Lieu_D='$Cible' AND r.Mission_Type_D >0 AND p.Faction='$Faction')";
+                        $query_dem = "(SELECT DISTINCT u.Mission_Type_D,p.Pays_ID,u.Nom,l.Recce,l.ID 
+                        FROM Unit u,Lieu l,Pays p
+						WHERE l.ID=$Cible AND u.Pays=p.Pays_ID AND u.Mission_Lieu_D >0 AND u.Mission_Type_D >0 AND u.Mission_Lieu_D=l.ID) 
+						UNION (SELECT DISTINCT r.Mission_Type_D,r.Pays,r.ID,l.Recce,l.ID 
+						FROM Lieu as l,Regiment_IA as r,Pays as p 
+						WHERE r.Pays=p.Pays_ID AND r.Mission_Lieu_D=l.ID AND r.Mission_Lieu_D=$Cible AND r.Mission_Type_D >0 AND p.Faction=$Faction)";
                         /*UNION (SELECT DISTINCT Officier.Mission_Type_D,Pays.Pays_ID,Officier.Nom,Lieu.Recce,Lieu.ID FROM Officier,Lieu,Pays
 						WHERE Officier.Pays=Pays.Pays_ID AND Lieu.ID='$Cible' AND Officier.Mission_Lieu_D >0 AND Officier.Mission_Type_D >0 AND Officier.Mission_Lieu_D=Lieu.ID)*/
                         $query_mi = "SELECT Zone,Recce,
-						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Couverture='$Cible' AND Pilote.Front='$Front_Lieu') AS Couverturer,
-						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Couverture='$Cible' AND Pilote_IA.Cible='$Cible' AND Pilote_IA.Actif='1') AS Couverture_ia,
-						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Couverture_nuit='$Cible' AND Pilote.Front='$Front_Lieu') AS Couverturer_nuit,
-						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Couverture_nuit='$Cible' AND Pilote_IA.Cible='$Cible' AND Pilote_IA.Actif='1') AS Couverture_nuit_ia,
-						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Escorte='$Cible') AS Escorter,
-						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Escorte='$Cible' AND Pilote_IA.Cible='$Cible' AND Pilote_IA.Actif='1') AS Escorte_ia,
-						(SELECT COUNT(*) FROM Pilote WHERE Pilote.ID=Lieu.Recce_PlayerID AND Lieu.ID='$Cible') AS Reco,
-						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Cible='$Cible' AND Pilote_IA.Task>0 AND Pilote_IA.Actif='1') AS Tasks_Reco
-						FROM Lieu WHERE ID='$Cible'";
+						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Couverture=$Cible AND Pilote.Front=$Front_Lieu) AS Couverturer,
+						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Couverture=$Cible AND Pilote_IA.Cible=$Cible AND Pilote_IA.Actif='1') AS Couverture_ia,
+						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Couverture_nuit=$Cible AND Pilote.Front=$Front_Lieu) AS Couverturer_nuit,
+						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Couverture_nuit='$Cible' AND Pilote_IA.Cible=$Cible AND Pilote_IA.Actif='1') AS Couverture_nuit_ia,
+						(SELECT COUNT(*) FROM Pilote WHERE Pilote.Escorte=$Cible) AS Escorter,
+						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Escorte=$Cible AND Pilote_IA.Cible=$Cible AND Pilote_IA.Actif='1') AS Escorte_ia,
+						(SELECT COUNT(*) FROM Pilote WHERE Pilote.ID=Lieu.Recce_PlayerID AND Lieu.ID=$Cible) AS Reco,
+						(SELECT COUNT(*) FROM Pilote_IA WHERE Pilote_IA.Cible=$Cible AND Pilote_IA.Task>0 AND Pilote_IA.Actif='1') AS Tasks_Reco
+						FROM Lieu WHERE ID=$Cible";
                         //(SELECT COUNT(*) FROM Regiment WHERE Regiment.Lieu_ID='$Cible' AND Regiment.Visible='1' AND Regiment.Vehicule_Nbr>1) AS PJ_Ground,
                         /*$query_e="(SELECT j.ID,j.Nom,j.Unit,j.Pays,j.S_alt,l.Avion FROM Pilote as j,Patrouille_live as l WHERE j.ID=l.Pilote AND j.Escorte='$Cible' AND l.Lieu='$Cible')
 						UNION (SELECT i.ID,i.Nom,i.Unit,i.Pays,i.Alt,i.Avion FROM Pilote_IA as i WHERE i.Escorte='$Cible' AND i.Actif='1')";*/
@@ -979,8 +968,8 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                         if ($Premium)
                             $Admin_txt .= " <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>";
                         //<a href='em_city_journal.php?id=".$Cible."' target='_blank' class='btn btn-primary'>Archives aériennes</a>";
-                        $query_dem = "SELECT DISTINCT Unit.Mission_Type_D,Pays.Pays_ID,Unit.Nom,Lieu.Recce,Lieu.ID FROM Unit,Lieu,Pays 
-						WHERE Lieu.ID='$Cible' AND Unit.Pays=Pays.Pays_ID AND Unit.Mission_Lieu_D >0 AND Unit.Mission_Type_D >0 AND Pays.Faction='$Faction' AND Unit.Mission_Lieu_D=Lieu.ID";
+                        $query_dem = "SELECT DISTINCT u.Mission_Type_D,p.Pays_ID,u.Nom,l.Recce,l.ID FROM Unit u,Lieu l,Pays p
+						WHERE l.ID=$Cible AND u.Pays=p.Pays_ID AND u.Mission_Lieu_D >0 AND u.Mission_Type_D >0 AND p.Faction=$Faction AND u.Mission_Lieu_D=l.ID";
                         /*UNION (SELECT DISTINCT Officier.Mission_Type_D,Pays.Pays_ID,Officier.Nom,Lieu.Recce,Lieu.ID FROM Officier,Lieu,Pays
 						WHERE Officier.Pays=Pays.Pays_ID AND Lieu.ID='$Cible' AND Officier.Mission_Lieu_D >0 AND Officier.Mission_Type_D >0 AND Pays.Faction='$Faction' AND Officier.Mission_Lieu_D=Lieu.ID)*/
                         $query_mi = "SELECT Zone,Recce,
@@ -1005,7 +994,6 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                     }
                     //Demandes en cours
                     $txt = '';
-                    if(!$con)$con=dbconnecti();
                     $result = mysqli_query($con, $query_dem);
                     $result_mi = mysqli_query($con, $query_mi);
                     if ($result) {
@@ -1028,20 +1016,6 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                         }
                         mysqli_free_result($result);
                     }
-                    if (!$dem_txt) $dem_txt = "<tr><td colspan='5'>Aucune demande actuellement</td></tr>";
-                    $Demandes_txt = "<h3>Demandes de mission en cours</h3><table class='table table-striped'><thead><tr>
-						<th>Mission demandée</th>
-						<th>Unité demandeuse</th>
-						<th>Status Reco</th></tr></thead>" . $dem_txt . "</table>";
-                    //Escortes et couvertures en cours
-                    require_once 'help/aide_missions_liste.php';
-                    $Missions_txt = Output::viewModal('help-aide-missions-liste', 'aide', $modal_txt)."<h3>Missions en cours ".Output::linkModal('help-aide-missions-liste', '<img src="images/help.png">')."</h3>
-						<table class='table table-striped'><thead><tr>
-							<th>Couvertures</th>
-							<th>Escortes</th>
-							<th>Reco</th>
-							<th>Cibles</th>
-						</tr></thead>";
                     if ($result_mi) {
                         while ($Data = mysqli_fetch_array($result_mi, MYSQLI_ASSOC)) {
                             if ($Data['Couverturer'] or $Data['Escorter'] or $Data['Reco'] or $Data['PJ_Ground'] or $Data['Couverture_ia'] or $Data['Escorte_ia']) {
@@ -1090,7 +1064,6 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                         mysqli_free_result($result_mi);
                         unset($Data);
                     }
-                    $Missions_txt .= '</table>';
                     function Alt_Range($Alt, $Premium, $Meteo, $Nuit = false)
                     {
                         if ($Premium) {
@@ -1186,6 +1159,32 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                 }
             }
             //Output
+            require_once 'em/archives_ville.php';
+            $Archives_txt = Output::viewModal('em-archives-ville', 'Archives', $modal_txt).Output::linkModal('em-archives-ville', 'Archives Lieu', 'btn btn-primary');
+            $Admin_txt = "Long=" . $Long . " / Lat=" . $Lat . " / Mines=" . $Mines_m . " / Reco=" . $Recce . " (" . $Recce_PlayerID . " - " . $Recce_PlayerID_TAL . " - " . $Recce_PlayerID_TAX . ")<br>
+                        ".$Archives_txt."
+                        <a href='em_city_combats.php?id=" . $Cible . "' target='_blank' class='btn btn-primary'>Archives des combats</a> <a href='em_city_dca.php?id=" . $Cible . "' target='_blank' class='btn btn-warning'>DCA</a>
+                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=1' class='btn btn-danger'>Reveal Axe</a>
+                        <a href='admin/admin_city_reveal.php?id=" . $Cible . "&f=2' class='btn btn-danger'>Reveal Allies</a>
+                        <a href='admin/admin_city_recce.php?id=" . $Cible . "' class='btn btn-danger'>Recce</a>
+                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=1' class='btn btn-danger'>Meteo+</a>
+                        <a href='admin/admin_city_meteo.php?id=" . $Cible . "&m=2' class='btn btn-danger'>Meteo-</a>
+                        ";
+            if (!$dem_txt) $dem_txt = "<tr><td colspan='5'>Aucune demande actuellement</td></tr>";
+            $Demandes_txt = "<h3>Demandes de mission en cours</h3><table class='table table-striped'><thead><tr>
+						<th>Mission demandée</th>
+						<th>Unité demandeuse</th>
+						<th>Status Reco</th></tr></thead>" . $dem_txt . "</table>";
+            //Escortes et couvertures en cours
+            require_once 'help/aide_missions_liste.php';
+            $Missions_txt = Output::viewModal('help-aide-missions-liste', 'aide', $modal_txt)."<h3>Missions en cours ".Output::linkModal('help-aide-missions-liste', '<img src="images/help.png">')."</h3>
+						<table class='table table-striped'><thead><tr>
+							<th>Couvertures</th>
+							<th>Escortes</th>
+							<th>Reco</th>
+							<th>Cibles</th>
+						</tr></thead>";
+            $Missions_txt .= '</table>';
             $mes .= $header . "<h1>" . $Cible_nom . "</h1>" . $toolbar . "<div class='row'><div class='col-md-6 col-sm-12'><img src='" . $img_gen . "' title='" . $Cible_nom . "' style='width:100%;'></div>
 			<div class='col-md-6 col-sm-12'><table class='table table-800'><thead><tr><th>Territoire</th><th>Revendication</th><th>Valeur stratégique</th><th>Terrain</th><th>Météo</th></tr></thead>
 			<tr><td><a href='#' class='popup'><img src='images/flag" . $Pays_Ori . "p.jpg'><span><b>" . GetPays($Pays_Ori) . "</b>. Nation contrôlant le lieu au début de la partie.</span></a></td><td>" . $Rev . "</td><td><a href='#' class='popup'>" . $Valstrat_icon . "<span>Valeur ajoutée quotidiennement au score de victoire de la faction qui le contrôle.</span></a></td><td><img src='images/zone" . $Zone . ".jpg' title='" . $Region . "'>" . $Noeud_txt . $Plage_txt . "</td>

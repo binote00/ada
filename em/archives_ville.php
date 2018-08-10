@@ -1,6 +1,4 @@
 <?php
-require_once './jfv_inc_sessions.php';
-$AccountID=$_SESSION['AccountID'];
 if($_SESSION['AccountID'] >0)
 {
 	$OfficierEMID=$_SESSION['Officier_em'];
