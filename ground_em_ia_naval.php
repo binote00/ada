@@ -144,7 +144,7 @@ if($ground_em_ia_naval == true) //Navire
                 $Distance=GetDistance(0,0,$Lieu->Longitude,$Lieu->Latitude,$data2[2],$data2[3]);
                 if($Distance[0] <=$Dist_max)
                 {
-                    if($Zone !=6 and $data2['Zone'] !=6 and $Regiment->Lieu_ID !=2015 and $data2['ID'] !=2015) //Exception Suez
+                    if($Lieu->Zone !=6 and $data2['Zone'] !=6 and $Regiment->Lieu_ID !=2015 and $data2['ID'] !=2015) //Exception Suez
                         $bla=false;//Pas de déplacement de port à port
                     else
                     {
@@ -547,7 +547,7 @@ if($ground_em_ia_naval == true) //Navire
                 $Positions="<select name='fret' class='form-control' style='width: 150px'><option value='0'>Ne rien charger</option></select><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Seul le commandant de flottille peut gérer cette option</span></a>";
             }
             else*/
-            //Update : 03/02/2018 $Zone ==6 => $Regiment->Placement ==8
+            //Update : 03/02/2018 $Lieu->Zone ==6 => $Regiment->Placement ==8
             if($Regiment->Placement ==8 and !$Lieu->Port_Ori and !$Regiment->Move)
             {
                 $con=dbconnecti();
@@ -608,7 +608,7 @@ if($ground_em_ia_naval == true) //Navire
                     $Pos_torp=28;
                     $Atk_Options.="<tr><td><form action='index.php?view=ground_reco1' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
                                     <input type='submit' value='Reco' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td><td><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></td><td>1 Jour</td><td>".$Range."m</td><td><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Tente de révéler les unités présentes sur la même zone.</span></a></td></tr>";
-                    if($Zone ==6 and $Autonomie >9 and $Regiment->Vehicule_ID ==5387)
+                    if($Lieu->Zone ==6 and $Autonomie >9 and $Regiment->Vehicule_ID ==5387)
                     {
                         $con=dbconnecti();
                         $resultgr=mysqli_query($con,"SELECT r.ID,c.Nom FROM Regiment_IA as r,Cible as c WHERE r.Vehicule_ID=c.ID AND r.Lieu_ID='$Regiment->Lieu_ID' AND r.Pays='$country' AND c.Categorie IN(17,20,21,22,23,24) AND r.Autonomie < c.Autonomie AND r.ID<>'$Unit'");
@@ -632,7 +632,7 @@ if($ground_em_ia_naval == true) //Navire
                 }
                 elseif($ASM)
                 {
-                    if($Zone ==6 or $Regiment->Placement ==8)
+                    if($Lieu->Zone ==6 or $Regiment->Placement ==8)
                         $Atk_Options.="<tr><td><form action='index.php?view=ground_asm' method='post'><input type='hidden' name='CT' value='0'><input type='hidden' name='Reg' value='".$Unit."'><input type='hidden' name='Veh' value='".$Regiment->Vehicule_ID."'><input type='hidden' name='Cible' value='".$Lieu->ID."'><input type='hidden' name='Conso' value='0'>
                                     <input type='submit' value='Grenadage' class='btn btn-sm btn-warning' onclick='this.disabled=true;this.form.submit();'></form></td>
                                     <td><div class='i-flex'><a href='#' class='popup'><div class='action-jour'></div><span>Compte comme action du jour</span></a></div></td>
@@ -662,7 +662,7 @@ if($ground_em_ia_naval == true) //Navire
                 }
                 elseif($Regiment->HP >10000 and !$PA_IA and $Regiment->CT >=$CT_Bomb and $Autonomie >0 and !$Canada)
                 {
-                    if($Zone ==6 or $Regiment->Placement ==PLACE_LARGE){
+                    if($Lieu->Zone ==6 or $Regiment->Placement ==PLACE_LARGE){
                         //Range
                         if($Matos ==8)$Range /=2;
                         if($Regiment->Position ==2 or $Regiment->Position ==3 or $Regiment->Position ==9 or $Regiment->Position ==10 or $Regiment->Position ==26)$Range /=2;
@@ -676,7 +676,7 @@ if($ground_em_ia_naval == true) //Navire
                             $Range*=1.1;
                         if($Lieu->Meteo <-69)$Range /=2;
                         if($Lieu->Flag ==$country)$Range +=500;
-                        if($Zone ==6)$Range+=($Regiment->Experience*9);
+                        if($Lieu->Zone ==6)$Range+=($Regiment->Experience*9);
                         if($Lieu->Meteo <-69)
                             $Max_Range=5000;
                         elseif($Lieu->Meteo <-9)
