@@ -31,10 +31,12 @@ if ($OfficierEMID > 0) {
         $GHQ = GHQ::isPlanif($Pays, $OfficierEMID);
     } else {
         $Pays_front = Pays::getByIdAndByFront($country, $Front);
-        $Commandant = $Pays_front->Commandant;
-        $Adjoint_Terre = $Pays_front->Adjoint_Terre;
-        $Officier_Mer = $Pays_front->Officier_Mer;
-        $Officier_Log = $Pays_front->Officier_Log;
+        if (is_object($Pays_front)) {
+            $Commandant = $Pays_front->Commandant;
+            $Adjoint_Terre = $Pays_front->Adjoint_Terre;
+            $Officier_Mer = $Pays_front->Officier_Mer;
+            $Officier_Log = $Pays_front->Officier_Log;
+        }
     }
     if ($GHQ || $Admin) {
         $Ordres_Cdt = true;
