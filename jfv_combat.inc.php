@@ -1,4 +1,4 @@
-<?
+<?php
 function GetMalusFroid($alt, $Slot4=0, $Slot1=0, $Slot9=0)
 {
 	$Malus_Froid_Red=0;
@@ -40,7 +40,7 @@ function CriticalHit($Avion_db, $avion, $PlayerID, $Mun_eni, $Engine_Nbr_Old=1, 
 		$Equipage_db="Equipage";
 	}
 	$con=dbconnecti();
-	$result=mysqli_query($con,"SELECT Equipage,S_Equipage_Nbr,S_Engine_Nbr,S_Blindage,Slot1,Sandbox FROM $Pilote_db WHERE ID='$PlayerID'");
+	$result=mysqli_query($con,"SELECT Equipage,S_Equipage_Nbr,S_Engine_Nbr,S_Blindage,Slot1,Sandbox,Unit FROM $Pilote_db WHERE ID='$PlayerID'");
 	$result2=mysqli_query($con,"SELECT Type,Blindage,ArmePrincipale,ArmeSecondaire,Engine FROM $Avion_db WHERE ID='$avion'");
 	mysqli_close($con);
 	if($result)
@@ -53,6 +53,7 @@ function CriticalHit($Avion_db, $avion, $PlayerID, $Mun_eni, $Engine_Nbr_Old=1, 
 			$S_Blindage=$data['S_Blindage'];
 			$Sandbox=$data['Sandbox'];
 			$Slot1=$data['Slot1'];
+            $Unite=$data['Unit'];
 		}
 		mysqli_free_result($result);
 	}	
@@ -684,8 +685,8 @@ function AddProbable($Avion_db, $Avion_loss, $Avion_win, $Joueur_win, $Unite_win
 	mysqli_close($con);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddVProbable Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddVProbable Error',$msg);
 	}
 	/*else
 		$msg.="Votre victoire probable et ajoutée à votre tableau de chasse!";*/
@@ -714,15 +715,15 @@ function AddVictoire_atk($Avion_db, $Type, $Nom, $avion, $PlayerID, $Unite_win, 
 		$ok=mysqli_query($con,$query);
 		if(!$ok)
 		{
-			$msg.="Erreur de mise à jour : Nom (Cible_id)=".$Nom." / PlayerID=".$PlayerID." / Date=".$date." ".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddVictoire_atk Error Numeric',$msg);
+			$msg="Erreur de mise à jour : Nom (Cible_id)=".$Nom." / PlayerID=".$PlayerID." / Date=".$date." ".mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddVictoire_atk Error Numeric',$msg);
 		}
         mysqli_close($con);
 		/*else
 			$msg.="Votre victoire a été homologuée et ajoutée à votre tableau de chasse!";*/
 	}
 	else
-		mail('binote@hotmail.com','Aube des Aigles: AddVictoire_atk Error Numeric','Cible_id n est pas un nombre : '.$Nom.' / DCA='.$DCA);
+		mail(EMAIL_LOG,'Aube des Aigles: AddVictoire_atk Error Numeric','Cible_id n est pas un nombre : '.$Nom.' / DCA='.$DCA);
 	/*else
 	{
 		$date=date('Y-m-d G:i');
@@ -734,7 +735,7 @@ function AddVictoire_atk($Avion_db, $Type, $Nom, $avion, $PlayerID, $Unite_win, 
 		if(!$ok)
 		{
 			$msg=$msg."Erreur de mise à jour".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddVictoire_atk Error',$msg);
+			mail(EMAIL_LOG,'Aube des Aigles: AddVictoire_atk Error',$msg);
 		}
 		/*else
 			$msg.="Votre victoire a été homologuée et ajoutée à votre tableau de chasse!";
@@ -753,8 +754,8 @@ function AddVictoire_Bomb($Avion_db, $Type, $Nom, $avion, $PlayerID, $Unite_win,
 	$ok=mysqli_query($con,$query);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddVictoire_Bomb Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddVictoire_Bomb Error',$msg);
 	}
 	mysqli_close($con);
 }
@@ -770,8 +771,8 @@ function AddPara($Avion_db, $avion, $PlayerID, $Unite_win, $Cible, $Paras, $Cycl
 	$ok=mysqli_query($con,$query);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddVictoire_Bomb Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddVictoire_Bomb Error',$msg);
 	}
 	mysqli_close($con);
 }
@@ -889,7 +890,7 @@ function AddAvionToUnit($Unite, $avion, $Nbr=1)
 			UpdateData("Unit","Avion3_Nbr",$Nbr,"ID",$Unite);
 	}
 	else
-		mail('binote@hotmail.com','Aube des Aigles: Erreur Select AddAvionToUnit',"Unite : ".$Unite." ; Avion : ".$avion);
+		mail(EMAIL_LOG,'Aube des Aigles: Erreur Select AddAvionToUnit',"Unite : ".$Unite." ; Avion : ".$avion);
 }
 
 function WoundPilotIA($Pilot)
@@ -1123,14 +1124,14 @@ function GetDCA($Pays_eni, $DefenseAA=2, $Mode=0) //Mode0=3 DCA, Mode1=DCA Gros,
 			$hgun=55;
 		}
 	}
-	if(!$Mode)
-		return array($hgun,$gun,$mg);
-	elseif($Mode ==1)
+	if($Mode ==1)
 		return $hgun;
 	elseif($Mode ==2)
 		return $gun;
 	elseif($Mode ==3)
 		return $mg;
+	else
+        return array($hgun,$gun,$mg);
 }
 
 function GetPil($PlayerID, $avion, $full=false)
@@ -1241,8 +1242,8 @@ function GetPilotage($Avion_db, $PlayerID, $avion, $Sandbox=0, $Pilotage=0)
 			case 72: case 261:
 				$Pilotage_xp=GetPil($PlayerID,72) + GetPil($PlayerID,261);
 			break;
-			case 73: case 154: case 259: case 303: case 350: case 453: case 527: case 536: case 537:
-				$Pilotage_xp=GetPil($PlayerID,73) + GetPil($PlayerID,154) + GetPil($PlayerID,259) + GetPil($PlayerID,303) + GetPil($PlayerID,350) + GetPil($PlayerID,453) + GetPil($PlayerID,527) + GetPil($PlayerID,536) + GetPil($PlayerID,537);
+			case 73: case 154: case 259: case 303: case 350: case 412: case 453: case 507: case 511: case 527: case 536: case 537:
+				$Pilotage_xp=GetPil($PlayerID,73) + GetPil($PlayerID,154) + GetPil($PlayerID,259) + GetPil($PlayerID,303) + GetPil($PlayerID,350) + GetPil($PlayerID,453) + GetPil($PlayerID,527) + GetPil($PlayerID,536) + GetPil($PlayerID,537) + GetPil($PlayerID,412) + GetPil($PlayerID,507) + GetPil($PlayerID,511);
 			break;
 			case 76: case 77: case 54:
 				$Pilotage_xp=GetPil($PlayerID,76) + GetPil($PlayerID,77) + GetPil($PlayerID,54);
@@ -1390,9 +1391,6 @@ function GetPilotage($Avion_db, $PlayerID, $avion, $Sandbox=0, $Pilotage=0)
 			case 341: case 393: case 429: case 508: case 544: case 545:
 				$Pilotage_xp=GetPil($PlayerID,341) + GetPil($PlayerID,393) + GetPil($PlayerID,429) + GetPil($PlayerID,508) + GetPil($PlayerID,544) + GetPil($PlayerID,545);
 			break;
-			case 350: case 412: case 507: case 511:
-				$Pilotage_xp=GetPil($PlayerID,350) + GetPil($PlayerID,412) + GetPil($PlayerID,507) + GetPil($PlayerID,511);
-			break;
 			case 351: case 352: case 353: case 514: case 592: case 593:
 				$Pilotage_xp=GetPil($PlayerID,351) + GetPil($PlayerID,352) + GetPil($PlayerID,353) + GetPil($PlayerID,514) + GetPil($PlayerID,592) + GetPil($PlayerID,593);
 			break;
@@ -1473,9 +1471,8 @@ function GetPilotage($Avion_db, $PlayerID, $avion, $Sandbox=0, $Pilotage=0)
 			break;
 		}
 		if(!$Pilotage)$Pilotage=GetData("Pilote","ID",$PlayerID,"Pilotage");
-		$Pilotage+=$Pilotage_xp;
-		if($Pilotage >175)$Pilotage=175;
 	}
+    $Pilotage+=$Pilotage_xp;
+    if($Pilotage >175)$Pilotage=175;
 	return $Pilotage;
 }
-?>
