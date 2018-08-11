@@ -22,22 +22,19 @@ if ($OfficierEMID > 0) {
     $Regiment = Regiment_IA::getById($Unit);
     $Player = Joueur::getById($_SESSION['AccountID']);
     $Admin = $Player->Admin;
-    if ($OfficierEMID > 0) {
-        $Officier = Officier_em::getById($OfficierEMID);
-        $Pays = $Officier->Pays;
-        $Front = $Officier->Front;
-        $Armee = $Officier->Armee;
-        $Trait = $Officier->Trait;
-
-        if ($Front == 99) {
-            $GHQ = GHQ::isPlanif($Pays, $OfficierEMID);
-        } else {
-            $Pays_front = Pays::getByIdAndByFront($country, $Front);
-            $Commandant = $Pays_front->Commandant;
-            $Adjoint_Terre = $Pays_front->Adjoint_Terre;
-            $Officier_Mer = $Pays_front->Officier_Mer;
-            $Officier_Log = $Pays_front->Officier_Log;
-        }
+    $Officier = Officier_em::getById($OfficierEMID);
+    $Pays = $Officier->Pays;
+    $Front = $Officier->Front;
+    $Armee = $Officier->Armee;
+    $Trait = $Officier->Trait;
+    if ($Front == 99) {
+        $GHQ = GHQ::isPlanif($Pays, $OfficierEMID);
+    } else {
+        $Pays_front = Pays::getByIdAndByFront($country, $Front);
+        $Commandant = $Pays_front->Commandant;
+        $Adjoint_Terre = $Pays_front->Adjoint_Terre;
+        $Officier_Mer = $Pays_front->Officier_Mer;
+        $Officier_Log = $Pays_front->Officier_Log;
     }
     if ($GHQ || $Admin) {
         $Ordres_Cdt = true;
