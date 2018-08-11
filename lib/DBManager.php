@@ -160,26 +160,16 @@ trait DBManager
         } elseif ($limit) {
             $order .= ' LIMIT ' . $limit;
         }
-        $bind = 'params';
         $dbh = DB::connect();
         $selectFields = self::returnSelectFields($selectField);
         if ($whereField && $whereValue) {
-            if (is_array($whereValue)) {
-                $bind = 'values';
-                $whereFields = "WHERE " . self::getSelectFields($whereField, ' AND ', '=?');
-            } else {
-                $whereFields = "WHERE " . self::getSelectFields($whereField, ' AND ', '=:field', true);
-            }
+            $whereFields = "WHERE " . self::getSelectFields($whereField, ' AND ', '=:field', true);
         }
         $query = "SELECT $selectFields FROM $table " . $whereFields . $order;
-        //echo '[GETDATA-QUERY]'.$query.' / '.$whereValue.' /';
+        //echo '[GETDATA-QUERY]'.$query.' / '.print_r($whereValue, true).' /';
         $result = $dbh->prepare($query);
         if ($whereValue) {
-            if ($bind == 'values') {
-                self::bindValues($result, $whereValue);
-            } else {
-                self::bindParams($result, $whereValue);
-            }
+            self::bindParams($result, $whereValue);
         }
         $result->execute();
         if ($fetch == 'OBJECT' || $selectField == '*') {
