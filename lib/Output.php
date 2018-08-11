@@ -148,4 +148,28 @@ trait Output
         }
         return '<a href="#" class="popup">' . $caption . '<span>' . $popuptext . '</span></a>';
     }
+
+    /**
+     * Générateur de table dynamique avec tbody
+     *
+     * @param array|string $heads
+     * @param string $tbody
+     * @param string $class
+     * @return string
+     */
+    public static function tableHead($heads, $tbody, $class = '')
+    {
+        $thead = '';
+        if (is_array($heads)) {
+            foreach ($heads as $th) {
+                $thead .= '<th>' . $th . '</th>';
+            }
+        } else {
+            $thead = '<th>' . $heads . '</th>';
+        }
+        if ($class) {
+            $class = ' '.$class;
+        }
+        return '<table class="table table-dt table-responsive ' . $class . '"><thead><tr>' . $thead . '</tr></thead><tbody>' . $tbody . '</tbody></table>';
+    }
 }
