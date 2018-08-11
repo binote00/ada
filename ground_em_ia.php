@@ -19,6 +19,7 @@ if ($OfficierEMID > 0) {
         $_SESSION['msg'] = false;
         $_SESSION['msg_red'] = false;
     }
+    $Regiment = Regiment_IA::getById($Unit);
     $Player = Joueur::getById($_SESSION['AccountID']);
     $Admin = $Player->Admin;
     if ($OfficierEMID > 0) {
@@ -60,7 +61,6 @@ if ($OfficierEMID > 0) {
         $Ordre_ok = true;
     }
     if ($Armee > 0) {
-        $Regiment = Regiment_IA::getById($Unit);
         $Division = $Regiment->Division;
         if ($Division) {
             $Division_c = Division::getById($Division);
@@ -72,7 +72,7 @@ if ($OfficierEMID > 0) {
             $Ordre_ok = true;
         }
     }
-    if($Ordre_ok && $Unit >0)
+    if($Ordre_ok && $Regiment->ID > 0)
     {
         $Premium = $Player->Premium;
         $Faction = Pays::getFaction($country);
@@ -135,20 +135,6 @@ if ($OfficierEMID > 0) {
                 r.Atk,r.Atk_time,DATE_FORMAT(r.Atk_time,'%e') as Jour,DATE_FORMAT(r.Atk_time,'%Hh%i') as Heure,DATE_FORMAT(r.Atk_time,'%m') as Mois,DATE_FORMAT(r.Atk_time,'%Y') as Year_a,
                 r.Move_time,DATE_FORMAT(r.Move_time,'%e') as Jour_m,DATE_FORMAT(r.Move_time,'%Hh%i') as Heure_m,DATE_FORMAT(r.Move_time,'%m') as Mois_m,DATE_FORMAT(r.Move_time,'%Y') as Year_m
                 FROM Regiment_IA as r,Pays as p,Cible as c WHERE r.Pays=p.ID AND r.Vehicule_ID=c.ID AND (p.Faction='$Faction' OR r.Visible=1) AND r.Lieu_ID='$Regiment->Lieu_ID' AND r.Placement='$Regiment->Placement' AND r.Vehicule_Nbr >0");
-                /*if($OfficierID)
-                {
-                    $result_sections=mysqli_query($con,"SELECT SectionID FROM Regiment as r,Sections as s WHERE s.OfficierID=r.Officier_ID AND r.Lieu_ID='$Regiment->Lieu_ID' AND s.OfficierID='$OfficierID'");
-                    if($result_sections)
-                    {
-                        while($datas=mysqli_fetch_array($result_sections,MYSQLI_ASSOC))
-                        {
-                            if(in_array(2,$datas))$Sec_Trans=true;
-                            if(in_array(3,$datas))$Sec_Log=true;
-                            if(in_array(7,$datas))$Sec_EM=true;
-                        }
-                        mysqli_free_result($result_sections);
-                    }
-                }*/
                 if($result_allies)
                 {
                     while($data=mysqli_fetch_array($result_allies,MYSQLI_ASSOC))
@@ -411,7 +397,7 @@ if ($OfficierEMID > 0) {
                     $Placements.='</select><input class="btn btn-sm btn-warning" type="submit" value="Changer" onclick="this.disabled=true;this.form.submit();"></form>';
                     if(!$Faction_Gare)$Faction_Gare=GetData("Pays","ID",$Lieu->Flag_Gare,"Faction");
                     if($Regiment->Placement ==3 and $Faction_Flag ==$Faction and $Faction_Gare ==$Faction)
-                        $Placement_help='Les déplacements depuis une gare contrôlée par votre faction vers une autre gare contrôlée par votre faction sont de <b>'.$Dist_train_max.'km</b> sur ce front<br>Le niveau d\'infrastructure de la gare de départ et de la gare d\'arrivée doivent être supérieurs à 10% pour bénéficier de ce type de déplacement. Actuellement la gare de départ a un niveau de <b>'.$data['NoeudF'].'%</b>';
+                        $Placement_help='Les déplacements depuis une gare contrôlée par votre faction vers une autre gare contrôlée par votre faction sont de <b>'.$Dist_train_max.'km</b> sur ce front<br>Le niveau d\'infrastructure de la gare de départ et de la gare d\'arrivée doivent être supérieurs à 10% pour bénéficier de ce type de déplacement. Actuellement la gare de départ a un niveau de <b>'.$Lieu->NoeudF.'%</b>';
                 }
                 else
                     $Placements='<span class="text-danger">En combat</span>';
@@ -2435,8 +2421,9 @@ if ($OfficierEMID > 0) {
         $mes.=$txt_help_dist;
         include_once './default.php';
     }
-    else
+    else {
         echo Output::ShowAdvert('Vous n\'êtes pas autorisé à commander cette unité!', 'danger');
+    }
 }
 else
     echo '<h1>Vous devez être connecté pour accéder à cette page!</h1>';
