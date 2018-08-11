@@ -14,7 +14,7 @@ class Pays extends Controller
      */
     public static function getByIdAndByFront($id, $front)
     {
-        return DBManager::getData('Pays', '*', ['ID', 'Front'], [$id, $front], '', '', '', 'OBJECT');
+        return DBManager::getData('Pays', '*', ['Pays_ID', 'Front'], [$id, $front], '', '', '', 'OBJECT');
     }
 
     /**
