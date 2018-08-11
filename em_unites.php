@@ -1,14 +1,13 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_inc_em.php');
-	include_once('./menu_em.php');
-	//include_once('./menu_staff.php');
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_inc_em.php';
+	include_once './menu_em.php';
 	if($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint or $OfficierEMID ==$Officier_Rens or $GHQ or $Admin)
 	{
 		if($Premium)$Legend=true;
@@ -246,54 +245,6 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
                         $Pil_Skills='<br>'.$skill_txt;
                     }
                 }
-				/*elseif($Officier_Technique)
-				{
-					//$con=dbconnecti();	
-					$resultot=mysqli_query($con,"SELECT Nom,Avancement,DATE_FORMAT(Credits_Date,'%d-%m-%Y') as Activite,
-					(SELECT Credits_Date BETWEEN NOW() - INTERVAL 7 DAY AND NOW()) as Too_Late FROM Pilote WHERE ID='$Officier_Technique'");
-					//mysqli_close($con);
-					if($resultot)
-					{
-						while($datac=mysqli_fetch_array($resultot,MYSQLI_ASSOC))
-						{
-							$Av2=GetAvancement($datac['Avancement'],$country);
-							$OT=$Av2[0]."<br>".$datac['Nom'];
-							if(!$datac['Too_Late'] and ($OfficierEMID ==$Commandant or $Admin))
-							{
-								$bouton_virer="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$Officier_Technique.">
-												<img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
-								$OT.="<br><i><span class='text-danger'>".$datac['Activite']."</span></i>".$bouton_virer;
-							}
-							else
-								$OT.="<br><i>".$datac['Activite']."</i>";
-						}
-						mysqli_free_result($resultot);
-					}
-				}
-				if($Officier_Adjoint_u)
-				{
-					//$con=dbconnecti();	
-					$resuloa=mysqli_query($con,"SELECT Nom,Avancement,DATE_FORMAT(Credits_Date,'%d-%m-%Y') as Activite,
-					(SELECT Credits_Date BETWEEN NOW() - INTERVAL 7 DAY AND NOW()) as Too_Late FROM Pilote WHERE ID='$Officier_Adjoint_u'");
-					//mysqli_close($con);
-					if($resuloa)
-					{
-						while($datac=mysqli_fetch_array($resuloa,MYSQLI_ASSOC))
-						{
-							$Av3=GetAvancement($datac['Avancement'],$country);
-							$OA=$Av3[0]."<br>".$datac['Nom'];
-							if(!$datac['Too_Late'] and ($OfficierEMID ==$Commandant or $Admin))
-							{
-								$bouton_virer="<form action='em_gestioncdt1.php' method='post'><input type='hidden' name='Mutation_Cdt' value=".$Officier_Adjoint_u.">
-												<img src='images/CT1.png' title='Montant en Crédits Temps que nécessite cette action'><input type='Submit' value='Virer' class='btn btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
-								$OA.="<br><i><span class='text-danger'>".$datac['Activite']."</span></i>".$bouton_virer;
-							}
-							else
-								$OA.="<br><i>".$datac['Activite']."</i>";
-						}
-						mysqli_free_result($resuloa);
-					}
-				}*/
 				$MaxFlight=GetMaxFlight($data['Type'],$data['Reputation'],0);
 				$txt.="<tr><th>".$img_unit."<br>".$Unite_Nom."</th><td>".$Front_unit_txt."</td> 
 				<td class='hidden-sm-down'>".$Cdt."</td><td><span class='label label-".ColorNbr($Pilotes,$Pilotes_max)."'>".$Pilotes."/".$Pilotes_max."</span>".$Pil_Skills."</td><td>".$data['Reputation']."</td><td>".round($Skill_Moy)."</td><td>".$Piste."</td>
@@ -402,7 +353,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
     		echo $Alert;
         else
             echo "<p class='lead'>".$legende."</p>
-            <table class='table table-striped table-condensed'><thead><tr><th>Unité</th><th>".$Front_title."</th>
+            <table class='table table-dt table-striped table-condensed'><thead><tr><th>Unité</th><th>".$Front_title."</th>
             <th class='hidden-sm-down'>".GetStaff($country,1)."</th><th>Pilotes</th><th>Réput</th><th>Exp</th>
             <th>Piste</th><th>".$Sqn." 1</th><th>".$Sqn." 2</th><th>".$Sqn." 3</th><th>Détail</th></tr></thead>".$txt."</table>";
 	}

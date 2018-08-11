@@ -1,19 +1,15 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 $OfficierEMID=$_SESSION['Officier_em'];
 if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 {
 	$country=$_SESSION['country'];
-	include_once('./jfv_include.inc.php');
-	include_once('./jfv_txt.inc.php');
-	include_once('./jfv_inc_em.php');
-	include_once('./menu_em.php');
-	//include_once('./menu_staff.php');
-	/*$Pays_q=$country;
-	if($PlayerID ==1)$Pays_q="%";*/
+	include_once './jfv_include.inc.php';
+	include_once './jfv_txt.inc.php';
+	include_once './jfv_inc_em.php';
+	include_once './menu_em.php';
 	if($OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint or $OfficierEMID ==$Officier_Mer or $OfficierEMID ==$Cdt_Chasse or $OfficierEMID ==$Cdt_Bomb or $OfficierEMID ==$Cdt_Reco or $OfficierEMID ==$Cdt_Atk or $Admin or $Armee)
 	{
-		//include_once('./jfv_access.php');
 		$Co_Lieu=Insec($_POST['lieu_co']);
         if($_SESSION['msg_esc'])
             $Alert_Msg = '<div class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$_SESSION['msg_esc'].'</div>';
@@ -387,7 +383,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 				{
 					if(!$Data_unit['Mission_IA'] and $Faction ==$Faction_Flag and $Faction ==$Faction_Air)
 						$Action="<form action='index.php?view=em_ia' method='post'><input type='hidden' name='Unit' value='".$Data_unit['ID']."'>
-						<input type='Submit' value='Ordre' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
+						<input type='submit' value='Ordre' class='btn btn-sm btn-default' onclick='this.disabled=true;this.form.submit();'></form>";
 					elseif($Faction !=$Faction_Flag or $Faction !=$Faction_Air)
 						$Action="<span class='label label-danger'>Sous le feu</span>";
 					else
@@ -413,7 +409,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 			echo "<h2>Cible de mission</h2><form action='index.php?view=em_missions_6' method='post'>
 				<table class='table'><thead><tr><th>Cible actuelle</th><th>Changer</th></tr></thead>
 				<tr><td>".$Co_Lieu_Mission_Nom."</td><td><select name='lieu_co' class='form-control' style='width: 200px'>".$Lieux."</select></td>
-				<td><input type='Submit' value='Changer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Les unités aériennes pouvant opérer sur cet objectif sont renseignées dans la section Mission (bouton orange) des unités IA</span></a></td></tr></table></form>";
+				<td><input type='submit' value='Changer' class='btn btn-default' onclick='this.disabled=true;this.form.submit();'><a href='#' class='popup'><div class='i-flex help_icon'></div><span>Les unités aériennes pouvant opérer sur cet objectif sont renseignées dans la section Mission (bouton orange) des unités IA</span></a></td></tr></table></form>";
 		}
 		if($height_dem >400)$height_dem=400;
 		echo "<h2>Demandes de mission</h2><div style='overflow:auto; height: ".$height_dem."px;'><table class='table table-striped'>
@@ -424,7 +420,7 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 			echo "<h2>Missions en cours</h2><div style='overflow:auto; height: ".$height_mia."px;'><table class='table table-striped'><thead><tr><th>Lieu</th><th>Unité</th><th>Mission</th></tr></thead>".$txt_missions_ia."</table></div>";
 		}
 		if($txt_action_ia and ($Admin or $OfficierEMID ==$Commandant or $OfficierEMID ==$Officier_Adjoint or $OfficierEMID ==$Officier_Mer or $OfficierEMID ==$Cdt_Chasse or $OfficierEMID ==$Cdt_Bomb or $OfficierEMID ==$Cdt_Reco or $OfficierEMID ==$Cdt_Atk or $Armee))
-			echo "<h2>Unités</h2>".$menu_units_ia.$Alert_Msg."<table class='table table-striped'><thead><tr><th>Unité</th><th>Base</th><th>Action</th><th>Exp</th><th>Pilotes</th><th>".$Sqn." 1</th><th>".$Sqn." 2</th><th>".$Sqn." 3</th></tr></thead>".$txt_action_ia."</table>";
+			echo "<h2>Unités</h2>".$menu_units_ia.$Alert_Msg."<table class='table table-dt table-striped'><thead><tr><th>Unité</th><th>Base</th><th>Action</th><th>Exp</th><th>Pilotes</th><th>".$Sqn." 1</th><th>".$Sqn." 2</th><th>".$Sqn." 3</th></tr></thead>".$txt_action_ia."</table>";
 		elseif($Armee or $OfficierEMID ==$Officier_Mer)
 			echo "<h2>Unités</h2>".$menu_units_ia."<div class='alert alert-info'>Le commandant en chef peut vous assigner des unités aériennes, prenez contact avec lui.</div>";
 		else

@@ -131,9 +131,9 @@ if ($OfficierEMID > 0) {
                     $CT_Repa = $data['Rating'];
                 else
                     $CT_Repa = $CT_Repa_ori;
-                if ($Repa_ok and $Repa >= $Repa_Nbr and $Credits >= $CT_Repa)
-                    $Repa_txt = "<form action='em/em_prod_repa.php' method='post'><input type='hidden' name='avion' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type_avion . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
-                else
+//                if ($Repa_ok and $Repa >= $Repa_Nbr and $Credits >= $CT_Repa)
+//                    $Repa_txt = "<form action='em/em_prod_repa.php' method='post'><input type='hidden' name='avion' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type_avion . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+//                else
                     $Repa_txt = '';
                 if ($Total > $data['Stock']) {
                     $Total = "<span class='text-danger'>" . $Total . "</span>";
@@ -211,7 +211,7 @@ if ($OfficierEMID > 0) {
         echo '<h2>Production aéronautique</h2>';
         if ($Type) {
             echo "<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Les avions apparaissant en grisé dans cette liste ne sont pas encore produits par nos usines</div>
-			<div style='overflow:auto;'><table class='table table-striped table-condensed table-responsive'>
+			<div style='overflow:auto;'><table class='table table-dt table-striped table-condensed table-responsive'>
 			<thead><tr>
 				<th>N°</th>
 				<th>Avion</th>

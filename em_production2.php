@@ -111,9 +111,9 @@ if ($OfficierEMID > 0) {
                 if ($Reste < 1) $Reste = "<span class='text-danger'>0</span>";
                 $CT_Repa = $data['Reput'];
                 if ($CT_Repa < $CT_Repa_Min) $CT_Repa = $CT_Repa_Min;
-                if ($Repa_ok and $Repa >= $Repa_Nbr and $Credits >= $CT_Repa and $data['Reput'] < $CT_MAX)
-                    $Repa_txt = "<form action='em/em_prod_repa2.php' method='post'><input type='hidden' name='veh' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
-                else
+//                if ($Repa_ok and $Repa >= $Repa_Nbr and $Credits >= $CT_Repa and $data['Reput'] < $CT_MAX)
+//                    $Repa_txt = "<form action='em/em_prod_repa2.php' method='post'><input type='hidden' name='veh' value='" . $ID . "'><input type='hidden' name='CT' value='" . $CT_Repa . "'><input type='hidden' name='Type' value='" . $Type . "'><img src='images/CT" . $CT_Repa . ".png' title='Montant en Crédits Temps que nécessite cette action'><input type='submit' value='Réparer' class='btn btn-warning btn-sm' onclick='this.disabled=true;this.form.submit();'></form>";
+//                else
                     $Repa_txt = '';
                 $Rate = "<span class='text-danger'>0</span>";
                 if ($data['Lease']) $Flags .= "<img src='images/lendlease.png' title='Lend-Lease' alt='Lend-Lease'>";
@@ -139,7 +139,7 @@ if ($OfficierEMID > 0) {
             echo '<b>Désolé, aucun véhicule</b>';
         //echo "<a class='btn btn-default' title='Retour au menu' href='index.php?view=em_production20'>Retour au menu</a>";
         echo "<h2>Production des véhicules en service</h2><div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Les véhicules apparaissant en grisé dans cette liste ont déjà tous été produits par nos usines</div>
-		<div style='overflow:auto;'><table class='table table-striped table-condensed table-responsive'>
+		<div style='overflow:auto;'><table class='table table-dt table-striped table-condensed table-responsive'>
 		<thead><tr>
 			<th>Véhicule</th>
 			<th class='hidden-lg-down'>Pays</th>
