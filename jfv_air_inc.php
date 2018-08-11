@@ -1,5 +1,5 @@
 <?php
-require_once('./jfv_inc_const.php');
+require_once './jfv_inc_const.php';
 
 function GetSituation($Enis,$avion_eni,$Pays_eni,$Leader=0,$Ailier=0,$avion=0,$pvp=0)
 {	
@@ -177,6 +177,8 @@ function GetToolbar($chemin, $PlayerID, $avion, $HP, $Mun1, $Mun2, $essence, $me
 			$ID_ref=$data['ID_ref'];
 			$Mun1_Type=$data['Munitions1'];
 			$Mun2_Type=$data['Munitions2'];
+            $Avion_Bombe_Nbr=$data['Bombe_Nbr'];
+            $Avion_Bombe=$data['Bombe'];
 		}
 		mysqli_free_result($result3);
 		unset($data);
@@ -207,7 +209,7 @@ function GetToolbar($chemin, $PlayerID, $avion, $HP, $Mun1, $Mun2, $essence, $me
 	{
 		$Mun1_Type=$Avion_Mun;
 		$Mun2_Type=$Avion_Mun;
-		$Avion_icon=GetAvionIcon($Avion,$Pays,$PlayerID,$Unite,$Front);
+		$Avion_icon=GetAvionIcon($avion,$Pays,$PlayerID,$Unite,$Front);
 	}
 	else
 	{
@@ -292,6 +294,8 @@ function GetToolbar($chemin, $PlayerID, $avion, $HP, $Mun1, $Mun2, $essence, $me
 	$Puissance=round((2000-GetPuissance($avion_db,$avion,$alt,$HP,$moda,$malus_incident,$Engine_Nbr,$gaz))/2);
 	if($Puissance <0 and $PlayerID >1)$Puissance=0;
 	$P_Unit=round($Puissance/$Engine_Nbr);
+    $moteurs_jauges='';
+    $Puissance_txt='';
 	for($im=1;$im<$Engine_Nbr_Ori+1;$im++)
 	{
 		if($im <=$Engine_Nbr)
@@ -409,7 +413,7 @@ function GetToolbar($chemin, $PlayerID, $avion, $HP, $Mun1, $Mun2, $essence, $me
 		$Stress_Train="<div class='i-flex led_orange' title='".$Stress_Train."'></div>";
 	else
 		$Stress_Train="<div class='i-flex led_green' title='".$Stress_Train."'></div>";	
-	if($PlayerID ==1 or $PlayerID ==2)
+	if($PlayerID ==1)
 		$Jauges='R: '.$Reput.' | A:'.$Grade;
 	else	
 		$Jauges='';						
@@ -510,7 +514,8 @@ function ShowGaz($avion, $c_gaz, $flaps, $manche, $combat=false, $pvp=false)
 				else
 					$choix_gaz.="<option value='".$iu."'>".$iu."%</option>";
 			}
-		}	
+		}
+        $choix_manche='';
 		if(!$combat)
 		{
 			if($manche >$Plafond)$manche=$Plafond;
@@ -1000,8 +1005,8 @@ function AddPilotage($Avion_db, $avion, $PlayerID, $Modif=1)
 				$ok=mysqli_query($con,"UPDATE XP_Avions SET Pilotage='$Score' WHERE PlayerID='$PlayerID' AND AvionID='$avion'");
 				if(!$ok)
 				{
-					$msg.="Erreur de mise à jour UpdateCarac ".mysqli_error($con);
-					mail('binote@hotmail.com','Aube des Aigles: AddPilotage Error',$msg);
+					$msg="Erreur de mise à jour UpdateCarac ".mysqli_error($con);
+					mail(EMAIL_LOG,'Aube des Aigles: AddPilotage Error',$msg);
 				}
 			}
 		}
@@ -1011,8 +1016,8 @@ function AddPilotage($Avion_db, $avion, $PlayerID, $Modif=1)
 			$ok=mysqli_query($con,$query);
 			if(!$ok)
 			{
-				$msg.="Erreur de mise à jour du Pilotage de l'avion ".$avion." du joueur ".$PlayerID."<br>".mysqli_error($con);
-				mail('binote@hotmail.com','Aube des Aigles: AddPilotage Error',$msg);
+				$msg="Erreur de mise à jour du Pilotage de l'avion ".$avion." du joueur ".$PlayerID."<br>".mysqli_error($con);
+				mail(EMAIL_LOG,'Aube des Aigles: AddPilotage Error',$msg);
 			}
 		}
 	}
@@ -1059,8 +1064,8 @@ function AddXPAvionIA($Avion,$Unite,$Modif=1)
 				$ok=mysqli_query($con,"UPDATE XP_Avions_IA SET Exp='$Score' WHERE Unite='$Unite' AND AvionID='$Avion'");
 				if(!$ok)
 				{
-					$msg.="Erreur de mise à jour Update ".mysqli_error($con);
-					mail('binote@hotmail.com','Aube des Aigles: AddXPAvionIA Error',$msg);
+					$msg="Erreur de mise à jour Update ".mysqli_error($con);
+					mail(EMAIL_LOG,'Aube des Aigles: AddXPAvionIA Error',$msg);
 				}
 			}
 		}
@@ -1070,8 +1075,8 @@ function AddXPAvionIA($Avion,$Unite,$Modif=1)
 			$ok=mysqli_query($con,$query);
 			if(!$ok)
 			{
-				$msg.="Erreur de mise à jour Exp avion ".$Avion." de l'unité ".$Unite."<br>".mysqli_error($con);
-				mail('binote@hotmail.com','Aube des Aigles: AddXPAvionIA Error',$msg);
+				$msg="Erreur de mise à jour Exp avion ".$Avion." de l'unité ".$Unite."<br>".mysqli_error($con);
+				mail(EMAIL_LOG,'Aube des Aigles: AddXPAvionIA Error',$msg);
 			}
 		}
 	}
@@ -1092,11 +1097,11 @@ function AddPilotage_Sandbox($Avion_db, $avion, $PlayerID, $Modif=1)
 			if($Modif !=0)
 			{
 				$Score+=$Modif;
-				$ok=mysqli_query($con,"UPDATE XP_Avions_sandbox SET Pilotage='$Score' WHERE PlayerID='$PlayerID' AND AvionID='$avion''");
+				$ok=mysqli_query($con,"UPDATE XP_Avions_sandbox SET Pilotage='$Score' WHERE PlayerID='$PlayerID' AND AvionID='$avion'");
 				if(!$ok)
 				{
-					$msg.="Erreur de mise à jour UpdateCarac ".mysqli_error($con);
-					mail('binote@hotmail.com','Aube des Aigles: AddPilotage Sandbox Error',$msg);
+					$msg="Erreur de mise à jour UpdateCarac ".mysqli_error($con);
+					mail(EMAIL_LOG,'Aube des Aigles: AddPilotage Sandbox Error',$msg);
 				}
 			}
 		}
@@ -1106,8 +1111,8 @@ function AddPilotage_Sandbox($Avion_db, $avion, $PlayerID, $Modif=1)
 			$ok=mysqli_query($con,$query);
 			if(!$ok)
 			{
-				$msg.="Erreur de mise à jour du Pilotage de l'avion ".$avion." du joueur ".$PlayerID."<br>".mysqli_error($con);
-				mail('binote@hotmail.com','Aube des Aigles: AddPilotage Sandbox Error',$msg);
+				$msg="Erreur de mise à jour du Pilotage de l'avion ".$avion." du joueur ".$PlayerID."<br>".mysqli_error($con);
+				mail(EMAIL_LOG,'Aube des Aigles: AddPilotage Sandbox Error',$msg);
 			}
 		}
 	}

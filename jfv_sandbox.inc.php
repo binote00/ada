@@ -144,4 +144,3 @@
 		}
 		return array($Rank1,$Rank2);
 	}
-?>

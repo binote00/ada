@@ -1,4 +1,4 @@
-<?
+<?php
 Function GetMeteo($Saison, $Latitude=0, $Longitude=0, $Previsions=0, $Nuit=0) //Eté=3, Printemps=2, Automne=1, Hiver=0
 {
 	if($Previsions >0 and $Latitude ==0 and $Longitude ==0)
@@ -975,7 +975,7 @@ Function Rencontre_Random($Longitude, $Latitude, $Cible, $random_unit=0, $Pays=0
 							$random_unit=$data['ID'];
 							mysqli_free_result($result);
 							unset($data);
-							//mail('binote@hotmail.com','Aube des Aigles: Rencontre_Random No Result Classique',"No Result : Pays=".$Pays.", Unit : ".$random_unit." , Longitude=".$Longitude.", Latitude=".$Latitude);
+							//mail(EMAIL_LOG,'Aube des Aigles: Rencontre_Random No Result Classique',"No Result : Pays=".$Pays.", Unit : ".$random_unit." , Longitude=".$Longitude.", Latitude=".$Latitude);
 							break;
 						}
 						$i++;
@@ -989,7 +989,7 @@ Function Rencontre_Random($Longitude, $Latitude, $Cible, $random_unit=0, $Pays=0
 					}
 				}
 				else
-					mail('binote@hotmail.com','Aube des Aigles: Rencontre_Random No Result Classique',"No Result : Pays=".$Pays.", Longitude=".$Longitude.", Latitude=".$Latitude);
+					mail(EMAIL_LOG,'Aube des Aigles: Rencontre_Random No Result Classique',"No Result : Pays=".$Pays.", Longitude=".$Longitude.", Latitude=".$Latitude);
 			}			
 			if(!$random_unit)
 				$random_unit=GetData("Pilote","ID",$PlayerID,"Unit");
@@ -1062,7 +1062,7 @@ Function Rencontre_Random($Longitude, $Latitude, $Cible, $random_unit=0, $Pays=0
 		break;
 	}	
 	if(!$avioneni or !$random_alt or !$random_unit or !$Type)
-		mail ('binote@hotmail.com','Aube des Aigles: Rencontre_Random Last',"Generate error : Pays=".$Pays." / Type=".$Type." / Unit_random=".$random_unit." / avion_eni=".$avioneni." / alt=".$random_alt);
+		mail (EMAIL_LOG,'Aube des Aigles: Rencontre_Random Last',"Generate error : Pays=".$Pays." / Type=".$Type." / Unit_random=".$random_unit." / avion_eni=".$avioneni." / alt=".$random_alt);
 	
 	return array($nbreni,$random_avioneni,$avioneni,$random_lieu,$lieueni,$random_alt,$random_unit);
 }*/
@@ -1216,7 +1216,7 @@ function RetireAvionFromUnit($Unite, $avion, $Nbr=-1)
 		}
 	}
 	else
-		mail('binote@hotmail.com','Aube des Aigles: Erreur Select RetireAvionFromUnit',"Unite : ".$Unite." ; Avion : ".$avion);
+		mail(EMAIL_LOG,'Aube des Aigles: Erreur Select RetireAvionFromUnit',"Unite : ".$Unite." ; Avion : ".$avion);
 }
 
 function AddPatrouille($Avion_db, $avion, $PlayerID, $Unite_win, $Lieu, $alt, $Cycle=0, $Type=0)
@@ -1234,8 +1234,8 @@ function AddPatrouille($Avion_db, $avion, $PlayerID, $Unite_win, $Lieu, $alt, $C
 	mysqli_close($con);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddPatrouille Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddPatrouille Error',$msg);
 	}
 }
 
@@ -1255,31 +1255,11 @@ function AddEscorte($Avion_db, $avion, $PlayerID, $Lieu, $Escorte, $Escorte_nbr,
 	if(!$ok)
 	{
 		$msg="Erreur de mise à jour ".mysqli_error($con);
-		mail('binote@hotmail.com', 'Aube des Aigles: AddEscorte Error',$msg);
+		mail(EMAIL_LOG, 'Aube des Aigles: AddEscorte Error',$msg);
 	}
 	if(!$ok2)
 	{
 		$msg="Erreur de mise à jour ".mysqli_error($con);
-		mail('binote@hotmail.com', 'Aube des Aigles: AddEscorte Live Error',$msg);
+		mail(EMAIL_LOG, 'Aube des Aigles: AddEscorte Live Error',$msg);
 	}
 }
-
-/*function DestockUnit($Unite,$Arme1Avion,$Arme2Avion,$Mun1,$Mun2,$Autonomie,$Avion_db,$avion)
-{
-	$Engine=GetData($Avion_db,"ID",$avion,"Engine");
-	if($Engine)
-	{
-		$Carburant=GetData("Moteur","ID",$Engine,"Carburant");
-		$Stock_Essence="Stock_Essence_".$Carburant;
-		UpdateData("Unit",$Stock_Essence,$essence,"ID",$Unite);
-	}
-	$Calibre1="Stock_Munitions_".round(GetData("Armes","ID",$Arme1Avion,"Calibre"));
-	$Calibre2="Stock_Munitions_".round(GetData("Armes","ID",$Arme2Avion,"Calibre"));
-	$Mun1_stock=0-$Mun1;
-	$Mun2_stock=0-$Mun2;
-	$Essence_stock=0-$Autonomie;
-	UpdateData("Unit",$Calibre1,$Mun1_stock,"ID",$Unite);
-	UpdateData("Unit",$Calibre2,$Mun2_stock,"ID",$Unite);
-	UpdateData("Unit",$Stock_Essence,$Essence_stock,"ID",$Unite);
-}*/
-?>

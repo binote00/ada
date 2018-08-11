@@ -1,4 +1,4 @@
-<?
+<?php
 function GetMapPos($longit, $latit, $long_par_km, $lat_par_km, $SensH, $SensV)
 {
 	if($SensH =="ouest")
@@ -35,6 +35,7 @@ function Chemin_Retour()
 
 function GetCible($Pays, $Categorie)
 {
+    $return=false;
 	$Date_Campagne=GetData("Conf_Update","ID",2,"Date");
 	$query="SELECT ID FROM Cible WHERE Date <'$Date_Campagne' AND Categorie='$Categorie' AND (Pays='$Pays' OR Pays=0) ORDER BY RAND() LIMIT 1";
 	$con=dbconnecti();
@@ -43,11 +44,12 @@ function GetCible($Pays, $Categorie)
 	if($result)
 	{
 		while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
-		{		
-			return $data['ID'];
+		{
+            $return=$data['ID'];
 		}
 		mysqli_free_result($result);
 	}
+	return $return;
 }
 
 function GetZone($Zone)
@@ -183,8 +185,8 @@ function AddCandidat($Avion_db, $PlayerID, $avion, $HP, $Puissance, $Essence, $c
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.='Erreur de mise à jour'.mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddCandidat Update Error',$msg);
+			$msg='Erreur de mise à jour'.mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddCandidat Update Error',$msg);
 		}
 	}
 	else
@@ -196,8 +198,8 @@ function AddCandidat($Avion_db, $PlayerID, $avion, $HP, $Puissance, $Essence, $c
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.='Erreur insert '.mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddCandidat Insert Error',$msg);
+			$msg='Erreur insert '.mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddCandidat Insert Error',$msg);
 		}
 	}
 	//SetData("Pilote","PvP",$Cible,"ID",$PlayerID);
@@ -214,8 +216,8 @@ function AddRecce($Avion_db, $Nom, $avion, $PlayerID, $Unite_win, $Lieu, $Type=0
 	mysqli_close($con);
 	if(!$ok)
 	{
-		$msg.='Erreur de mise à jour '.mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddRecce Error',$msg);
+		$msg='Erreur de mise à jour '.mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddRecce Error',$msg);
 	}
 }
 
@@ -230,8 +232,8 @@ function AddRavit($Avion_db, $avion, $PlayerID, $Unite, $Lieu, $Unite_Cible, $Ca
 	mysqli_close($con);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddRavit Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddRavit Error',$msg);
 	}
 }
 
@@ -246,8 +248,7 @@ function AddSauvetage($Avion_db, $avion, $PlayerID, $Unite, $Lieu, $MIA, $Cycle)
 	mysqli_close($con);
 	if(!$ok)
 	{
-		$msg.="Erreur de mise à jour".mysqli_error($con);
-		mail('binote@hotmail.com','Aube des Aigles: AddSauvetage Error',$msg);
+		$msg="Erreur de mise à jour".mysqli_error($con);
+		mail(EMAIL_LOG,'Aube des Aigles: AddSauvetage Error',$msg);
 	}
 }
-?>

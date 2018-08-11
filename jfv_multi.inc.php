@@ -1,4 +1,4 @@
-<?
+<?php
 function GetOnlinePlayers()
 {
     $PlayerID=$_SESSION['PlayerID'];	
@@ -15,8 +15,8 @@ function GetOnlinePlayers()
 			$result2=mysqli_query($con, $sql_query2);
 			if(!$result2)
 			{
-				$mes.="Erreur d'Insert de Connectés : GetOnlinePlayers ".mysqli_error($con);
-				mail('binote@hotmail.com','Aube des Aigles: Error',$mes);
+				$mes="Erreur d'Insert de Connectés : GetOnlinePlayers ".mysqli_error($con);
+				mail(EMAIL_LOG,'Aube des Aigles: Error',$mes);
 			}
 		}
 		else
@@ -25,8 +25,8 @@ function GetOnlinePlayers()
 			$result=mysqli_query($con, $sql_update);
 			if(!$result)
 			{
-				$mes.="Erreur d'Update de Connectés : GetOnlinePlayers ".mysqli_error($con);
-				mail('binote@hotmail.com','Aube des Aigles: Error',$mes);
+				$mes="Erreur d'Update de Connectés : GetOnlinePlayers ".mysqli_error($con);
+				mail(EMAIL_LOG,'Aube des Aigles: Error',$mes);
 			}
 		}
 		mysqli_close($con);

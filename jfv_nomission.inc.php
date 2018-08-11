@@ -132,4 +132,3 @@ function DoSelect2($table,$value,$label,$sort,$search,$isearch,$search2,$isearch
 		mysqli_free_result($result);
 	}
 }
-?>

@@ -1,5 +1,5 @@
-<?
-require_once('./jfv_inc_sessions.php');
+<?php
+require_once './jfv_inc_sessions.php';
 $PlayerID=$_SESSION['PlayerID'];
 if($PlayerID >0)
 {
@@ -82,4 +82,3 @@ if($PlayerID >0)
 			$Tir=50;
 	}
 }
-?>

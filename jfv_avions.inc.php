@@ -2061,7 +2061,7 @@
 				$Flaps=2;
 				$Rockets=6;
 			break;
-			case 208: case 700:case 727:
+			case 208: case 700: case 727:
 				$Arme8_fus=66;
 				$Arme8_ailes=5;
 				$Arme13=5;
@@ -2073,7 +2073,7 @@
 				$Camera_low=25;
 				$Camera_high=5;
 			break;
-			case 209: case 727:
+			case 209:
 				$Arme8_fus=66;
 				$Arme8_ailes=5;
 				$Arme13=5;

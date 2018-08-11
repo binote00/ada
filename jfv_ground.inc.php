@@ -1508,7 +1508,7 @@ function AddGroundAtk($Rega,$Regb,$Veha,$Veh_Nbra,$Vehb,$Veh_Nbrb,$Posa,$Posb,$L
 		$ok=mysqli_query($con,$query);
 		if(!$ok)
 		{
-			$msg.='Erreur de mise à jour '.mysqli_error($con);
+			$msg='Erreur de mise à jour '.mysqli_error($con);
 			mail('binote@hotmail.com','Aube des Aigles: AddGroundAtk Error',$msg);
 		}
 		mysqli_close($con);

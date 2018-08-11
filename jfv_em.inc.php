@@ -21,4 +21,3 @@ function Get_CT_Discount($Avancement)
 		$Discount=0;
 	return $Discount;
 }
-?>

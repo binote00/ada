@@ -19,6 +19,7 @@ function GetCible_Infos($Vehicule_ID,$Nbr,$Regiment,$HP,$Exp,$Muns,$Fret,$Fret_Q
 	global $g_Amphi;
 	global $g_Moves;
 	global $country;
+    $Output='';
 	if($Battle)
 		$DB="Regiment_PVP";
 	else
@@ -36,7 +37,6 @@ function GetCible_Infos($Vehicule_ID,$Nbr,$Regiment,$HP,$Exp,$Muns,$Fret,$Fret_Q
 	{
 		while($data=mysqli_fetch_array($result,MYSQLI_ASSOC))
 		{
-			$Vehicule=$data['ID'];
 			$Nom=$data['Nom'];
 			$Taille=$data['Taille'];
 			if($Position ==25) //Plongée
@@ -620,7 +620,7 @@ function GetCible_Infos($Vehicule_ID,$Nbr,$Regiment,$HP,$Exp,$Muns,$Fret,$Fret_Q
 					else
 						$Arme_Inf="<img src='images/icon_flak.png' title='".GetData("Armes","ID",$data['Arme_AA3'],"Nom")." (".$Arme_cal."mm) ".$Muns_txt."'>";
 				}
-				$Arme_Inf="<img src='images/icon_flak.png' title='".GetData("Armes","ID",$data['Arme_AA3'],"Nom")." (".$Arme_cal."mm) ".$Muns_txt."'><br>".$Stock."/".$Stock_Max;
+				$Arme_Inf.="<img src='images/icon_flak.png' title='".GetData("Armes","ID",$data['Arme_AA3'],"Nom")." (".$Arme_cal."mm) ".$Muns_txt."'><br>".$Stock."/".$Stock_Max;
 				if($Stock==0)
 					$Arme_Inf.="<a href='#' class='popup'><img src='images/help.png'><span>Le ravitaillement est possible dans la gare ou le port dont la valeur stratégique est au moins égale à 4. Dans tous les cas il vaut mieux utiliser les transmissions et contacter un officier ravitailleur,cela coûtera moins cher.</span></a>";
 			}					
@@ -655,11 +655,11 @@ function GetCible_Infos($Vehicule_ID,$Nbr,$Regiment,$HP,$Exp,$Muns,$Fret,$Fret_Q
 					$Fret="Bombes de ".substr($Fret,0,-1)."kg";
 				else
 					$Fret=$Fret."mm";
-				$Charge.=$Fret_Qty."<br>".$Fret;
-				//$Charge.=$Charge_actu.'/'.$g_Charge."<br>".$Fret;
+				$Charge=$Fret_Qty."<br>".$Fret;
+				//$Charge=$Charge_actu.'/'.$g_Charge."<br>".$Fret;
 			}
 			else
-				$Charge.='0/'.$g_Charge;						
+				$Charge='0/'.$g_Charge;
 			if($g_Carbu ==1)
 			{
 				if($Battle)
@@ -806,6 +806,6 @@ function GetCible_Infos($Vehicule_ID,$Nbr,$Regiment,$HP,$Exp,$Muns,$Fret,$Fret_Q
 		<td>".$Arme_AA."</td>
 		<td>".$Fuel_txt."</td>
 		<td>".$Range."</td><td>";				
-		return $Output;
 	}
-}?>
+	return $Output;
+}

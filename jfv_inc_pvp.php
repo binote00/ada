@@ -12,6 +12,8 @@ function GetFactionDB($Faction)
 		return "Axe";
 	elseif($Faction ==2)
 		return "Allies";
+	else
+	    return "Neutre";
 }
 function GetFlagPVP($Battle,$Faction)
 {
@@ -113,12 +115,12 @@ function AddGroundAtkPVP($Rega,$Regb,$Veha,$Veh_Nbra,$Vehb,$Veh_Nbrb,$Posa,$Posb
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.="Erreur de mise à jour ".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddGroundAtkPVP Error',$msg);
+			$msg="Erreur de mise à jour ".mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddGroundAtkPVP Error',$msg);
 		}
 	}
 	else
-		mail('binote@hotmail.com','Aube des Aigles: AddGroundAtkPVP Error No Reg',$Rega.' -- '.$Regb);
+		mail(EMAIL_LOG,'Aube des Aigles: AddGroundAtkPVP Error No Reg',$Rega.' -- '.$Regb);
 }
 function AddAirCbtPVP($Pilote_a,$Avion_a,$Pilote_b,$Avion_b,$Lieu,$Alt,$Distance)
 {
@@ -132,8 +134,8 @@ function AddAirCbtPVP($Pilote_a,$Avion_a,$Pilote_b,$Avion_b,$Lieu,$Alt,$Distance
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.="Erreur de mise à jour ".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddAirCbtPVP Error',$msg);
+			$msg="Erreur de mise à jour ".mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddAirCbtPVP Error',$msg);
 		}
 	}
 }
@@ -149,8 +151,8 @@ function AddDCACbtPVP($Lieu,$Pilote,$Avion,$Alt,$Cycle,$Veh,$Arme,$Degats)
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.="Erreur de mise à jour ".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddDCACbtPVP Error',$msg);
+			$msg="Erreur de mise à jour ".mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddDCACbtPVP Error',$msg);
 		}
 	}
 }
@@ -169,8 +171,8 @@ function AddCandidatPVP($Avion_db, $PlayerID, $avion, $HP, $Puissance, $Essence,
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.='Erreur de mise à jour'.mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddCandidatPVP Update Error',$msg);
+			$msg='Erreur de mise à jour'.mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddCandidatPVP Update Error',$msg);
 		}
 	}
 	else
@@ -183,8 +185,8 @@ function AddCandidatPVP($Avion_db, $PlayerID, $avion, $HP, $Puissance, $Essence,
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.='Erreur insert '.mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddCandidatPVP Insert Error',$msg);
+			$msg='Erreur insert '.mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddCandidatPVP Insert Error',$msg);
 		}
 	}
 	//SetData("Pilote_PVP","PvP",$Cible,"ID",$PlayerID);
@@ -201,8 +203,8 @@ function AddEventPVP($Event,$Reg,$Reg_eni,$Degats,$Battle)
 		mysqli_close($con);
 		if(!$ok)
 		{
-			$msg.="Erreur de mise à jour ".mysqli_error($con);
-			mail('binote@hotmail.com','Aube des Aigles: AddEventPVP Error',$msg);
+			$msg="Erreur de mise à jour ".mysqli_error($con);
+			mail(EMAIL_LOG,'Aube des Aigles: AddEventPVP Error',$msg);
 		}
 	}
 }
@@ -212,6 +214,8 @@ function GetVehPVP($Battle)
 		return array(691,692,700,693,694,695,696,698,697,615,618,678,675,676,103,153,108,129,133,235,242,131,198,128,130,298);
 	elseif($Battle ==2)
 		return array(691,692,700,703,702,693,26,701,62,37,696,105,143,87,147,362,27,174,146,145,61,38,169,41,103,153,108,129,133,235,359,242,119,22,215,122,23,29,30);
+	else
+	    return false;
 }
 function GetAvionPVP($Battle,$Mission,$Faction,$Premium)
 {
