@@ -1057,7 +1057,7 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
                                 } else
                                     $Couvertures_txt = $Couvertures;
                                 $Demandes = GetMissionType($Data['Demandes']);
-                                $Missions_txt .= "<tr><td>" . $Couvertures_txt . "</td><td>" . $Escortes . "</td><td>" . $Recce . "</td><td>" . $Cible_i . "</td></tr>";
+                                $Missions_table_txt .= "<tr><td>" . $Couvertures_txt . "</td><td>" . $Escortes . "</td><td>" . $Recce . "</td><td>" . $Cible_i . "</td></tr>";
                             }
                             $Tasks_Reco = $Data['Tasks_Reco'];
                         }
@@ -1177,14 +1177,9 @@ if ($PlayerID > 0 xor $OfficierID > 0 xor $OfficierEMID > 0) {
 						<th>Status Reco</th></tr></thead>" . $dem_txt . "</table>";
             //Escortes et couvertures en cours
             require_once 'help/aide_missions_liste.php';
-            $Missions_txt = Output::viewModal('help-aide-missions-liste', 'aide', $modal_txt)."<h3>Missions en cours ".Output::linkModal('help-aide-missions-liste', '<img src="images/help.png">')."</h3>
-						<table class='table table-striped'><thead><tr>
-							<th>Couvertures</th>
-							<th>Escortes</th>
-							<th>Reco</th>
-							<th>Cibles</th>
-						</tr></thead>";
-            $Missions_txt .= '</table>';
+            $Missions_txt = Output::viewModal('help-aide-missions-liste', 'aide', $modal_txt).
+                "<h3>Missions en cours ".Output::linkModal('help-aide-missions-liste', '<img src="images/help.png">')."</h3>".
+                Output::tableHead(['Couvertures', 'Escortes', 'Reco', 'Cibles'], $Missions_table_txt, 'table-striped');
             $mes .= $header . "<h1>" . $Cible_nom . "</h1>" . $toolbar . "<div class='row'><div class='col-md-6 col-sm-12'><img src='" . $img_gen . "' title='" . $Cible_nom . "' style='width:100%;'></div>
 			<div class='col-md-6 col-sm-12'><table class='table table-800'><thead><tr><th>Territoire</th><th>Revendication</th><th>Valeur stratégique</th><th>Terrain</th><th>Météo</th></tr></thead>
 			<tr><td><a href='#' class='popup'><img src='images/flag" . $Pays_Ori . "p.jpg'><span><b>" . GetPays($Pays_Ori) . "</b>. Nation contrôlant le lieu au début de la partie.</span></a></td><td>" . $Rev . "</td><td><a href='#' class='popup'>" . $Valstrat_icon . "<span>Valeur ajoutée quotidiennement au score de victoire de la faction qui le contrôle.</span></a></td><td><img src='images/zone" . $Zone . ".jpg' title='" . $Region . "'>" . $Noeud_txt . $Plage_txt . "</td>
