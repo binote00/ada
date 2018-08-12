@@ -15,7 +15,10 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 		$Sqn=GetSqn($country);
         if($_SESSION['msg_esc'])
             $Alert = '<div class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$_SESSION['msg_esc'].'</div>';
+        elseif($_SESSION['msg_esc_red'])
+            $Alert = '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$_SESSION['msg_esc'].'</div>';
         $_SESSION['msg_esc'] = false;
+        $_SESSION['msg_esc_red'] = false;
         $tri=Insec($_POST['tri']);
 		if(!$tri)
 			$querytri='';
@@ -107,22 +110,17 @@ if(isset($_SESSION['AccountID']) AND $OfficierEMID >0)
 					if($Type >0)$Front_nbr[$Front_unit]+=1;
 					if(!$data['Etat'])
 					{
-						if($Credits >=25 and $data['Active_Date'] <=$Date_Campagne)
+						if($data['Active_Date'] <=$Date_Campagne)
 						{
-							/*$Faction_Air=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='".$data['Flag_Air']."'"),0);
-							$Faction_Flag=mysqli_result(mysqli_query($con,"SELECT Faction FROM Pays WHERE ID='".$data['Flag']."'"),0);
-							if($Faction_Air ==$Faction and $Faction_Flag ==$Faction)*/
-								$Front_unit_txt.="<form action='index.php?view=ghq_active_unit' method='post'><input type='hidden' name='Unit' value='".$Unite."'><input type='hidden' name='Type' value='".$Unite_Type."'>
-								<div class='i-flex CT25' title='Credits Temps nécessaires pour exécuter cette action'></div><input type='Submit' value='Activer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
-							/*else
-								$Front_unit_txt.="<br><span class='label label-danger'>Sous le feu</span>";*/
+                            $Front_unit_txt.="<form action='index.php?view=ghq_active_unit' method='post'><input type='hidden' name='Unit' value='".$Unite."'><input type='hidden' name='Type' value='".$Unite_Type."'>
+                            <input type='submit' value='Activer' class='btn btn-sm btn-danger' onclick='this.disabled=true;this.form.submit();'></form>";
 						}
 						else
-							$Front_unit_txt.="<br><div class='i-flex CT25' title='Credits Temps nécessaires pour exécuter cette action'></div><span class='text-danger'>Activer</span>";
+							$Front_unit_txt.="<span class='text-danger'>Activer</span>";
 					}
 					elseif(!$data['Mission_IA'])
 						$Front_unit_txt.="<form action='index.php?view=em_ia' method='post'><input type='hidden' name='Unit' value='".$Unite."'>
-						<input type='Submit' value='Ordre' class='btn btn-sm btn-".$btn_color_ordres."' onclick='this.disabled=true;this.form.submit();'></form>";
+						<input type='submit' value='Ordre' class='btn btn-sm btn-".$btn_color_ordres."' onclick='this.disabled=true;this.form.submit();'></form>";
 					else
 						$Front_unit_txt.="<br><span class='label label-danger'>En vol</span>";
 				}

@@ -172,4 +172,21 @@ trait Output
         }
         return '<table class="table table-dt table-responsive ' . $class . '"><thead><tr>' . $thead . '</tr></thead><tbody>' . $tbody . '</tbody></table>';
     }
+
+    /**
+     * @param string $uri
+     * @param string $caption
+     */
+    public static function redirect($uri, $caption = '')
+    {
+        if (!headers_sent()) {
+            header('Location: '.$uri);
+        }
+        else {
+            if (!$caption) {
+                $caption = 'Retour';
+            }
+            self::linkBtn($uri,$caption);
+        }
+    }
 }
