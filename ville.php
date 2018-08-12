@@ -259,18 +259,6 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 			}
 			mysqli_free_result($result);
 		}
-		echo $txt."</table></div><h2>Réparations automatiques (Auto)</h2><h3>Piste</h3>
-		<div class='alert alert-warning'>- Si la base aérienne est contrôlée par la nation contrôlant le lieu.
-		<br>- Les pistes totalement détruites ne se réparent pas avant un délai de 4 jours sans combat, sauf sur les lieux de valeur stratégique 1 ou supérieur.
-		<br>- La réparation est de 1 à 10% par jour.</div>
-		<h3>Tour / Usine / Gare / Pont / Port / Radar</h3>
-		<div class='alert alert-warning'>- Si la zone est contrôlée par la nation contrôlant le lieu.
-		<br>- Les infrastructures totalement détruites ne se réparent pas avant un délai de 4 jours sans combat.
-		<br>- La réparation est de 1 à 10% par jour.</div>
-		<h2>Camouflage (Cam)</h2>
-		<div class='alert alert-warning'>- Si le lieu est dotée d'un camouflage, la reconnaissance stratégique effectuée sur ce lieu s'annule chaque jour.
-		<br>- Dans le cas contraire et si le lieu a été la cible d'un marquage, la reconnaissance stratégique reste active.
-		<br>- Dans le cas d'un lieu non camouflé, la reconnaissance stratégique reste active, mais le pilote ayant effectué la reconnaissance perd le bénéfice de la coopération. Une reconnaissance doit être effectuée à nouveau par un pilote voulant bénéficier de la coopération.</div>";
 	}
 	else
 		PrintNoAccess($country,1,3,4);
