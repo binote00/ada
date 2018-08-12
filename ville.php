@@ -258,6 +258,7 @@ if(isset($_SESSION['AccountID']) and $OfficierEMID >0)
 				."</td><td>".$Oil."</td><td>".$Gare."</td><td>".$Port_txt."</td><td>".$Port."</td><td>".$Pont."</td><td>".$Piste."</td><td>".$Tour."</td><td>".$Radar."</td><td>".$data['Garnison']."/".$Max_Garnison."</td><td>".$Camoufle."</td><td>".$Repare."</td><td>".$Depot."</td></tr>";	
 			}
 			mysqli_free_result($result);
+			//toto
 		}
 	}
 	else
