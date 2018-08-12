@@ -471,7 +471,7 @@ if (isset($_SESSION['AccountID'])) {
                         }
                     }
                     //echo "<h1>Ordre de mission</h1>".$intro.$mes;
-                    AddAtk_IA($Cible, 0, $Avion_Nbr, $Avion, $Bomb_Form, $Mission_alt, 0, 0, $DCA_Nbr, 0, $Patrol_Nbr);
+//                    AddAtk_IA($Cible, 0, $Avion_Nbr, $Avion, $Bomb_Form, $Mission_alt, 0, 0, $DCA_Nbr, 0, $Patrol_Nbr);
                 }
             }
             mysqli_close($con);
